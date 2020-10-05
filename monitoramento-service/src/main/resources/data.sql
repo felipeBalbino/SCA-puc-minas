@@ -1,0 +1,12 @@
+insert into dam (name,latitude,longitude,ore,method) values('Dam 01','15.456123','-15.123456','Areia',1 );
+insert into dam (name,latitude,longitude,ore,method) values('Dam 02','15.456123','-15.123456','Areia',2 );
+insert into dam (name,latitude,longitude,ore,method) values('Dam 03','15.456123','-15.123456','Areia',3 );
+insert into dam (name,latitude,longitude,ore,method) values('Dam 04','15.456123','-15.123456','Areia',4 );
+insert into dam (name,latitude,longitude,ore,method) values('Dam 05','15.456123','-15.123456','Areia',1 );
+insert into dam (name,latitude,longitude,ore,method) values('Dam 06','15.456123','-15.123456','Areia',1 );
+insert into inspect (height,risk_category,considerations, potential_damage,date,volume,dam_id) values('22.5',0,'apto',2,'2012-07-12','3000',1);
+insert into inspect (height,risk_category,considerations, potential_damage,date,volume,dam_id) values('10.5',1,'apto',1,'2007-02-22','3000',2);
+insert into inspect (height,risk_category,considerations, potential_damage,date,volume,dam_id) values('3.5',2,'apto',0,'2020-02-18','3000',3);
+insert into inspect (height,risk_category,considerations, potential_damage,date,volume,dam_id) values('45.5',0,'apto',2,'2009-02-11','3000',4);
+insert into inspect (height,risk_category,considerations, potential_damage,date,volume,dam_id) values('2.0',1,'apto',1,'2019-12-26','3000',5);
+insert into inspect (height,risk_category,considerations, potential_damage,date,volume,dam_id) values('12.0',2,'apto',0,'2004-03-24','3000',6);

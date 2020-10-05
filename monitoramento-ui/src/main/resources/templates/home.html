@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<title>Home</title>
+</head>
+
+<section layout:fragment="conteudo">
+
+	<div class="alert alert-success alert-dismissible"
+		th:if="${!#strings.isEmpty(mensagem)}" role="alert">
+		<button type="button" class="close" data-dismiss="alert"
+			aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<span th:text="${mensagem}"></span>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+
+			<div class="clearfix">
+				<h3 class="panel-title titulo-panel">Home</h3>
+				<div class="form-group">
+					<div class="col-sm-4">
+						<form method="GET" class="form-horizontal" th:object="${filter}">
+							<select disabled name="id" class="form-control" th:field="*{id}">
+								<option th:each="item : ${listDams}" th:value="${item.id}"
+									th:text="${item.name}"></option>
+							</select>
+						</form>
+					</div>
+				</div>
+				<a class="btn btn-danger titulo-right" data-toggle="modal"
+					th:attr="data-id=1, data-loc=@{/evacuation/}, data-description=Dam_01"
+					data-target="#modalPanico">Evacuação</a>
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="chart-container col-md-6 col-xl-4">
+					<canvas id="chart1"></canvas>
+				</div>
+				<div class="chart-container col-md-6 col-xl-4">
+					<canvas id="chart2"></canvas>
+				</div>
+				<div class="chart-container col-md-6 col-xl-4">
+					<canvas id="chart3"></canvas>
+				</div>
+				<div class="chart-container col-md-6 col-xl-4">
+					<canvas id="chart4"></canvas>
+				</div>
+				<div class="chart-container col-md-6 col-xl-4">
+					<canvas id="chart5"></canvas>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div layout:insert="modal"></div>
+</section>
+</html>

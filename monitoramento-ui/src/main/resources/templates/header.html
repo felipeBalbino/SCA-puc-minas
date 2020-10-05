@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - Admin Dashboard</title>
+
+
+<link rel="shortcut icon" th:href="@{/images/favicon.svg}"
+	type="image/x-icon">
+</head>
+<body>
+	<div id="app">
+		<div id="sidebar" class='active'>
+			<div class="sidebar-wrapper active">
+
+				<div class="sidebar-menu">
+					<ul class="menu">
+
+
+						<li class='sidebar-title'>Main Menu</li>
+
+
+
+						<li class="sidebar-item active "><a href="/home"
+							class='sidebar-link'> <i data-feather="home" width="20"></i>
+								<span>Dashboard</span>
+						</a></li>
+						
+						<li class="sidebar-item "><a  sec:authorize="hasAuthority('ADMIN')" href="/user"
+							class='sidebar-link'> <i data-feather="user" width="20"></i>
+								<span>Users</span>
+						</a></li>
+						
+						<li class="sidebar-item "><a sec:authorize="hasAuthority('ENGENHEIRO')" href="/dam"
+							class='sidebar-link'> <i data-feather="more-vertical" width="20"></i>
+								<span>Dam</span>
+						</a></li>
+						
+						<li class="sidebar-item "><a sec:authorize="hasAuthority('CONSULTOR')" href="/inspect"
+							class='sidebar-link'> <i data-feather="eye" width="20"></i>
+								<span>Inspect</span>
+						</a></li>
+
+						<li th:if="${#request.userPrincipal}" class="sidebar-item ">						
+							<a href="javascript: document.logoutForm.submit()"
+								class='sidebar-link'> 
+								<i data-feather="log-out" width="20"></i>
+									<span>Logout</span>
+							</a>
+						</li>
+						
+						     
+
+					</ul>
+					<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+				      <input hidden type="submit" value="Sign Out"/>
+				    </form>
+				</div>
+				<button class="sidebar-toggler btn x">
+					<i data-feather="x"></i>
+				</button>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>

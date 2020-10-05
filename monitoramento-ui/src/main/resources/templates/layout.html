@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet" th:href="@{/vendors/chartjs/Chart.min.css}">
+<link rel="stylesheet"
+	th:href="@{/vendors/perfect-scrollbar/perfect-scrollbar.css}">
+<link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+
+	<header layout:insert="header"></header>
+
+
+	<div id="main">
+		<nav class="navbar navbar-header navbar-expand navbar-light">
+			<a class="sidebar-toggler" href="#"><span
+				class="navbar-toggler-icon"></span></a>
+			<button class="btn navbar-toggler" type="button"
+				data-toggle="collapse" data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul
+					class="navbar-nav d-flex align-items-center navbar-light ml-auto">
+					<li class="dropdown nav-icon"><a href="#"
+						data-toggle="dropdown"
+						class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
+							<div class="d-lg-inline-block">
+								<i data-feather="bell"></i>
+							</div>
+						</a>
+					</li>
+					<li class="dropdown nav-icon mr-2">
+						<a href="#" data-toggle="dropdown" class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
+							<div class="d-lg-inline-block">
+								<i data-feather="mail"></i>
+							</div>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right">
+							<a class="dropdown-item" href="#"><i data-feather="user"></i>
+								Account</a> <a class="dropdown-item active" href="#"><i
+								data-feather="mail"></i> Messages</a> <a class="dropdown-item"
+								href="#"><i data-feather="settings"></i> Settings</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#"><i data-feather="log-out"></i>
+								Logout</a>
+						</div>
+					</li>
+					
+				</ul>
+			</div>
+		</nav>
+
+		<div class="main-content container-fluid">
+			<section class="section">
+				<section layout:fragment="conteudo">
+					<p>Main</p>
+				</section>
+			</section>
+		</div>
+
+	</div>
+	<script th:src="@{/js/bootstrap.js}"></script>
+	<script th:src="@{/js/jquery-1.9.1.min.js}"></script>
+	<script th:src="@{/js/feather-icons/feather.min.js}"></script>
+	<script th:src="@{/vendors/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+	<script th:src="@{/js/app.js}"></script>
+
+	<script th:src="@{/vendors/chartjs/Chart.min.js}"></script>
+	<script th:src="@{/vendors/apexcharts/apexcharts.min.js}"></script>
+	<script th:src="@{/js/pages/dashboard.js}"></script>
+	<script th:src="@{/js/pages/modal.js}"></script>
+	<script th:src="@{/js/pages/jquery.maskMoney.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+</body>
+</html>
