@@ -1,6 +1,8 @@
 package br.com.sga.client;
 
 import java.net.URI;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
@@ -28,15 +30,15 @@ public class DamClient {
 
 	/**
 	 * @param url
-	 * @param usuario
+	 * @param user
 	 * @param senha
 	 */
-	public DamClient(String url, String usuario, String senha) {
+	public DamClient(String url, String user, String senha) {
 		restTemplate = new RestTemplate();
 
 		URI_BASE = url.concat(URN_BASE);
 
-		String credencialAux = usuario + ":" + senha;
+		String credencialAux = user + ":" + senha;
 
 		credencial = "Basic " + Base64.getEncoder().encodeToString(credencialAux.getBytes());
 	}
@@ -49,7 +51,7 @@ public class DamClient {
 
 		String path = URI_BASE;
 		if (search != null) {
-			path = URI_BASE + "?search=" + search;
+			path = URI_BASE + "?search=" + URLEncoder.encode(search, StandardCharsets.UTF_8);
 		}
 		RequestEntity<Void> request = RequestEntity.get(URI.create(path)).header("Authorization", credencial).build();
 

@@ -35,8 +35,8 @@ public class CommunicationService {
 	 * @return
 	 */
 	public Communication save(Communication communication) {
-		List<Person> lista = service.findByDam(communication.getDam());
-		for (Person p : lista) {
+		List<Person> list = service.findByDam(communication.getDam());
+		for (Person p : list) {
 			senderQueue.send(p.getName() + " <" + p.getEmail() + ">");
 		}
 		communication.setDate(new Date());

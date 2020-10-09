@@ -7,6 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title></title>
 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/r-2.2.6/rr-1.2.7/sc-2.0.3/sb-1.0.0/sp-1.2.0/datatables.min.css"/>
+ 
+
+
 <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
 <link rel="stylesheet" th:href="@{/vendors/chartjs/Chart.min.css}">
 <link rel="stylesheet"
@@ -37,14 +41,14 @@
 							<div class="d-lg-inline-block">
 								<i data-feather="bell"></i>
 							</div>
-						</a>
-					</li>
-					<li class="dropdown nav-icon mr-2">
-						<a href="#" data-toggle="dropdown" class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
+					</a></li>
+					<li class="dropdown nav-icon mr-2"><a href="#"
+						data-toggle="dropdown"
+						class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
 							<div class="d-lg-inline-block">
 								<i data-feather="mail"></i>
 							</div>
-						</a>
+					</a>
 						<div class="dropdown-menu dropdown-menu-right">
 							<a class="dropdown-item" href="#"><i data-feather="user"></i>
 								Account</a> <a class="dropdown-item active" href="#"><i
@@ -53,9 +57,8 @@
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#"><i data-feather="log-out"></i>
 								Logout</a>
-						</div>
-					</li>
-					
+						</div></li>
+
 				</ul>
 			</div>
 		</nav>
@@ -69,6 +72,7 @@
 		</div>
 
 	</div>
+
 	<script th:src="@{/js/bootstrap.js}"></script>
 	<script th:src="@{/js/jquery-1.9.1.min.js}"></script>
 	<script th:src="@{/js/feather-icons/feather.min.js}"></script>
@@ -81,5 +85,22 @@
 	<script th:src="@{/js/pages/modal.js}"></script>
 	<script th:src="@{/js/pages/jquery.maskMoney.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/r-2.2.6/rr-1.2.7/sc-2.0.3/sb-1.0.0/sp-1.2.0/datatables.min.js"></script>
+
+	<script type="text/javascript">
+
+	$(document).ready( function () {
+		$('table').dataTable( {
+	        "language": {
+	            "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json"
+	        }
+	    } );
+	} );
+	
+	
+
+	
+	</script>
+
 </body>
 </html>

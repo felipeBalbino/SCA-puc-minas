@@ -10,9 +10,9 @@
 		<relativePath />
 	</parent>
 	<groupId>br.com.sga</groupId>
-	<artifactId>security-communication</artifactId>
+	<artifactId>security-communication-service</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>security-communication</name>
+	<name>security-communication-service</name>
 	<description>security and communication</description>
 
 	<properties>

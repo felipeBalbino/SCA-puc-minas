@@ -30,14 +30,21 @@
 						<tr>
 							<th class="text-center col-md-1">#</th>
 							<th>User</th>
+							<th>Roles</th>
 							<th class="col-md-1"></th>
 							<th class="col-md-1"></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="item : ${usuarios}">
+						<tr th:each="item : ${users}">
 							<td class="text-center" th:text="${item.id}">1</td>
 							<td class="text-center" th:text="${{item.username}}">1</td>
+							<td class="text-center">
+								<div th:each="role : ${item.roles}">
+									<span th:text="${{role.name}}"></span>
+								</div>
+								
+							</td>
 							<td class="text-center">
 								<a class="btn btn-link"
 									th:href="@{/user/{id}(id=${item.id})}" title="Alter"
@@ -52,7 +59,7 @@
 							</td>
 
 						</tr>
-						<tr th:if="${#lists.isEmpty(usuarios)}">
+						<tr th:if="${#lists.isEmpty(users)}">
 							<td colspan="6">No Users Found</td>
 						</tr>
 					</tbody>

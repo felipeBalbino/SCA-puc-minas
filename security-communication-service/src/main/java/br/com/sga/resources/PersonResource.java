@@ -30,7 +30,7 @@ public class PersonResource {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<List<Person>> listar() {
+	public ResponseEntity<List<Person>> findAll() {
 		List<Person> list = service.findAll();
 		return ResponseEntity.status(HttpStatus.OK).body(list);
 	}

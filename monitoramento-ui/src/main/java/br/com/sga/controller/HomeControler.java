@@ -35,7 +35,16 @@ public class HomeControler {
 	@ModelAttribute("listDams")
 	public List<Dam> listDams() {
 		DamClient cliente = new DamClient(gateway, user, password);
-		List<Dam> lista = cliente.list(null);
-		return lista;
+		List<Dam> list = cliente.list(null);
+		return list;
+	}
+	
+	
+	/**	
+	 * @return
+	 */
+	@ModelAttribute("currentPage")
+	public String currentPage() {
+		return "home";
 	}
 }	

@@ -126,4 +126,13 @@ public class DamControler {
 	public List<PotentialDamage> listPotentialDamages() {
 		return Arrays.asList(PotentialDamage.values());
 	}
+	
+	
+	/**	
+	 * @return
+	 */
+	@ModelAttribute("currentPage")
+	public String currentPage() {
+		return "dam";
+	}
 }

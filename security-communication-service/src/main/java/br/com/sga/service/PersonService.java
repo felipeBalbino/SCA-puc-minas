@@ -37,7 +37,7 @@ public class PersonService {
 			Optional<Person> a = repository.findById(person.getId());
 
 			if (a.isPresent()) {
-				throw new ServiceException("O Person já existe.");
+				throw new ServiceException("already exist.");
 			}
 		}
 		return repository.save(person);
@@ -53,7 +53,7 @@ public class PersonService {
 		if (person.isPresent()) {
 			return person.get();
 		}
-		throw new ServiceException("O Person não pôde ser encontrado.");
+		throw new ServiceException("can not be found.");
 	}
 
 	/**
@@ -61,8 +61,8 @@ public class PersonService {
 	 * @return
 	 */
 	public List<Person> findByDam(Long id) {
-		List<Person> lista = repository.findByDam(id);
-		return lista;
+		List<Person> list = repository.findByDam(id);
+		return list;
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class PersonService {
 		try {
 			repository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
-			throw new ServiceException("O livro não pôde ser encontrado.");
+			throw new ServiceException("can not be found");
 		}
 	}
 

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.sga.model.Communication;
+import br.com.sga.resources.filter.CommunicationFilter;
 import br.com.sga.service.CommunicationService;
 
 @RestController
@@ -30,11 +31,13 @@ public class CommunicationResource {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> save(@Valid @RequestBody Communication communication) {
-		communication = service.save(communication);
+	public ResponseEntity<Void> save(@Valid @RequestBody CommunicationFilter communicationFilter) {
+		Communication test = new Communication();
+		test.setDam(communicationFilter.getDam());
+		test.setUser(communicationFilter.getUser());
+		test = service.save(test);
 
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(communication.getId())
-				.toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(test.getId()).toUri();
 
 		return ResponseEntity.created(uri).build();
 	}
@@ -43,8 +46,8 @@ public class CommunicationResource {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<List<Communication>> findAll() {
-		List<Communication> ativos = service.findAll();
+	public ResponseEntity<List<br.com.sga.model.Communication>> findAll() {
+		List<br.com.sga.model.Communication> ativos = service.findAll();
 		return ResponseEntity.status(HttpStatus.OK).body(ativos);
 	}
 

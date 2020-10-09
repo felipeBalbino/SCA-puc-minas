@@ -56,7 +56,7 @@ public class InspectControler {
 	 * @return
 	 */
 	@RequestMapping("/new")
-	public ModelAndView novo() {
+	public ModelAndView insert() {
 		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
 		mv.addObject(new Inspect());
 		return mv;
@@ -94,9 +94,9 @@ public class InspectControler {
 	public ModelAndView search(@ModelAttribute("filter") InspectFilter filter) {
 		InspectClient cliente = new InspectClient(gatemay, user, password);
 
-		List<Inspect> lista = cliente.list(filter.getId());
+		List<Inspect> list = cliente.list(filter.getId());
 		ModelAndView mv = new ModelAndView("/inspect/list");
-		mv.addObject("inpecoes", lista);
+		mv.addObject("inpecoes", list);
 		return mv;
 	}
 
@@ -133,8 +133,8 @@ public class InspectControler {
 	@ModelAttribute("listDams")
 	public List<Dam> listDams() {
 		DamClient cliente = new DamClient(gatemay, user, password);
-		List<Dam> lista = cliente.list(null);
-		return lista;
+		List<Dam> list = cliente.list(null);
+		return list;
 	}	
 
 	/**	
@@ -151,5 +151,13 @@ public class InspectControler {
 	@ModelAttribute("listPotentialDamages")
 	public List<PotentialDamage> listPotentialDamages() {
 		return Arrays.asList(PotentialDamage.values());
+	}
+	
+	/**	
+	 * @return
+	 */
+	@ModelAttribute("currentPage")
+	public String currentPage() {
+		return "inspect";
 	}
 }

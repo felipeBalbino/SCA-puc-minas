@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard - Admin Dashboard</title>
+<title>Painel - Home</title>
 
 
 <link rel="shortcut icon" th:href="@{/images/favicon.svg}"
@@ -20,35 +20,41 @@
 					<ul class="menu">
 
 
-						<li class='sidebar-title'>Main Menu</li>
+						<li class='sidebar-title'>Menu</li>
 
 
 
-						<li class="sidebar-item active "><a href="/home"
+						<li th:class="${currentPage == 'home'} ? 'sidebar-item active' : 'sidebar-item'">
+						<a href="/home"
 							class='sidebar-link'> <i data-feather="home" width="20"></i>
-								<span>Dashboard</span>
+								<span>Painel</span>
 						</a></li>
 						
-						<li class="sidebar-item "><a  sec:authorize="hasAuthority('ADMIN')" href="/user"
+						<li  th:class="${currentPage == 'user'} ? 'sidebar-item active' : 'sidebar-item'"><a  sec:authorize="hasAuthority('ADMINISTRATOR')" href="/user"
 							class='sidebar-link'> <i data-feather="user" width="20"></i>
-								<span>Users</span>
+								<span>Usuários</span>
 						</a></li>
 						
-						<li class="sidebar-item "><a sec:authorize="hasAuthority('ENGENHEIRO')" href="/dam"
+						<li  th:class="${currentPage == 'dam'} ? 'sidebar-item active' : 'sidebar-item'"><a sec:authorize="hasAuthority('ENGINEER')" href="/dam"
 							class='sidebar-link'> <i data-feather="more-vertical" width="20"></i>
-								<span>Dam</span>
+								<span>Barragens</span>
 						</a></li>
 						
-						<li class="sidebar-item "><a sec:authorize="hasAuthority('CONSULTOR')" href="/inspect"
+						<li  th:class="${currentPage == 'inspect'} ? 'sidebar-item active' : 'sidebar-item'"><a sec:authorize="hasAuthority('CONSULTANT')" href="/inspect"
 							class='sidebar-link'> <i data-feather="eye" width="20"></i>
-								<span>Inspect</span>
+								<span>Inspeção</span>
+						</a></li>
+						
+						<li  th:class="${currentPage == 'ativos'} ? 'sidebar-item active' : 'sidebar-item'"><a sec:authorize="hasAuthority('ADMINISTRATOR')" href="/ativos"
+							class='sidebar-link'> <i data-feather="eye" width="20"></i>
+								<span>Ativos</span>
 						</a></li>
 
 						<li th:if="${#request.userPrincipal}" class="sidebar-item ">						
 							<a href="javascript: document.logoutForm.submit()"
 								class='sidebar-link'> 
 								<i data-feather="log-out" width="20"></i>
-									<span>Logout</span>
+									<span>Sair</span>
 							</a>
 						</li>
 						

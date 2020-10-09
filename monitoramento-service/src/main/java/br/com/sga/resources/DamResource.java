@@ -54,7 +54,7 @@ public class DamResource {
 	}
 
 	/**
-	 * @param ativos
+	 * @param Dam
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
@@ -118,14 +118,14 @@ public class DamResource {
 	/**
 	 * @param inspect
 	 * @param id
-	 * @param idSolicitacao
+	 * @param idManutencao
 	 * @return
 	 */
-	@RequestMapping(value = "/{id}/inspect/{idSolicitacao}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{id}/inspect/{idManutencao}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> updateInspect(@RequestBody Inspect inspect, @PathVariable("id") Long id,
-			@PathVariable("idSolicitacao") Long idSolicitacao) {
+			@PathVariable("idManutencao") Long idManutencao) {
 		inspect.setDam(damService.findById(id));
-		inspect.setId(idSolicitacao);
+		inspect.setId(idManutencao);
 		InspectService.update(inspect);
 
 		return ResponseEntity.noContent().build();

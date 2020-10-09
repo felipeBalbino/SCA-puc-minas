@@ -36,7 +36,7 @@ public class UserController {
 	 */
 	@GetMapping("/new")
 	public ModelAndView user() {
-		ModelAndView mv = new ModelAndView("/user/new");
+		ModelAndView mv = new ModelAndView("/user/user");
 		mv.addObject(new User());
 		return mv;
 	}
@@ -46,8 +46,8 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("{codigo}")
-	public ModelAndView edicao(@PathVariable("codigo") User user) {
-		ModelAndView mv = new ModelAndView("/user/new");
+	public ModelAndView update(@PathVariable("codigo") User user) {
+		ModelAndView mv = new ModelAndView("/user/user");
 		mv.addObject(user);
 		return mv;
 	}
@@ -63,7 +63,7 @@ public class UserController {
 		userValidator.validate(user, bindingResult);
 
 		if (bindingResult.hasErrors()) {
-			return "/user/new";
+			return "/user/user";
 		}
 		userService.save(user);
 		attr.addFlashAttribute("mensagem", "User has been saved successfully");
@@ -75,9 +75,9 @@ public class UserController {
 	 */
 	@RequestMapping
 	public ModelAndView search() {
-		List<User> lista = userService.findAll();
+		List<User> list = userService.findAll();
 		ModelAndView mv = new ModelAndView("/user/list");
-		mv.addObject("usuarios", lista);
+		mv.addObject("users", list);
 		return mv;
 	}
 
@@ -96,9 +96,17 @@ public class UserController {
 	/**
 	 * @return
 	 */
-	@ModelAttribute("listaRoles")
-	public List<Role> todosStatusTitulo() {
-		return userService.listarRoles();
+	@ModelAttribute("listRoles")
+	public List<Role> listRoles() {
+		return userService.listRoles();
 	}
 
+	
+	/**	
+	 * @return
+	 */
+	@ModelAttribute("currentPage")
+	public String currentPage() {
+		return "user";
+	}
 }

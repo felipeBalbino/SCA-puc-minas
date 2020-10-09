@@ -7,6 +7,8 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import br.com.sga.client.filter.CommunicationFilter;
+
 /**
  * @author sga
  *
@@ -23,15 +25,15 @@ public class CommunicationClient {
 
 	/**
 	 * @param url
-	 * @param usuario
+	 * @param user
 	 * @param senha
 	 */
-	public CommunicationClient(String url, String usuario, String senha) {
+	public CommunicationClient(String url, String user, String senha) {
 		restTemplate = new RestTemplate();
 
 		URI_BASE = url.concat(URN_BASE);
 
-		String credencialAux = usuario + ":" + senha;
+		String credencialAux = user + ":" + senha;
 
 		credencial = "Basic " + Base64.getEncoder().encodeToString(credencialAux.getBytes());
 	}
@@ -40,9 +42,9 @@ public class CommunicationClient {
 	 * @param communication
 	 * @return
 	 */
-	public String save(Communication communication) {
-		RequestEntity<Communication> request = RequestEntity.post(URI.create(URI_BASE))
-				.header("Authorization", credencial).body(communication);
+	public String save(CommunicationFilter communicationFilter) {
+		RequestEntity<CommunicationFilter> request = RequestEntity.post(URI.create(URI_BASE))
+				.header("Authorization", credencial).body(communicationFilter);
 
 		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
 

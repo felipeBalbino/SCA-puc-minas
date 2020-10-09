@@ -24,7 +24,7 @@ public class InspectClient {
 
 	private String URL;
 
-	private String URN_BASE = "/monitoramento/Inspect";
+	private String URN_BASE = "/monitoramento/inspect";
 
 	private String URN_BASE_DAM = "/monitoramento/dam/";
 
@@ -32,17 +32,17 @@ public class InspectClient {
 
 	/**
 	 * @param url
-	 * @param usuario
+	 * @param user
 	 * @param senha
 	 */
-	public InspectClient(String url, String usuario, String senha) {
+	public InspectClient(String url, String user, String senha) {
 		restTemplate = new RestTemplate();
 
 		URL = url;
 
 		URI_BASE = url.concat(URN_BASE);
 
-		String credencialAux = usuario + ":" + senha;
+		String credencialAux = user + ":" + senha;
 
 		credencial = "Basic " + Base64.getEncoder().encodeToString(credencialAux.getBytes());
 	}

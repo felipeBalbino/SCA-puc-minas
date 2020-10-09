@@ -62,19 +62,19 @@ public class InspectService {
 	}
 
 	/**
-	 * @param InspectFilter
+	 * @param inspectFilter
 	 * @return
 	 */
-	public List<Inspect> search(InspectFilter InspectFilter) {
-		return InspectRepository.findByDam_Id(InspectFilter.getId());
+	public List<Inspect> search(InspectFilter inspectFilter) {
+		return InspectRepository.findByDam_Id(inspectFilter.getId());
 
 	}
 
 	/**
-	 * @param livro
-	 */	
-	public void update(Inspect Inspect) {
-		findById(Inspect.getId());
-		InspectRepository.save(Inspect);
+	 * @param Inspect
+	 */
+	public void update(Inspect inspect) {
+		findById(inspect.getId());
+		InspectRepository.save(inspect);
 	}
 }

@@ -29,7 +29,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfo(
           "Security and Communication API", 
-          "Api responsavel por cadastrar as persons em area de risco de uma dam e disparar solicitação e evacuação", 
+          "Api responsible for registering as people at risk of a dam and triggering request and evacuation", 
           "V1", 
           "Terms of service", 
           new Contact("Felipe Balbino", "", "fjbalbino@gmail.com"), 

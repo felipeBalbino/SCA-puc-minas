@@ -21,7 +21,7 @@ import br.com.sga.service.InspectService;
  *
  */
 @RestController
-@RequestMapping("/Inspect")
+@RequestMapping("/inspect")
 public class InspectResource {
 
 	@Autowired
@@ -33,15 +33,15 @@ public class InspectResource {
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<List<Inspect>> list(@RequestParam(value = "search", required = false) String search) {
-		List<Inspect> lista;
+		List<Inspect> list;
 		if (search == null) {
-			lista = inspectService.findAll();
+			list = inspectService.findAll();
 		} else {
 			InspectFilter InspectFilter = new InspectFilter();
 			InspectFilter.setId(Long.parseLong(search));
-			lista = inspectService.search(InspectFilter);
+			list = inspectService.search(InspectFilter);
 		}
-		return ResponseEntity.status(HttpStatus.OK).body(lista);
+		return ResponseEntity.status(HttpStatus.OK).body(list);
 	}
 
 	/**

@@ -52,7 +52,7 @@ public class UserService{
     /**
      * @return
      */
-    public List<Role> listarRoles() {
+    public List<Role> listRoles() {
 		return roleRepository.findAll();
 	}
     

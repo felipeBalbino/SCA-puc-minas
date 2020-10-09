@@ -33,7 +33,7 @@
     <div class="modal-content">
       
       <form th:action="@{/evacuation/}" method="POST">
-		  <input type="hidden" name="usuario" th:value="${#request.userPrincipal.name}"/>
+		  <input type="hidden" name="user" th:value="${#request.userPrincipal.name}"/>
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	        <h2 class="modal-title">Evacuation Procedure</h2>
@@ -45,7 +45,7 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-	        <button type="submit" class="btn btn-primary">Disparar</button>
+	        <button type="submit" class="btn btn-primary">Evacuation</button>
 	      </div>
       </form>
     </div>

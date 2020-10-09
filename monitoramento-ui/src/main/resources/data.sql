@@ -1,9 +1,9 @@
-insert into role (name) values('ADMIN');
-insert into role (name) values('ENGENHEIRO');
-insert into role (name) values('CONSULTOR');
-insert into user (password,username) values('$2a$10$WZS3w7/BSsWpI94LBoZ.juVhBq5KXK16quEiV7iLt91sPCLKNWLAC','admin');
-insert into user (password,username) values('$2a$10$WZS3w7/BSsWpI94LBoZ.juVhBq5KXK16quEiV7iLt91sPCLKNWLAC','engenheiro');
-insert into user (password,username) values('$2a$10$WZS3w7/BSsWpI94LBoZ.juVhBq5KXK16quEiV7iLt91sPCLKNWLAC','consultor');
+insert into role (name) values('ADMINISTRATOR');
+insert into role (name) values('ENGINEER');
+insert into role (name) values('CONSULTANT');
+insert into user (password,username) values('$2a$10$LqgUaHCb8iJ8mRS7or6Dk.kZF0nqM133R6rDZundeRT.Q6xZIHzD2','testAdmin');
+insert into user (password,username) values('$2a$10$LqgUaHCb8iJ8mRS7or6Dk.kZF0nqM133R6rDZundeRT.Q6xZIHzD2C','testEnginner');
+insert into user (password,username) values('$2a$10$LqgUaHCb8iJ8mRS7or6Dk.kZF0nqM133R6rDZundeRT.Q6xZIHzD2','testConsultant');
 insert into user_roles (users_id,roles_id) values(1,1);
 insert into user_roles (users_id,roles_id) values(1,2);
 insert into user_roles (users_id,roles_id) values(1,3);
