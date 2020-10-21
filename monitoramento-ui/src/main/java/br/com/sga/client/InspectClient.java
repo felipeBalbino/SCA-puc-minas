@@ -48,15 +48,13 @@ public class InspectClient {
 	}
 
 	/**
-	 * @param search
+
 	 * @return
 	 */
-	public List<Inspect> list(String search) {
+	public List<Inspect> list() {
 
 		String path = URI_BASE;
-		if (search != null) {
-			path = URI_BASE + "?search=" + search;
-		}
+
 		RequestEntity<Void> request = RequestEntity.get(URI.create(path)).header("Authorization", credencial).build();
 
 		ResponseEntity<Inspect[]> response = restTemplate.exchange(request, Inspect[].class);

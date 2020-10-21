@@ -12,6 +12,7 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import br.com.sga.model.Ativo;
 import br.com.sga.model.Fabricante;
 
 /**
@@ -44,15 +45,13 @@ public class FabricanteClient {
 	}
 
 	/**
-	 * @param search
+
 	 * @return
 	 */
-	public List<Fabricante> list(String search) {
+	public List<Fabricante> list() {
 
 		String path = URI_BASE;
-		if (search != null) {
-			path = URI_BASE + "?search=" + URLEncoder.encode(search, StandardCharsets.UTF_8);
-		}
+
 		RequestEntity<Void> request = RequestEntity.get(URI.create(path)).header("Authorization", credencial).build();
 
 		ResponseEntity<Fabricante[]> response = restTemplate.exchange(request, Fabricante[].class);
@@ -97,5 +96,18 @@ public class FabricanteClient {
 		ResponseEntity<Fabricante> response = restTemplate.exchange(request, Fabricante.class);
 
 		return response.getStatusCode();
+	}
+	
+	/**
+	 * @param Ativo
+	 * @return
+	 */
+	public String update(Fabricante fabricante, Long id) {
+		RequestEntity<Fabricante> request = RequestEntity.put(URI.create(URI_BASE + "/" + id)).header("Authorization", credencial)
+				.body(fabricante);
+
+		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
+
+		return response.getHeaders().getLocation().toString();
 	}
 }

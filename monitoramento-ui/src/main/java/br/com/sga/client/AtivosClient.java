@@ -1,8 +1,6 @@
 package br.com.sga.client;
 
 import java.net.URI;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
@@ -46,13 +44,11 @@ public class AtivosClient {
 	/**
 	 * @param search
 	 * @return
-	 */
-	public List<Ativo> list(String search) {
+	 */	
+	public List<Ativo> list() {
 
 		String path = URI_BASE;
-		if (search != null) {
-			path = URI_BASE + "?search=" + URLEncoder.encode(search, StandardCharsets.UTF_8);
-		}
+
 		RequestEntity<Void> request = RequestEntity.get(URI.create(path)).header("Authorization", credencial).build();
 
 		ResponseEntity<Ativo[]> response = restTemplate.exchange(request, Ativo[].class);
@@ -97,5 +93,18 @@ public class AtivosClient {
 		ResponseEntity<Ativo> response = restTemplate.exchange(request, Ativo.class);
 
 		return response.getStatusCode();
+	}
+	
+	/**
+	 * @param Ativo
+	 * @return
+	 */
+	public String update(Ativo Ativo, Long id) {
+		RequestEntity<Ativo> request = RequestEntity.put(URI.create(URI_BASE + "/" + id)).header("Authorization", credencial)
+				.body(Ativo);
+
+		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
+
+		return response.getHeaders().getLocation().toString();
 	}
 }

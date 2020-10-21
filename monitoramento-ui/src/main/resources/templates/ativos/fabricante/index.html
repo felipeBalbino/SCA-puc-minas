@@ -4,14 +4,14 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
-<title>Registro de Ativo</title>
+<title>Registro de Fabricantes</title>
 </head>
 
 <section layout:fragment="conteudo">
 
 
-	<form class="form-horizontal" method="post" th:action="@{/ativos}"
-		th:object="${ativo}">
+	<form class="form-horizontal" method="post" th:action="@{/fabricante}"
+		th:object="${fabricante}">
 
 		<div class="alert alert-success alert-dismissible"
 			th:if="${!#strings.isEmpty(mensagem)}" role="alert">
@@ -30,8 +30,8 @@
 
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a th:href="@{/ativos}">Lista de Ativos</a></li>
-				<li class="breadcrumb-item active" aria-current="page">Registro de Ativo</li>
+				<li class="breadcrumb-item"><a th:href="@{/fabricante}">Lista de Fabricantes</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Registro de Fabricante</li>
 			</ol>
 		</nav>
 
@@ -50,14 +50,6 @@
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('descricao')} ? 'has-error'">
-					<label for="descricao" class="col-sm-2 control-label">Descrição</label>
-					<div class="col-sm-4">
-						<input id="descricao" th:field="*{descricao}" type="text"
-							class="form-control" placeholder="Descrição" />
-					</div>
-				</div>
 
 				<div class="form-group"
 					th:classappend="${#fields.hasErrors('dataInativacao')} ? 'has-error'">
@@ -75,24 +67,6 @@
 						<input id="dataInclusao" th:field="*{dataInclusao}" pattern="dd/MM/yyyy" type="date"
 							class="form-control" placeholder="Data de Inclusão" />
 					</div>
-				</div>
-
-
-				<label for="method" class="col-sm-2 control-label">Fabricante</label>
-				<div class="col-sm-4">
-					<select name="fabricante.codigo" class="form-control" th:field="*{fabricante.codigo}">
-						<option value="">Selecione o Fabricante</option>
-						<option th:each="item : ${listaFabricantes}" th:value="${item.codigo}" th:text="${item.nome}"></option>
-					</select>
-				</div>
-				
-				
-				<label for="method" class="col-sm-2 control-label">Tipo</label>
-				<div class="col-sm-4">
-					<select name="tipoAtivo.codigo" class="form-control" th:field="*{tipoAtivo.codigo}">
-						<option value="">Selecione o Tipo</option>
-						<option th:each="item : ${listaTipoAtivo}" th:value="${item.codigo}" th:text="${item.nome}"></option>
-					</select>
 				</div>
 				
 				<div class="form-group">

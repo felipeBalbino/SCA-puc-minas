@@ -35,7 +35,7 @@ public class HomeControler {
 	@ModelAttribute("listDams")
 	public List<Dam> listDams() {
 		DamClient cliente = new DamClient(gateway, user, password);
-		List<Dam> list = cliente.list(null);
+		List<Dam> list = cliente.list();
 		return list;
 	}
 	

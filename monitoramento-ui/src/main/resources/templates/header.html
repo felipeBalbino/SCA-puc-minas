@@ -24,46 +24,84 @@
 
 
 
-						<li th:class="${currentPage == 'home'} ? 'sidebar-item active' : 'sidebar-item'">
-						<a href="/home"
-							class='sidebar-link'> <i data-feather="home" width="20"></i>
-								<span>Painel</span>
-						</a></li>
-						
-						<li  th:class="${currentPage == 'user'} ? 'sidebar-item active' : 'sidebar-item'"><a  sec:authorize="hasAuthority('ADMINISTRATOR')" href="/user"
+						<li
+							th:class="${currentPage == 'home'} ? 'sidebar-item active' : 'sidebar-item'">
+							<a href="/home" class='sidebar-link'> <i data-feather="home"
+								width="20"></i> <span>Painel</span>
+						</a>
+						</li>
+
+						<li
+							th:class="${currentPage == 'user'} ? 'sidebar-item active' : 'sidebar-item'"><a
+							sec:authorize="hasAuthority('ADMINISTRATOR')" href="/user"
 							class='sidebar-link'> <i data-feather="user" width="20"></i>
 								<span>Usuários</span>
 						</a></li>
-						
-						<li  th:class="${currentPage == 'dam'} ? 'sidebar-item active' : 'sidebar-item'"><a sec:authorize="hasAuthority('ENGINEER')" href="/dam"
-							class='sidebar-link'> <i data-feather="more-vertical" width="20"></i>
-								<span>Barragens</span>
-						</a></li>
-						
-						<li  th:class="${currentPage == 'inspect'} ? 'sidebar-item active' : 'sidebar-item'"><a sec:authorize="hasAuthority('CONSULTANT')" href="/inspect"
-							class='sidebar-link'> <i data-feather="eye" width="20"></i>
-								<span>Inspeção</span>
-						</a></li>
-						
-						<li  th:class="${currentPage == 'ativos'} ? 'sidebar-item active' : 'sidebar-item'"><a sec:authorize="hasAuthority('ADMINISTRATOR')" href="/ativos"
-							class='sidebar-link'> <i data-feather="eye" width="20"></i>
-								<span>Ativos</span>
+
+						<li
+							th:class="${currentPage == 'dam'} ? 'sidebar-item active' : 'sidebar-item'"><a
+							sec:authorize="hasAuthority('ENGINEER')" href="/dam"
+							class='sidebar-link'> <i data-feather="more-vertical"
+								width="20"></i> <span>Barragens</span>
 						</a></li>
 
-						<li th:if="${#request.userPrincipal}" class="sidebar-item ">						
-							<a href="javascript: document.logoutForm.submit()"
-								class='sidebar-link'> 
-								<i data-feather="log-out" width="20"></i>
-									<span>Sair</span>
-							</a>
-						</li>
+						<li
+							th:class="${currentPage == 'inspect'} ? 'sidebar-item active' : 'sidebar-item'"><a
+							sec:authorize="hasAuthority('CONSULTANT')" href="/inspect"
+							class='sidebar-link'> <i data-feather="eye" width="20"></i> <span>Inspeção</span>
+						</a></li>
+
 						
-						     
+						
+						
+		                <li th:class="${currentPage == 'ativos' || currentPage == 'fabricante' || currentPage == 'tipoativo'} ? 'sidebar-item has-sub active' : 'sidebar-item has-sub'">
+		                    <a href="#" class='sidebar-link'>
+		                        <i data-feather="triangle" width="20"></i> 
+		                        <span>Cadastro de Ativos</span>
+		                    </a>
+		                    
+		                    <ul class="submenu " th:class="${currentPage == 'ativos' || currentPage == 'fabricante' || currentPage == 'tipoativo'} ? 'submenu active' : 'submenu'">
+		                        
+		                        <li th:class="${currentPage == 'ativos'} ? 'active' : ''">									
+									<a href="/ativos" sec:authorize="hasAuthority('ADMINISTRATOR')"> 
+										Ativos
+									</a>
+								</li>
+		  						 <li th:class="${currentPage == 'fabricante'} ? 'active' : ''">									
+									<a href="/fabricante" sec:authorize="hasAuthority('ADMINISTRATOR')"> 
+										Fabricantes
+									</a>
+								</li>
+		                         <li th:class="${currentPage == 'tipoativo'} ? 'active' : ''">									
+									<a href="/tipoAtivo" sec:authorize="hasAuthority('ADMINISTRATOR')"> 
+										Tipo de Ativos
+									</a>
+								</li>
+								<li th:class="${currentPage == 'manutencao'} ? 'active' : ''">									
+									<a href="/tipoAtivo" sec:authorize="hasAuthority('ADMINISTRATOR')"> 
+										Manutenções
+									</a>
+								</li>
+		                    </ul>
+		                    
+		                </li>
+						
+						
+
+						<li th:if="${#request.userPrincipal}" class="sidebar-item ">
+							<a href="javascript: document.logoutForm.submit()"
+							class='sidebar-link'> <i data-feather="log-out" width="20"></i>
+								<span>Sair</span>
+						</a>
+						</li>
+
+
 
 					</ul>
-					<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-				      <input hidden type="submit" value="Sign Out"/>
-				    </form>
+					<form name="logoutForm" th:action="@{/logout}" method="post"
+						th:hidden="true">
+						<input hidden type="submit" value="Sign Out" />
+					</form>
 				</div>
 				<button class="sidebar-toggler btn x">
 					<i data-feather="x"></i>

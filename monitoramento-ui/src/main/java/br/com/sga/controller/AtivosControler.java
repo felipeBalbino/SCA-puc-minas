@@ -19,7 +19,6 @@ import br.com.sga.client.TipoAtivoClient;
 import br.com.sga.model.Ativo;
 import br.com.sga.model.Fabricante;
 import br.com.sga.model.TipoAtivo;
-import br.com.sga.repository.filter.AtivosFilter;
 
 /**
  * @author sga
@@ -63,7 +62,12 @@ public class AtivosControler {
 
 		try {
 			AtivosClient cliente = new AtivosClient(gateway, user, password);
-			cliente.save(ativo);
+			
+			if(ativo.getCodigo() == null) {
+				cliente.save(ativo);
+			}else {
+				cliente.update(ativo, ativo.getCodigo());
+			}
 			attr.addFlashAttribute("mensagem", "ativos successfully saved");
 			return "redirect:/ativos";
 		} catch (IllegalArgumentException e) {
@@ -73,13 +77,12 @@ public class AtivosControler {
 	}
 
 	/**
-	 * @param filter
 	 * @return
 	 */
-	@RequestMapping
-	public ModelAndView search(@ModelAttribute("filter") AtivosFilter filter) {
+	@RequestMapping(method = RequestMethod.GET)
+	public ModelAndView list() {
 		AtivosClient cliente = new AtivosClient(gateway, user, password);
-		List<Ativo> list = cliente.list(filter.getDescription());
+		List<Ativo> list = cliente.list();
 		ModelAndView mv = new ModelAndView("/ativos/list");
 		mv.addObject("ativos", list);
 		return mv;
@@ -119,7 +122,7 @@ public class AtivosControler {
 	@ModelAttribute("listaFabricantes")
 	public List<Fabricante> listaFabricantes() {
 		FabricanteClient cliente = new FabricanteClient(gateway, user, password);
-		return cliente.list(null);
+		return cliente.list();
 	}
 	
 	/**	
@@ -128,7 +131,7 @@ public class AtivosControler {
 	@ModelAttribute("listaTipoAtivo")
 	public List<TipoAtivo> listaTipoAtivo() {
 		TipoAtivoClient cliente = new TipoAtivoClient(gateway, user, password);
-		return cliente.list(null);
+		return cliente.list();
 	}
 	
 	

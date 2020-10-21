@@ -25,7 +25,6 @@ import br.com.sga.model.Dam;
 import br.com.sga.model.Inspect;
 import br.com.sga.model.Method;
 import br.com.sga.model.PotentialDamage;
-import br.com.sga.repository.filter.InspectFilter;
 
 /**
  * @author sga
@@ -87,14 +86,13 @@ public class InspectControler {
 	}
 
 	/**
-	 * @param filter
 	 * @return
 	 */
-	@RequestMapping
-	public ModelAndView search(@ModelAttribute("filter") InspectFilter filter) {
+	@RequestMapping(method = RequestMethod.GET)
+	public ModelAndView list() {
 		InspectClient cliente = new InspectClient(gatemay, user, password);
 
-		List<Inspect> list = cliente.list(filter.getId());
+		List<Inspect> list = cliente.list();
 		ModelAndView mv = new ModelAndView("/inspect/list");
 		mv.addObject("inpecoes", list);
 		return mv;
@@ -107,10 +105,10 @@ public class InspectControler {
 	@RequestMapping("{codigo}")
 	public ModelAndView update(@PathVariable("codigo") Long codigo) {
 		InspectClient cliente = new InspectClient(gatemay, user, password);
-		Inspect Inspect = cliente.findById(codigo);
+		Inspect inspect = cliente.findById(codigo);
 
 		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
-		mv.addObject(Inspect);
+		mv.addObject(inspect);
 		return mv;
 	}
 
@@ -133,7 +131,7 @@ public class InspectControler {
 	@ModelAttribute("listDams")
 	public List<Dam> listDams() {
 		DamClient cliente = new DamClient(gatemay, user, password);
-		List<Dam> list = cliente.list(null);
+		List<Dam> list = cliente.list();
 		return list;
 	}	
 

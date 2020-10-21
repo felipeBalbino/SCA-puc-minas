@@ -4,7 +4,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
-<title>Ativos</title>
+<title>Fabricantes</title>
 
 </head>
 
@@ -20,7 +20,7 @@
 	</div>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="#">Lista de Ativos</a></li>
+			<li class="breadcrumb-item active"><a href="#">Lista de Fabricantes</a></li>
 		</ol>
 	</nav>
 	<div class="panel panel-default">
@@ -34,53 +34,45 @@
 						<tr>
 							<th class="text-center col-md-1">#</th>
 							<th>Nome</th>
-							<th class="text-center col-md-2">Descrição</th>
-							<th class="text-center col-md-2">Fabricante</th>
-							<th class="text-center col-md-2">Tipo Ativo</th>
+
 							<th class="text-center col-md-2">Data Inclusão</th>
 							<th class="text-center col-md-2">Data Inativação</th>
 							<th class="col-md-1"></th>
 							<th class="col-md-1"></th>
-							<th class="col-md-1"></th>
+
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="item:${ativos}">
+						<tr th:each="item:${fabricantes}">
 							<td class="text-center" th:text="${item.codigo}">1</td>
 							<td th:text="${item.nome}">1</td>
-							<td class="text-center" th:text="${item.descricao}">1</td>
-							<td class="text-center" th:text="${item.fabricante?.nome}">1</td>
-							<td class="text-center" th:text="${item.tipoAtivo?.nome}">1</td>
+
 							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
 							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy')}">1</td>
 
 							<td class="text-center"><a class="btn btn-link btn-xs"
-								th:href="@{/ativos/{id}(id=${item.codigo})}" title="Alterar"
+								th:href="@{/fabricante/{id}(id=${item.codigo})}" title="Alterar"
 								rel="tooltip" data-toggle="tooltip" data-placement="top"> Alterar
 							</a></td>
 							<td class="text-center"><a class="btn btn-link btn-xs"
 								data-toggle="modal"
-								th:attr="data-id=${item.codigo}, data-loc=@{/ativos/}, data-description=${item.nome}"
+								th:attr="data-id=${item.codigo}, data-loc=@{/fabricante/}, data-description=${item.nome}"
 								title="Deletar" rel="tooltip" data-placement="top"
 								data-target="#modalDelete"> Deletar 
 							</a></td>
-							<td class="text-center">
-								<a class="btn btn-link btn-xs"
-								th:href="@{/manutencao/{id}(id=${item.codigo})}" title="Manutenções"
-								rel="tooltip" data-toggle="tooltip" data-placement="top"> Manutenções
-							</a>
+
 							</td>
 
 						</tr>
-						<tr th:if="${#lists.isEmpty(ativos)}">
-							<td colspan="10">Ativos não encontrados</td>
+						<tr th:if="${#lists.isEmpty(fabricantes)}">
+							<td colspan="6">Fabricantes não encontrados</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 			<div class="panel-heading">
 				<div class="clearfix">
-					<a class="btn btn-link titulo-link" th:href="@{/ativos/new}">Novo</a>
+					<a class="btn btn-link titulo-link" th:href="@{/fabricante/new}">Novo</a>
 				</div>
 			</div>
 		</div>

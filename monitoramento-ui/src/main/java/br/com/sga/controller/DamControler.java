@@ -75,10 +75,10 @@ public class DamControler {
 	 * @param filter
 	 * @return
 	 */
-	@RequestMapping
-	public ModelAndView search(@ModelAttribute("filter") DamFilter filter) {
+	@RequestMapping(method = RequestMethod.GET)
+	public ModelAndView list() {
 		DamClient cliente = new DamClient(gateway, user, password);
-		List<Dam> list = cliente.list(filter.getDescription());
+		List<Dam> list = cliente.list();
 		ModelAndView mv = new ModelAndView("/dam/list");
 		mv.addObject("dams", list);
 		return mv;

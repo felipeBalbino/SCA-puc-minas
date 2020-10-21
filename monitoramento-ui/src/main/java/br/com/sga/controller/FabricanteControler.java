@@ -13,16 +13,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.sga.client.AtivosClient;
-import br.com.sga.model.Ativo;
+import br.com.sga.client.FabricanteClient;
+import br.com.sga.model.Fabricante;
 
 /**
  * @author sga
  *
  */
 @Controller
-@RequestMapping("/manutencao")
-public class ManutencaoControler {
+@RequestMapping("/fabricante")
+public class FabricanteControler {
 
 	@Value("${zuul.ws.gateway}")
 	private String gateway;
@@ -32,15 +32,17 @@ public class ManutencaoControler {
 
 	@Value("${zuul.ws.password}")
 	private String password;
+	
+	static final String URL_INDEX= "/ativos/fabricante/index";
+	static final String URL_LIST= "/ativos/fabricante/list";
 
-	final static String URL_DEFAULT = "/ativos/manutencao";
 	/**
 	 * @return
 	 */
 	@RequestMapping("/new")
-	public ModelAndView manutencao() {
-		ModelAndView mv = new ModelAndView(URL_DEFAULT);
-		mv.addObject(new Ativo());
+	public ModelAndView ativos() {
+		ModelAndView mv = new ModelAndView(URL_INDEX);
+		mv.addObject(new Fabricante());
 		return mv;
 	}
 
@@ -51,33 +53,39 @@ public class ManutencaoControler {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String insert(@Validated Ativo ativo, Errors erros, RedirectAttributes attr) {
+	public String insert(@Validated Fabricante fabricante, Errors erros, RedirectAttributes attr) {
 
 		if (erros.hasErrors()) {
-			return URL_DEFAULT;
+			return URL_INDEX;
 		}
 
 		try {
-			AtivosClient cliente = new AtivosClient(gateway, user, password);
-			cliente.save(ativo);
-			attr.addFlashAttribute("mensagem", "ativos successfully saved");
-			return "redirect:/manutencao";
+			FabricanteClient cliente = new FabricanteClient(gateway, user, password);
+			
+			if(fabricante.getCodigo() == null) {
+				cliente.save(fabricante);
+				attr.addFlashAttribute("mensagem", "Fabricante adicionado com sucesso!");
+			}else {
+				cliente.update(fabricante, fabricante.getCodigo());
+				attr.addFlashAttribute("mensagem", "Fabricante alterado com sucesso!");
+			}
+			
+			return "redirect:/fabricante";
 		} catch (IllegalArgumentException e) {
 			erros.rejectValue("data", null, e.getMessage());
-			return URL_DEFAULT;
+			return URL_INDEX;
 		}
 	}
 
 	/**
-	 * @param filter
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView list() {
-		AtivosClient cliente = new AtivosClient(gateway, user, password);
-		List<Ativo> list = cliente.list();
-		ModelAndView mv = new ModelAndView("/ativos/manutencao/list");
-		mv.addObject("ativos", list);
+		FabricanteClient cliente = new FabricanteClient(gateway, user, password);
+		List<Fabricante> list = cliente.list();
+		ModelAndView mv = new ModelAndView(URL_LIST);
+		mv.addObject("fabricantes", list);
 		return mv;
 	}
 
@@ -87,10 +95,10 @@ public class ManutencaoControler {
 	 */
 	@RequestMapping("{codigo}")
 	public ModelAndView update(@PathVariable("codigo") Long codigo) {
-		AtivosClient cliente = new AtivosClient(gateway, user, password);
-		Ativo ativo = cliente.findById(codigo);
-		ModelAndView mv = new ModelAndView(URL_DEFAULT);
-		mv.addObject(ativo);
+		FabricanteClient cliente = new FabricanteClient(gateway, user, password);
+		Fabricante fabricante = cliente.findById(codigo);
+		ModelAndView mv = new ModelAndView(URL_INDEX);
+		mv.addObject(fabricante);
 		return mv;
 	}
 
@@ -102,12 +110,22 @@ public class ManutencaoControler {
 	@RequestMapping(value = "{codigo}", method = RequestMethod.DELETE)
 	public String delete(@PathVariable Long codigo, RedirectAttributes attr) {
 
-		AtivosClient cliente = new AtivosClient(gateway, user, password);
+		FabricanteClient cliente = new FabricanteClient(gateway, user, password);
 		cliente.delete(codigo);
-		attr.addFlashAttribute("mensagem", "manutencao successfully deleted");
-		return "redirect:/manutencao/";
+		attr.addFlashAttribute("mensagem", "Fabricante deletado com sucesso!");
+		return "redirect:/fabricante";
 	}
 
+	
+	/**	
+	 * @return
+	 */
+	@ModelAttribute("listaFabricantes")
+	public List<Fabricante> listaFabricantes() {
+		FabricanteClient cliente = new FabricanteClient(gateway, user, password);
+		return cliente.list();
+	}
+	
 	
 	
 	/**	
@@ -115,6 +133,6 @@ public class ManutencaoControler {
 	 */
 	@ModelAttribute("currentPage")
 	public String currentPage() {
-		return "manutencao";
+		return "fabricante";
 	}
 }

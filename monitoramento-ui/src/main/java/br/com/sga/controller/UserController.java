@@ -73,8 +73,8 @@ public class UserController {
 	/**
 	 * @return
 	 */
-	@RequestMapping
-	public ModelAndView search() {
+	@RequestMapping(method = RequestMethod.GET)
+	public ModelAndView findAll() {
 		List<User> list = userService.findAll();
 		ModelAndView mv = new ModelAndView("/user/list");
 		mv.addObject("users", list);

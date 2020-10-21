@@ -12,6 +12,7 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import br.com.sga.model.Fabricante;
 import br.com.sga.model.TipoAtivo;
 
 /**
@@ -44,15 +45,12 @@ public class TipoAtivoClient {
 	}
 
 	/**
-	 * @param search
 	 * @return
 	 */
-	public List<TipoAtivo> list(String search) {
+	public List<TipoAtivo> list() {
 
 		String path = URI_BASE;
-		if (search != null) {
-			path = URI_BASE + "?search=" + URLEncoder.encode(search, StandardCharsets.UTF_8);
-		}
+
 		RequestEntity<Void> request = RequestEntity.get(URI.create(path)).header("Authorization", credencial).build();
 
 		ResponseEntity<TipoAtivo[]> response = restTemplate.exchange(request, TipoAtivo[].class);
@@ -97,5 +95,19 @@ public class TipoAtivoClient {
 		ResponseEntity<TipoAtivo> response = restTemplate.exchange(request, TipoAtivo.class);
 
 		return response.getStatusCode();
+	}
+	
+	
+	/**
+	 * @param Ativo
+	 * @return
+	 */
+	public String update(TipoAtivo tipoAtivo, Long id) {
+		RequestEntity<TipoAtivo> request = RequestEntity.put(URI.create(URI_BASE + "/" + id)).header("Authorization", credencial)
+				.body(tipoAtivo);
+
+		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
+
+		return response.getHeaders().getLocation().toString();
 	}
 }

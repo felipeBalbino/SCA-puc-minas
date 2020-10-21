@@ -39,11 +39,11 @@ public class AtivosResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> save(@Valid @RequestBody Ativo ativos) {
-		ativos = ativosService.save(ativos);
+	public ResponseEntity<Void> save(@Valid @RequestBody Ativo ativo) {
+		ativo = ativosService.save(ativo);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand(ativos.getCodigo()).toUri();
+				.path("/{id}").buildAndExpand(ativo.getCodigo()).toUri();
 		
 		return ResponseEntity.created(uri).build();
 	}
@@ -66,7 +66,10 @@ public class AtivosResource {
 		ativo.setCodigo(id);
 		ativosService.update(ativo);
 		
-		return ResponseEntity.noContent().build();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(ativo.getCodigo()).toUri();
+		
+		return ResponseEntity.created(uri).build();
 	}
 	
 

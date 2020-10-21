@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import br.com.sga.model.Ativo;
-import br.com.sga.repository.AtivoRepository;
+import br.com.sga.model.Fabricante;
+import br.com.sga.repository.FabricanteRepository;
 import br.com.sga.service.exception.ServiceException;
 
 /**
@@ -19,12 +19,59 @@ import br.com.sga.service.exception.ServiceException;
 public class FabricanteService {
 
 	@Autowired
-	private AtivoRepository ativoRepository;
+	private FabricanteRepository fabricanteRepository;
 
 	/**
 	 * @return
 	 */
-	public List<Ativo> findAll() {
-		return ativoRepository.findAll();
+	public List<Fabricante> findAll() {
+		return fabricanteRepository.findAll();
+	}	
+	
+	/**
+	 * @param fabricante
+	 * @return
+	 */
+	public Fabricante save(Fabricante fabricante) {
+		if(fabricante.getCodigo() != null) {
+			Optional<Fabricante> a = fabricanteRepository.findById(fabricante.getCodigo());
+			
+			if(a.isPresent()) {
+				throw new ServiceException("Fabricante já existe na base.");
+			}
+		}
+		return fabricanteRepository.save(fabricante);
+	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	public Fabricante findById(Long id) {
+		Optional<Fabricante> fabricante = fabricanteRepository.findById(id);
+		
+		if(fabricante.isPresent()) {
+			return fabricante.get();
+		}
+		throw new ServiceException("Fabricante não encontrado.");
+	}
+	
+	/**
+	 * @param id
+	 */
+	public void deleteById(Long id) {
+		try {
+			fabricanteRepository.deleteById(id);
+		} catch (EmptyResultDataAccessException e) {
+			throw new ServiceException("Fabricante não encontrado.");
+		}
+	}
+	
+	/**
+	 * @param 
+	 */
+	public void update(Fabricante fabricante) {
+		findById(fabricante.getCodigo());
+		fabricanteRepository.save(fabricante);
 	}
 }

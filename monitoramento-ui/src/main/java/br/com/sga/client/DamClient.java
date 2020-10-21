@@ -44,15 +44,13 @@ public class DamClient {
 	}
 
 	/**
-	 * @param search
+
 	 * @return
 	 */
-	public List<Dam> list(String search) {
+	public List<Dam> list() {
 
 		String path = URI_BASE;
-		if (search != null) {
-			path = URI_BASE + "?search=" + URLEncoder.encode(search, StandardCharsets.UTF_8);
-		}
+
 		RequestEntity<Void> request = RequestEntity.get(URI.create(path)).header("Authorization", credencial).build();
 
 		ResponseEntity<Dam[]> response = restTemplate.exchange(request, Dam[].class);
