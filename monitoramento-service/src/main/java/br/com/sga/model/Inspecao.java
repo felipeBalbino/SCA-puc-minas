@@ -19,7 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-public class Inspect {
+public class Inspecao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,15 +32,15 @@ public class Inspect {
 	private Date date;
 
 	@Enumerated(EnumType.ORDINAL)
-	@NotNull(message = "Required Risk Category")
-	private PotentialDamage riskCategory;
+	@NotNull(message = "Required Categoria de Risco")
+	private DanoPotencial categoriaRisco;
 
 	@Enumerated(EnumType.ORDINAL)
-	@NotNull(message = "Required Potentiation Damage")
-	private PotentialDamage potentialDamage;
+	@NotNull(message = "Required Dano Potencial")
+	private DanoPotencial danoPotencial;
 
-	@NotNull(message = "Required considerations")
-	private String considerations;
+	@NotNull(message = "Required descricao")
+	private String descricao;
 
 	@NotNull(message = "Required height")
 	private Double height;
@@ -49,8 +49,8 @@ public class Inspect {
 	private Double volume;
 
 	@ManyToOne
-	@JoinColumn(name = "dam_id")
-	private Dam dam;
+	@JoinColumn(name = "barragem_id")
+	private Barragem barragem;
 
 	public Long getId() {
 		return id;
@@ -68,28 +68,28 @@ public class Inspect {
 		this.date = date;
 	}
 
-	public PotentialDamage getRiskCategory() {
-		return riskCategory;
+	public DanoPotencial getCategoriaRisco() {
+		return categoriaRisco;
 	}
 
-	public void setRiskCategory(PotentialDamage riskCategory) {
-		this.riskCategory = riskCategory;
+	public void setCategoriaRisco(DanoPotencial categoriaRisco) {
+		this.categoriaRisco = categoriaRisco;
 	}
 
-	public PotentialDamage getPotentialDamage() {
-		return potentialDamage;
+	public DanoPotencial getDanoPotencial() {	
+		return danoPotencial;
 	}
 
-	public void setPotentialDamage(PotentialDamage potentialDamage) {
-		this.potentialDamage = potentialDamage;
+	public void setDanoPotencial(DanoPotencial danoPotencial) {
+		this.danoPotencial = danoPotencial;
 	}
 
-	public String getConsiderations() {
-		return considerations;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setConsiderations(String considerations) {
-		this.considerations = considerations;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public Double getHeight() {
@@ -108,12 +108,12 @@ public class Inspect {
 		this.volume = volume;
 	}
 
-	public Dam getDam() {
-		return dam;
+	public Barragem getBarragem() {
+		return barragem;
 	}
 
-	public void setDam(Dam dam) {
-		this.dam = dam;
+	public void setBarragem(Barragem barragem) {
+		this.barragem = barragem;
 	}
 
 	@Override
@@ -132,7 +132,7 @@ public class Inspect {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Inspect other = (Inspect) obj;
+		Inspecao other = (Inspecao) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -143,9 +143,9 @@ public class Inspect {
 
 	@Override
 	public String toString() {
-		return "Inspect [id=" + id + ", date=" + date + ", riskCategory=" + riskCategory + ", potentialDamage="
-				+ potentialDamage + ", considerations=" + considerations + ", height=" + height + ", volume=" + volume
-				+ ", dam=" + dam + "]";
+		return "Inspecao [id=" + id + ", date=" + date + ", categoriaRisco=" + categoriaRisco + ", danoPotencial="
+				+ danoPotencial + ", descricao=" + descricao + ", height=" + height + ", volume=" + volume
+				+ ", barragem=" + barragem + "]";
 	}
 
 }

@@ -23,7 +23,7 @@ public class Person {
 
 	private String address;
 
-	private Long dam;
+	private Long barragem;
 
 	public Person() {
 		super();
@@ -58,12 +58,12 @@ public class Person {
 		this.email = email;
 	}
 
-	public Long getDam() {
-		return dam;
+	public Long getBarragem() {
+		return barragem;
 	}
 
-	public void setDam(Long dam) {
-		this.dam = dam;
+	public void setBarragem(Long barragem) {
+		this.barragem = barragem;
 	}
 
 	public String getName() {

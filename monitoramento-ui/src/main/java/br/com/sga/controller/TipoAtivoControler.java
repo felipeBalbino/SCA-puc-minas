@@ -47,7 +47,7 @@ public class TipoAtivoControler {
 	}
 
 	/**
-	 * @param dam
+	 * @param barragem
 	 * @param erros
 	 * @param attr
 	 * @return
@@ -133,6 +133,6 @@ public class TipoAtivoControler {
 	 */
 	@ModelAttribute("currentPage")
 	public String currentPage() {
-		return "tipoAtivo";
+		return "tipoativo";
 	}
 }

@@ -1,5 +1,6 @@
 package br.com.sga.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -14,7 +15,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sga.client.AtivosClient;
+import br.com.sga.client.ManutencaoClient;
 import br.com.sga.model.Ativo;
+import br.com.sga.model.Manutencao;
+import br.com.sga.model.Metodo;
+import br.com.sga.model.StatusManutencaoEnum;
+import br.com.sga.model.TipoManutencaoEnum;
 
 /**
  * @author sga
@@ -23,7 +29,6 @@ import br.com.sga.model.Ativo;
 @Controller
 @RequestMapping("/manutencao")
 public class ManutencaoControler {
-
 	@Value("${zuul.ws.gateway}")
 	private String gateway;
 
@@ -32,52 +37,60 @@ public class ManutencaoControler {
 
 	@Value("${zuul.ws.password}")
 	private String password;
+	
+	static final String URL_INDEX= "/ativos/manutencao/index";
+	static final String URL_LIST= "/ativos/manutencao/list";
 
-	final static String URL_DEFAULT = "/ativos/manutencao";
 	/**
 	 * @return
 	 */
 	@RequestMapping("/new")
 	public ModelAndView manutencao() {
-		ModelAndView mv = new ModelAndView(URL_DEFAULT);
-		mv.addObject(new Ativo());
+		ModelAndView mv = new ModelAndView(URL_INDEX);
+		mv.addObject(new Manutencao());
 		return mv;
 	}
 
 	/**
-	 * @param dam
+	 * @param barragem
 	 * @param erros
 	 * @param attr
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String insert(@Validated Ativo ativo, Errors erros, RedirectAttributes attr) {
+	public String insert(@Validated Manutencao manutencao, Errors erros, RedirectAttributes attr) {
 
 		if (erros.hasErrors()) {
-			return URL_DEFAULT;
+			return URL_INDEX;
 		}
 
 		try {
-			AtivosClient cliente = new AtivosClient(gateway, user, password);
-			cliente.save(ativo);
-			attr.addFlashAttribute("mensagem", "ativos successfully saved");
+			ManutencaoClient cliente = new ManutencaoClient(gateway, user, password);
+			
+			if(manutencao.getCodigo() == null) {
+				cliente.save(manutencao);
+				attr.addFlashAttribute("mensagem", "Manutenção adicionado com sucesso!");
+			}else {
+				cliente.update(manutencao, manutencao.getCodigo());
+				attr.addFlashAttribute("mensagem", "Manutenção alterado com sucesso!");
+			}
+			
 			return "redirect:/manutencao";
 		} catch (IllegalArgumentException e) {
 			erros.rejectValue("data", null, e.getMessage());
-			return URL_DEFAULT;
+			return URL_INDEX;
 		}
 	}
 
 	/**
-	 * @param filter
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView list() {
-		AtivosClient cliente = new AtivosClient(gateway, user, password);
-		List<Ativo> list = cliente.list();
-		ModelAndView mv = new ModelAndView("/ativos/manutencao/list");
-		mv.addObject("ativos", list);
+		ManutencaoClient cliente = new ManutencaoClient(gateway, user, password);
+		List<Manutencao> list = cliente.list();
+		ModelAndView mv = new ModelAndView(URL_LIST);
+		mv.addObject("manutencoes", list);
 		return mv;
 	}
 
@@ -87,10 +100,10 @@ public class ManutencaoControler {
 	 */
 	@RequestMapping("{codigo}")
 	public ModelAndView update(@PathVariable("codigo") Long codigo) {
-		AtivosClient cliente = new AtivosClient(gateway, user, password);
-		Ativo ativo = cliente.findById(codigo);
-		ModelAndView mv = new ModelAndView(URL_DEFAULT);
-		mv.addObject(ativo);
+		ManutencaoClient cliente = new ManutencaoClient(gateway, user, password);
+		Manutencao manutencao = cliente.findById(codigo);
+		ModelAndView mv = new ModelAndView(URL_INDEX);
+		mv.addObject(manutencao);
 		return mv;
 	}
 
@@ -102,12 +115,56 @@ public class ManutencaoControler {
 	@RequestMapping(value = "{codigo}", method = RequestMethod.DELETE)
 	public String delete(@PathVariable Long codigo, RedirectAttributes attr) {
 
-		AtivosClient cliente = new AtivosClient(gateway, user, password);
+		ManutencaoClient cliente = new ManutencaoClient(gateway, user, password);
 		cliente.delete(codigo);
-		attr.addFlashAttribute("mensagem", "manutencao successfully deleted");
-		return "redirect:/manutencao/";
+		attr.addFlashAttribute("mensagem", "Manutenção deletado com sucesso!");
+		return "redirect:/manutencao";
 	}
 
+	
+	/**	
+	 * @return
+	 */
+	@ModelAttribute("listaManutencoes")
+	public List<Manutencao> listaManutencaos() {
+		ManutencaoClient cliente = new ManutencaoClient(gateway, user, password);
+		return cliente.list();
+	}
+	
+	/**
+	 * @return
+	 */	
+	@ModelAttribute("listaTipoManutencao")
+	public List<TipoManutencaoEnum> listTipoManutencao() {	
+		return Arrays.asList(TipoManutencaoEnum.values());
+	}
+	
+	/**
+	 * @return
+	 */	
+	@ModelAttribute("listaStatusManutencao")
+	public List<StatusManutencaoEnum> listStatusManutencao() {	
+		return Arrays.asList(StatusManutencaoEnum.values());
+	}
+	
+	/**	
+	 * @return
+	 */
+	@ModelAttribute("listaAtivos")
+	public List<Ativo> listaAtivos() {
+		AtivosClient cliente = new AtivosClient(gateway, user, password);
+		return cliente.list();
+	}
+	
+	
+	/**
+	 * @return
+	 */	
+	@ModelAttribute("listaMetodos")
+	public List<Metodo> listaMetodos() {	
+		return Arrays.asList(Metodo.values());
+	}
+	
 	
 	
 	/**	

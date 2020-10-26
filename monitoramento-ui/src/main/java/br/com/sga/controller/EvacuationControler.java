@@ -36,7 +36,7 @@ public class EvacuationControler {
 				new CommunicationClient(gateway, user, password);
 		
 		CommunicationFilter communication = new CommunicationFilter();
-		communication.setDam(codigo);
+		communication.setBarragem(codigo);
 		communication.setUser(user);
 		cliente.save(communication);
 		

@@ -4,7 +4,7 @@ package br.com.sga.model;
  * @author sga
  *
  */
-public enum Method {
+public enum Metodo{
 
 	ETAPA_UNICA("Etapa única"),
 	ALTEAMENTO_JUSANTE("Alteamento a jusante"),
@@ -12,20 +12,14 @@ public enum Method {
 	ALTEAMENTO_POR_LINHA_CENTRO("Alteamento por linha de centro"),
 	UNKNOWN("Unknown");
 	
-	private String description;
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	private String descricao;
+	
+	Metodo(String descricao){
+		this.descricao =descricao;
 	}
 	
-	Method(String description){
-		this.description =description;
+	public String getDescricao() {
+		return descricao;
 	}
-	
-
 	
 }

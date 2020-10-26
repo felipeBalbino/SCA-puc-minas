@@ -14,19 +14,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.sga.client.DamClient;
-import br.com.sga.model.Dam;
-import br.com.sga.model.Method;
-import br.com.sga.model.PotentialDamage;
-import br.com.sga.repository.filter.DamFilter;
+import br.com.sga.client.BarragemClient;
+import br.com.sga.model.Barragem;
+import br.com.sga.model.DanoPotencial;
+import br.com.sga.model.Metodo;
 
 /**
  * @author sga
  *
  */
 @Controller
-@RequestMapping("/dam")
-public class DamControler {
+@RequestMapping("/barragem")
+public class BarragemControler {
 
 	@Value("${zuul.ws.gateway}")
 	private String gateway;
@@ -37,37 +36,40 @@ public class DamControler {
 	@Value("${zuul.ws.password}")
 	private String password;
 
+	public static final String URL_INDEX = "/barragem/index";
+	public static final String URL_LIST = "/barragem/list";
+
 	/**
 	 * @return
 	 */
 	@RequestMapping("/new")
-	public ModelAndView dam() {
-		ModelAndView mv = new ModelAndView("/dam/dam");
-		mv.addObject(new Dam());
+	public ModelAndView barragem() {
+		ModelAndView mv = new ModelAndView(URL_INDEX);
+		mv.addObject(new Barragem());
 		return mv;
 	}
 
 	/**
-	 * @param dam
+	 * @param barragem
 	 * @param erros
 	 * @param attr
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String insert(@Validated Dam dam, Errors erros, RedirectAttributes attr) {
+	public String insert(@Validated Barragem barragem, Errors erros, RedirectAttributes attr) {
 
 		if (erros.hasErrors()) {
-			return "/dam/dam";
+			return URL_INDEX;
 		}
 
 		try {
-			DamClient cliente = new DamClient(gateway, user, password);
-			cliente.save(dam);
-			attr.addFlashAttribute("mensagem", "Dam successfully saved");
-			return "redirect:/dam";
+			BarragemClient cliente = new BarragemClient(gateway, user, password);
+			cliente.save(barragem);
+			attr.addFlashAttribute("mensagem", "Barragem inserida com sucesso");
+			return "redirect:/barragem";
 		} catch (IllegalArgumentException e) {
 			erros.rejectValue("data", null, e.getMessage());
-			return "/dam/dam";
+			return URL_INDEX;
 		}
 	}
 
@@ -77,10 +79,10 @@ public class DamControler {
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView list() {
-		DamClient cliente = new DamClient(gateway, user, password);
-		List<Dam> list = cliente.list();
-		ModelAndView mv = new ModelAndView("/dam/list");
-		mv.addObject("dams", list);
+		BarragemClient cliente = new BarragemClient(gateway, user, password);
+		List<Barragem> list = cliente.list();
+		ModelAndView mv = new ModelAndView(URL_LIST);
+		mv.addObject("barragens", list);
 		return mv;
 	}
 
@@ -90,10 +92,10 @@ public class DamControler {
 	 */
 	@RequestMapping("{codigo}")
 	public ModelAndView update(@PathVariable("codigo") Long codigo) {
-		DamClient cliente = new DamClient(gateway, user, password);
-		Dam dam = cliente.findById(codigo);
-		ModelAndView mv = new ModelAndView("/dam/dam");
-		mv.addObject(dam);
+		BarragemClient cliente = new BarragemClient(gateway, user, password);
+		Barragem barragem = cliente.findById(codigo);
+		ModelAndView mv = new ModelAndView(URL_INDEX);
+		mv.addObject(barragem);
 		return mv;
 	}
 
@@ -105,34 +107,33 @@ public class DamControler {
 	@RequestMapping(value = "{codigo}", method = RequestMethod.DELETE)
 	public String delete(@PathVariable Long codigo, RedirectAttributes attr) {
 
-		DamClient cliente = new DamClient(gateway, user, password);
+		BarragemClient cliente = new BarragemClient(gateway, user, password);
 		cliente.delete(codigo);
-		attr.addFlashAttribute("mensagem", "Dam successfully deleted");
-		return "redirect:/dam/";
+		attr.addFlashAttribute("mensagem", "Barragem deletada com sucesso");
+		return "redirect:/barragem/";
 	}
 
 	/**
 	 * @return
-	 */	
-	@ModelAttribute("listMethods")
-	public List<Method> listMethods() {	
-		return Arrays.asList(Method.values());
+	 */
+	@ModelAttribute("listaMetodos")
+	public List<Metodo> listaMetodos() {
+		return Arrays.asList(Metodo.values());
 	}
 	
-	/**	
+	/**
 	 * @return
 	 */
-	@ModelAttribute("listPotentialDamages")
-	public List<PotentialDamage> listPotentialDamages() {
-		return Arrays.asList(PotentialDamage.values());
+	@ModelAttribute("listDanoPotencial")
+	public List<DanoPotencial> listDanoPotencial() {
+		return Arrays.asList(DanoPotencial.values());
 	}
-	
-	
-	/**	
+
+	/**
 	 * @return
 	 */
 	@ModelAttribute("currentPage")
 	public String currentPage() {
-		return "dam";
+		return "barragem";
 	}
 }

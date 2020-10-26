@@ -4,7 +4,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
-<title>Dam</title>
+<title>Lista de Barragem</title>
 </head>
 
 <section layout:fragment="conteudo">
@@ -19,7 +19,7 @@
 	</div>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="#">Dam List</a></li>
+			<li class="breadcrumb-item active"><a href="#">Lista de Barragem</a></li>
 		</ol>
 	</nav>
 	<div class="panel panel-default">
@@ -32,53 +32,53 @@
 					<thead>
 						<tr>
 							<th class="text-center col-md-1">#</th>
-							<th>Description</th>
+							<th>Descrição</th>
 							<th class="text-center col-md-2">Ore</th>
 							<th class="text-center col-md-2">Latitude</th>
 							<th class="text-center col-md-2">Longitude</th>
-							<th class="text-center col-md-2">Metodo</th>
+							<th class="text-center col-md-2">Método</th>
 							<th class="col-md-1"></th>
 							<th class="col-md-1"></th>
 							<th class="col-md-1"></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="item:${dams}">
+						<tr th:each="item:${barragens}">
 							<td class="text-center" th:text="${item.id}">1</td>
 							<td th:text="${item.name}">1</td>
 							<td class="text-center" th:text="${item.ore}">1</td>
 							<td class="text-center" th:text="${item.latitude}">1</td>
 							<td class="text-center" th:text="${item.longitude}">1</td>
-							<td class="text-center" th:text="${item.method.description}">1</td>
+							<td class="text-center" th:text="${item.metodo.descricao}">1</td>
 							<td class="text-center"><a class="btn btn-link btn-xs"
-								th:href="@{/dam/{id}(id=${item.id})}" title="Update"
-								rel="tooltip" data-toggle="tooltip" data-placement="top"> Update
+								th:href="@{/barragem/{id}(id=${item.id})}" title="Alterar"
+								rel="tooltip" data-toggle="tooltip" data-placement="top"> Alterar
 							</a></td>
 							<td class="text-center"><a class="btn btn-link btn-xs"
 								data-toggle="modal"
-								th:attr="data-id=${item.id}, data-loc=@{/dam/}, data-description=${item.name}"
+								th:attr="data-id=${item.id}, data-loc=@{/barragem/}, data-description=${item.name}"
 								title="Excluir" rel="tooltip" data-placement="top"
-								data-target="#modalDelete"> Delete 
+								data-target="#modalDelete"> Deletar 
 							</a></td>
 							<td class="text-center">
 								<a class="btn btn-link btn-xs"
 								data-toggle="modal"
-								th:attr="data-id=${item.id}, data-loc=@{/evacuation/}, data-description=${item.name}"
+								th:attr="data-id=${item.id}, data-loc=@{/evacuar/}, data-description=${item.name}"
 								title="Evacuação" rel="tooltip" data-placement="top"
-								data-target="#modalPanico"> Evacuation
+								data-target="#modalPanico"> Evacuar
 								</a>
 							</td>
 
 						</tr>
-						<tr th:if="${#lists.isEmpty(dams)}">
-							<td colspan="6">No dams were found</td>
+						<tr th:if="${#lists.isEmpty(barragens)}">
+							<td colspan="6">Barragens não encontradas</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 			<div class="panel-heading">
 				<div class="clearfix">
-					<a class="btn btn-link titulo-link" th:href="@{/dam/new}">New</a>
+					<a class="btn btn-link titulo-link" th:href="@{/barragem/new}">Nova Barragem</a>
 				</div>
 			</div>
 		</div>

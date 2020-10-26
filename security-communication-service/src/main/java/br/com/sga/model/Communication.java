@@ -27,7 +27,7 @@ public class Communication {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date date;
 
-	private Long dam;
+	private Long barragem;
 
 	public Communication() {
 		super();
@@ -62,12 +62,12 @@ public class Communication {
 		this.date = date;
 	}
 
-	public Long getDam() {
-		return dam;
+	public Long getBarragem() {
+		return barragem;
 	}
 
-	public void setDam(Long dam) {
-		this.dam = dam;
+	public void setBarragem(Long barragem) {
+		this.barragem = barragem;
 	}
 
 	@Override

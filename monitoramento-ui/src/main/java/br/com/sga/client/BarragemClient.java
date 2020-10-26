@@ -12,19 +12,19 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.sga.model.Dam;
+import br.com.sga.model.Barragem;
 
 /**
  * @author sga
  *
  */
-public class DamClient {
+public class BarragemClient {
 
 	private RestTemplate restTemplate;
 
 	private String URI_BASE;
 
-	private String URN_BASE = "/monitoramento/dam";
+	private String URN_BASE = "/monitoramento/barragem";
 
 	private String credencial;
 
@@ -33,7 +33,7 @@ public class DamClient {
 	 * @param user
 	 * @param senha
 	 */
-	public DamClient(String url, String user, String senha) {
+	public BarragemClient(String url, String user, String senha) {
 		restTemplate = new RestTemplate();
 
 		URI_BASE = url.concat(URN_BASE);
@@ -47,24 +47,24 @@ public class DamClient {
 
 	 * @return
 	 */
-	public List<Dam> list() {
+	public List<Barragem> list() {
 
 		String path = URI_BASE;
 
 		RequestEntity<Void> request = RequestEntity.get(URI.create(path)).header("Authorization", credencial).build();
 
-		ResponseEntity<Dam[]> response = restTemplate.exchange(request, Dam[].class);
+		ResponseEntity<Barragem[]> response = restTemplate.exchange(request, Barragem[].class);
 
 		return Arrays.asList(response.getBody());
 	}
 
 	/**
-	 * @param dam
+	 * @param barragem
 	 * @return
 	 */
-	public String save(Dam dam) {
-		RequestEntity<Dam> request = RequestEntity.post(URI.create(URI_BASE)).header("Authorization", credencial)
-				.body(dam);
+	public String save(Barragem barragem) {
+		RequestEntity<Barragem> request = RequestEntity.post(URI.create(URI_BASE)).header("Authorization", credencial)
+				.body(barragem);
 
 		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
 
@@ -75,11 +75,11 @@ public class DamClient {
 	 * @param id
 	 * @return
 	 */
-	public Dam findById(Long id) {
+	public Barragem findById(Long id) {
 		RequestEntity<Void> request = RequestEntity.get(URI.create(URI_BASE + "/" + id))
 				.header("Authorization", credencial).build();
 
-		ResponseEntity<Dam> response = restTemplate.exchange(request, Dam.class);
+		ResponseEntity<Barragem> response = restTemplate.exchange(request, Barragem.class);
 
 		return response.getBody();
 	}
@@ -92,7 +92,7 @@ public class DamClient {
 		RequestEntity<Void> request = RequestEntity.delete(URI.create(URI_BASE + "/" + id))
 				.header("Authorization", credencial).build();
 
-		ResponseEntity<Dam> response = restTemplate.exchange(request, Dam.class);
+		ResponseEntity<Barragem> response = restTemplate.exchange(request, Barragem.class);
 
 		return response.getStatusCode();
 	}

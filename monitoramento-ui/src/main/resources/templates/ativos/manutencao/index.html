@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<title>Registro de Manutenções</title>
+</head>
+
+<section layout:fragment="conteudo">
+
+
+	<form class="form-horizontal" method="post" th:action="@{/manutencao}"
+		th:object="${manutencao}">
+
+		<div class="alert alert-success alert-dismissible"
+			th:if="${!#strings.isEmpty(mensagem)}" role="alert">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<span th:text="${mensagem}"></span>
+		</div>
+
+		<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+			<div th:each="item :${#fields.detailedErrors()}">
+				<span th:text="${item.message}"></span>
+			</div>
+		</div>
+
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a th:href="@{/manutencao}">Lista Manutenções</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Registro de Manutenções</li>
+			</ol>
+		</nav>
+
+		<div class="panel panel-default">
+
+			<div class="panel-body">
+
+				<input type="hidden" th:field="*{codigo}" />
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('descricao')} ? 'has-error'">
+					<label for="descricao" class="col-sm-2 control-label">Descrição</label>
+					<div class="col-sm-4">
+						<input id="descricao" th:field="*{descricao}" type="text"
+							class="form-control" placeholder="descricao" />
+					</div>
+				</div>
+				
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('dataManutencao')} ? 'has-error'">
+					<label for="dataManutencao" class="col-sm-2 control-label">Data de Manutenção</label>
+					<div class="col-sm-4">
+						<input id="dataManutencao" th:field="*{dataManutencao}" pattern="dd/MM/yyyy" type="date"
+							class="form-control" placeholder="Data de Manutenção" />
+					</div>
+				</div>
+				
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('dataProxManutencao')} ? 'has-error'">
+					<label for="dataProxManutencao" class="col-sm-2 control-label">Data da Próxima Manutenção</label>
+					<div class="col-sm-4">
+						<input id="dataProxManutencao" th:field="*{dataProxManutencao}" pattern="dd/MM/yyyy" type="date"
+							class="form-control" placeholder="Data da Próxima Manutenção" />
+					</div>
+				</div>
+
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('dataInativacao')} ? 'has-error'">
+					<label for="dataInativacao" class="col-sm-2 control-label">Data de Inativaçao</label>
+					<div class="col-sm-4">
+						<input id="dataInativacao" th:field="*{dataInativacao}" pattern="dd/MM/yyyy" type="date"
+							class="form-control" placeholder="Data de Inativaçao" />
+					</div>
+				</div>
+				
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('dataInclusao')} ? 'has-error'">
+					<label for="dataInclusao" class="col-sm-2 control-label">Data de Inclusão</label>
+					<div class="col-sm-4">
+						<input id="dataInclusao" th:field="*{dataInclusao}" pattern="dd/MM/yyyy" type="date"
+							class="form-control" placeholder="Data de Inclusão" />
+					</div>
+				</div>
+				
+				<label for="method" class="col-sm-2 control-label">Ativo</label>
+				<div class="col-sm-4">
+					<select name="ativo.codigo" class="form-control" th:field="*{ativo.codigo}">
+						<option value="">Selecione...</option>
+						<option th:each="item : ${listaAtivos}" th:value="${item.codigo}" th:text="${item.nome}"></option>
+					</select>
+				</div>
+				
+				<label for="method" class="col-sm-2 control-label">Tipo de Manutenção</label>
+				<div class="col-sm-4">
+					<select name="tipoManutencao" class="form-control" th:field="*{tipoManutencao}">
+						<option value="">Selecione...</option>
+						<option th:each="item : ${listaTipoManutencao}" th:value="${item}" th:text="${item.descricao}"></option>
+					</select>
+				</div>
+				
+				<label for="method" class="col-sm-2 control-label">Status da Manutenção</label>
+				<div class="col-sm-4">
+					<select name="statusManutencao" class="form-control" th:field="*{statusManutencao}">
+						<option value="">Selecione...</option>
+						<option th:each="item : ${listaStatusManutencao}" th:value="${item}" th:text="${item.descricao}"></option>
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary">Salvar</button>
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+	</form>
+
+</section>
+</html>

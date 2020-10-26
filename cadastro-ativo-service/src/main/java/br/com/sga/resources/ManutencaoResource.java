@@ -49,10 +49,9 @@ public class ManutencaoResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
-	public ResponseEntity<Void> save(@Valid @RequestBody Manutencao manutencao,
-			@PathVariable("id") Long id ) {
-		manutencao.setAtivo(ativosService.findById(id));
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> save(@Valid @RequestBody Manutencao manutencao) {
+		
 		manutencao = manutencaoService.save(manutencao);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -67,14 +66,16 @@ public class ManutencaoResource {
 		return ResponseEntity.status(HttpStatus.OK).body(lista);
 	}
 
-	@RequestMapping(value = "/{id}/manutencao/{idManutencao}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@RequestBody Manutencao manutencao, 
-			@PathVariable("id") Long id, @PathVariable("idManutencao") Long idManutencao) {
-		manutencao.setAtivo(ativosService.findById(id));
-		manutencao.setCodigo(idManutencao);
+			@PathVariable("id") Long id) {
+		manutencao.setCodigo(id);
 		manutencaoService.update(manutencao);
 		
-		return ResponseEntity.noContent().build();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(manutencao.getCodigo()).toUri();
+		
+		return ResponseEntity.created(uri).build();
 	}
 
 }

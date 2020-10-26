@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import br.com.sga.model.Manutencao;
+import br.com.sga.model.Manutencao;
 
 /**
  * @author sga
@@ -44,15 +45,13 @@ public class ManutencaoClient {
 	}
 
 	/**
-	 * @param search
+
 	 * @return
 	 */
-	public List<Manutencao> list(String search) {
+	public List<Manutencao> list() {
 
 		String path = URI_BASE;
-		if (search != null) {
-			path = URI_BASE + "?search=" + URLEncoder.encode(search, StandardCharsets.UTF_8);
-		}
+
 		RequestEntity<Void> request = RequestEntity.get(URI.create(path)).header("Authorization", credencial).build();
 
 		ResponseEntity<Manutencao[]> response = restTemplate.exchange(request, Manutencao[].class);
@@ -64,9 +63,9 @@ public class ManutencaoClient {
 	 * @param Manutencao
 	 * @return
 	 */
-	public String save(Manutencao Manutencao) {
+	public String save(Manutencao manutencao) {
 		RequestEntity<Manutencao> request = RequestEntity.post(URI.create(URI_BASE)).header("Authorization", credencial)
-				.body(Manutencao);
+				.body(manutencao);
 
 		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
 
@@ -97,5 +96,18 @@ public class ManutencaoClient {
 		ResponseEntity<Manutencao> response = restTemplate.exchange(request, Manutencao.class);
 
 		return response.getStatusCode();
+	}
+	
+	/**
+	 * @param Ativo
+	 * @return
+	 */
+	public String update(Manutencao manutencao, Long id) {
+		RequestEntity<Manutencao> request = RequestEntity.put(URI.create(URI_BASE + "/" + id)).header("Authorization", credencial)
+				.body(manutencao);
+
+		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
+
+		return response.getHeaders().getLocation().toString();
 	}
 }

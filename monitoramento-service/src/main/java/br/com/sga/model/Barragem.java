@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  *
  */
 @Entity
-public class Dam {
+public class Barragem {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,13 +30,13 @@ public class Dam {
 	private Double longitude;
 
 	private String ore;
-
+	
 	@Enumerated(EnumType.ORDINAL)
-	private Method method;
+	private Metodo metodo;
 
-	@OneToMany(mappedBy = "dam")
+	@OneToMany(mappedBy = "barragem")
 	@JsonIgnore
-	private List<Inspect> inspects;
+	private List<Inspecao> inspecaos;
 
 	public Long getId() {
 		return id;
@@ -54,12 +54,12 @@ public class Dam {
 		this.longitude = longitude;
 	}
 
-	public Method getMethod() {
-		return method;
+	public Metodo getMetodo() {
+		return metodo;
 	}
 
-	public void setMethod(Method method) {
-		this.method = method;
+	public void setMetodo(Metodo metodo) {
+		this.metodo = metodo;
 	}
 
 	public Double getLatitude() {
@@ -72,12 +72,12 @@ public class Dam {
 
 
 
-	public List<Inspect> getInspects() {
-		return inspects;
+	public List<Inspecao> getInspecaos() {
+		return inspecaos;
 	}
 
-	public void setInspects(List<Inspect> inspects) {
-		this.inspects = inspects;
+	public void setInspecaos(List<Inspecao> inspecaos) {
+		this.inspecaos = inspecaos;
 	}
 
 	@Override
@@ -96,7 +96,7 @@ public class Dam {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Dam other = (Dam) obj;
+		Barragem other = (Barragem) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

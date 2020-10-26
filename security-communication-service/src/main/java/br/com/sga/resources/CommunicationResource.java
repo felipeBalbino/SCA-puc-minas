@@ -33,7 +33,7 @@ public class CommunicationResource {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> save(@Valid @RequestBody CommunicationFilter communicationFilter) {
 		Communication test = new Communication();
-		test.setDam(communicationFilter.getDam());
+		test.setBarragem(communicationFilter.getBarragem());
 		test.setUser(communicationFilter.getUser());
 		test = service.save(test);
 

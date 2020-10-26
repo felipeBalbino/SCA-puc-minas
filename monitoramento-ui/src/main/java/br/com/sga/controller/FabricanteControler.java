@@ -47,7 +47,7 @@ public class FabricanteControler {
 	}
 
 	/**
-	 * @param dam
+	 * @param barragem
 	 * @param erros
 	 * @param attr
 	 * @return

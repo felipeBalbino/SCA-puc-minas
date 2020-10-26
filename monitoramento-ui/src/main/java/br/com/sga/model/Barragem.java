@@ -9,7 +9,7 @@ import javax.persistence.Enumerated;
  * @author sga
  *
  */
-public class Dam {
+public class Barragem {
 
 	private Long id;
 
@@ -22,9 +22,9 @@ public class Dam {
 	private String ore;
 
 	@Enumerated(EnumType.ORDINAL)
-	private Method method;
+	private Metodo metodo;
 
-	private List<Inspect> inspects;
+	private List<Inspecao> inspecaos;
 
 	public Long getId() {
 		return id;
@@ -66,20 +66,20 @@ public class Dam {
 		this.ore = ore;
 	}
 
-	public List<Inspect> getInspects() {
-		return inspects;
+	public List<Inspecao> getInspecaos() {
+		return inspecaos;
 	}
 
-	public void setInspects(List<Inspect> inspects) {
-		this.inspects = inspects;
+	public void setInspecaos(List<Inspecao> inspecaos) {
+		this.inspecaos = inspecaos;
 	}
 
-	public Method getMethod() {
-		return method;
+	public Metodo getMetodo() {
+		return metodo;
 	}
 
-	public void setMethod(Method method) {
-		this.method = method;
+	public void setMetodo(Metodo metodo) {
+		this.metodo = metodo;
 	}
 
 	@Override
@@ -98,7 +98,7 @@ public class Dam {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Dam other = (Dam) obj;
+		Barragem other = (Barragem) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

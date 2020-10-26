@@ -8,7 +8,7 @@ public class CommunicationFilter {
 
 	private String user;
 
-	private Long dam;
+	private Long barragem;
 
 	public String getUser() {
 		return user;
@@ -18,12 +18,12 @@ public class CommunicationFilter {
 		this.user = user;
 	}
 
-	public Long getDam() {
-		return dam;
+	public Long getBarragem() {
+		return barragem;
 	}
 
-	public void setDam(Long dam) {
-		this.dam = dam;
+	public void setBarragem(Long barragem) {
+		this.barragem = barragem;
 	}
 
 }

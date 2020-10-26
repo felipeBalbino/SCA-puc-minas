@@ -4,14 +4,14 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
-<title>Regisro de Manutenção</title>
+<title>Registro de Barragem</title>
 </head>
 
 <section layout:fragment="conteudo">
 
 
-	<form class="form-horizontal" method="post" th:action="@{/dam}"
-		th:object="${dam}">
+	<form class="form-horizontal" method="post" th:action="@{/barragem}"
+		th:object="${barragem}">
 
 		<div class="alert alert-success alert-dismissible"
 			th:if="${!#strings.isEmpty(mensagem)}" role="alert">
@@ -30,9 +30,8 @@
 
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a th:href="@{/dam}">List</a></li>
-				<li class="breadcrumb-item active" aria-current="page">Dam
-					Registration</li>
+				<li class="breadcrumb-item"><a th:href="@{/barragem}">Lista de Barragens</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Registro de Barragem</li>
 			</ol>
 		</nav>
 
@@ -44,7 +43,7 @@
 
 				<div class="form-group"
 					th:classappend="${#fields.hasErrors('name')} ? 'has-error'">
-					<label for="name" class="col-sm-2 control-label">Name</label>
+					<label for="name" class="col-sm-2 control-label">Nome</label>
 					<div class="col-sm-4">
 						<input id="name" th:field="*{name}" type="text"
 							class="form-control" placeholder="Name" />
@@ -79,16 +78,16 @@
 				</div>
 
 
-				<label for="method" class="col-sm-2 control-label">Method</label>
+				<label for="metodo" class="col-sm-2 control-label">Método</label>
 				<div class="col-sm-4">
-					<select name="method" class="form-control" th:field="*{method}">
-						<option th:each="item : ${listMethods}" th:value="${item}"
-							th:text="${item.description}"></option>
+					<select name="metodo" class="form-control" th:field="*{metodo}">
+						<option th:each="item : ${listaMetodos}" th:value="${item}"
+							th:text="${item.descricao}"></option>
 					</select>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-primary">Save</button>
+						<button type="submit" class="btn btn-primary">Salvar</button>
 					</div>
 				</div>
 

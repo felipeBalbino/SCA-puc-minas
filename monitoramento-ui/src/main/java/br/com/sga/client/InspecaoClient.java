@@ -10,13 +10,13 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.sga.model.Inspect;
+import br.com.sga.model.Inspecao;
 
 /**
  * @author SGA
  *
  */
-public class InspectClient {
+public class InspecaoClient {
 
 	private RestTemplate restTemplate;
 
@@ -24,9 +24,9 @@ public class InspectClient {
 
 	private String URL;
 
-	private String URN_BASE = "/monitoramento/inspect";
+	private String URN_BASE = "/monitoramento/inspecao";
 
-	private String URN_BASE_DAM = "/monitoramento/dam/";
+	private String URN_BASE_DAM = "/monitoramento/barragem/";
 
 	private String credencial;
 
@@ -35,7 +35,7 @@ public class InspectClient {
 	 * @param user
 	 * @param senha
 	 */
-	public InspectClient(String url, String user, String senha) {
+	public InspecaoClient(String url, String user, String senha) {
 		restTemplate = new RestTemplate();
 
 		URL = url;
@@ -51,25 +51,25 @@ public class InspectClient {
 
 	 * @return
 	 */
-	public List<Inspect> list() {
+	public List<Inspecao> list() {
 
 		String path = URI_BASE;
 
 		RequestEntity<Void> request = RequestEntity.get(URI.create(path)).header("Authorization", credencial).build();
 
-		ResponseEntity<Inspect[]> response = restTemplate.exchange(request, Inspect[].class);
+		ResponseEntity<Inspecao[]> response = restTemplate.exchange(request, Inspecao[].class);
 
 		return Arrays.asList(response.getBody());
 	}
 
 	/**
-	 * @param inspect
+	 * @param inspecao
 	 * @return
 	 */
-	public String save(Inspect Inspect) {
-		RequestEntity<Inspect> request = RequestEntity
-				.post(URI.create(URL + URN_BASE_DAM + Inspect.getDam().getId() + "/inspect"))
-				.header("Authorization", credencial).body(Inspect);
+	public String save(Inspecao Inspecao) {
+		RequestEntity<Inspecao> request = RequestEntity
+				.post(URI.create(URL + URN_BASE_DAM + Inspecao.getBarragem().getId() + "/inspecao"))
+				.header("Authorization", credencial).body(Inspecao);
 
 		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
 
@@ -80,11 +80,11 @@ public class InspectClient {
 	 * @param id
 	 * @return
 	 */
-	public Inspect findById(Long id) {
+	public Inspecao findById(Long id) {
 		RequestEntity<Void> request = RequestEntity.get(URI.create(URI_BASE + "/" + id))
 				.header("Authorization", credencial).build();
 
-		ResponseEntity<Inspect> response = restTemplate.exchange(request, Inspect.class);
+		ResponseEntity<Inspecao> response = restTemplate.exchange(request, Inspecao.class);
 
 		return response.getBody();
 	}
@@ -97,7 +97,7 @@ public class InspectClient {
 		RequestEntity<Void> request = RequestEntity.delete(URI.create(URI_BASE + "/" + id))
 				.header("Authorization", credencial).build();
 
-		ResponseEntity<Inspect> response = restTemplate.exchange(request, Inspect.class);
+		ResponseEntity<Inspecao> response = restTemplate.exchange(request, Inspecao.class);
 
 		return response.getStatusCode();
 	}

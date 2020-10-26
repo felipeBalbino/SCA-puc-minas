@@ -60,8 +60,8 @@ public class PersonService {
 	 * @param id
 	 * @return
 	 */
-	public List<Person> findByDam(Long id) {
-		List<Person> list = repository.findByDam(id);
+	public List<Person> findByBarragem(Long id) {
+		List<Person> list = repository.findByBarragem(id);
 		return list;
 	}
 

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<title>Lista de Inspeções</title>
+</head>
+
+<section layout:fragment="conteudo">
+
+	<div class="alert alert-success alert-dismissible"
+		th:if="${!#strings.isEmpty(mensagem)}" role="alert">
+		<button type="button" class="close" data-dismiss="alert"
+			aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<span th:text="${mensagem}"></span>
+	</div>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item active"><a href="#">Lista de Inspeções</a></li>
+		</ol>
+	</nav>
+
+	<div class="panel panel-default">
+
+		<div class="panel-body">
+
+			<div class="table-responsive">
+
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th class="text-center col-md-1">#</th>
+							<th>Data</th>
+							<th class="text-center col-md-2">Categoria de Risco</th>
+							<th class="text-center col-md-2">Dano Potencial</th>
+							<th class="text-center col-md-2">Considerações</th>
+							<th class="text-center col-md-2">Barragem</th>
+							<th class="col-md-1"></th>
+				
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item : ${inpecoes}">
+							<td class="text-center" th:text="${item.id}">1</td>
+							<td class="text-center" th:text="${{item.date}}">1</td>
+							<td class="text-center" th:text="${item.categoriaRisco}">1</td>
+							<td class="text-center" th:text="${item.danoPotencial}">1</td>
+							<td class="text-center" th:text="${item.descricao}">1</td>
+							<td class="text-center" th:text="${item.barragem.name}">1</td>
+							<td class="text-center"><a class="btn btn-link btn-xs"
+								th:href="@{/inspecao/{id}(id=${item.id})}" title="Alterar"
+								rel="tooltip" data-toggle="tooltip" data-placement="top">
+									Alterar </a>
+							</td>
+
+						</tr>
+						<tr th:if="${#lists.isEmpty(inpecoes)}">
+							<td colspan="7">Inspeções não encontradas</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="panel-heading">
+
+			<div class="clearfix">
+				<a class="btn btn-link titulo-link" th:href="@{/inspecao/new}">Nova Inspeção</a>
+			</div>
+		</div>
+		<div layout:insert="modal"></div>
+	</div>
+</section>
+</html>

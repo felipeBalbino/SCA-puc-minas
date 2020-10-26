@@ -48,7 +48,7 @@ public class AtivosControler {
 	}
 
 	/**
-	 * @param dam
+	 * @param barragem
 	 * @param erros
 	 * @param attr
 	 * @return

@@ -4,8 +4,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum TipoManutencaoEnum {
 
-	CORRETIVA("C"),
-	PROGRAMADA("P");
+	CORRETIVA("CO"),
+	PROGRAMADA("PG"),
+	PREVENTIVA("PV");
 	
 	private String descricao;
 	

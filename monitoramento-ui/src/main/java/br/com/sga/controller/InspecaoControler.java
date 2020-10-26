@@ -18,21 +18,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.sga.binder.DamPropertyEditor;
-import br.com.sga.client.DamClient;
-import br.com.sga.client.InspectClient;
-import br.com.sga.model.Dam;
-import br.com.sga.model.Inspect;
-import br.com.sga.model.Method;
-import br.com.sga.model.PotentialDamage;
+import br.com.sga.binder.BarragemPropertyEditor;
+import br.com.sga.client.BarragemClient;
+import br.com.sga.client.InspecaoClient;
+import br.com.sga.model.Barragem;
+import br.com.sga.model.DanoPotencial;
+import br.com.sga.model.Inspecao;
+import br.com.sga.model.Metodo;
 
 /**
  * @author sga
  *
  */	
 @Controller
-@RequestMapping("/inspect")
-public class InspectControler {
+@RequestMapping("/inspecao")
+public class InspecaoControler {
 
 	@Value("${zuul.ws.gateway}")
 	private String gatemay;
@@ -43,12 +43,14 @@ public class InspectControler {
 	@Value("${zuul.ws.password}")
 	private String password;
 
-	public static final String CADASTRO_VIEW = "/inspect/inspect";
+	public static final String URL_INDEX = "/inspecao/index";
+	public static final String URL_LIST = "/inspecao/list";
+
 
 	@InitBinder
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
-		DamClient cliente = new DamClient(gatemay, user, password);
-		binder.registerCustomEditor(Dam.class, new DamPropertyEditor(cliente));
+		BarragemClient cliente = new BarragemClient(gatemay, user, password);
+		binder.registerCustomEditor(Barragem.class, new BarragemPropertyEditor(cliente));
 	}
 
 	/**
@@ -56,32 +58,32 @@ public class InspectControler {
 	 */
 	@RequestMapping("/new")
 	public ModelAndView insert() {
-		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
-		mv.addObject(new Inspect());
+		ModelAndView mv = new ModelAndView(URL_INDEX);
+		mv.addObject(new Inspecao());
 		return mv;
 	}
 
 	/**
-	 * @param inspect
+	 * @param inspecao
 	 * @param erros
 	 * @param attr
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String save(@Validated Inspect inspect, Errors erros, RedirectAttributes attr) {
+	public String save(@Validated Inspecao inspecao, Errors erros, RedirectAttributes attr) {
 
 		if (erros.hasErrors()) {
-			return CADASTRO_VIEW;
+			return URL_INDEX;
 		}
 
 		try {
-			InspectClient cliente = new InspectClient(gatemay, user, password);
-			cliente.save(inspect);
-			attr.addFlashAttribute("mensagem", "Inspect saved successfully");
-			return "redirect:/inspect/new";
+			InspecaoClient cliente = new InspecaoClient(gatemay, user, password);
+			cliente.save(inspecao);
+			attr.addFlashAttribute("mensagem", "Inspeção salva com sucesso");
+			return "redirect:/inspecao/new";
 		} catch (IllegalArgumentException e) {
 			erros.rejectValue("data", null, e.getMessage());
-			return CADASTRO_VIEW;
+			return URL_INDEX;
 		}
 	}
 
@@ -90,10 +92,10 @@ public class InspectControler {
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView list() {
-		InspectClient cliente = new InspectClient(gatemay, user, password);
+		InspecaoClient cliente = new InspecaoClient(gatemay, user, password);
 
-		List<Inspect> list = cliente.list();
-		ModelAndView mv = new ModelAndView("/inspect/list");
+		List<Inspecao> list = cliente.list();
+		ModelAndView mv = new ModelAndView(URL_LIST);
 		mv.addObject("inpecoes", list);
 		return mv;
 	}
@@ -104,11 +106,11 @@ public class InspectControler {
 	 */
 	@RequestMapping("{codigo}")
 	public ModelAndView update(@PathVariable("codigo") Long codigo) {
-		InspectClient cliente = new InspectClient(gatemay, user, password);
-		Inspect inspect = cliente.findById(codigo);
+		InspecaoClient cliente = new InspecaoClient(gatemay, user, password);
+		Inspecao inspecao = cliente.findById(codigo);
 
-		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
-		mv.addObject(inspect);
+		ModelAndView mv = new ModelAndView(URL_INDEX);
+		mv.addObject(inspecao);
 		return mv;
 	}
 
@@ -119,43 +121,43 @@ public class InspectControler {
 	 */
 	@RequestMapping(value = "{codigo}", method = RequestMethod.DELETE)
 	public String delete(@PathVariable Long codigo, RedirectAttributes attr) {
-		InspectClient cliente = new InspectClient(gatemay, user, password);
+		InspecaoClient cliente = new InspecaoClient(gatemay, user, password);
 		cliente.delete(codigo);
-		attr.addFlashAttribute("mensagem", "Inspect successfully deleted");
-		return "redirect:/inspect/";
+		attr.addFlashAttribute("mensagem", "Inspeção deletada com sucesso");
+		return "redirect:/inspecao/";
 	}
 
 	/**
 	 * @return
 	 */
-	@ModelAttribute("listDams")
-	public List<Dam> listDams() {
-		DamClient cliente = new DamClient(gatemay, user, password);
-		List<Dam> list = cliente.list();
+	@ModelAttribute("listBarragens")
+	public List<Barragem> listBarragens() {
+		BarragemClient cliente = new BarragemClient(gatemay, user, password);
+		List<Barragem> list = cliente.list();
 		return list;
 	}	
 
 	/**	
 	 * @return
 	 */
-	@ModelAttribute("listMethods")
-	public List<Method> listMethods() {
-		return Arrays.asList(Method.values());
+	@ModelAttribute("listaMetodos")
+	public List<Metodo> listaMetodos() {
+		return Arrays.asList(Metodo.values());
 	}
 	
 	/**	
 	 * @return
 	 */
-	@ModelAttribute("listPotentialDamages")
-	public List<PotentialDamage> listPotentialDamages() {
-		return Arrays.asList(PotentialDamage.values());
+	@ModelAttribute("listDanoPotencial")
+	public List<DanoPotencial> listDanoPotencial() {
+		return Arrays.asList(DanoPotencial.values());
 	}
 	
 	/**	
 	 * @return
-	 */
+	 */	
 	@ModelAttribute("currentPage")
 	public String currentPage() {
-		return "inspect";
+		return "inspecao";
 	}
 }

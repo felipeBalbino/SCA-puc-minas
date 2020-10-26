@@ -27,14 +27,14 @@
 					<div class="col-sm-4">
 						<form method="GET" class="form-horizontal" th:object="${filter}">
 							<select disabled name="id" class="form-control" th:field="*{id}">
-								<option th:each="item : ${listDams}" th:value="${item.id}"
+								<option th:each="item : ${listBarragens}" th:value="${item.id}"
 									th:text="${item.name}"></option>
 							</select>
 						</form>
 					</div>
 				</div>
 				<a class="btn btn-danger titulo-right" data-toggle="modal"
-					th:attr="data-id=1, data-loc=@{/evacuation/}, data-description=Dam_01"
+					th:attr="data-id=1, data-loc=@{/evacuation/}, data-description=Barragem_01"
 					data-target="#modalPanico">Evacuação</a>
 			</div>
 		</div>

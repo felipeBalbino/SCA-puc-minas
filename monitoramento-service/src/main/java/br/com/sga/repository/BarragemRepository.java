@@ -4,17 +4,17 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.sga.model.Dam;
+import br.com.sga.model.Barragem;
 
 /**
  * @author sga
  *
  */
-public interface DamRepository extends JpaRepository<Dam, Long> {
+public interface BarragemRepository extends JpaRepository<Barragem, Long> {
 
 	/**
 	 * @param name
 	 * @return
 	 */
-	public List<Dam> findByNameContaining(String name);
+	public List<Barragem> findByNameContaining(String name);
 }

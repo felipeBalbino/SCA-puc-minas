@@ -25,7 +25,7 @@ $('#modalPanico').on('shown.bs.modal', function (e) {
 	form = modal.find('form')
 	form.attr('action',loc+codigo)
 	
-	modal.find('.modal-body h4').html('Are you sure you want to trigger the evacuation procedure for the dam  ' +desc +'?*')
+	modal.find('.modal-body h4').html('Are you sure you want to trigger the evacuation procedure for the barragem  ' +desc +'?*')
 })
 
 $(function(){

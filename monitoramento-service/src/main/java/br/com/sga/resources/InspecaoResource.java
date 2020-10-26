@@ -12,34 +12,34 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.sga.model.Inspect;
-import br.com.sga.repository.filter.InspectFilter;
-import br.com.sga.service.InspectService;
+import br.com.sga.model.Inspecao;
+import br.com.sga.repository.filter.InspecaoFilter;
+import br.com.sga.service.InspecaoService;
 
 /**
  * @author sga
  *
  */
 @RestController
-@RequestMapping("/inspect")
-public class InspectResource {
+@RequestMapping("/inspecao")
+public class InspecaoResource {
 
 	@Autowired
-	private InspectService inspectService;
+	private InspecaoService inspecaoService;
 
 	/**	
 	 * @param search
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<List<Inspect>> list(@RequestParam(value = "search", required = false) String search) {
-		List<Inspect> list;
+	public ResponseEntity<List<Inspecao>> list(@RequestParam(value = "search", required = false) String search) {
+		List<Inspecao> list;
 		if (search == null) {
-			list = inspectService.findAll();
+			list = inspecaoService.findAll();
 		} else {
-			InspectFilter InspectFilter = new InspectFilter();
-			InspectFilter.setId(Long.parseLong(search));
-			list = inspectService.search(InspectFilter);
+			InspecaoFilter InspecaoFilter = new InspecaoFilter();
+			InspecaoFilter.setId(Long.parseLong(search));
+			list = inspecaoService.search(InspecaoFilter);
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(list);
 	}
@@ -49,8 +49,8 @@ public class InspectResource {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Inspect> findById(@PathVariable("id") Long id) {
-		Inspect entidade = inspectService.findById(id);
+	public ResponseEntity<Inspecao> findById(@PathVariable("id") Long id) {
+		Inspecao entidade = inspecaoService.findById(id);
 		return ResponseEntity.status(HttpStatus.OK).body(entidade);
 	}
 
@@ -60,7 +60,7 @@ public class InspectResource {
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
-		inspectService.delete(id);
+		inspecaoService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 

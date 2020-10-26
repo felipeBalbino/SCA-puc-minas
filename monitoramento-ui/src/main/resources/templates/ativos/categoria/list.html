@@ -30,7 +30,7 @@
 				<div class="form-group">
 					<div class="col-sm-4">
 						<div class="input-group">
-							<input class="form-control" th:field="*{description}"
+							<input class="form-control" th:field="*{descricao}"
 								placeholder="Search" autofocus="autofocus" /> <span
 								class="input-group-btn">
 								<button type="submit" class="btn btn-default">
@@ -50,7 +50,7 @@
 						<tr>
 							<th class="text-center col-md-1">#</th>
 							<th>name</th>
-							<th class="text-center col-md-2">description</th>
+							<th class="text-center col-md-2">Descrição</th>
 							<th class="text-center col-md-2">brand</th>
 							<th class="col-md-1"></th>
 							<th class="col-md-1"></th>
@@ -61,16 +61,16 @@
 						<tr th:each="item:${ativos}">
 							<td class="text-center" th:text="${item.id}">1</td>
 							<td th:text="${item.name}">1</td>
-							<td class="text-center" th:text="${item.description}">1</td>
+							<td class="text-center" th:text="${item.descricao}">1</td>
 							<td class="text-center" th:text="${item.brand}">1</td>
 
 							<td class="text-center"><a class="btn btn-link btn-xs"
-								th:href="@{/dam/{id}(id=${item.id})}" title="Update"
+								th:href="@{/barragem/{id}(id=${item.id})}" title="Update"
 								rel="tooltip" data-toggle="tooltip" data-placement="top"> Update
 							</a></td>
 							<td class="text-center"><a class="btn btn-link btn-xs"
 								data-toggle="modal"
-								th:attr="data-id=${item.id}, data-loc=@{/dam/}, data-description=${item.name}"
+								th:attr="data-id=${item.id}, data-loc=@{/barragem/}, data-description=${item.name}"
 								title="Excluir" rel="tooltip" data-placement="top"
 								data-target="#modalDelete"> Delete 
 							</a></td>

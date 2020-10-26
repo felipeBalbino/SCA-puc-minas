@@ -4,14 +4,14 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
-<title>Dam Registration</title>
+<title>Barragem Registration</title>
 </head>
 
 <section layout:fragment="conteudo">
 
 
-	<form class="form-horizontal" method="post" th:action="@{/dam}"
-		th:object="${dam}">
+	<form class="form-horizontal" method="post" th:action="@{/barragem}"
+		th:object="${barragem}">
 
 		<div class="alert alert-success alert-dismissible"
 			th:if="${!#strings.isEmpty(mensagem)}" role="alert">
@@ -30,8 +30,8 @@
 
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a th:href="@{/dam}">List</a></li>
-				<li class="breadcrumb-item active" aria-current="page">Dam
+				<li class="breadcrumb-item"><a th:href="@{/barragem}">List</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Barragem
 					Registration</li>
 			</ol>
 		</nav>
@@ -79,11 +79,11 @@
 				</div>
 
 
-				<label for="method" class="col-sm-2 control-label">Method</label>
+				<label for="metodo" class="col-sm-2 control-label">Método</label>
 				<div class="col-sm-4">
-					<select name="method" class="form-control" th:field="*{method}">
-						<option th:each="item : ${listMethods}" th:value="${item}"
-							th:text="${item.description}"></option>
+					<select name="metodo" class="form-control" th:field="*{metodo}">
+						<option th:each="item : ${listaMetodos}" th:value="${item}"
+							th:text="${item.descricao}"></option>
 					</select>
 				</div>
 				<div class="form-group">

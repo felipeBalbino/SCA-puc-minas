@@ -8,9 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.com.sga.client.DamClient;
-import br.com.sga.model.Dam;
-import br.com.sga.repository.filter.InspectFilter;
+import br.com.sga.client.BarragemClient;
+import br.com.sga.model.Barragem;
+import br.com.sga.repository.filter.InspecaoFilter;
 
 @Controller
 @RequestMapping({ "/", "/home" })
@@ -27,15 +27,15 @@ public class HomeControler {
 	private String password;
 
 	@RequestMapping
-	public String home(@ModelAttribute("filter") InspectFilter filter, Authentication authentication) {
+	public String home(@ModelAttribute("filter") InspecaoFilter filter, Authentication authentication) {
 		authentication.getAuthorities();
 		return "home";
 	}
 
-	@ModelAttribute("listDams")
-	public List<Dam> listDams() {
-		DamClient cliente = new DamClient(gateway, user, password);
-		List<Dam> list = cliente.list();
+	@ModelAttribute("listBarragens")
+	public List<Barragem> listBarragens() {
+		BarragemClient cliente = new BarragemClient(gateway, user, password);
+		List<Barragem> list = cliente.list();
 		return list;
 	}
 	
