@@ -33,7 +33,7 @@
 						<tr>
 							<th class="text-center col-md-1">#</th>
 							<th>Descrição</th>
-							<th class="text-center col-md-2">Ore</th>
+	
 							<th class="text-center col-md-2">Latitude</th>
 							<th class="text-center col-md-2">Longitude</th>
 							<th class="text-center col-md-2">Método</th>
@@ -46,7 +46,7 @@
 						<tr th:each="item:${barragens}">
 							<td class="text-center" th:text="${item.id}">1</td>
 							<td th:text="${item.name}">1</td>
-							<td class="text-center" th:text="${item.ore}">1</td>
+
 							<td class="text-center" th:text="${item.latitude}">1</td>
 							<td class="text-center" th:text="${item.longitude}">1</td>
 							<td class="text-center" th:text="${item.metodo.descricao}">1</td>

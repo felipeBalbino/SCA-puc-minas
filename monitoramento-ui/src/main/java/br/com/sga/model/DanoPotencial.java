@@ -6,9 +6,9 @@ package br.com.sga.model;
  */
 public enum DanoPotencial {
 
-	HIGH("HIGH"),
-	MEDIUM("MEDIUM"),
-	LOW("LOW");
+	HIGH("Alto"),
+	MEDIUM("Médio"),
+	LOW("Baixo");
 	
 	private String descricao;
 	

@@ -19,7 +19,6 @@ public class Barragem {
 
 	private Double longitude;
 
-	private String ore;
 
 	@Enumerated(EnumType.ORDINAL)
 	private Metodo metodo;
@@ -58,13 +57,6 @@ public class Barragem {
 		this.longitude = longitude;
 	}
 
-	public String getOre() {
-		return ore;
-	}
-
-	public void setOre(String ore) {
-		this.ore = ore;
-	}
 
 	public List<Inspecao> getInspecaos() {
 		return inspecaos;

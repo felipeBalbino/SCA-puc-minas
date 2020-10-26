@@ -4,7 +4,7 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorator="layout">
 <head>
-	<title>Inspecao</title>
+	<title>Registro de Inspeção</title>
 </head>
 	
 	<section layout:fragment="conteudo">
@@ -25,8 +25,8 @@
 		
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a th:href="@{/inspecao}">List</a></li>
-				<li class="breadcrumb-item active" aria-current="page">Inspecao Registration</li>
+				<li class="breadcrumb-item"><a th:href="@{/inspecao}">Lista de Inspeções</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Registro de Inspeção</li>
 			</ol>
 		</nav>
 		
@@ -72,7 +72,7 @@
 				 	<label for="categoriaRisco" class="col-sm-2 control-label">Categoria de Risco</label>
 				 	<div class="col-sm-4">
 					    <select name="categoriaRisco" class="form-control" th:field="*{categoriaRisco}">
-					    	<option value="">Select</option>
+					    	<option value="">Selecione...</option>
 					    	<option th:each="item : ${listaDanoPotencial}" th:value="${item}"  th:text="${item.descricao}" ></option>
 					    </select>
 				 	</div>
@@ -82,7 +82,7 @@
 				 	<label for="danoPotencial" class="col-sm-2 control-label">Dano Potencial</label>
 				 	<div class="col-sm-4">
 				 		<select name="danoPotencial" class="form-control" th:field="*{danoPotencial}">
-				 			<option value="">Select</option>
+				 			<option value="">Selecione...</option>
 					    	<option th:each="item : ${listaDanoPotencial}" th:value="${item}"  th:text="${item.descricao}" ></option>
 					    </select>
 				 	</div>

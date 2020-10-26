@@ -148,8 +148,8 @@ public class InspecaoControler {
 	/**	
 	 * @return
 	 */
-	@ModelAttribute("listDanoPotencial")
-	public List<DanoPotencial> listDanoPotencial() {
+	@ModelAttribute("listaDanoPotencial")
+	public List<DanoPotencial> listaDanoPotencial() {
 		return Arrays.asList(DanoPotencial.values());
 	}
 	
