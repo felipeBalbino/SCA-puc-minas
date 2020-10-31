@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum StatusManutencaoEnum {
 
-	ABERTA("Aberta"),
-	FECHADA("Fechada");
+	ABERTA("A"),
+	FECHADA("F");
 	
 	private String descricao;
 	

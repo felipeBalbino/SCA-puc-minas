@@ -61,7 +61,7 @@ public class BarragemResource {
 	public ResponseEntity<Void> save(@Valid @RequestBody Barragem barragem) {
 		barragem = barragemService.save(barragem);
 
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(barragem.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(barragem.getCodigo()).toUri();
 
 		return ResponseEntity.created(uri).build();
 	}
@@ -93,7 +93,7 @@ public class BarragemResource {
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@RequestBody Barragem barragem, @PathVariable("id") Long id) {
-		barragem.setId(id);
+		barragem.setCodigo(id);
 		barragemService.update(barragem);
 
 		return ResponseEntity.noContent().build();
@@ -109,7 +109,7 @@ public class BarragemResource {
 		inspecao.setBarragem(barragemService.findById(id));
 		inspecao = InspecaoService.save(inspecao);
 
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/inspecao/{id}").buildAndExpand(inspecao.getId())
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/inspecao/{id}").buildAndExpand(inspecao.getCodigo())
 				.toUri();
 
 		return ResponseEntity.created(uri).build();
@@ -125,7 +125,7 @@ public class BarragemResource {
 	public ResponseEntity<Void> updateInspecao(@RequestBody Inspecao inspecao, @PathVariable("id") Long id,
 			@PathVariable("idManutencao") Long idManutencao) {
 		inspecao.setBarragem(barragemService.findById(id));
-		inspecao.setId(idManutencao);
+		inspecao.setCodigo(idManutencao);
 		InspecaoService.update(inspecao);
 
 		return ResponseEntity.noContent().build();

@@ -47,7 +47,7 @@ public class InspecaoService {
 		if (s.isPresent()) {
 			return s.get();
 		}
-		throw new ServiceException("The Request could not be found.");
+		throw new ServiceException("Requisição não encontrada.");
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class InspecaoService {
 		try {
 			InspecaoRepository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
-			throw new ServiceException("The Request could not be found.");
+			throw new ServiceException("Requisição não encontrada.");
 		}
 	}
 
@@ -66,7 +66,7 @@ public class InspecaoService {
 	 * @return
 	 */
 	public List<Inspecao> search(InspecaoFilter inspecaoFilter) {
-		return InspecaoRepository.findByBarragem_Id(inspecaoFilter.getId());
+		return InspecaoRepository.findByBarragem_Codigo(inspecaoFilter.getId());
 
 	}
 
@@ -74,7 +74,7 @@ public class InspecaoService {
 	 * @param Inspecao
 	 */
 	public void update(Inspecao inspecao) {
-		findById(inspecao.getId());
+		findById(inspecao.getCodigo());
 		InspecaoRepository.save(inspecao);
 	}
 }

@@ -50,6 +50,33 @@
 					</div>
 				</div>
 
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('dataAquisicao')} ? 'has-error'">
+					<label for="dataAquisicao" class="col-sm-2 control-label">Data da Aquisição</label>
+					<div class="col-sm-4">
+						<input id="dataAquisicao" th:field="*{dataAquisicao}" pattern="dd/MM/yyyy" type="date"
+							class="form-control" placeholder="Data da Aquisição" />
+					</div>
+				</div>
+				
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('dataUltimaManutencao')} ? 'has-error'">
+					<label for="dataUltimaManutencao" class="col-sm-2 control-label">Data da Última Manutenção</label>
+					<div class="col-sm-4">
+						<input id="dataUltimaManutencao" th:field="*{dataUltimaManutencao}" pattern="dd/MM/yyyy" type="date"
+							class="form-control" placeholder="Data da Última Manutenção" />
+					</div>
+				</div>
+				
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('dataProximaManutencao')} ? 'has-error'">
+					<label for="dataProximaManutencao" class="col-sm-2 control-label">Data da Próxima Manutenção</label>
+					<div class="col-sm-4">
+						<input id="dataProximaManutencao" th:field="*{dataProximaManutencao}" pattern="dd/MM/yyyy" type="date"
+							class="form-control" placeholder="Data da Próxima Manutenção" />
+					</div>
+				</div>
+				
 
 				<div class="form-group"
 					th:classappend="${#fields.hasErrors('dataInativacao')} ? 'has-error'">

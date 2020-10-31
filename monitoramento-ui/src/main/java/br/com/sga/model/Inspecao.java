@@ -19,7 +19,7 @@ public class Inspecao {
 	private Long id;
 
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@NotNull(message = "Required date")
+	@NotNull(message = "Data de inclusão requerido")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date date;
 
@@ -34,8 +34,8 @@ public class Inspecao {
 	@NotNull(message = "Required descricao")
 	private String descricao;
 
-	@NotNull(message = "Required height")
-	private Double height;
+	@NotNull(message = "Required altura")
+	private Double altura;
 
 	@NotNull(message = "Required volume")
 	private Double volume;
@@ -82,12 +82,12 @@ public class Inspecao {
 		this.descricao = descricao;
 	}
 
-	public Double getHeight() {
-		return height;
+	public Double getAltura() {
+		return altura;
 	}
 
-	public void setHeight(Double height) {
-		this.height = height;
+	public void setAltura(Double altura) {
+		this.altura = altura;
 	}
 
 	public Double getVolume() {
@@ -134,7 +134,7 @@ public class Inspecao {
 	@Override
 	public String toString() {
 		return "Inspecao [id=" + id + ", date=" + date + ", categoriaRisco=" + categoriaRisco + ", danoPotencial="
-				+ danoPotencial + ", descricao=" + descricao + ", height=" + height + ", volume=" + volume
+				+ danoPotencial + ", descricao=" + descricao + ", altura=" + altura + ", volume=" + volume
 				+ ", barragem=" + barragem + "]";
 	}
 

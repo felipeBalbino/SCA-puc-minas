@@ -1,16 +1,17 @@
-insert into fabricante (codigo_fabricante, nome, data_inclusao) values(1,'Cafu','2004-01-24');
+insert into fabricante (codigo_fabricante, nome, data_inclusao) values(1,'Barragem','2004-01-24');
 insert into fabricante (codigo_fabricante,  nome, data_inclusao) values(2,'Ferrari','2004-02-24');
 insert into fabricante (codigo_fabricante,  nome, data_inclusao) values(3,'Volvo','2004-03-24');
 insert into fabricante (codigo_fabricante,  nome, data_inclusao) values(4,'Acer','2004-04-24');
 insert into fabricante (codigo_fabricante,  nome, data_inclusao) values(5,'Skiller','2004-05-24');
 
-insert into tipo_ativo (codigo_tipoativo,  nome, data_inclusao) values(1,'Caminhões de Mineração','2004-01-24');
-insert into tipo_ativo (codigo_tipoativo,  nome, data_inclusao) values(2,'Ouro','2004-02-24');
-insert into tipo_ativo (codigo_tipoativo,  nome, data_inclusao) values(3,'Níquel','2004-03-24');
-insert into tipo_ativo (codigo_tipoativo,  nome, data_inclusao) values(4,'Cobre','2004-04-24');
-insert into tipo_ativo (codigo_tipoativo,  nome, data_inclusao) values(5,'Minério de Ferro','2004-05-24');
+insert into tipo_ativo (codigo_tipoativo,  nome, data_inclusao) values(1,'Barragem','2004-01-24');
+insert into tipo_ativo (codigo_tipoativo,  nome, data_inclusao) values(2,'Sensor','2004-02-24');
+insert into tipo_ativo (codigo_tipoativo,  nome, data_inclusao) values(3,'Caminhões de Mineração','2004-02-24');
+insert into tipo_ativo (codigo_tipoativo,  nome, data_inclusao) values(4,'Níquel','2004-03-24');
+insert into tipo_ativo (codigo_tipoativo,  nome, data_inclusao) values(5,'Cobre','2004-04-24');
+insert into tipo_ativo (codigo_tipoativo,  nome, data_inclusao) values(6,'Minério de Ferro','2004-05-24');
 
-insert into ativo (codigo_ativo,  nome,codigo_fabricante, codigo_tipoAtivo,data_inclusao) values(1,'Ativo teste 1',1,1,'2004-01-24');
+insert into ativo (codigo_ativo,  nome,codigo_fabricante, codigo_tipoAtivo,data_inclusao) values(1,'Barragem de Rejeitos Fundão',1,1,'2004-01-24');
 insert into ativo (codigo_ativo,  nome,codigo_fabricante, codigo_tipoAtivo,data_inclusao) values(2,'Ativo teste 2',2,2,'2004-02-24');
 insert into ativo (codigo_ativo,  nome,codigo_fabricante, codigo_tipoAtivo,data_inclusao) values(3,'Ativo teste 3',3,3,'2004-03-24');
 insert into ativo (codigo_ativo,  nome,codigo_fabricante, codigo_tipoAtivo,data_inclusao) values(4,'Ativo teste 4',4,4,'2004-04-24');

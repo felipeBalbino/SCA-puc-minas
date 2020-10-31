@@ -49,7 +49,7 @@
 
 							<td class="text-center" th:text="${item.latitude}">1</td>
 							<td class="text-center" th:text="${item.longitude}">1</td>
-							<td class="text-center" th:text="${item.metodo.descricao}">1</td>
+							<td class="text-center" th:text="${item.metodo!=null?item.metodo.descricao:''}">1</td>
 							<td class="text-center"><a class="btn btn-link btn-xs"
 								th:href="@{/barragem/{id}(id=${item.id})}" title="Alterar"
 								rel="tooltip" data-toggle="tooltip" data-placement="top"> Alterar
@@ -76,11 +76,11 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="panel-heading">
+<!-- 			<div class="panel-heading">
 				<div class="clearfix">
 					<a class="btn btn-link titulo-link" th:href="@{/barragem/new}">Nova Barragem</a>
 				</div>
-			</div>
+			</div> -->
 		</div>
 
 		<div layout:insert="modal"></div>

@@ -7,27 +7,33 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+/**
+ * @author sga
+ *
+ */
+@Entity
+@Table(name = "TIPO_SENSOR")
+public class TipoSensor {
 
-public class Fabricante {
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "CODIGO_TIPO_SENSOR")
 	private Long codigo;
 
 	private String nome;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message = "Data de inclusão requerido")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInclusao;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInativacao;
@@ -80,7 +86,7 @@ public class Fabricante {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Fabricante other = (Fabricante) obj;
+		TipoSensor other = (TipoSensor) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -89,7 +95,4 @@ public class Fabricante {
 		return true;
 	}
 
-
-
-	
 }

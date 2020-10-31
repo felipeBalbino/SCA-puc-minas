@@ -15,7 +15,7 @@ public class TipoAtivo {
 	private String nome;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@NotNull(message = "Required date")
+	@NotNull(message = "Data de inclusão requerido")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInclusao;
 	

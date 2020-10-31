@@ -26,38 +26,51 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Ativo {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigo_ativo")
 	private Long codigo;
-	
+
 	@NotNull
-	@Size(min=3, max=50)
+	@Size(min = 3, max = 50)
 	private String nome;
-		
-	@Size(min=3, max=250)
+
+	@Size(min = 3, max = 250)
 	private String descricao;
-	
+
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "codigo_fabricante")
 	private Fabricante fabricante;
-	
-	@ManyToOne(cascade=CascadeType.REFRESH)
+
+	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "codigo_tipoativo")
 	private TipoAtivo tipoAtivo;
-	
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
-	@NotNull(message="Data de inclusão obrigatória")
-	@JsonFormat
-	  (shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	private Date dataAquisicao;
+
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	private Date dataUltimaManutencao;
+
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	private Date dataProximaManutencao;
+
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
+	@NotNull(message = "Data de inclusão obrigatória")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInclusao;
-	
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
-	@JsonFormat
-	  (shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInativacao;
-	
+
 	@OneToMany(mappedBy = "ativo")
 	@JsonIgnore
 	private List<Manutencao> manutencoes;
@@ -126,6 +139,30 @@ public class Ativo {
 		this.manutencoes = manutencoes;
 	}
 
+	public Date getDataAquisicao() {
+		return dataAquisicao;
+	}
+
+	public void setDataAquisicao(Date dataAquisicao) {
+		this.dataAquisicao = dataAquisicao;
+	}
+
+	public Date getDataUltimaManutencao() {
+		return dataUltimaManutencao;
+	}
+
+	public void setDataUltimaManutencao(Date dataUltimaManutencao) {
+		this.dataUltimaManutencao = dataUltimaManutencao;
+	}
+
+	public Date getDataProximaManutencao() {
+		return dataProximaManutencao;
+	}
+
+	public void setDataProximaManutencao(Date dataProximaManutencao) {
+		this.dataProximaManutencao = dataProximaManutencao;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -151,6 +188,4 @@ public class Ativo {
 		return true;
 	}
 
-	
-	
 }

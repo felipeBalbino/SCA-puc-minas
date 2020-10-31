@@ -2,35 +2,54 @@ package br.com.sga.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+/**
+ * @author sga
+ *
+ */
+@Entity
+@Table(name = "SENSOR")
+public class Sensor {
 
-public class Fabricante {
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "CODIGO_SENSOR")
 	private Long codigo;
 
-	private String nome;
-	
+	@NotNull(message = "Código do ativo requerido")
+	@Column(name = "CODIGO_ATIVO", nullable = false, unique = false)
+	private Long codigoAtivo;
+
+	@ManyToOne(cascade = CascadeType.REFRESH)
+	@JoinColumn(name = "codigo_tipo_sensor", nullable = false)
+	private TipoSensor tipoSensor;
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message = "Data de inclusão requerido")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInclusao;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInativacao;
+
+	@ManyToOne
+	@JoinColumn(name = "barragem")
+	private Barragem barragem;
 
 	public Long getCodigo() {
 		return codigo;
@@ -40,12 +59,20 @@ public class Fabricante {
 		this.codigo = codigo;
 	}
 
-	public String getNome() {
-		return nome;
+	public Long getCodigoAtivo() {
+		return codigoAtivo;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setCodigoAtivo(Long codigoAtivo) {
+		this.codigoAtivo = codigoAtivo;
+	}
+
+	public TipoSensor getTipoSensor() {
+		return tipoSensor;
+	}
+
+	public void setTipoSensor(TipoSensor tipoSensor) {
+		this.tipoSensor = tipoSensor;
 	}
 
 	public Date getDataInclusao() {
@@ -64,6 +91,14 @@ public class Fabricante {
 		this.dataInativacao = dataInativacao;
 	}
 
+	public Barragem getBarragem() {
+		return barragem;
+	}
+
+	public void setBarragem(Barragem barragem) {
+		this.barragem = barragem;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -80,7 +115,7 @@ public class Fabricante {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Fabricante other = (Fabricante) obj;
+		Sensor other = (Sensor) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -89,7 +124,4 @@ public class Fabricante {
 		return true;
 	}
 
-
-
-	
 }

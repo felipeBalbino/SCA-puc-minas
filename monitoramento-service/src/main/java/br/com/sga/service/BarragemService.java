@@ -67,7 +67,7 @@ public class BarragemService {
 	 */
 	public List<Barragem> search(BarragemFilter filter) {
 		String descricao = filter.getDescricao() == null ? "%" : filter.getDescricao();
-		return barragemRepository.findByNameContaining(descricao);
+		return barragemRepository.findByNomeContaining(descricao);
 
 	}
 
@@ -75,7 +75,7 @@ public class BarragemService {
 	 * @param barragem	
 	 */
 	public void update(Barragem barragem) {
-		findById(barragem.getId());
+		findById(barragem.getCodigo());
 		barragemRepository.save(barragem);
 	}
 }

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import br.com.sga.client.BarragemClient;
+import br.com.sga.client.model.Barragem;
 import br.com.sga.model.Ativo;
 import br.com.sga.repository.AtivoRepository;
 import br.com.sga.service.exception.ServiceException;
@@ -20,6 +22,7 @@ public class AtivosService {
 
 	@Autowired
 	private AtivoRepository ativoRepository;
+	
 	
 	
 	/**
@@ -41,7 +44,9 @@ public class AtivosService {
 				throw new ServiceException("Ativo já existe na base.");
 			}
 		}
-		return ativoRepository.save(ativo);
+		ativo = ativoRepository.save(ativo);
+
+		return ativo;
 	}
 	
 	/**

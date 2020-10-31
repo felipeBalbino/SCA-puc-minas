@@ -39,8 +39,16 @@
 
 			<div class="panel-body">
 
-				<input type="hidden" th:field="*{id}" />
-
+				<input type="hidden"  th:field="*{id}" />
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('id')} ? 'has-error'">
+					<label for="id" class="col-sm-2 control-label">Código</label>
+					<div class="col-sm-4">
+						<div  th:field="*{id}"  ></div>
+						<div th:text="${id}"></div>
+					</div>
+				</div>
+				
 				<div class="form-group"
 					th:classappend="${#fields.hasErrors('name')} ? 'has-error'">
 					<label for="name" class="col-sm-2 control-label">Nome</label>
@@ -72,6 +80,7 @@
 				<label for="metodo" class="col-sm-2 control-label">Método</label>
 				<div class="col-sm-4">
 					<select name="metodo" class="form-control" th:field="*{metodo}">
+						<option value="">Selecione...</option>
 						<option th:each="item : ${listaMetodos}" th:value="${item}"
 							th:text="${item.descricao}"></option>
 					</select>

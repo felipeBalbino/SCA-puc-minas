@@ -2,16 +2,14 @@ package br.com.sga.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,69 +17,50 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
+@Table(name = "INSPECAO")
 public class Inspecao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "CODIGO_INSPECAO")
+	private Long codigo;
 
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@Temporal(TemporalType.DATE)
-	@NotNull(message = "Required date")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-	private Date date;
+	@ManyToOne
+	@JoinColumn(name = "codigo_categoria_risco")
+	private CategoriaRisco categoriaRisco;
 
-	@Enumerated(EnumType.ORDINAL)
-	@NotNull(message = "Required Categoria de Risco")
-	private DanoPotencial categoriaRisco;
-
-	@Enumerated(EnumType.ORDINAL)
-	@NotNull(message = "Required Dano Potencial")
+	@ManyToOne
+	@JoinColumn(name = "codigo_dano_potencial")
 	private DanoPotencial danoPotencial;
 
-	@NotNull(message = "Required descricao")
+	@NotNull(message = "Descrição requerida")
 	private String descricao;
 
-	@NotNull(message = "Required height")
-	private Double height;
+	@NotNull(message = "Altura requerida")
+	private Double altura;
 
-	@NotNull(message = "Required volume")
+	@NotNull(message = "Volume requerido")
 	private Double volume;
 
 	@ManyToOne
-	@JoinColumn(name = "barragem_id")
+	@JoinColumn(name = "barragem")
 	private Barragem barragem;
 
-	public Long getId() {
-		return id;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "Data de inclusão requerido")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	private Date dataInclusao;
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	private Date dataInativacao;
+
+	public Long getCodigo() {
+		return codigo;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public DanoPotencial getCategoriaRisco() {
-		return categoriaRisco;
-	}
-
-	public void setCategoriaRisco(DanoPotencial categoriaRisco) {
-		this.categoriaRisco = categoriaRisco;
-	}
-
-	public DanoPotencial getDanoPotencial() {	
-		return danoPotencial;
-	}
-
-	public void setDanoPotencial(DanoPotencial danoPotencial) {
-		this.danoPotencial = danoPotencial;
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getDescricao() {
@@ -92,12 +71,12 @@ public class Inspecao {
 		this.descricao = descricao;
 	}
 
-	public Double getHeight() {
-		return height;
+	public Double getAltura() {
+		return altura;
 	}
 
-	public void setHeight(Double height) {
-		this.height = height;
+	public void setAltura(Double altura) {
+		this.altura = altura;
 	}
 
 	public Double getVolume() {
@@ -116,11 +95,43 @@ public class Inspecao {
 		this.barragem = barragem;
 	}
 
+	public CategoriaRisco getCategoriaRisco() {
+		return categoriaRisco;
+	}
+
+	public void setCategoriaRisco(CategoriaRisco categoriaRisco) {
+		this.categoriaRisco = categoriaRisco;
+	}
+
+	public DanoPotencial getDanoPotencial() {
+		return danoPotencial;
+	}
+
+	public void setDanoPotencial(DanoPotencial danoPotencial) {
+		this.danoPotencial = danoPotencial;
+	}
+
+	public Date getDataInclusao() {
+		return dataInclusao;
+	}
+
+	public void setDataInclusao(Date dataInclusao) {
+		this.dataInclusao = dataInclusao;
+	}
+
+	public Date getDataInativacao() {
+		return dataInativacao;
+	}
+
+	public void setDataInativacao(Date dataInativacao) {
+		this.dataInativacao = dataInativacao;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		return result;
 	}
 
@@ -133,19 +144,12 @@ public class Inspecao {
 		if (getClass() != obj.getClass())
 			return false;
 		Inspecao other = (Inspecao) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (codigo == null) {
+			if (other.codigo != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Inspecao [id=" + id + ", date=" + date + ", categoriaRisco=" + categoriaRisco + ", danoPotencial="
-				+ danoPotencial + ", descricao=" + descricao + ", height=" + height + ", volume=" + volume
-				+ ", barragem=" + barragem + "]";
 	}
 
 }

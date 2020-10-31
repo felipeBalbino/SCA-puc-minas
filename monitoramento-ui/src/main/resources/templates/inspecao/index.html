@@ -36,7 +36,7 @@
 		  
 		  		<input type="hidden" th:field="*{id}" />
 		   
-		   		<div class="form-group" th:classappend="${#fields.hasErrors('height')} ? 'has-error'">
+		   		<div class="form-group" th:classappend="${#fields.hasErrors('barragem')} ? 'has-error'">
 		   			<label for="barragem" class="col-sm-2 control-label">Barragens</label>
 				 	<div class="col-sm-4">
 					    <select name="barragem" class="form-control" th:field="*{barragem}">
@@ -45,10 +45,10 @@
 				 	</div>
 				 </div>
 				 	
-				 <div class="form-group" th:classappend="${#fields.hasErrors('height')} ? 'has-error'">
-				 	<label for="height" class="col-sm-2 control-label">Current Height</label>
+				 <div class="form-group" th:classappend="${#fields.hasErrors('altura')} ? 'has-error'">
+				 	<label for="altura" class="col-sm-2 control-label">Altura atual</label>
 				 	<div class="col-sm-4">
-					    <input  id="height" th:field="*{height}" type="text" class="form-control" placeholder="Current Height"/>
+					    <input  id="altura" th:field="*{altura}" type="text" class="form-control" placeholder="Altura atual"/>
 				 	</div>
 				  </div>
 				  

@@ -16,5 +16,5 @@ public interface BarragemRepository extends JpaRepository<Barragem, Long> {
 	 * @param name
 	 * @return
 	 */
-	public List<Barragem> findByNameContaining(String name);
+	public List<Barragem> findByNomeContaining(String name);
 }
