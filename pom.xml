@@ -9,14 +9,12 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>eureka-client</module>
 		<module>eureka-service</module>
         <module>zuul-gateway</module>
         <module>cadastro-ativo-service</module>
 		<module>monitoramento-service</module>
         <module>security-communication-service</module>
         <module>monitoramento-ui</module>
-        
     </modules>
 
 </project>
