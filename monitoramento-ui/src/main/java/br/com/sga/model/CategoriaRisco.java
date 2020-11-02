@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * @author sga
  *
  */
-	
-public class DanoPotencial {
+
+public class CategoriaRisco {
 
 	private Long codigo;
 
@@ -21,7 +21,7 @@ public class DanoPotencial {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInclusao;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInativacao;
 
@@ -73,7 +73,7 @@ public class DanoPotencial {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		DanoPotencial other = (DanoPotencial) obj;
+		CategoriaRisco other = (CategoriaRisco) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

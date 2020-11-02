@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import br.com.sga.model.Barragem;
 import br.com.sga.repository.BarragemRepository;
-import br.com.sga.repository.filter.BarragemFilter;
 import br.com.sga.service.exception.ServiceException;
 
 /**
@@ -61,15 +60,6 @@ public class BarragemService {
 		}
 	}
 
-	/**
-	 * @param filter
-	 * @return
-	 */
-	public List<Barragem> search(BarragemFilter filter) {
-		String descricao = filter.getDescricao() == null ? "%" : filter.getDescricao();
-		return barragemRepository.findByNomeContaining(descricao);
-
-	}
 
 	/**
 	 * @param barragem	

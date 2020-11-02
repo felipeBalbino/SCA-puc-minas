@@ -44,14 +44,14 @@
 					</thead>
 					<tbody>
 						<tr th:each="item : ${inpecoes}">
-							<td class="text-center" th:text="${item.id}">1</td>
-							<td class="text-center" th:text="${{item.date}}">1</td>
-							<td class="text-center" th:text="${item.categoriaRisco}">1</td>
-							<td class="text-center" th:text="${item.danoPotencial}">1</td>
+							<td class="text-center" th:text="${item.codigo}">1</td>
+							<td class="text-center" th:text="${{item.dataInclusao}}">1</td>
+							<td class="text-center" th:text="${item.categoriaRisco != null?item.categoriaRisco.nome:''}">1</td>
+							<td class="text-center" th:text="${item.danoPotencial != null?item.danoPotencial.nome:''}">1</td>
 							<td class="text-center" th:text="${item.descricao}">1</td>
-							<td class="text-center" th:text="${item.barragem.name}">1</td>
+							<td class="text-center" th:text="${item.barragem.nome}">1</td>
 							<td class="text-center"><a class="btn btn-link btn-xs"
-								th:href="@{/inspecao/{id}(id=${item.id})}" title="Alterar"
+								th:href="@{/inspecao/{codigo}(id=${item.codigo})}" title="Alterar"
 								rel="tooltip" data-toggle="tooltip" data-placement="top">
 									Alterar </a>
 							</td>

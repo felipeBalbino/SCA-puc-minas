@@ -4,7 +4,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
-<title>Lista de Barragem</title>
+<title>Lista de Sensores</title>
 </head>
 
 <section layout:fragment="conteudo">
@@ -19,7 +19,7 @@
 	</div>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="#">Lista de Barragem</a></li>
+			<li class="breadcrumb-item active"><a href="#">Lista de Sensores</a></li>
 		</ol>
 	</nav>
 	<div class="panel panel-default">
@@ -32,55 +32,44 @@
 					<thead>
 						<tr>
 							<th class="text-center col-md-1">#</th>
-							<th>Descrição</th>
-	
-							<th class="text-center col-md-2">Latitude</th>
-							<th class="text-center col-md-2">Longitude</th>
-							<th class="text-center col-md-2">Método</th>
-							<th class="col-md-1"></th>
+							<th>Nome do Sensor</th>
+							<th>Tipo de Sensor</th>
+							<th>Nome da Barragem</th>
 							<th class="col-md-1"></th>
 							<th class="col-md-1"></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="item:${barragens}">
+						<tr th:each="item:${sensores}">
 							<td class="text-center" th:text="${item.codigo}">1</td>
-							<td th:text="${item.nome}">1</td>
-
-							<td class="text-center" th:text="${item.latitude}">1</td>
-							<td class="text-center" th:text="${item.longitude}">1</td>
-							<td class="text-center" th:text="${item.tipoMetodo!=null?item.tipoMetodo.nome:''}">1</td>
+							<td th:text="${item.codigoAtivo}">1</td>
+							<td class="text-center" th:text="${item.tipoSensor!=null?item.tipoSensor.nome:''}">1</td>
+							<td class="text-center" th:text="${item.barragem!=null?item.barragem.nome:''}">1</td>
+							
 							<td class="text-center"><a class="btn btn-link btn-xs"
-								th:href="@{/barragem/{codigo}(id=${item.codigo})}" title="Alterar"
+								th:href="@{/sensor/{codigo}(id=${item.codigo})}" title="Alterar"
 								rel="tooltip" data-toggle="tooltip" data-placement="top"> Alterar
 							</a></td>
 							<td class="text-center"><a class="btn btn-link btn-xs"
 								data-toggle="modal"
-								th:attr="data-id=${item.codigo}, data-loc=@{/barragem/}, data-description=${item.nome}"
+								th:attr="data-id=${item.codigo}, data-loc=@{/sensor/}, data-description=${item.nome}"
 								title="Excluir" rel="tooltip" data-placement="top"
 								data-target="#modalDelete"> Deletar 
 							</a></td>
-							<td class="text-center">
-								<a class="btn btn-link btn-xs"
-								data-toggle="modal"
-								th:attr="data-id=${item.codigo}, data-loc=@{/evacuar/}, data-description=${item.nome}"
-								title="Evacuação" rel="tooltip" data-placement="top"
-								data-target="#modalPanico"> Evacuar
-								</a>
-							</td>
+
 
 						</tr>
-						<tr th:if="${#lists.isEmpty(barragens)}">
-							<td colspan="6">Barragens não encontradas</td>
+						<tr th:if="${#lists.isEmpty(sensores)}">
+							<td colspan="6">Sensores não encontradas</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
-<!-- 			<div class="panel-heading">
+ 			<div class="panel-heading">
 				<div class="clearfix">
-					<a class="btn btn-link titulo-link" th:href="@{/barragem/new}">Nova Barragem</a>
+					<a class="btn btn-link titulo-link" th:href="@{/barragem/new}">Novo Sensor</a>
 				</div>
-			</div> -->
+			</div> 
 		</div>
 
 		<div layout:insert="modal"></div>

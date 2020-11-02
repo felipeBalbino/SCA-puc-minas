@@ -35,10 +35,6 @@
 							<th class="text-center col-md-1">#</th>
 							<th>Nome</th>
 
-							<th class="text-center col-md-2">Data da Aquisição</th>
-							<th class="text-center col-md-2">Data da Última Manutenção</th>
-							<th class="text-center col-md-2">Data da Próxima Manutenção</th>
-
 							<th class="text-center col-md-2">Data Inclusão</th>
 							<th class="text-center col-md-2">Data Inativação</th>
 							
@@ -52,9 +48,6 @@
 							<td class="text-center" th:text="${item.codigo}">1</td>
 							<td th:text="${item.nome}">1</td>
 
-							<td class="text-center"  th:text="${#dates.format(item.dataAquisicao, 'dd/MM/yyyy')}">1</td>
-							<td class="text-center"  th:text="${#dates.format(item.dataUltimaManutencao, 'dd/MM/yyyy')}">1</td>
-							<td class="text-center"  th:text="${#dates.format(item.dataProximaManutencao, 'dd/MM/yyyy')}">1</td>
 
 							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
 							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy')}">1</td>

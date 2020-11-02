@@ -13,13 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.sga.model.Barragem;
 import br.com.sga.model.Inspecao;
-import br.com.sga.repository.filter.BarragemFilter;
 import br.com.sga.service.BarragemService;
 import br.com.sga.service.InspecaoService;
 
@@ -41,15 +39,9 @@ public class BarragemResource {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<List<Barragem>> list(@RequestParam(value = "search", required = false) String search) {
-		List<Barragem> barragens;
-		if (search == null) {
-			barragens = barragemService.findAll();
-		} else {
-			BarragemFilter filter = new BarragemFilter();
-			filter.setDescricao(search);
-			barragens = barragemService.search(filter);
-		}
+	public ResponseEntity<List<Barragem>> list() {
+		List<Barragem> barragens = barragemService.findAll();
+
 		return ResponseEntity.status(HttpStatus.OK).body(barragens);
 	}
 

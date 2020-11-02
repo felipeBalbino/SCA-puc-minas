@@ -28,8 +28,8 @@ public class SwaggerConfig {
     
     private ApiInfo apiInfo() {
         return new ApiInfo(
-          "API Asset Registration", 
-          "Api responsible for registering the assets and their maintenance requests.", 
+          "Cadastro Ativos", 
+          "Módulo de gestão de ativos da empresa", 
           "V1", 
           "Terms of service", 
           new Contact("Felipe Balbino", "", "fjbalbino@gmail.com"), 

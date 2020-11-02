@@ -16,11 +16,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sga.client.AtivosClient;
 import br.com.sga.client.ManutencaoClient;
+import br.com.sga.client.TipoMetodoClient;
 import br.com.sga.model.Ativo;
 import br.com.sga.model.Manutencao;
-import br.com.sga.model.Metodo;
 import br.com.sga.model.StatusManutencaoEnum;
 import br.com.sga.model.TipoManutencaoEnum;
+import br.com.sga.model.TipoMetodo;
 
 /**
  * @author sga
@@ -157,14 +158,14 @@ public class ManutencaoControler {
 	}
 	
 	
-	/**
-	 * @return
-	 */	
-	@ModelAttribute("listaMetodos")
-	public List<Metodo> listaMetodos() {	
-		return Arrays.asList(Metodo.values());
+
+	@ModelAttribute("listaTipoMetodos")
+	public List<TipoMetodo> listaTipoMetodos() {
+		TipoMetodoClient cliente = new TipoMetodoClient(gateway, user, password);
+		List<TipoMetodo> list = cliente.list();
+		return list;
 	}
-	
+		
 	
 	
 	/**	

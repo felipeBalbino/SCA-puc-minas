@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import br.com.sga.model.Inspecao;
-import br.com.sga.repository.InspecaoRepository;
+import br.com.sga.model.TipoSensor;
+import br.com.sga.repository.TipoSensorRepository;
 import br.com.sga.service.exception.ServiceException;
 
 /**
@@ -16,32 +16,32 @@ import br.com.sga.service.exception.ServiceException;
  *
  */
 @Service
-public class InspecaoService {
+public class TipoSensorService {
 
 	@Autowired
-	private InspecaoRepository InspecaoRepository;
+	private TipoSensorRepository tipoSensorRepository;
 
 	/**
 	 * @return
 	 */
-	public List<Inspecao> findAll() {
-		return InspecaoRepository.findAll();
+	public List<TipoSensor> findAll() {
+		return tipoSensorRepository.findAll();
 	}
 
 	/**
 	 * @param s
 	 * @return
 	 */
-	public Inspecao save(Inspecao s) {
-		return InspecaoRepository.save(s);
+	public TipoSensor save(TipoSensor s) {
+		return tipoSensorRepository.save(s);
 	}
 
 	/**
 	 * @param id
 	 * @return
 	 */
-	public Inspecao findById(Long id) {
-		Optional<Inspecao> s = InspecaoRepository.findById(id);
+	public TipoSensor findById(Long id) {
+		Optional<TipoSensor> s = tipoSensorRepository.findById(id);
 
 		if (s.isPresent()) {
 			return s.get();
@@ -54,19 +54,17 @@ public class InspecaoService {
 	 */
 	public void delete(Long id) {
 		try {
-			InspecaoRepository.deleteById(id);
+			tipoSensorRepository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
 			throw new ServiceException("Requisição não encontrada.");
 		}
 	}
 
-
-
 	/**
-	 * @param Inspecao
+	 * @param TipoSensor
 	 */
-	public void update(Inspecao inspecao) {
-		findById(inspecao.getCodigo());
-		InspecaoRepository.save(inspecao);
+	public void update(TipoSensor tipoSensor) {
+		findById(tipoSensor.getCodigo());
+		tipoSensorRepository.save(tipoSensor);
 	}
 }

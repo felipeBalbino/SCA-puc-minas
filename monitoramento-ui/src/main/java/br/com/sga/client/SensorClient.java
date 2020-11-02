@@ -10,23 +10,19 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.sga.model.Inspecao;
+import br.com.sga.model.Sensor;
 
 /**
- * @author SGA
+ * @author sga
  *
  */
-public class InspecaoClient {
+public class SensorClient {
 
 	private RestTemplate restTemplate;
 
-	private String URI_BASE;	
+	private String URI_BASE;
 
-	private String URL;
-
-	private String URN_BASE = "/monitoramento/inspecao";
-
-	private String URN_BASE_DAM = "/monitoramento/barragem/";
+	private String URN_BASE = "/monitoramento/sensor";
 
 	private String credencial;
 
@@ -35,10 +31,8 @@ public class InspecaoClient {
 	 * @param user
 	 * @param senha
 	 */
-	public InspecaoClient(String url, String user, String senha) {
+	public SensorClient(String url, String user, String senha) {
 		restTemplate = new RestTemplate();
-
-		URL = url;
 
 		URI_BASE = url.concat(URN_BASE);
 
@@ -51,25 +45,24 @@ public class InspecaoClient {
 
 	 * @return
 	 */
-	public List<Inspecao> list() {
+	public List<Sensor> list() {
 
 		String path = URI_BASE;
 
 		RequestEntity<Void> request = RequestEntity.get(URI.create(path)).header("Authorization", credencial).build();
 
-		ResponseEntity<Inspecao[]> response = restTemplate.exchange(request, Inspecao[].class);
+		ResponseEntity<Sensor[]> response = restTemplate.exchange(request, Sensor[].class);
 
 		return Arrays.asList(response.getBody());
 	}
 
 	/**
-	 * @param inspecao
+	 * @param sensor
 	 * @return
 	 */
-	public String save(Inspecao Inspecao) {
-		RequestEntity<Inspecao> request = RequestEntity
-				.post(URI.create(URL + URN_BASE_DAM + Inspecao.getBarragem().getCodigo() + "/inspecao"))
-				.header("Authorization", credencial).body(Inspecao);
+	public String save(Sensor sensor) {
+		RequestEntity<Sensor> request = RequestEntity.post(URI.create(URI_BASE)).header("Authorization", credencial)
+				.body(sensor);
 
 		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
 
@@ -80,11 +73,11 @@ public class InspecaoClient {
 	 * @param id
 	 * @return
 	 */
-	public Inspecao findById(Long id) {
+	public Sensor findById(Long id) {
 		RequestEntity<Void> request = RequestEntity.get(URI.create(URI_BASE + "/" + id))
 				.header("Authorization", credencial).build();
 
-		ResponseEntity<Inspecao> response = restTemplate.exchange(request, Inspecao.class);
+		ResponseEntity<Sensor> response = restTemplate.exchange(request, Sensor.class);
 
 		return response.getBody();
 	}
@@ -93,11 +86,11 @@ public class InspecaoClient {
 	 * @param id
 	 * @return
 	 */
-	public HttpStatus delete(Long id) {	
+	public HttpStatus delete(Long id) {
 		RequestEntity<Void> request = RequestEntity.delete(URI.create(URI_BASE + "/" + id))
 				.header("Authorization", credencial).build();
 
-		ResponseEntity<Inspecao> response = restTemplate.exchange(request, Inspecao.class);
+		ResponseEntity<Sensor> response = restTemplate.exchange(request, Sensor.class);
 
 		return response.getStatusCode();
 	}

@@ -45,20 +45,6 @@ public class Ativo {
 	@JoinColumn(name = "codigo_tipoativo")
 	private TipoAtivo tipoAtivo;
 
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@Temporal(TemporalType.DATE)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-	private Date dataAquisicao;
-
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@Temporal(TemporalType.DATE)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-	private Date dataUltimaManutencao;
-
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@Temporal(TemporalType.DATE)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-	private Date dataProximaManutencao;
 
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
@@ -139,29 +125,6 @@ public class Ativo {
 		this.manutencoes = manutencoes;
 	}
 
-	public Date getDataAquisicao() {
-		return dataAquisicao;
-	}
-
-	public void setDataAquisicao(Date dataAquisicao) {
-		this.dataAquisicao = dataAquisicao;
-	}
-
-	public Date getDataUltimaManutencao() {
-		return dataUltimaManutencao;
-	}
-
-	public void setDataUltimaManutencao(Date dataUltimaManutencao) {
-		this.dataUltimaManutencao = dataUltimaManutencao;
-	}
-
-	public Date getDataProximaManutencao() {
-		return dataProximaManutencao;
-	}
-
-	public void setDataProximaManutencao(Date dataProximaManutencao) {
-		this.dataProximaManutencao = dataProximaManutencao;
-	}
 
 	@Override
 	public int hashCode() {

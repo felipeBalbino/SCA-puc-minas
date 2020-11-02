@@ -9,11 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.sga.model.Inspecao;
-import br.com.sga.repository.filter.InspecaoFilter;
 import br.com.sga.service.InspecaoService;
 
 /**
@@ -32,15 +30,9 @@ public class InspecaoResource {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<List<Inspecao>> list(@RequestParam(value = "search", required = false) String search) {
-		List<Inspecao> list;
-		if (search == null) {
-			list = inspecaoService.findAll();
-		} else {
-			InspecaoFilter InspecaoFilter = new InspecaoFilter();
-			InspecaoFilter.setId(Long.parseLong(search));
-			list = inspecaoService.search(InspecaoFilter);
-		}
+	public ResponseEntity<List<Inspecao>> list() {
+		List<Inspecao> list = inspecaoService.findAll();
+
 		return ResponseEntity.status(HttpStatus.OK).body(list);
 	}
 

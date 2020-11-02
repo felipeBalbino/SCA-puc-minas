@@ -2,6 +2,7 @@ package br.com.sga.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,21 +17,18 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class Inspecao {
+/**
+ * @author sga
+ *
+ */
+
+public class Sensor {
 
 	private Long codigo;
 
-	private CategoriaRisco categoriaRisco;
+	private Long codigoAtivo;
 
-	private DanoPotencial danoPotencial;
-
-	private String descricao;
-
-	private Double altura;
-
-	private Double volume;
-
-	private Barragem barragem;
+	private TipoSensor tipoSensor;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -40,6 +38,8 @@ public class Inspecao {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInativacao;
 
+	private Barragem barragem;
+
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -48,52 +48,20 @@ public class Inspecao {
 		this.codigo = codigo;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public Long getCodigoAtivo() {
+		return codigoAtivo;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setCodigoAtivo(Long codigoAtivo) {
+		this.codigoAtivo = codigoAtivo;
 	}
 
-	public Double getAltura() {
-		return altura;
+	public TipoSensor getTipoSensor() {
+		return tipoSensor;
 	}
 
-	public void setAltura(Double altura) {
-		this.altura = altura;
-	}
-
-	public Double getVolume() {
-		return volume;
-	}
-
-	public void setVolume(Double volume) {
-		this.volume = volume;
-	}
-
-	public Barragem getBarragem() {
-		return barragem;
-	}
-
-	public void setBarragem(Barragem barragem) {
-		this.barragem = barragem;
-	}
-
-	public CategoriaRisco getCategoriaRisco() {
-		return categoriaRisco;
-	}
-
-	public void setCategoriaRisco(CategoriaRisco categoriaRisco) {
-		this.categoriaRisco = categoriaRisco;
-	}
-
-	public DanoPotencial getDanoPotencial() {
-		return danoPotencial;
-	}
-
-	public void setDanoPotencial(DanoPotencial danoPotencial) {
-		this.danoPotencial = danoPotencial;
+	public void setTipoSensor(TipoSensor tipoSensor) {
+		this.tipoSensor = tipoSensor;
 	}
 
 	public Date getDataInclusao() {
@@ -112,6 +80,14 @@ public class Inspecao {
 		this.dataInativacao = dataInativacao;
 	}
 
+	public Barragem getBarragem() {
+		return barragem;
+	}
+
+	public void setBarragem(Barragem barragem) {
+		this.barragem = barragem;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -128,7 +104,7 @@ public class Inspecao {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Inspecao other = (Inspecao) obj;
+		Sensor other = (Sensor) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

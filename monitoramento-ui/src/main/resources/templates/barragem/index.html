@@ -39,21 +39,21 @@
 
 			<div class="panel-body">
 
-				<input type="hidden"  th:field="*{id}" />
+				<input type="hidden"  th:field="*{codigo}" />
 				<div class="form-group"
-					th:classappend="${#fields.hasErrors('id')} ? 'has-error'">
-					<label for="id" class="col-sm-2 control-label">Código</label>
+					th:classappend="${#fields.hasErrors('codigo')} ? 'has-error'">
+					<label for="codigo" class="col-sm-2 control-label">Código</label>
 					<div class="col-sm-4">
-						<div  th:field="*{id}"  ></div>
-						<div th:text="${id}"></div>
+						<div  th:field="*{codigo}"  ></div>
+						<div th:text="${codigo}"></div>
 					</div>
 				</div>
 				
 				<div class="form-group"
-					th:classappend="${#fields.hasErrors('name')} ? 'has-error'">
-					<label for="name" class="col-sm-2 control-label">Nome</label>
+					th:classappend="${#fields.hasErrors('nome')} ? 'has-error'">
+					<label for="nome" class="col-sm-2 control-label">Nome</label>
 					<div class="col-sm-4">
-						<input id="name" th:field="*{name}" type="text"
+						<input id="nome" th:field="*{nome}" type="text"
 							class="form-control" placeholder="Name" />
 					</div>
 				</div>
@@ -79,10 +79,10 @@
 
 				<label for="metodo" class="col-sm-2 control-label">Método</label>
 				<div class="col-sm-4">
-					<select name="metodo" class="form-control" th:field="*{metodo}">
+					<select name="tipoMetodo" class="form-control" th:field="*{tipoMetodo}">
 						<option value="">Selecione...</option>
-						<option th:each="item : ${listaMetodos}" th:value="${item}"
-							th:text="${item.descricao}"></option>
+						<option th:each="item : ${listaTipoMetodos}" th:value="${item.codigo}"
+							th:text="${item.nome}"></option>
 					</select>
 				</div>
 				<div class="form-group">

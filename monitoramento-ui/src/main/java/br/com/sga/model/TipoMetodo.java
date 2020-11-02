@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * @author sga
  *
  */
-	
-public class DanoPotencial {
+
+public class TipoMetodo {
 
 	private Long codigo;
 
@@ -62,6 +62,9 @@ public class DanoPotencial {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		result = prime * result + ((dataInativacao == null) ? 0 : dataInativacao.hashCode());
+		result = prime * result + ((dataInclusao == null) ? 0 : dataInclusao.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
 
@@ -73,11 +76,26 @@ public class DanoPotencial {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		DanoPotencial other = (DanoPotencial) obj;
+		TipoMetodo other = (TipoMetodo) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
 		} else if (!codigo.equals(other.codigo))
+			return false;
+		if (dataInativacao == null) {
+			if (other.dataInativacao != null)
+				return false;
+		} else if (!dataInativacao.equals(other.dataInativacao))
+			return false;
+		if (dataInclusao == null) {
+			if (other.dataInclusao != null)
+				return false;
+		} else if (!dataInclusao.equals(other.dataInclusao))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
 	}

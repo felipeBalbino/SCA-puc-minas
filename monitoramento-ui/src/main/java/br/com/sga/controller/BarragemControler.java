@@ -1,6 +1,5 @@
 package br.com.sga.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -15,9 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sga.client.BarragemClient;
+import br.com.sga.client.DanoPotencialClient;
+import br.com.sga.client.TipoMetodoClient;
 import br.com.sga.model.Barragem;
 import br.com.sga.model.DanoPotencial;
-import br.com.sga.model.Metodo;
+import br.com.sga.model.TipoMetodo;
 
 /**
  * @author sga
@@ -113,12 +114,11 @@ public class BarragemControler {
 		return "redirect:/barragem/";
 	}
 
-	/**
-	 * @return
-	 */
-	@ModelAttribute("listaMetodos")
-	public List<Metodo> listaMetodos() {
-		return Arrays.asList(Metodo.values());
+	@ModelAttribute("listaTipoMetodos")
+	public List<TipoMetodo> listaTipoMetodos() {
+		TipoMetodoClient cliente = new TipoMetodoClient(gateway, user, password);
+		List<TipoMetodo> list = cliente.list();
+		return list;
 	}
 	
 	/**
@@ -126,7 +126,19 @@ public class BarragemControler {
 	 */
 	@ModelAttribute("listaDanoPotencial")
 	public List<DanoPotencial> listaDanoPotencial() {
-		return Arrays.asList(DanoPotencial.values());
+		DanoPotencialClient cliente = new DanoPotencialClient(gateway, user, password);
+		List<DanoPotencial> list = cliente.list();
+		return list;
+	}
+	
+	/**
+	 * @return
+	 */
+	@ModelAttribute("listaCategoriaRisco")
+	public List<DanoPotencial> listaCategoriaRisco() {
+		DanoPotencialClient cliente = new DanoPotencialClient(gateway, user, password);
+		List<DanoPotencial> list = cliente.list();
+		return list;
 	}
 
 	/**

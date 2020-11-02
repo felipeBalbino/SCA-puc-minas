@@ -26,20 +26,7 @@ public class Ativo {
 	private Fabricante fabricante;
 
 	private TipoAtivo tipoAtivo;
-	
-	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-	private Date dataAquisicao;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-	private Date dataUltimaManutencao;
-
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-	private Date dataProximaManutencao;
-	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInclusao;
@@ -49,6 +36,9 @@ public class Ativo {
 	private Date dataInativacao;
 
 	private List<Manutencao> manutencoes;
+	
+	
+	
 
 	public Long getCodigo() {
 		return codigo;
@@ -112,32 +102,6 @@ public class Ativo {
 
 	public void setManutencoes(List<Manutencao> manutencoes) {
 		this.manutencoes = manutencoes;
-	}
-	
-	
-
-	public Date getDataAquisicao() {
-		return dataAquisicao;
-	}
-
-	public void setDataAquisicao(Date dataAquisicao) {
-		this.dataAquisicao = dataAquisicao;
-	}
-
-	public Date getDataUltimaManutencao() {
-		return dataUltimaManutencao;
-	}
-
-	public void setDataUltimaManutencao(Date dataUltimaManutencao) {
-		this.dataUltimaManutencao = dataUltimaManutencao;
-	}
-
-	public Date getDataProximaManutencao() {
-		return dataProximaManutencao;
-	}
-
-	public void setDataProximaManutencao(Date dataProximaManutencao) {
-		this.dataProximaManutencao = dataProximaManutencao;
 	}
 
 	@Override

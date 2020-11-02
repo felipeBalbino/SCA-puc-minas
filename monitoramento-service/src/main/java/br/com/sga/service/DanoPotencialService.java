@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import br.com.sga.model.Inspecao;
-import br.com.sga.repository.InspecaoRepository;
+import br.com.sga.model.DanoPotencial;
+import br.com.sga.repository.DanoPotencialRepository;
 import br.com.sga.service.exception.ServiceException;
 
 /**
@@ -16,32 +16,32 @@ import br.com.sga.service.exception.ServiceException;
  *
  */
 @Service
-public class InspecaoService {
+public class DanoPotencialService {
 
 	@Autowired
-	private InspecaoRepository InspecaoRepository;
+	private DanoPotencialRepository danoPotencialRepository;
 
 	/**
 	 * @return
 	 */
-	public List<Inspecao> findAll() {
-		return InspecaoRepository.findAll();
+	public List<DanoPotencial> findAll() {
+		return danoPotencialRepository.findAll();
 	}
 
 	/**
 	 * @param s
 	 * @return
 	 */
-	public Inspecao save(Inspecao s) {
-		return InspecaoRepository.save(s);
+	public DanoPotencial save(DanoPotencial s) {
+		return danoPotencialRepository.save(s);
 	}
 
 	/**
 	 * @param id
 	 * @return
 	 */
-	public Inspecao findById(Long id) {
-		Optional<Inspecao> s = InspecaoRepository.findById(id);
+	public DanoPotencial findById(Long id) {
+		Optional<DanoPotencial> s = danoPotencialRepository.findById(id);
 
 		if (s.isPresent()) {
 			return s.get();
@@ -54,19 +54,17 @@ public class InspecaoService {
 	 */
 	public void delete(Long id) {
 		try {
-			InspecaoRepository.deleteById(id);
+			danoPotencialRepository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
 			throw new ServiceException("Requisição não encontrada.");
 		}
 	}
 
-
-
 	/**
-	 * @param Inspecao
+	 * @param DanoPotencial
 	 */
-	public void update(Inspecao inspecao) {
-		findById(inspecao.getCodigo());
-		InspecaoRepository.save(inspecao);
+	public void update(DanoPotencial danoPotencial) {
+		findById(danoPotencial.getCodigo());
+		danoPotencialRepository.save(danoPotencial);
 	}
 }

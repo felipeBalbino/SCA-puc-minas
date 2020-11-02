@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * @author sga
  *
  */
-	
-public class DanoPotencial {
+
+public class TipoSensor {
 
 	private Long codigo;
 
@@ -34,7 +34,7 @@ public class DanoPotencial {
 	}
 
 	public String getNome() {
-		return nome;
+		return nome;	
 	}
 
 	public void setNome(String nome) {
@@ -73,7 +73,7 @@ public class DanoPotencial {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		DanoPotencial other = (DanoPotencial) obj;
+		TipoSensor other = (TipoSensor) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

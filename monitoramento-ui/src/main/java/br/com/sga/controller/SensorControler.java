@@ -2,14 +2,10 @@ package br.com.sga.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.ServletRequestDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,23 +13,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.sga.binder.BarragemPropertyEditor;
-import br.com.sga.client.BarragemClient;
 import br.com.sga.client.DanoPotencialClient;
-import br.com.sga.client.InspecaoClient;
+import br.com.sga.client.SensorClient;
 import br.com.sga.client.TipoMetodoClient;
-import br.com.sga.model.Barragem;
 import br.com.sga.model.DanoPotencial;
-import br.com.sga.model.Inspecao;
+import br.com.sga.model.Sensor;
 import br.com.sga.model.TipoMetodo;
 
 /**
  * @author sga
  *
- */	
+ */
 @Controller
-@RequestMapping("/inspecao")
-public class InspecaoControler {
+@RequestMapping("/sensor")
+public class SensorControler {
 
 	@Value("${zuul.ws.gateway}")
 	private String gateway;
@@ -44,44 +37,37 @@ public class InspecaoControler {
 	@Value("${zuul.ws.password}")
 	private String password;
 
-	public static final String URL_INDEX = "/barragem/inspecao/index";
-	public static final String URL_LIST = "/barragem/inspecao/list";
-
-
-	@InitBinder
-	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
-		BarragemClient cliente = new BarragemClient(gateway, user, password);
-		binder.registerCustomEditor(Barragem.class, new BarragemPropertyEditor(cliente));
-	}
+	public static final String URL_INDEX = "/barragem/sensor/index";
+	public static final String URL_LIST = "/barragem/sensor/list";
 
 	/**
 	 * @return
 	 */
 	@RequestMapping("/new")
-	public ModelAndView insert() {
+	public ModelAndView sensor() {
 		ModelAndView mv = new ModelAndView(URL_INDEX);
-		mv.addObject(new Inspecao());
+		mv.addObject(new Sensor());
 		return mv;
 	}
 
 	/**
-	 * @param inspecao
+	 * @param barragem
 	 * @param erros
 	 * @param attr
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String save(@Validated Inspecao inspecao, Errors erros, RedirectAttributes attr) {
+	public String insert(@Validated Sensor sensor, Errors erros, RedirectAttributes attr) {
 
 		if (erros.hasErrors()) {
 			return URL_INDEX;
 		}
 
 		try {
-			InspecaoClient cliente = new InspecaoClient(gateway, user, password);
-			cliente.save(inspecao);
-			attr.addFlashAttribute("mensagem", "Inspeção salva com sucesso");
-			return "redirect:/inspecao/new";
+			SensorClient cliente = new SensorClient(gateway, user, password);
+			cliente.save(sensor);
+			attr.addFlashAttribute("mensagem", "Sensor inserida com sucesso");
+			return "redirect:/sensor";
 		} catch (IllegalArgumentException e) {
 			erros.rejectValue("data", null, e.getMessage());
 			return URL_INDEX;
@@ -89,15 +75,15 @@ public class InspecaoControler {
 	}
 
 	/**
+	 * @param filter
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView list() {
-		InspecaoClient cliente = new InspecaoClient(gateway, user, password);
-
-		List<Inspecao> list = cliente.list();
+		SensorClient cliente = new SensorClient(gateway, user, password);
+		List<Sensor> list = cliente.list();
 		ModelAndView mv = new ModelAndView(URL_LIST);
-		mv.addObject("inpecoes", list);
+		mv.addObject("sensores", list);
 		return mv;
 	}
 
@@ -107,11 +93,10 @@ public class InspecaoControler {
 	 */
 	@RequestMapping("{codigo}")
 	public ModelAndView update(@PathVariable("codigo") Long codigo) {
-		InspecaoClient cliente = new InspecaoClient(gateway, user, password);
-		Inspecao inspecao = cliente.findById(codigo);
-
+		SensorClient cliente = new SensorClient(gateway, user, password);
+		Sensor sensor = cliente.findById(codigo);
 		ModelAndView mv = new ModelAndView(URL_INDEX);
-		mv.addObject(inspecao);
+		mv.addObject(sensor);
 		return mv;
 	}
 
@@ -122,25 +107,15 @@ public class InspecaoControler {
 	 */
 	@RequestMapping(value = "{codigo}", method = RequestMethod.DELETE)
 	public String delete(@PathVariable Long codigo, RedirectAttributes attr) {
-		InspecaoClient cliente = new InspecaoClient(gateway, user, password);
+
+		SensorClient cliente = new SensorClient(gateway, user, password);
 		cliente.delete(codigo);
-		attr.addFlashAttribute("mensagem", "Inspeção deletada com sucesso");
-		return "redirect:/inspecao/";
+		attr.addFlashAttribute("mensagem", "Barragem deletada com sucesso");
+		return "redirect:/sensor/";
 	}
 
-	/**
-	 * @return
-	 */
-	@ModelAttribute("listBarragens")
-	public List<Barragem> listBarragens() {
-		BarragemClient cliente = new BarragemClient(gateway, user, password);
-		List<Barragem> list = cliente.list();
-		return list;
-	}	
-
-	/**	
-	 * @return
-	 */
+	
+	
 	@ModelAttribute("listaTipoMetodos")
 	public List<TipoMetodo> listaTipoMetodos() {
 		TipoMetodoClient cliente = new TipoMetodoClient(gateway, user, password);
@@ -158,11 +133,21 @@ public class InspecaoControler {
 		return list;
 	}
 	
-	/**	
+	/**
 	 * @return
-	 */	
+	 */
+	@ModelAttribute("listaCategoriaRisco")
+	public List<DanoPotencial> listaCategoriaRisco() {
+		DanoPotencialClient cliente = new DanoPotencialClient(gateway, user, password);
+		List<DanoPotencial> list = cliente.list();
+		return list;
+	}
+
+	/**
+	 * @return
+	 */
 	@ModelAttribute("currentPage")
 	public String currentPage() {
-		return "inspecao";
+		return "sensor";
 	}
 }

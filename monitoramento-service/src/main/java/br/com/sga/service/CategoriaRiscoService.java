@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import br.com.sga.model.Inspecao;
-import br.com.sga.repository.InspecaoRepository;
+import br.com.sga.model.CategoriaRisco;
+import br.com.sga.repository.CategoriaRiscoRepository;
 import br.com.sga.service.exception.ServiceException;
 
 /**
@@ -16,32 +16,32 @@ import br.com.sga.service.exception.ServiceException;
  *
  */
 @Service
-public class InspecaoService {
+public class CategoriaRiscoService {
 
 	@Autowired
-	private InspecaoRepository InspecaoRepository;
+	private CategoriaRiscoRepository categoriaRiscoRepository;
 
 	/**
 	 * @return
 	 */
-	public List<Inspecao> findAll() {
-		return InspecaoRepository.findAll();
+	public List<CategoriaRisco> findAll() {
+		return categoriaRiscoRepository.findAll();
 	}
 
 	/**
 	 * @param s
 	 * @return
 	 */
-	public Inspecao save(Inspecao s) {
-		return InspecaoRepository.save(s);
+	public CategoriaRisco save(CategoriaRisco s) {
+		return categoriaRiscoRepository.save(s);
 	}
 
 	/**
 	 * @param id
 	 * @return
 	 */
-	public Inspecao findById(Long id) {
-		Optional<Inspecao> s = InspecaoRepository.findById(id);
+	public CategoriaRisco findById(Long id) {
+		Optional<CategoriaRisco> s = categoriaRiscoRepository.findById(id);
 
 		if (s.isPresent()) {
 			return s.get();
@@ -54,7 +54,7 @@ public class InspecaoService {
 	 */
 	public void delete(Long id) {
 		try {
-			InspecaoRepository.deleteById(id);
+			categoriaRiscoRepository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
 			throw new ServiceException("Requisição não encontrada.");
 		}
@@ -63,10 +63,10 @@ public class InspecaoService {
 
 
 	/**
-	 * @param Inspecao
+	 * @param CategoriaRisco
 	 */
-	public void update(Inspecao inspecao) {
-		findById(inspecao.getCodigo());
-		InspecaoRepository.save(inspecao);
+	public void update(CategoriaRisco categoriaRisco) {
+		findById(categoriaRisco.getCodigo());
+		categoriaRiscoRepository.save(categoriaRisco);
 	}
 }

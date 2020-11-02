@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import br.com.sga.model.Inspecao;
-import br.com.sga.repository.InspecaoRepository;
+import br.com.sga.model.TipoMetodo;
+import br.com.sga.repository.TipoMetodoRepository;
 import br.com.sga.service.exception.ServiceException;
 
 /**
@@ -16,32 +16,32 @@ import br.com.sga.service.exception.ServiceException;
  *
  */
 @Service
-public class InspecaoService {
+public class TipoMetodoService {
 
 	@Autowired
-	private InspecaoRepository InspecaoRepository;
+	private TipoMetodoRepository tipoMetodoRepository;
 
 	/**
 	 * @return
 	 */
-	public List<Inspecao> findAll() {
-		return InspecaoRepository.findAll();
+	public List<TipoMetodo> findAll() {
+		return tipoMetodoRepository.findAll();
 	}
 
 	/**
 	 * @param s
 	 * @return
 	 */
-	public Inspecao save(Inspecao s) {
-		return InspecaoRepository.save(s);
+	public TipoMetodo save(TipoMetodo s) {
+		return tipoMetodoRepository.save(s);
 	}
 
 	/**
 	 * @param id
 	 * @return
 	 */
-	public Inspecao findById(Long id) {
-		Optional<Inspecao> s = InspecaoRepository.findById(id);
+	public TipoMetodo findById(Long id) {
+		Optional<TipoMetodo> s = tipoMetodoRepository.findById(id);
 
 		if (s.isPresent()) {
 			return s.get();
@@ -54,19 +54,17 @@ public class InspecaoService {
 	 */
 	public void delete(Long id) {
 		try {
-			InspecaoRepository.deleteById(id);
+			tipoMetodoRepository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
 			throw new ServiceException("Requisição não encontrada.");
 		}
 	}
 
-
-
 	/**
-	 * @param Inspecao
+	 * @param TipoMetodo
 	 */
-	public void update(Inspecao inspecao) {
-		findById(inspecao.getCodigo());
-		InspecaoRepository.save(inspecao);
+	public void update(TipoMetodo tipoMetodo) {
+		findById(tipoMetodo.getCodigo());
+		tipoMetodoRepository.save(tipoMetodo);
 	}
 }

@@ -1,9 +1,11 @@
 package br.com.sga.model;
 
+import java.util.Date;
 import java.util.List;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * @author sga
@@ -11,34 +13,52 @@ import javax.persistence.Enumerated;
  */
 public class Barragem {
 
-	private Long id;
+	private Long codigo;
 
-	private String name;
+	private Long codigoAtivo;
+
+	private String nome;
 
 	private Double latitude;
 
 	private Double longitude;
 
+	private TipoMetodo tipoMetodo;
 
-	@Enumerated(EnumType.ORDINAL)
-	private Metodo metodo;
+	private List<Inspecao> inspecoes;
 
-	private List<Inspecao> inspecaos;
+	private List<Sensor> sensores;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	private Date dataInclusao;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	private Date dataInativacao;
 
-	public Long getId() {
-		return id;
+	public Long getCodigo() {
+		return codigo;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
 	}
 
-	public String getName() {
-		return name;
+	public Long getCodigoAtivo() {
+		return codigoAtivo;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCodigoAtivo(Long codigoAtivo) {
+		this.codigoAtivo = codigoAtivo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public Double getLatitude() {
@@ -57,28 +77,51 @@ public class Barragem {
 		this.longitude = longitude;
 	}
 
-
-	public List<Inspecao> getInspecaos() {
-		return inspecaos;
+	public TipoMetodo getTipoMetodo() {
+		return tipoMetodo;
 	}
 
-	public void setInspecaos(List<Inspecao> inspecaos) {
-		this.inspecaos = inspecaos;
+	public void setTipoMetodo(TipoMetodo tipoMetodo) {
+		this.tipoMetodo = tipoMetodo;
 	}
 
-	public Metodo getMetodo() {
-		return metodo;
+	public List<Inspecao> getInspecoes() {
+		return inspecoes;
 	}
 
-	public void setMetodo(Metodo metodo) {
-		this.metodo = metodo;
+	public void setInspecoes(List<Inspecao> inspecoes) {
+		this.inspecoes = inspecoes;
+	}
+
+	public List<Sensor> getSensores() {
+		return sensores;
+	}
+
+	public void setSensores(List<Sensor> sensores) {
+		this.sensores = sensores;
+	}
+
+	public Date getDataInclusao() {
+		return dataInclusao;
+	}
+
+	public void setDataInclusao(Date dataInclusao) {
+		this.dataInclusao = dataInclusao;
+	}
+
+	public Date getDataInativacao() {
+		return dataInativacao;
+	}
+
+	public void setDataInativacao(Date dataInativacao) {
+		this.dataInativacao = dataInativacao;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		return result;
 	}
 
@@ -91,10 +134,10 @@ public class Barragem {
 		if (getClass() != obj.getClass())
 			return false;
 		Barragem other = (Barragem) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (codigo == null) {
+			if (other.codigo != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
 	}
