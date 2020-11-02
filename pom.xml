@@ -3,18 +3,19 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>br.com.puc.tcc</groupId>
+    <groupId>br.com.sga</groupId>
     <artifactId>parent</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>eureka</module>
-        <module>zull</module>
+        <module>eureka-client</module>
+		<module>eureka-service</module>
+        <module>zuul-gateway</module>
         <module>monitoramento-service</module>
-        <module>seguranca-comunicacao</module>
-        <module>monitoramento</module>
-        <module>notificacoes-service</module>
+        <module>security-communication-service</module>
+        <module>monitoramento-ui</module>
+        <module>monitoramento-service</module>
     </modules>
 
 </project>
