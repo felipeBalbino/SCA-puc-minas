@@ -50,18 +50,20 @@
 							<td class="text-center" th:text="${item.latitude}">1</td>
 							<td class="text-center" th:text="${item.longitude}">1</td>
 							<td class="text-center" th:text="${item.tipoMetodo!=null?item.tipoMetodo.nome:''}">1</td>
-							<td class="text-center"><a class="btn btn-link btn-xs"
-								th:href="@{/barragem/{codigo}(id=${item.codigo})}" title="Alterar"
-								rel="tooltip" data-toggle="tooltip" data-placement="top"> Alterar
+							
+							<td class="text-center"><a 
+								th:href="@{/barragem/{id}(id=${item.codigo})}" title="Alterar"
+								rel="tooltip" data-toggle="tooltip" data-placement="top"> <i data-feather="edit" width="20"></i>
 							</a></td>
-							<td class="text-center"><a class="btn btn-link btn-xs"
+							
+							<td class="text-center"><a 
 								data-toggle="modal"
 								th:attr="data-id=${item.codigo}, data-loc=@{/barragem/}, data-description=${item.nome}"
 								title="Excluir" rel="tooltip" data-placement="top"
-								data-target="#modalDelete"> Deletar 
+								data-target="#modalDelete"> <i data-feather="trash" width="20"></i>  
 							</a></td>
 							<td class="text-center">
-								<a class="btn btn-link btn-xs"
+								<a class="btn btn-danger btn-xs"
 								data-toggle="modal"
 								th:attr="data-id=${item.codigo}, data-loc=@{/evacuar/}, data-description=${item.nome}"
 								title="Evacuação" rel="tooltip" data-placement="top"

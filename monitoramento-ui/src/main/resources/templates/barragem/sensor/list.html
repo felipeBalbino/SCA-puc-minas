@@ -32,9 +32,10 @@
 					<thead>
 						<tr>
 							<th class="text-center col-md-1">#</th>
-							<th>Nome do Sensor</th>
+							<th>Nome do Sensor(Ativo)</th>
 							<th>Tipo de Sensor</th>
 							<th>Nome da Barragem</th>
+							<th>Leituras</th>
 							<th class="col-md-1"></th>
 							<th class="col-md-1"></th>
 						</tr>
@@ -46,15 +47,23 @@
 							<td class="text-center" th:text="${item.tipoSensor!=null?item.tipoSensor.nome:''}">1</td>
 							<td class="text-center" th:text="${item.barragem!=null?item.barragem.nome:''}">1</td>
 							
-							<td class="text-center"><a class="btn btn-link btn-xs"
-								th:href="@{/sensor/{codigo}(id=${item.codigo})}" title="Alterar"
-								rel="tooltip" data-toggle="tooltip" data-placement="top"> Alterar
-							</a></td>
-							<td class="text-center"><a class="btn btn-link btn-xs"
+							<td class="text-center">
+								<a 
+								th:href="@{/leiturassensor/{id}(id=${item.codigo})}" title="Leituras"
+								rel="tooltip" data-toggle="tooltip" data-placement="top"> Leituras
+								</a>
+							</td>
+							
+							<td class="text-center"><a 
+								th:href="@{/sensor/{id}(id=${item.codigo})}" title="Alterar"
+								rel="tooltip" data-toggle="tooltip" data-placement="top"> <i data-feather="edit" width="20"></i>
+							</a>
+							</td>
+							<td class="text-center"><a 
 								data-toggle="modal"
-								th:attr="data-id=${item.codigo}, data-loc=@{/sensor/}, data-description=${item.nome}"
+								th:attr="data-id=${item.codigo}, data-loc=@{/sensor/}, data-description=${item.codigoAtivo}"
 								title="Excluir" rel="tooltip" data-placement="top"
-								data-target="#modalDelete"> Deletar 
+								data-target="#modalDelete"> <i data-feather="trash" width="20"></i> 
 							</a></td>
 
 

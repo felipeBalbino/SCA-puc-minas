@@ -2,25 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title></title>
+	
+<head layout:fragment="head(title, links, scripts)">
+	<link rel="shortcut icon" th:href="@{/images/favicon.svg}" type="image/x-icon">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/r-2.2.6/rr-1.2.7/sc-2.0.3/sb-1.0.0/sp-1.2.0/datatables.min.css"/>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/r-2.2.6/rr-1.2.7/sc-2.0.3/sb-1.0.0/sp-1.2.0/datatables.min.css"/>
- 
-
-
-<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
-<link rel="stylesheet" th:href="@{/vendors/chartjs/Chart.min.css}">
-<link rel="stylesheet"
-	th:href="@{/vendors/perfect-scrollbar/perfect-scrollbar.css}">
-<link rel="stylesheet" th:href="@{/css/app.css}">
+	<link rel="stylesheet" th:href="@{/vendors/chartjs/Chart.min.css}">
+	<link rel="stylesheet"
+		th:href="@{/vendors/perfect-scrollbar/perfect-scrollbar.css}">
+	<link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
 
 	<header layout:insert="header"></header>
-
 
 	<div id="main">
 		<nav class="navbar navbar-header navbar-expand navbar-light">
@@ -72,6 +70,7 @@
 		</div>
 
 	</div>
+	
 
 	<script th:src="@{/js/bootstrap.js}"></script>
 	<script th:src="@{/js/jquery-1.9.1.min.js}"></script>
@@ -85,22 +84,20 @@
 	<script th:src="@{/js/pages/modal.js}"></script>
 	<script th:src="@{/js/pages/jquery.maskMoney.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/r-2.2.6/rr-1.2.7/sc-2.0.3/sb-1.0.0/sp-1.2.0/datatables.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/r-2.2.6/rr-1.2.7/sc-2.0.3/sb-1.0.0/sp-1.2.0/datatables.min.js"></script>
 
 	<script type="text/javascript">
-
-	$(document).ready( function () {
-		$('table').dataTable( {
-	        "language": {
-	            "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json"
-	        }
-	    } );
-	} );
-	
-	
-
-	
+		$(document).ready( function () {
+			$('table').dataTable( {
+		        "language": {
+		            "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json"
+		        }
+		    } );
+		} );
 	</script>
-
+	
+	<footer layout:fragment="custom-footer">
+	
+	</footer>
 </body>
 </html>

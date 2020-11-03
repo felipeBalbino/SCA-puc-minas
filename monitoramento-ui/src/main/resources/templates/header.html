@@ -2,15 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Painel - Home</title>
 
-
-<link rel="shortcut icon" th:href="@{/images/favicon.svg}"
-	type="image/x-icon">
-</head>
 <body>
 	<div id="app">
 		<div id="sidebar" class='active'>
@@ -67,7 +59,7 @@
 								</li>
 								<li th:class="${currentPage == 'manutencao'} ? 'active' : ''">
 									<a href="/manutencao"
-									sec:authorize="hasAuthority('ADMINISTRATOR')"> Manutenções
+									sec:authorize="hasAuthority('ADMINISTRATOR')"><i data-feather="calendar" width="20"></i> Manutenções
 								</a>
 								</li>
 							</ul>
@@ -75,8 +67,8 @@
 						</li>
 						<li
 							th:class="${currentPage == 'barragem' || currentPage == 'inspecao' || currentPage == 'sensor'} ? 'sidebar-item has-sub active' : 'sidebar-item has-sub'">
-							<a href="#" class='sidebar-link'> <i data-feather="triangle"
-								width="20"></i> <span>Monitoramento</span>
+							<a href="#" class='sidebar-link'> 
+							<img alt="" src="/images/dashboard.svg" width="24px"> <span>Monitoramento</span>
 						</a>
 
 							<ul class="submenu "
@@ -85,19 +77,19 @@
 								<li
 									th:class="${currentPage == 'barragem'} ? ' active' : ''"><a
 									sec:authorize="hasAuthority('ENGINEER')" href="/barragem"
-									> Barragens
+									> <img alt="" src="/images/dam.png" width="24px"> Barragens
 								</a></li>
 								
 								<li
 									th:class="${currentPage == 'sensor'} ? 'active' : ''"><a
 									sec:authorize="hasAuthority('ENGINEER')" href="/sensor"
-									> Sensores
+									> <i data-feather="thermometer" width="20"></i> Sensores 
 								</a></li>
 
 								<li
 									th:class="${currentPage == 'inspecao'} ? 'active' : ''"><a
 									sec:authorize="hasAuthority('CONSULTANT')" href="/inspecao"
-									> Inspeção
+									> <i data-feather="search" width="20"></i> Inspeção
 								</a></li>
 							</ul>
 

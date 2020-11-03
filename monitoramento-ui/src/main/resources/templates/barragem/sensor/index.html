@@ -49,42 +49,42 @@
 					</div>
 				</div>
 				
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('nome')} ? 'has-error'">
-					<label for="nome" class="col-sm-2 control-label">Nome</label>
-					<div class="col-sm-4">
-						<input id="nome" th:field="*{nome}" type="text"
-							class="form-control" placeholder="Name" />
-					</div>
-				</div>
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('latitude')} ? 'has-error'">
-					<label for="latitude" class="col-sm-2 control-label">Latitude</label>
-					<div class="col-sm-4">
-						<input id="latitude" th:field="*{latitude}" type="text"
-							class="form-control" placeholder="Latitude" />
-					</div>
-				</div>
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('longitude')} ? 'has-error'">
-					<label for="longitude" class="col-sm-2 control-label">Longitude</label>
-					<div class="col-sm-4">
-						<input id="longitude" th:field="*{longitude}" type="text"
-							class="form-control" placeholder="Longitude" />
-					</div>
-				</div>
-
-
-				<label for="metodo" class="col-sm-2 control-label">Método</label>
+				<label for="metodo" class="col-sm-2 control-label">Ativo</label>
 				<div class="col-sm-4">
-					<select name="tipoMetodo" class="form-control" th:field="*{tipoMetodo}">
+					<select name="codigoAtivo" class="form-control" th:field="*{codigoAtivo}">
 						<option value="">Selecione...</option>
-						<option th:each="item : ${listaTipoMetodos}" th:value="${item.codigo}"
+						<option th:each="item : ${listaAtivos}" th:value="${item.codigo}"
 							th:text="${item.nome}"></option>
 					</select>
 				</div>
+				
+				<label for="metodo" class="col-sm-2 control-label">Tipo de Sensor</label>
+				<div class="col-sm-4">
+					<select name="tipoSensor" class="form-control" th:field="*{tipoSensor}">
+						<option value="">Selecione...</option>
+						<option th:each="item : ${listaTipoSensor}" th:value="${item.codigo}"
+							th:text="${item.nome}"></option>
+					</select>
+				</div>
+
+				 <div class="form-group" th:classappend="${#fields.hasErrors('dataInclusao')} ? 'has-error'">
+				 	<label for="dataInclusao" class="col-sm-2 control-label">Data de Inclusão</label>
+				 	<div class="col-sm-4">
+					    <input  id="dataInclusao" type="text" th:field="*{dataInclusao}" class="form-control" placeholder="Data Inclusão"
+					    data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="pt-BR" 
+					    data-date-autoclose="true" data-date-today-highlight="true"/>
+				 	</div>
+				  </div>
+				  
+				  <div class="form-group" th:classappend="${#fields.hasErrors('dataInativacao')} ? 'has-error'">
+				 	<label for="dataInativacao" class="col-sm-2 control-label">Data de Inativação</label>
+				 	<div class="col-sm-4">
+					    <input  id="dataInativacao" type="text" th:field="*{dataInativacao}" class="form-control" placeholder="Data Inativação"
+					    data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="pt-BR" 
+					    data-date-autoclose="true" data-date-today-highlight="true"/>
+				 	</div>
+				  </div>
+				  
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-primary">Salvar</button>

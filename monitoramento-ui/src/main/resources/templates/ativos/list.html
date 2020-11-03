@@ -41,7 +41,7 @@
 							<th class="text-center col-md-2">Data Inativação</th>
 							<th class="col-md-1"></th>
 							<th class="col-md-1"></th>
-							<th class="col-md-1"></th>
+							<th class="col-md-1">Manutenção</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -54,20 +54,25 @@
 							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
 							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy')}">1</td>
 
-							<td class="text-center"><a class="btn btn-link btn-xs"
-								th:href="@{/ativos/{id}(id=${item.codigo})}" title="Alterar"
-								rel="tooltip" data-toggle="tooltip" data-placement="top"> Alterar
-							</a></td>
-							<td class="text-center"><a class="btn btn-link btn-xs"
-								data-toggle="modal"
-								th:attr="data-id=${item.codigo}, data-loc=@{/ativos/}, data-description=${item.nome}"
-								title="Deletar" rel="tooltip" data-placement="top"
-								data-target="#modalDelete"> Deletar 
-							</a></td>
 							<td class="text-center">
-								<a class="btn btn-link btn-xs"
+								<a 
+									th:href="@{/ativos/{id}(id=${item.codigo})}" title="Alterar"
+									rel="tooltip" data-toggle="tooltip" data-placement="top"> <i data-feather="edit" width="20"></i>
+								</a>
+							</td>
+							
+							<td class="text-center">
+								<a 
+									data-toggle="modal"
+									th:attr="data-id=${item.codigo}, data-loc=@{/ativos/}, data-description=${item.nome}"
+									title="Deletar" rel="tooltip" data-placement="top"
+									data-target="#modalDelete"> <i data-feather="trash" width="20"></i> 
+								</a>
+							</td>
+							<td class="text-center">
+								<a 
 								th:href="@{/manutencao/{id}(id=${item.codigo})}" title="Manutenções"
-								rel="tooltip" data-toggle="tooltip" data-placement="top"> Manutenções
+								rel="tooltip" data-toggle="tooltip" data-placement="top"> <i data-feather="calendar" width="20"></i>
 							</a>
 							</td>
 

@@ -13,12 +13,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.sga.client.AtivosClient;
 import br.com.sga.client.DanoPotencialClient;
 import br.com.sga.client.SensorClient;
 import br.com.sga.client.TipoMetodoClient;
+import br.com.sga.client.TipoSensorClient;
+import br.com.sga.model.Ativo;
 import br.com.sga.model.DanoPotencial;
 import br.com.sga.model.Sensor;
 import br.com.sga.model.TipoMetodo;
+import br.com.sga.model.TipoSensor;
 
 /**
  * @author sga
@@ -142,7 +146,27 @@ public class SensorControler {
 		List<DanoPotencial> list = cliente.list();
 		return list;
 	}
+	
+	/**
+	 * @return
+	 */
+	@ModelAttribute("listaTipoSensor")
+	public List<TipoSensor> listaTipoSensor() {
+		TipoSensorClient cliente = new TipoSensorClient(gateway, user, password);
+		List<TipoSensor> list = cliente.list();
+		return list;
+	}
 
+	/**
+	 * @return
+	 */
+	@ModelAttribute("listaAtivos")
+	public List<Ativo> listaAtivos() {
+		AtivosClient cliente = new AtivosClient(gateway, user, password);
+		List<Ativo> list = cliente.list();
+		return list;
+	}
+	
 	/**
 	 * @return
 	 */

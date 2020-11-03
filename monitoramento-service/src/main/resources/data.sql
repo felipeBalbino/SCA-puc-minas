@@ -34,9 +34,9 @@ insert into barragem (codigo_barragem, codigo_ativo, latitude, longitude, codigo
 insert into barragem (codigo_barragem, codigo_ativo, latitude, longitude, codigo_tipo_metodo,data_inclusao) values(6,1,'15.456123','-15.123456',1,'2020-11-01' );
 
 
-insert into inspecao (codigo_inspecao, altura, codigo_categoria_risco, descricao, codigo_dano_potencial, data_inclusao, volume, barragem) values(1,'22.5',1,'apto',1,'2012-07-12','3000',1);
-insert into inspecao (codigo_inspecao, altura, codigo_categoria_risco, descricao, codigo_dano_potencial, data_inclusao, volume, barragem) values(2,'10.5',2,'apto',2,'2007-02-22','3000',2);
+insert into inspecao (codigo_inspecao, altura, codigo_categoria_risco, descricao, codigo_dano_potencial, data_inclusao, volume, barragem) values(1,'22.5',1,'apto',1,'2020-07-12','3000',1);
+insert into inspecao (codigo_inspecao, altura, codigo_categoria_risco, descricao, codigo_dano_potencial, data_inclusao, volume, barragem) values(2,'10.5',2,'apto',2,'2020-02-22','3000',2);
 insert into inspecao (codigo_inspecao, altura, codigo_categoria_risco, descricao, codigo_dano_potencial, data_inclusao, volume, barragem) values(3,'3.5' ,3,'apto',3,'2020-02-18','3000',3);
-insert into inspecao (codigo_inspecao, altura, codigo_categoria_risco, descricao, codigo_dano_potencial, data_inclusao, volume, barragem) values(4,'45.5',1,'apto',1,'2009-02-11','3000',4);
-insert into inspecao (codigo_inspecao, altura, codigo_categoria_risco, descricao, codigo_dano_potencial, data_inclusao, volume, barragem) values(5,'2.0' ,2,'apto',2,'2019-12-26','3000',5);
-insert into inspecao (codigo_inspecao, altura, codigo_categoria_risco, descricao, codigo_dano_potencial, data_inclusao, volume, barragem) values(6,'12.0',3,'apto',3,'2004-03-24','3000',6);
+insert into inspecao (codigo_inspecao, altura, codigo_categoria_risco, descricao, codigo_dano_potencial, data_inclusao, volume, barragem) values(4,'45.5',1,'apto',1,'2020-02-11','3000',4);
+insert into inspecao (codigo_inspecao, altura, codigo_categoria_risco, descricao, codigo_dano_potencial, data_inclusao, volume, barragem) values(5,'2.0' ,2,'apto',2,'2020-12-26','3000',5);
+insert into inspecao (codigo_inspecao, altura, codigo_categoria_risco, descricao, codigo_dano_potencial, data_inclusao, volume, barragem) values(6,'12.0',3,'apto',3,'2020-03-24','3000',6);

@@ -49,11 +49,17 @@
 							<td class="text-center" th:text="${item.categoriaRisco != null?item.categoriaRisco.nome:''}">1</td>
 							<td class="text-center" th:text="${item.danoPotencial != null?item.danoPotencial.nome:''}">1</td>
 							<td class="text-center" th:text="${item.descricao}">1</td>
-							<td class="text-center" th:text="${item.barragem.nome}">1</td>
-							<td class="text-center"><a class="btn btn-link btn-xs"
-								th:href="@{/inspecao/{codigo}(id=${item.codigo})}" title="Alterar"
+								
+							<td class="text-center"><a
+								th:href="@{/barragem/{id}(id=${item.barragem.codigo})}" title="Barragem"
+								th:text="${item.barragem.nome}" rel="tooltip" data-toggle="tooltip" data-placement="top">
+									<i data-feather="edit" width="20"></i> </a>
+							</td>
+							
+							<td class="text-center"><a
+								th:href="@{/inspecao/{id}(id=${item.codigo})}" title="Alterar"
 								rel="tooltip" data-toggle="tooltip" data-placement="top">
-									Alterar </a>
+									<i data-feather="edit" width="20"></i> </a>
 							</td>
 
 						</tr>
@@ -67,7 +73,7 @@
 		<div class="panel-heading">
 
 			<div class="clearfix">
-				<a class="btn btn-link titulo-link" th:href="@{/inspecao/new}">Nova Inspeção</a>
+				<a class="btn btn-danger titulo-link" th:href="@{/inspecao/new}">Inspecionar</a>
 			</div>
 		</div>
 		<div layout:insert="modal"></div>
