@@ -66,13 +66,13 @@
 
 						</li>
 						<li
-							th:class="${currentPage == 'barragem' || currentPage == 'inspecao' || currentPage == 'sensor'} ? 'sidebar-item has-sub active' : 'sidebar-item has-sub'">
+							th:class="${currentPage == 'barragem' || currentPage == 'inspecao' || currentPage == 'sensor' || currentPage ==  'leiturasensor'} ? 'sidebar-item has-sub active' : 'sidebar-item has-sub'">
 							<a href="#" class='sidebar-link'> 
 							<img alt="" src="/images/dashboard.svg" width="24px"> <span>Monitoramento</span>
 						</a>
 
 							<ul class="submenu "
-								th:class="${currentPage == 'barragem' || currentPage == 'inspecao' || currentPage == 'sensor'} ? 'submenu active' : 'submenu'">
+								th:class="${currentPage == 'barragem' || currentPage == 'inspecao' || currentPage == 'sensor'  || currentPage ==  'leiturasensor'} ? 'submenu active' : 'submenu'">
 
 								<li
 									th:class="${currentPage == 'barragem'} ? ' active' : ''"><a

@@ -1,6 +1,7 @@
 package br.com.sga.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,12 +11,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author sga
@@ -39,6 +42,8 @@ public class Sensor {
 	private Date dataInativacao;
 
 	private Barragem barragem;
+	
+	private List<LeituraSensor> leituras;
 
 	public Long getCodigo() {
 		return codigo;
@@ -111,6 +116,14 @@ public class Sensor {
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
+	}
+
+	public List<LeituraSensor> getLeituras() {
+		return leituras;
+	}
+
+	public void setLeituras(List<LeituraSensor> leituras) {
+		this.leituras = leituras;
 	}
 
 }

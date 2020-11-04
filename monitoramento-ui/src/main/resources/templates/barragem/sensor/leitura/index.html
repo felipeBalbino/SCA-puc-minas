@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<title>Registro de Sensores</title>
+</head>
+
+<section layout:fragment="conteudo">
+
+
+	<form class="form-horizontal" method="post"
+		th:action="@{/leituraSensor}" th:object="${leituraSensor}">
+
+		<div class="alert alert-success alert-dismissible"
+			th:if="${!#strings.isEmpty(mensagem)}" role="alert">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<span th:text="${mensagem}"></span>
+		</div>
+
+		<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+			<div th:each="item :${#fields.detailedErrors()}">
+				<span th:text="${item.message}"></span>
+			</div>
+		</div>
+
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a th:href="@{/sensor}">Lista
+						de Leitura de Sensores</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Registro
+					de Leitura de Sensores</li>
+			</ol>
+		</nav>
+
+		<div class="panel panel-default">
+
+			<div class="panel-body">
+
+				<input type="hidden" th:field="*{codigo}" />
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('codigo')} ? 'has-error'">
+					<label for="codigo" class="col-sm-2 control-label">Código</label>
+					<div class="col-sm-4">
+						<div th:field="*{codigo}"></div>
+						<div th:text="${codigo}"></div>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('leitura')} ? 'has-error'">
+					<label for="leitura" class="col-sm-2 control-label">Leitura</label>
+					<div class="col-sm-4">
+						<input id="leitura" th:field="*{leitura}" type="text"
+							class="form-control" placeholder="Leitura" />
+					</div>
+				</div>
+
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('dataInclusao')} ? 'has-error'">
+					<label for="dataInclusao" class="col-sm-2 control-label">Data
+						de Inclusão</label>
+					<div class="col-sm-4">
+						<input id="dataInclusao" type="text" th:field="*{dataInclusao}"
+							class="form-control" placeholder="Data Inclusão"
+							data-provide="datepicker" data-date-format="dd/mm/yyyy"
+							data-date-language="pt-BR" data-date-autoclose="true"
+							data-date-today-highlight="true" />
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('dataInativacao')} ? 'has-error'">
+					<label for="dataInativacao" class="col-sm-2 control-label">Data
+						de Inativação</label>
+					<div class="col-sm-4">
+						<input id="dataInativacao" type="text"
+							th:field="*{dataInativacao}" class="form-control"
+							placeholder="Data Inativação" data-provide="datepicker"
+							data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
+							data-date-autoclose="true" data-date-today-highlight="true" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary">Salvar</button>
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+	</form>
+
+</section>
+</html>

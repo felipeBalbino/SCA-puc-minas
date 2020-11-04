@@ -1,6 +1,7 @@
 package br.com.sga.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,12 +11,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author sga
@@ -50,6 +53,11 @@ public class Sensor {
 	@ManyToOne
 	@JoinColumn(name = "barragem")
 	private Barragem barragem;
+	
+	@OneToMany(mappedBy = "sensor")
+	@JsonIgnore
+	private List<LeituraSensor> leituras;
+	
 
 	public Long getCodigo() {
 		return codigo;
@@ -97,6 +105,16 @@ public class Sensor {
 
 	public void setBarragem(Barragem barragem) {
 		this.barragem = barragem;
+	}
+
+	
+	
+	public List<LeituraSensor> getLeituras() {
+		return leituras;
+	}
+
+	public void setLeituras(List<LeituraSensor> leituras) {
+		this.leituras = leituras;
 	}
 
 	@Override
