@@ -65,10 +65,11 @@ public class AtivosControler {
 			
 			if(ativo.getCodigo() == null) {
 				cliente.save(ativo);
+				attr.addFlashAttribute("mensagem", "Ativo inserido com sucesso!");
 			}else {
 				cliente.update(ativo, ativo.getCodigo());
+				attr.addFlashAttribute("mensagem", "Ativo update com sucesso!");
 			}
-			attr.addFlashAttribute("mensagem", "ativos successfully saved");
 			return "redirect:/ativos";
 		} catch (IllegalArgumentException e) {
 			erros.rejectValue("data", null, e.getMessage());

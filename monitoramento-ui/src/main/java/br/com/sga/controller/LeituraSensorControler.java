@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sga.client.AtivosClient;
+import br.com.sga.client.BarragemClient;
 import br.com.sga.client.DanoPotencialClient;
 import br.com.sga.client.LeituraSensorClient;
 import br.com.sga.client.SensorClient;
@@ -70,10 +71,18 @@ public class LeituraSensorControler {
 		}
 
 		try {
+			
 			LeituraSensorClient cliente = new LeituraSensorClient(gateway, user, password);
-			cliente.save(leituraSensor);
-			attr.addFlashAttribute("mensagem", "Leitura de Sensor inserida com sucesso");
-			return "redirect:/leituraSensor";
+			
+			if(leituraSensor.getCodigo() == null) {
+				cliente.save(leituraSensor);
+				attr.addFlashAttribute("mensagem", "Leitura de Sensor adicionado com sucesso!");
+			}else {
+				cliente.update(leituraSensor, leituraSensor.getCodigo());
+				attr.addFlashAttribute("mensagem", "Leitura de Sensor alterado com sucesso!");
+			}
+			
+			return "redirect:/sensor/leitura";
 		} catch (IllegalArgumentException e) {
 			erros.rejectValue("data", null, e.getMessage());
 			return URL_INDEX;

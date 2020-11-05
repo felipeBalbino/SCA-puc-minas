@@ -34,8 +34,7 @@
 							<th class="text-center col-md-1">#</th>
 							<th>Descrição</th>
 	
-							<th class="text-center col-md-2">Latitude</th>
-							<th class="text-center col-md-2">Longitude</th>
+							<th class="text-center col-md-2">Localização</th>
 							<th class="text-center col-md-2">Método</th>
 							<th class="col-md-1"></th>
 							<th class="col-md-1"></th>
@@ -47,8 +46,12 @@
 							<td class="text-center" th:text="${item.codigo}">1</td>
 							<td th:text="${item.nome}">1</td>
 
-							<td class="text-center" th:text="${item.latitude}">1</td>
-							<td class="text-center" th:text="${item.longitude}">1</td>
+							<td class="text-center"><a  target="_blank"
+								th:href="@{https://www.google.com/maps/search/?api=1&query={lat},{long}(lat=${item.latitude},long=${item.longitude})}" title="Mapa"
+								rel="tooltip" data-toggle="tooltip" data-placement="top"> <i data-feather="map" width="20"></i>
+							</a></td>
+							
+								
 							<td class="text-center" th:text="${item.tipoMetodo!=null?item.tipoMetodo.nome:''}">1</td>
 							
 							<td class="text-center"><a 
@@ -78,11 +81,11 @@
 					</tbody>
 				</table>
 			</div>
-<!-- 			<div class="panel-heading">
+			<div class="panel-heading">
 				<div class="clearfix">
 					<a class="btn btn-link titulo-link" th:href="@{/barragem/new}">Nova Barragem</a>
 				</div>
-			</div> -->
+			</div> 
 		</div>
 
 		<div layout:insert="modal"></div>

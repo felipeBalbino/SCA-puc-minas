@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import br.com.sga.model.Barragem;
+import br.com.sga.model.Fabricante;
 
 /**
  * @author sga
@@ -95,5 +96,18 @@ public class BarragemClient {
 		ResponseEntity<Barragem> response = restTemplate.exchange(request, Barragem.class);
 
 		return response.getStatusCode();
+	}
+	
+	/**
+	 * @param Ativo
+	 * @return
+	 */
+	public String update(Barragem barragem, Long id) {
+		RequestEntity<Barragem> request = RequestEntity.put(URI.create(URI_BASE + "/" + id)).header("Authorization", credencial)
+				.body(barragem);
+
+		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
+
+		return response.getHeaders().getLocation().toString();
 	}
 }

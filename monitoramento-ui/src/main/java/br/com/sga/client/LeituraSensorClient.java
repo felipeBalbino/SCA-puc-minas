@@ -10,6 +10,7 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import br.com.sga.model.Barragem;
 import br.com.sga.model.LeituraSensor;
 
 /**
@@ -103,5 +104,18 @@ public class LeituraSensorClient {
 		ResponseEntity<LeituraSensor[]> response = restTemplate.exchange(request, LeituraSensor[].class);
 
 		return Arrays.asList(response.getBody());
+	}
+	
+	/**
+	 * @param Ativo
+	 * @return
+	 */
+	public String update(LeituraSensor leituraSensor, Long id) {
+		RequestEntity<LeituraSensor> request = RequestEntity.put(URI.create(URI_BASE + "/" + id)).header("Authorization", credencial)
+				.body(leituraSensor);
+
+		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
+
+		return response.getHeaders().getLocation().toString();
 	}
 }

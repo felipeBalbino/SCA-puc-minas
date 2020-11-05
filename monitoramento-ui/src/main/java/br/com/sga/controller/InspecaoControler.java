@@ -21,6 +21,7 @@ import br.com.sga.binder.BarragemPropertyEditor;
 import br.com.sga.client.BarragemClient;
 import br.com.sga.client.DanoPotencialClient;
 import br.com.sga.client.InspecaoClient;
+import br.com.sga.client.LeituraSensorClient;
 import br.com.sga.client.TipoMetodoClient;
 import br.com.sga.model.Barragem;
 import br.com.sga.model.DanoPotencial;
@@ -78,9 +79,17 @@ public class InspecaoControler {
 		}
 
 		try {
+			
 			InspecaoClient cliente = new InspecaoClient(gateway, user, password);
-			cliente.save(inspecao);
-			attr.addFlashAttribute("mensagem", "Inspeção salva com sucesso");
+			
+			if(inspecao.getCodigo() == null) {
+				cliente.save(inspecao);
+				attr.addFlashAttribute("mensagem", "Inspeção adicionado com sucesso!");
+			}else {
+				cliente.update(inspecao, inspecao.getCodigo());
+				attr.addFlashAttribute("mensagem", "Inspeção alterado com sucesso!");
+			}
+			
 			return "redirect:/inspecao/new";
 		} catch (IllegalArgumentException e) {
 			erros.rejectValue("data", null, e.getMessage());

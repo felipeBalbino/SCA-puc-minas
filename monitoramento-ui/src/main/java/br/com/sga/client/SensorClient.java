@@ -10,6 +10,7 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import br.com.sga.model.LeituraSensor;
 import br.com.sga.model.Sensor;
 
 /**
@@ -93,5 +94,18 @@ public class SensorClient {
 		ResponseEntity<Sensor> response = restTemplate.exchange(request, Sensor.class);
 
 		return response.getStatusCode();
+	}
+	
+	/**
+	 * @param Ativo
+	 * @return
+	 */
+	public String update(Sensor sensor, Long id) {
+		RequestEntity<Sensor> request = RequestEntity.put(URI.create(URI_BASE + "/" + id)).header("Authorization", credencial)
+				.body(sensor);
+
+		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
+
+		return response.getHeaders().getLocation().toString();
 	}
 }

@@ -11,7 +11,7 @@
 
 
 	<form class="form-horizontal" method="post"
-		th:action="@{/leituraSensor}" th:object="${leituraSensor}">
+		th:action="@{/sensor/leitura}" th:object="${leituraSensor}">
 
 		<div class="alert alert-success alert-dismissible"
 			th:if="${!#strings.isEmpty(mensagem)}" role="alert">
@@ -30,7 +30,7 @@
 
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a th:href="@{/sensor}">Lista
+				<li class="breadcrumb-item"><a th:href="@{/sensor/leitura/}">Lista
 						de Leitura de Sensores</a></li>
 				<li class="breadcrumb-item active" aria-current="page">Registro
 					de Leitura de Sensores</li>
@@ -60,30 +60,21 @@
 					</div>
 				</div>
 
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('dataInclusao')} ? 'has-error'">
-					<label for="dataInclusao" class="col-sm-2 control-label">Data
-						de Inclusão</label>
-					<div class="col-sm-4">
-						<input id="dataInclusao" type="text" th:field="*{dataInclusao}"
-							class="form-control" placeholder="Data Inclusão"
-							data-provide="datepicker" data-date-format="dd/mm/yyyy"
-							data-date-language="pt-BR" data-date-autoclose="true"
-							data-date-today-highlight="true" />
-					</div>
-				</div>
-
 				<div class="form-group"
 					th:classappend="${#fields.hasErrors('dataInativacao')} ? 'has-error'">
-					<label for="dataInativacao" class="col-sm-2 control-label">Data
-						de Inativação</label>
+					<label for="dataInativacao" class="col-sm-2 control-label">Data de Inativaçao</label>
 					<div class="col-sm-4">
-						<input id="dataInativacao" type="text"
-							th:field="*{dataInativacao}" class="form-control"
-							placeholder="Data Inativação" data-provide="datepicker"
-							data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
-							data-date-autoclose="true" data-date-today-highlight="true" />
+						<input id="dataInativacao" th:field="*{dataInativacao}" pattern="dd/MM/yyyy" type="date"
+							class="form-control" placeholder="Data de Inativaçao" />
+					</div>
+				</div>
+				
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('dataInclusao')} ? 'has-error'">
+					<label for="dataInclusao" class="col-sm-2 control-label">Data de Inclusão</label>
+					<div class="col-sm-4">
+						<input id="dataInclusao" th:field="*{dataInclusao}" pattern="dd/MM/yyyy" type="date"
+							class="form-control" placeholder="Data de Inclusão" />
 					</div>
 				</div>
 

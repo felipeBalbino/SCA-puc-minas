@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sga.client.AtivosClient;
 import br.com.sga.client.DanoPotencialClient;
+import br.com.sga.client.InspecaoClient;
 import br.com.sga.client.SensorClient;
 import br.com.sga.client.TipoMetodoClient;
 import br.com.sga.client.TipoSensorClient;
@@ -68,9 +69,17 @@ public class SensorControler {
 		}
 
 		try {
+			
 			SensorClient cliente = new SensorClient(gateway, user, password);
-			cliente.save(sensor);
-			attr.addFlashAttribute("mensagem", "Sensor inserida com sucesso");
+			
+			if(sensor.getCodigo() == null) {
+				cliente.save(sensor);
+				attr.addFlashAttribute("mensagem", "Sensor adicionado com sucesso!");
+			}else {
+				cliente.update(sensor, sensor.getCodigo());
+				attr.addFlashAttribute("mensagem", "Sensor alterado com sucesso!");
+			}
+
 			return "redirect:/sensor";
 		} catch (IllegalArgumentException e) {
 			erros.rejectValue("data", null, e.getMessage());

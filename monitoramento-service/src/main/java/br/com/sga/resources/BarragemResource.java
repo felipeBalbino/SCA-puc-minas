@@ -88,7 +88,10 @@ public class BarragemResource {
 		barragem.setCodigo(id);
 		barragemService.update(barragem);
 
-		return ResponseEntity.noContent().build();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(barragem.getCodigo()).toUri();
+		
+		return ResponseEntity.created(uri).build();
 	}
 
 	/**

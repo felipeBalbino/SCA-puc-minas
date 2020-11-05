@@ -33,7 +33,7 @@
 					<thead>
 						<tr>
 							<th class="text-center col-md-1">#</th>
-							<th>Data</th>
+							<th>Data de Inspeção</th>
 							<th class="text-center col-md-2">Categoria de Risco</th>
 							<th class="text-center col-md-2">Dano Potencial</th>
 							<th class="text-center col-md-2">Considerações</th>
@@ -45,7 +45,8 @@
 					<tbody>
 						<tr th:each="item : ${inpecoes}">
 							<td class="text-center" th:text="${item.codigo}">1</td>
-							<td class="text-center" th:text="${{item.dataInclusao}}">1</td>
+							<td class="text-center"
+										th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
 							<td class="text-center" th:text="${item.categoriaRisco != null?item.categoriaRisco.nome:''}">1</td>
 							<td class="text-center" th:text="${item.danoPotencial != null?item.danoPotencial.nome:''}">1</td>
 							<td class="text-center" th:text="${item.descricao}">1</td>

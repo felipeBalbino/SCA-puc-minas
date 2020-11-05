@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.sga.client.AtivosClient;
 import br.com.sga.client.BarragemClient;
 import br.com.sga.client.DanoPotencialClient;
+import br.com.sga.client.FabricanteClient;
 import br.com.sga.client.TipoMetodoClient;
+import br.com.sga.model.Ativo;
 import br.com.sga.model.Barragem;
 import br.com.sga.model.DanoPotencial;
 import br.com.sga.model.TipoMetodo;
@@ -64,10 +67,19 @@ public class BarragemControler {
 		}
 
 		try {
+			
 			BarragemClient cliente = new BarragemClient(gateway, user, password);
-			cliente.save(barragem);
-			attr.addFlashAttribute("mensagem", "Barragem inserida com sucesso");
+			
+			if(barragem.getCodigo() == null) {
+				cliente.save(barragem);
+				attr.addFlashAttribute("mensagem", "Barragem adicionado com sucesso!");
+			}else {
+				cliente.update(barragem, barragem.getCodigo());
+				attr.addFlashAttribute("mensagem", "Barragem alterado com sucesso!");
+			}
+			
 			return "redirect:/barragem";
+			
 		} catch (IllegalArgumentException e) {
 			erros.rejectValue("data", null, e.getMessage());
 			return URL_INDEX;
@@ -140,6 +152,18 @@ public class BarragemControler {
 		List<DanoPotencial> list = cliente.list();
 		return list;
 	}
+	
+
+	/**
+	 * @return
+	 */
+	@ModelAttribute("listaAtivos")
+	public List<Ativo> listaAtivos() {
+		AtivosClient cliente = new AtivosClient(gateway, user, password);
+		List<Ativo> list = cliente.list();
+		return list;
+	}
+	
 
 	/**
 	 * @return

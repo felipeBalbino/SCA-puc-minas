@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import br.com.sga.model.Inspecao;
+import br.com.sga.model.LeituraSensor;
 
 /**
  * @author SGA
@@ -100,5 +101,18 @@ public class InspecaoClient {
 		ResponseEntity<Inspecao> response = restTemplate.exchange(request, Inspecao.class);
 
 		return response.getStatusCode();
+	}
+	
+	/**
+	 * @param Ativo
+	 * @return
+	 */
+	public String update(Inspecao inspecao, Long id) {
+		RequestEntity<Inspecao> request = RequestEntity.put(URI.create(URI_BASE + "/" + id)).header("Authorization", credencial)
+				.body(inspecao);
+
+		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
+
+		return response.getHeaders().getLocation().toString();
 	}
 }
