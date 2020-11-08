@@ -41,11 +41,11 @@ services:
     networks:
       - backend
 
-  security-communication-service:
+  seguranca-comunicacao-service:
     depends_on:
       - eureka-service
       - rabbitmq
-    image: sga/security-communication-service:latest
+    image: sga/seguranca-comunicacao-service:latest
     ports:
       - "8060:8060"
     restart: always
@@ -79,11 +79,11 @@ services:
     networks:
       - backend
 
-  notifications-service:
+  notificacao-service:
     depends_on:
       - eureka-service
       - rabbitmq
-    image: sga/notifications-service:latest
+    image: sga/notificacao-service:latest
     ports:
       - "8062:8062"
     restart: always
@@ -97,7 +97,7 @@ services:
     depends_on:
       - eureka-service
       - zuul-gateway
-      - security-communication-service
+      - seguranca-comunicacao-service
       - monitoramento-service
     image: sga/monitoramento-ui:latest
     ports:

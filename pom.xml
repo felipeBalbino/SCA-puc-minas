@@ -13,7 +13,8 @@
         <module>zuul-gateway</module>
         <module>cadastro-ativo-service</module>
 		<module>monitoramento-service</module>
-        <module>security-communication-service</module>
+        <module>seguranca-comunicacao-service</module>
+		<module>notificacao-service</module>
         <module>monitoramento-ui</module>
     </modules>
 

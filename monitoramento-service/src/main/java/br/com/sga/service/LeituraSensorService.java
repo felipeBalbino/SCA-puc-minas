@@ -22,6 +22,7 @@ public class LeituraSensorService {
 	@Autowired
 	private LeituraSensorRepository leituraSensorRepository;
 
+	
 	/**
 	 * @return
 	 */
@@ -78,4 +79,5 @@ public class LeituraSensorService {
 		sensor.setCodigo(id);
 		return leituraSensorRepository.findBySensor(sensor);
 	}
+	
 }
