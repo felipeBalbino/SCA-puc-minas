@@ -1,4 +1,4 @@
-# SISTEMA  DE CONTROLE AMBIENTAL - SCA
+# SISTEMA DE GESTÃO AMBIENTAL - SGA
 
 # Descrição
 Este repositório mantém os códigos fontes da prova de conceito elaborada para o trabalho de conclusão de curso da pós graduação em Arquitetura de Sistemas Distribuídos.
