@@ -12,8 +12,7 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.sga.model.Manutencao;
-import br.com.sga.model.Manutencao;
+import br.com.sga.dto.Manutencao;
 
 /**
  * @author sga

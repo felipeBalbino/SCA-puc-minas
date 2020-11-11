@@ -1,31 +1,36 @@
-package br.com.sga.model;
+package br.com.sga.dto;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-/**
- * @author sga
- *
- */
-public class Ativo {
+public class Inspecao {
 
 	private Long codigo;
 
-	private String nome;
+	private CategoriaRisco categoriaRisco;
+
+	private DanoPotencial danoPotencial;
 
 	private String descricao;
 
-	private Fabricante fabricante;
+	private Double altura;
 
-	private TipoAtivo tipoAtivo;
+	private Double volume;
+
+	private Barragem barragem;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -35,25 +40,12 @@ public class Ativo {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInativacao;
 
-	private List<Manutencao> manutencoes;
-	
-	
-	
-
 	public Long getCodigo() {
 		return codigo;
 	}
 
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public String getDescricao() {
@@ -64,20 +56,44 @@ public class Ativo {
 		this.descricao = descricao;
 	}
 
-	public Fabricante getFabricante() {
-		return fabricante;
+	public Double getAltura() {
+		return altura;
 	}
 
-	public void setFabricante(Fabricante fabricante) {
-		this.fabricante = fabricante;
+	public void setAltura(Double altura) {
+		this.altura = altura;
 	}
 
-	public TipoAtivo getTipoAtivo() {
-		return tipoAtivo;
+	public Double getVolume() {
+		return volume;
 	}
 
-	public void setTipoAtivo(TipoAtivo tipoAtivo) {
-		this.tipoAtivo = tipoAtivo;
+	public void setVolume(Double volume) {
+		this.volume = volume;
+	}
+
+	public Barragem getBarragem() {
+		return barragem;
+	}
+
+	public void setBarragem(Barragem barragem) {
+		this.barragem = barragem;
+	}
+
+	public CategoriaRisco getCategoriaRisco() {
+		return categoriaRisco;
+	}
+
+	public void setCategoriaRisco(CategoriaRisco categoriaRisco) {
+		this.categoriaRisco = categoriaRisco;
+	}
+
+	public DanoPotencial getDanoPotencial() {
+		return danoPotencial;
+	}
+
+	public void setDanoPotencial(DanoPotencial danoPotencial) {
+		this.danoPotencial = danoPotencial;
 	}
 
 	public Date getDataInclusao() {
@@ -96,14 +112,6 @@ public class Ativo {
 		this.dataInativacao = dataInativacao;
 	}
 
-	public List<Manutencao> getManutencoes() {
-		return manutencoes;
-	}
-
-	public void setManutencoes(List<Manutencao> manutencoes) {
-		this.manutencoes = manutencoes;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -120,7 +128,7 @@ public class Ativo {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Ativo other = (Ativo) obj;
+		Inspecao other = (Inspecao) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

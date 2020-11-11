@@ -4,7 +4,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
-<title>Lista de Leituras de Sensores</title>
+<title>Lista de Tipo de Sensor</title>
 </head>
 
 <section layout:fragment="conteudo">
@@ -19,7 +19,7 @@
 	</div>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="#">Lista de Leituras de Sensores</a></li>
+			<li class="breadcrumb-item active"><a href="#">Lista de Tipo de Sensor</a></li>
 		</ol>
 	</nav>
 	<div class="panel panel-default">
@@ -32,8 +32,9 @@
 					<thead>
 						<tr>
 							<th class="text-center col-md-1">#</th>
-							<th>Leitura</th>
-							<th>Data da Leitura</th>
+							<th>Nome</th>
+							<th>Leitura Máxima</th>
+							<th>Leitura Mínima</th>
 							<th class="col-md-1"></th>
 							<th class="col-md-1"></th>
 						</tr>
@@ -41,16 +42,19 @@
 					<tbody>
 						<tr th:each="item:${sensores}">
 							<td class="text-center" th:text="${item.codigo}">1</td>
-							<td th:text="${item.leitura}">1</td>
-							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
+							<td th:text="${item.nome}">1</td>
+							
+							<td th:text="${item.maxLeitura}">1</td>
+							<td th:text="${item.minLeitura}">1</td>
+
 							<td class="text-center"><a 
-								th:href="@{/sensor/leitura/{id}(id=${item.codigo})}" title="Alterar"
+								th:href="@{/sensor/tiposensor/{id}(id=${item.codigo})}" title="Alterar"
 								rel="tooltip" data-toggle="tooltip" data-placement="top"> <i data-feather="edit" width="20"></i>
 							</a>
 							</td>
 							<td class="text-center"><a 
 								data-toggle="modal"
-								th:attr="data-id=${item.codigo}, data-loc=@{/sensor/leitura/}, data-description=${item.codigo}"
+								th:attr="data-id=${item.codigo}, data-loc=@{/sensor/tiposensor/}, data-description=${item.codigo}"
 								title="Excluir" rel="tooltip" data-placement="top"
 								data-target="#modalDelete"> <i data-feather="trash" width="20"></i> 
 							</a></td>
@@ -58,14 +62,14 @@
 
 						</tr>
 						<tr th:if="${#lists.isEmpty(sensores)}">
-							<td colspan="6">Leitura do sensor não encontradas</td>
+							<td colspan="6">Tipo de Sensores não encontradas</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
  			<div class="panel-heading">
 				<div class="clearfix">
-					<a class="btn btn-link titulo-link" th:href="@{/sensor/leitura/new}">Nova Leitura do Sensor</a>
+					<a class="btn btn-link titulo-link" th:href="@{/sensor/tiposensor/new}">Novo Tipo de Sensor</a>
 				</div>
 			</div> 
 		</div>

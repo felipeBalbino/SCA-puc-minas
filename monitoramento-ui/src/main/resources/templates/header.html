@@ -66,13 +66,13 @@
 
 						</li>
 						<li
-							th:class="${currentPage == 'barragem' || currentPage == 'inspecao' || currentPage == 'sensor' || currentPage ==  'leiturasensor'} ? 'sidebar-item has-sub active' : 'sidebar-item has-sub'">
+							th:class="${currentPage == 'barragem' || currentPage == 'inspecao' || currentPage == 'sensor' || currentPage ==  'leiturasensor' || currentPage ==  'tiposensor'} ? 'sidebar-item has-sub active' : 'sidebar-item has-sub'">
 							<a href="#" class='sidebar-link'> 
 							<img alt="" src="/images/dashboard.svg" width="24px"> <span>Monitoramento</span>
 						</a>
 
 							<ul class="submenu "
-								th:class="${currentPage == 'barragem' || currentPage == 'inspecao' || currentPage == 'sensor'  || currentPage ==  'leiturasensor'} ? 'submenu active' : 'submenu'">
+								th:class="${currentPage == 'barragem' || currentPage == 'inspecao' || currentPage == 'sensor'  || currentPage ==  'leiturasensor' || currentPage ==  'tiposensor'} ? 'submenu active' : 'submenu'">
 
 								<li
 									th:class="${currentPage == 'barragem'} ? ' active' : ''"><a
@@ -85,11 +85,57 @@
 									sec:authorize="hasAuthority('ENGINEER')" href="/sensor"
 									> <i data-feather="thermometer" width="20"></i> Sensores 
 								</a></li>
+								
+								<li
+									th:class="${currentPage == 'tiposensor'} ? 'active' : ''"><a
+									sec:authorize="hasAuthority('ENGINEER')" href="/sensor/tiposensor"
+									> <i data-feather="thermometer" width="20"></i> Tipo Sensor
+								</a></li>
 
 								<li
 									th:class="${currentPage == 'inspecao'} ? 'active' : ''"><a
 									sec:authorize="hasAuthority('CONSULTANT')" href="/inspecao"
 									> <i data-feather="search" width="20"></i> Inspeção
+								</a></li>
+							</ul>
+
+						</li>
+						
+						
+						<li
+							th:class="${currentPage == 'acao' || currentPage == 'comunicacao' || currentPage == 'pessoa' || currentPage ==  'planoacao'} ? 'sidebar-item has-sub active' : 'sidebar-item has-sub'">
+							<a href="#" class='sidebar-link'> 
+							
+							
+								<i data-feather="shield"
+								width="20"></i> <span>Segurança/Comunicação</span>
+							</a>
+
+							<ul class="submenu "
+								th:class="${currentPage == 'acao' || currentPage == 'comunicacao' || currentPage == 'pessoa'  || currentPage ==  'planoacao'} ? 'submenu active' : 'submenu'">
+
+								<li
+									th:class="${currentPage == 'acao'} ? ' active' : ''"><a
+									sec:authorize="hasAuthority('ENGINEER')" href="/acao"
+									> <img alt="" src="/images/dam.png" width="24px"> Ação
+								</a></li>
+								
+								<li
+									th:class="${currentPage == 'comunicacao'} ? 'active' : ''"><a
+									sec:authorize="hasAuthority('ENGINEER')" href="/comunicacao"
+									> <i data-feather="thermometer" width="20"></i> Comunicação 
+								</a></li>
+
+								<li
+									th:class="${currentPage == 'pessoa'} ? 'active' : ''"><a
+									sec:authorize="hasAuthority('CONSULTANT')" href="/pessoa"
+									> <i data-feather="search" width="20"></i> Pessoa
+								</a></li>
+								
+								<li
+									th:class="${currentPage == 'planoacao'} ? 'active' : ''"><a
+									sec:authorize="hasAuthority('CONSULTANT')" href="/planoacao"
+									> <i data-feather="search" width="20"></i> Plano Ação
 								</a></li>
 							</ul>
 

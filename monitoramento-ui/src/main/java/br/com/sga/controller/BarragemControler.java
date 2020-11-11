@@ -18,10 +18,10 @@ import br.com.sga.client.BarragemClient;
 import br.com.sga.client.DanoPotencialClient;
 import br.com.sga.client.FabricanteClient;
 import br.com.sga.client.TipoMetodoClient;
-import br.com.sga.model.Ativo;
-import br.com.sga.model.Barragem;
-import br.com.sga.model.DanoPotencial;
-import br.com.sga.model.TipoMetodo;
+import br.com.sga.dto.Ativo;
+import br.com.sga.dto.Barragem;
+import br.com.sga.dto.DanoPotencial;
+import br.com.sga.dto.TipoMetodo;
 
 /**
  * @author sga

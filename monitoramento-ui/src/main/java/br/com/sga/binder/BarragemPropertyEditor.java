@@ -3,7 +3,7 @@ package br.com.sga.binder;
 import java.beans.PropertyEditorSupport;
 
 import br.com.sga.client.BarragemClient;
-import br.com.sga.model.Barragem;
+import br.com.sga.dto.Barragem;
 
 /**
  * @author sga

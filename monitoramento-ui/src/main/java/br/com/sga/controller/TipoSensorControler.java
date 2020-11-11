@@ -14,16 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sga.client.AtivosClient;
-import br.com.sga.client.BarragemClient;
 import br.com.sga.client.DanoPotencialClient;
-import br.com.sga.client.LeituraSensorClient;
-import br.com.sga.client.SensorClient;
 import br.com.sga.client.TipoMetodoClient;
 import br.com.sga.client.TipoSensorClient;
 import br.com.sga.dto.Ativo;
 import br.com.sga.dto.DanoPotencial;
-import br.com.sga.dto.LeituraSensor;
-import br.com.sga.dto.Sensor;
 import br.com.sga.dto.TipoMetodo;
 import br.com.sga.dto.TipoSensor;
 
@@ -32,8 +27,8 @@ import br.com.sga.dto.TipoSensor;
  *
  */
 @Controller
-@RequestMapping("/sensor/leitura")
-public class LeituraSensorControler {
+@RequestMapping("/sensor/tiposensor")
+public class TipoSensorControler {
 
 	@Value("${zuul.ws.gateway}")
 	private String gateway;
@@ -44,16 +39,16 @@ public class LeituraSensorControler {
 	@Value("${zuul.ws.password}")
 	private String password;
 
-	public static final String URL_INDEX = "/barragem/sensor/leitura/index";
-	public static final String URL_LIST = "/barragem/sensor/leitura/list";
+	public static final String URL_INDEX = "/barragem/sensor/tiposensor/index";
+	public static final String URL_LIST = "/barragem/sensor/tiposensor/list";
 
 	/**
 	 * @return
 	 */
 	@RequestMapping("/new")
-	public ModelAndView leituraSensor() {
+	public ModelAndView tipoSensor() {
 		ModelAndView mv = new ModelAndView(URL_INDEX);
-		mv.addObject(new LeituraSensor());
+		mv.addObject(new TipoSensor());
 		return mv;
 	}
 
@@ -64,7 +59,7 @@ public class LeituraSensorControler {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String insert(@Validated LeituraSensor leituraSensor, Errors erros, RedirectAttributes attr) {
+	public String insert(@Validated TipoSensor tipoSensor, Errors erros, RedirectAttributes attr) {
 
 		if (erros.hasErrors()) {
 			return URL_INDEX;
@@ -72,14 +67,14 @@ public class LeituraSensorControler {
 
 		try {
 			
-			LeituraSensorClient cliente = new LeituraSensorClient(gateway, user, password);
+			TipoSensorClient cliente = new TipoSensorClient(gateway, user, password);
 			
-			if(leituraSensor.getCodigo() == null) {
-				cliente.save(leituraSensor);
-				attr.addFlashAttribute("mensagem", "Leitura de Sensor adicionado com sucesso!");
+			if(tipoSensor.getCodigo() == null) {
+				cliente.save(tipoSensor);
+				attr.addFlashAttribute("mensagem", "Tipo de Sensor adicionado com sucesso!");
 			}else {
-				cliente.update(leituraSensor, leituraSensor.getCodigo());
-				attr.addFlashAttribute("mensagem", "Leitura de Sensor alterado com sucesso!");
+				cliente.update(tipoSensor, tipoSensor.getCodigo());
+				attr.addFlashAttribute("mensagem", "Tipo de Sensor alterado com sucesso!");
 			}
 			
 			return "redirect:/sensor/leitura";
@@ -95,8 +90,8 @@ public class LeituraSensorControler {
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView list() {
-		LeituraSensorClient cliente = new LeituraSensorClient(gateway, user, password);
-		List<LeituraSensor> list = cliente.list();
+		TipoSensorClient cliente = new TipoSensorClient(gateway, user, password);
+		List<TipoSensor> list = cliente.list();
 		ModelAndView mv = new ModelAndView(URL_LIST);
 		mv.addObject("sensores", list);
 		return mv;
@@ -108,10 +103,10 @@ public class LeituraSensorControler {
 	 */
 	@RequestMapping("{codigo}")
 	public ModelAndView update(@PathVariable("codigo") Long codigo) {
-		LeituraSensorClient cliente = new LeituraSensorClient(gateway, user, password);
-		LeituraSensor leituraSensor = cliente.findById(codigo);
+		TipoSensorClient cliente = new TipoSensorClient(gateway, user, password);
+		TipoSensor tipoSensor = cliente.findById(codigo);
 		ModelAndView mv = new ModelAndView(URL_INDEX);
-		mv.addObject(leituraSensor);
+		mv.addObject(tipoSensor);
 		return mv;
 	}
 
@@ -123,28 +118,26 @@ public class LeituraSensorControler {
 	@RequestMapping(value = "{codigo}", method = RequestMethod.DELETE)
 	public String delete(@PathVariable Long codigo, RedirectAttributes attr) {
 
-		LeituraSensorClient cliente = new LeituraSensorClient(gateway, user, password);
-		LeituraSensor leituraSensor = cliente.findById(codigo);
-		
+		TipoSensorClient cliente = new TipoSensorClient(gateway, user, password);
 		cliente.delete(codigo);
-		attr.addFlashAttribute("mensagem", "Leitura de sensor deletada com sucesso");
-		return "redirect:/sensor/leitura/"+leituraSensor.getSensor().getCodigo()+"/leiturasensor";
+		attr.addFlashAttribute("mensagem", "Tipo de sensor deletada com sucesso");
+		return "redirect:/tipoSensor/";
 	}
 
 	
 	
-	/**
-	 * @param filter
-	 * @return
-	 */
-	@RequestMapping(value = "{codigo}/leiturasensor", method = RequestMethod.GET)
-	public ModelAndView listBySensor(@PathVariable Long codigo) {
-		LeituraSensorClient cliente = new LeituraSensorClient(gateway, user, password);
-		List<LeituraSensor> list = cliente.listBySensor(codigo);
-		ModelAndView mv = new ModelAndView(URL_LIST);
-		mv.addObject("sensores", list);
-		return mv;
-	}
+//	/**
+//	 * @param filter
+//	 * @return
+//	 */	
+//	@RequestMapping(value = "{codigo}/leiturasensor", method = RequestMethod.GET)
+//	public ModelAndView listBySensor(@PathVariable Long codigo) {
+//		TipoSensorClient cliente = new TipoSensorClient(gateway, user, password);
+//		List<TipoSensor> list = cliente.listBySensor(codigo);
+//		ModelAndView mv = new ModelAndView(URL_LIST);
+//		mv.addObject("sensores", list);
+//		return mv;
+//	}
 	
 	
 	@ModelAttribute("listaTipoMetodos")
@@ -199,6 +192,6 @@ public class LeituraSensorControler {
 	 */
 	@ModelAttribute("currentPage")
 	public String currentPage() {
-		return "leiturasensor";
+		return "tiposensor";
 	}
 }

@@ -4,7 +4,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
-<title>Lista de Leituras de Sensores</title>
+<title>Lista de Ações</title>
 </head>
 
 <section layout:fragment="conteudo">
@@ -19,7 +19,8 @@
 	</div>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="#">Lista de Leituras de Sensores</a></li>
+			<li class="breadcrumb-item active"><a href="#">Lista de
+					Ações</a></li>
 		</ol>
 	</nav>
 	<div class="panel panel-default">
@@ -32,42 +33,48 @@
 					<thead>
 						<tr>
 							<th class="text-center col-md-1">#</th>
-							<th>Leitura</th>
-							<th>Data da Leitura</th>
+							<th class="text-center col-md-2">Plano de Ação</th>
+							<th class="text-center col-md-2">Quantidade de Pessoas</th>
 							<th class="col-md-1"></th>
 							<th class="col-md-1"></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="item:${sensores}">
+						<tr th:each="item:${list}">
 							<td class="text-center" th:text="${item.codigo}">1</td>
-							<td th:text="${item.leitura}">1</td>
-							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
-							<td class="text-center"><a 
-								th:href="@{/sensor/leitura/{id}(id=${item.codigo})}" title="Alterar"
-								rel="tooltip" data-toggle="tooltip" data-placement="top"> <i data-feather="edit" width="20"></i>
-							</a>
-							</td>
-							<td class="text-center"><a 
-								data-toggle="modal"
-								th:attr="data-id=${item.codigo}, data-loc=@{/sensor/leitura/}, data-description=${item.codigo}"
+
+							<td class="text-center"
+								th:text="${item.planoAcao!=null?item.planoAcao.descricao:''}">1</td>
+							<td class="text-center"
+								th:text="${item.pessoas!=null?#lists.size(item.pessoas):'0'}">1</td>
+
+							<td class="text-center"><a
+								th:href="@{/acao/{id}(id=${item.codigo})}" title="Alterar"
+								rel="tooltip" data-toggle="tooltip" data-placement="top"> <i
+									data-feather="edit" width="20"></i>
+							</a></td>
+
+							<td class="text-center"><a data-toggle="modal"
+								th:attr="data-id=${item.codigo}, data-loc=@{/acao/}, data-description=${item.nome}"
 								title="Excluir" rel="tooltip" data-placement="top"
-								data-target="#modalDelete"> <i data-feather="trash" width="20"></i> 
+								data-target="#modalDelete"> <i data-feather="trash"
+									width="20"></i>
 							</a></td>
 
 
 						</tr>
-						<tr th:if="${#lists.isEmpty(sensores)}">
-							<td colspan="6">Leitura do sensor não encontradas</td>
+						<tr th:if="${#lists.isEmpty(barragens)}">
+							<td colspan="6">Resultados não encontradas</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
- 			<div class="panel-heading">
+			<div class="panel-heading">
 				<div class="clearfix">
-					<a class="btn btn-link titulo-link" th:href="@{/sensor/leitura/new}">Nova Leitura do Sensor</a>
+					<a class="btn btn-link titulo-link" th:href="@{/barragem/new}">Nova
+						Ação</a>
 				</div>
-			</div> 
+			</div>
 		</div>
 
 		<div layout:insert="modal"></div>

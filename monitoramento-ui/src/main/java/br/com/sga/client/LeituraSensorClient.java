@@ -10,8 +10,8 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.sga.model.Barragem;
-import br.com.sga.model.LeituraSensor;
+import br.com.sga.dto.Barragem;
+import br.com.sga.dto.LeituraSensor;
 
 /**
  * @author sga

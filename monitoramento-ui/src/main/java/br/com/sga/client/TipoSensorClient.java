@@ -10,7 +10,7 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.sga.model.TipoSensor;
+import br.com.sga.dto.TipoSensor;
 
 /**
  * @author sga

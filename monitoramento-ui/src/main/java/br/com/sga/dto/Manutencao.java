@@ -1,44 +1,51 @@
-package br.com.sga.model;
+package br.com.sga.dto;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class Inspecao {
+/**
+ * @author fjbalbino
+ *
+ */
+
+public class Manutencao {
+
 
 	private Long codigo;
-
-	private CategoriaRisco categoriaRisco;
-
-	private DanoPotencial danoPotencial;
-
+	
 	private String descricao;
 
-	private Double altura;
+	@Enumerated(EnumType.ORDINAL)
+	private TipoManutencaoEnum tipoManutencao;
 
-	private Double volume;
-
-	private Barragem barragem;
+	@Enumerated(EnumType.ORDINAL)
+	private StatusManutencaoEnum statusManutencao;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-	private Date dataInclusao;
+	private Date dataManutencao;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	private Date dataProxManutencao;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "Data de inclusão requerido")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	private Date dataInclusao;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInativacao;
+
+	private Ativo ativo;
 
 	public Long getCodigo() {
 		return codigo;
@@ -56,44 +63,36 @@ public class Inspecao {
 		this.descricao = descricao;
 	}
 
-	public Double getAltura() {
-		return altura;
+	public TipoManutencaoEnum getTipoManutencao() {
+		return tipoManutencao;
 	}
 
-	public void setAltura(Double altura) {
-		this.altura = altura;
+	public void setTipoManutencao(TipoManutencaoEnum tipoManutencao) {
+		this.tipoManutencao = tipoManutencao;
 	}
 
-	public Double getVolume() {
-		return volume;
+	public StatusManutencaoEnum getStatusManutencao() {
+		return statusManutencao;
 	}
 
-	public void setVolume(Double volume) {
-		this.volume = volume;
+	public void setStatusManutencao(StatusManutencaoEnum statusManutencao) {
+		this.statusManutencao = statusManutencao;
 	}
 
-	public Barragem getBarragem() {
-		return barragem;
+	public Date getDataManutencao() {
+		return dataManutencao;
 	}
 
-	public void setBarragem(Barragem barragem) {
-		this.barragem = barragem;
+	public void setDataManutencao(Date dataManutencao) {
+		this.dataManutencao = dataManutencao;
 	}
 
-	public CategoriaRisco getCategoriaRisco() {
-		return categoriaRisco;
+	public Date getDataProxManutencao() {
+		return dataProxManutencao;
 	}
 
-	public void setCategoriaRisco(CategoriaRisco categoriaRisco) {
-		this.categoriaRisco = categoriaRisco;
-	}
-
-	public DanoPotencial getDanoPotencial() {
-		return danoPotencial;
-	}
-
-	public void setDanoPotencial(DanoPotencial danoPotencial) {
-		this.danoPotencial = danoPotencial;
+	public void setDataProxManutencao(Date dataProxManutencao) {
+		this.dataProxManutencao = dataProxManutencao;
 	}
 
 	public Date getDataInclusao() {
@@ -112,6 +111,14 @@ public class Inspecao {
 		this.dataInativacao = dataInativacao;
 	}
 
+	public Ativo getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Ativo ativo) {
+		this.ativo = ativo;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -128,7 +135,7 @@ public class Inspecao {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Inspecao other = (Inspecao) obj;
+		Manutencao other = (Manutencao) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -136,5 +143,8 @@ public class Inspecao {
 			return false;
 		return true;
 	}
+
+	
+	
 
 }

@@ -1,62 +1,40 @@
-package br.com.sga.model;
+package br.com.sga.dto;
 
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity
-@Table(name = "PESSOA")
 public class Pessoa {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "CODIGO_PESSOA")
 	private Long codigo;
 
 	private String nomeCompleto;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@NotNull(message = "Data de inclusão requerida")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-	@Column(name = "DATA_NASCIMENTO")
 	private Date dataNascimento;
 
-	@NotNull
 	private String email;
 
-	@NotNull
 	private String telefone;
 
-	@NotNull
 	private String cep;
 
-	@NotNull
 	private String numero;
 
 	private String complemento;
 
-	
+	private Comunicacao comunicacao;
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@NotNull(message = "Data de inclusão requerida")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-	@Column(name = "DATA_INCLUSAO")
 	private Date dataInclusao;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-	@Column(name = "DATA_INATIVACAO")
 	private Date dataInativacao;
-	
 
 	public Pessoa() {
 		super();
@@ -131,6 +109,13 @@ public class Pessoa {
 		this.complemento = complemento;
 	}
 
+	public Comunicacao getComunicacao() {
+		return comunicacao;
+	}
+
+	public void setComunicacao(Comunicacao comunicacao) {
+		this.comunicacao = comunicacao;
+	}
 
 	public Date getDataInclusao() {
 		return dataInclusao;
@@ -148,7 +133,6 @@ public class Pessoa {
 		this.dataInativacao = dataInativacao;
 	}
 
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -4,14 +4,14 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
-<title>Registro de Sensores</title>
+<title>Registro de Tipo de Sensor</title>
 </head>
 
 <section layout:fragment="conteudo">
 
 
 	<form class="form-horizontal" method="post"
-		th:action="@{/sensor/leitura}" th:object="${leituraSensor}">
+		th:action="@{/sensor/tiposensor}" th:object="${tipoSensor}">
 
 		<div class="alert alert-success alert-dismissible"
 			th:if="${!#strings.isEmpty(mensagem)}" role="alert">
@@ -30,10 +30,10 @@
 
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a th:href="@{/sensor/leitura/}">Lista
-						de Leitura de Sensores</a></li>
+				<li class="breadcrumb-item"><a th:href="@{/sensor/tiposensor/}">Lista
+						de Tipo de Sensor</a></li>
 				<li class="breadcrumb-item active" aria-current="page">Registro
-					de Leitura de Sensores</li>
+					de Tipo de Sensor</li>
 			</ol>
 		</nav>
 
@@ -50,14 +50,31 @@
 						<div th:text="${codigo}"></div>
 					</div>
 				</div>
-
-
+				
 				<div class="form-group"
-					th:classappend="${#fields.hasErrors('leitura')} ? 'has-error'">
-					<label for="leitura" class="col-sm-2 control-label">Leitura</label>
+					th:classappend="${#fields.hasErrors('nome')} ? 'has-error'">
+					<label for="nome" class="col-sm-2 control-label">Nome</label>
 					<div class="col-sm-4">
-						<input id="leitura" th:field="*{leitura}" type="text"
-							class="form-control" placeholder="Leitura" />
+						<input id="nome" th:field="*{nome}" type="text"
+							class="form-control" placeholder="Nome" />
+					</div>
+				</div>
+				
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('maxLeitura')} ? 'has-error'">
+					<label for="maxLeitura" class="col-sm-2 control-label">max Leitura</label>
+					<div class="col-sm-4">
+						<input id="maxLeitura" th:field="*{maxLeitura}" type="text"
+							class="form-control" placeholder="maxLeitura" />
+					</div>
+				</div>
+				
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('minLeitura')} ? 'has-error'">
+					<label for="minLeitura" class="col-sm-2 control-label">min Leitura</label>
+					<div class="col-sm-4">
+						<input id="minLeitura" th:field="*{minLeitura}" type="text"
+							class="form-control" placeholder="minLeitura" />
 					</div>
 				</div>
 

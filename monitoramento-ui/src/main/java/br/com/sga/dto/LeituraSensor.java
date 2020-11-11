@@ -1,4 +1,4 @@
-package br.com.sga.model;
+package br.com.sga.dto;
 
 import java.util.Date;
 
@@ -11,11 +11,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  *
  */
 
-public class TipoSensor {
+public class LeituraSensor {
+
 
 	private Long codigo;
 
-	private String nome;
+	private Sensor sensor;
+	
+	
+	private Double leitura;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -33,12 +37,20 @@ public class TipoSensor {
 		this.codigo = codigo;
 	}
 
-	public String getNome() {
-		return nome;	
+	public Sensor getSensor() {
+		return sensor;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setSensor(Sensor sensor) {
+		this.sensor = sensor;
+	}
+
+	public Double getLeitura() {
+		return leitura;
+	}
+
+	public void setLeitura(Double leitura) {
+		this.leitura = leitura;
 	}
 
 	public Date getDataInclusao() {
@@ -73,7 +85,7 @@ public class TipoSensor {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TipoSensor other = (TipoSensor) obj;
+		LeituraSensor other = (LeituraSensor) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -82,4 +94,5 @@ public class TipoSensor {
 		return true;
 	}
 
+	
 }

@@ -31,16 +31,15 @@ public class PlanoAcao {
 
 	@NotNull
 	@Size(min = 3, max = 60)
-	@Column(name = "descricao", length = 60, nullable = false)
+	@Column(name = "DESCRICAO", length = 60, nullable = false)
 	private String descricao;
 
-	@NotNull
-	@Column(name = "classificacao", nullable = false)
-	private Integer classificacao;
+	@Enumerated(EnumType.ORDINAL)
+	private GrauRiscoEnum grauRisco;
 
 	@NotNull
 	@Size(max = 130)
-	@Column(name = "mensagem_alterta", length = 130, nullable = false)
+	@Column(name = "MENSAGEM_ALERTA", length = 130, nullable = false)
 	private String mensagemAlterta;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -78,13 +77,6 @@ public class PlanoAcao {
 		this.descricao = descricao;
 	}
 
-	public Integer getClassificacao() {
-		return classificacao;
-	}
-
-	public void setClassificacao(Integer classificacao) {
-		this.classificacao = classificacao;
-	}
 
 	public String getMensagemAlterta() {
 		return mensagemAlterta;

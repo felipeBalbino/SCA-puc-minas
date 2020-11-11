@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sga.client.TipoAtivoClient;
-import br.com.sga.model.TipoAtivo;
+import br.com.sga.dto.TipoAtivo;
 
 /**
  * @author sga

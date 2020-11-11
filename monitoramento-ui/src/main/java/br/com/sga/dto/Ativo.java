@@ -1,6 +1,11 @@
-package br.com.sga.model;
+package br.com.sga.dto;
 
 import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -10,12 +15,17 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * @author sga
  *
  */
-
-public class TipoMetodo {
+public class Ativo {
 
 	private Long codigo;
 
 	private String nome;
+
+	private String descricao;
+
+	private Fabricante fabricante;
+
+	private TipoAtivo tipoAtivo;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -24,6 +34,8 @@ public class TipoMetodo {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInativacao;
+
+	private List<Manutencao> manutencoes;
 
 	public Long getCodigo() {
 		return codigo;
@@ -39,6 +51,30 @@ public class TipoMetodo {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public Fabricante getFabricante() {
+		return fabricante;
+	}
+
+	public void setFabricante(Fabricante fabricante) {
+		this.fabricante = fabricante;
+	}
+
+	public TipoAtivo getTipoAtivo() {
+		return tipoAtivo;
+	}
+
+	public void setTipoAtivo(TipoAtivo tipoAtivo) {
+		this.tipoAtivo = tipoAtivo;
 	}
 
 	public Date getDataInclusao() {
@@ -57,14 +93,19 @@ public class TipoMetodo {
 		this.dataInativacao = dataInativacao;
 	}
 
+	public List<Manutencao> getManutencoes() {
+		return manutencoes;
+	}
+
+	public void setManutencoes(List<Manutencao> manutencoes) {
+		this.manutencoes = manutencoes;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
-		result = prime * result + ((dataInativacao == null) ? 0 : dataInativacao.hashCode());
-		result = prime * result + ((dataInclusao == null) ? 0 : dataInclusao.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
 
@@ -76,26 +117,11 @@ public class TipoMetodo {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TipoMetodo other = (TipoMetodo) obj;
+		Ativo other = (Ativo) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
 		} else if (!codigo.equals(other.codigo))
-			return false;
-		if (dataInativacao == null) {
-			if (other.dataInativacao != null)
-				return false;
-		} else if (!dataInativacao.equals(other.dataInativacao))
-			return false;
-		if (dataInclusao == null) {
-			if (other.dataInclusao != null)
-				return false;
-		} else if (!dataInclusao.equals(other.dataInclusao))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
 	}

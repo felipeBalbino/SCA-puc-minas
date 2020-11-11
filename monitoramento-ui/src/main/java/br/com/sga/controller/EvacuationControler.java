@@ -7,17 +7,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.sga.client.CommunicationClient;
-import br.com.sga.client.filter.CommunicationFilter;
+import br.com.sga.client.ComunicacaoClient;
+import br.com.sga.dto.Acao;
+import br.com.sga.dto.Comunicacao;
 
 
 @Controller
-@RequestMapping({"/evacuation"})
+@RequestMapping({"/evacuacao"})
 public class EvacuationControler {
 	
 	@RequestMapping
 	public String search() {
-		return "evacuation";	
+		return "evacuacao";	
 	}
 	
 	@Value("${zuul.ws.gateway}")	
@@ -32,16 +33,15 @@ public class EvacuationControler {
 	@RequestMapping(value ="{codigo}", method =RequestMethod.POST)
     public String evacuation(@PathVariable Long codigo, String user, RedirectAttributes attr) {
         
-		CommunicationClient cliente = 
-				new CommunicationClient(gateway, user, password);
+		ComunicacaoClient cliente = 
+				new ComunicacaoClient(gateway, user, password);
 		
-		CommunicationFilter communication = new CommunicationFilter();
-		communication.setBarragem(codigo);
-		communication.setUser(user);
-		cliente.save(communication);
+		Comunicacao comunicacao = new Comunicacao();
+		comunicacao.setAcao(new Acao(codigo));
+		cliente.save(comunicacao);
 		
 		attr.addFlashAttribute("mensagem","Evacuation process started successfully");
-		return "/evacuation/evacuation";
+		return "/evacuacao/emsgEvacuacao";
     }
 
 }

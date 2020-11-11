@@ -1,27 +1,34 @@
-package br.com.sga.model;
+package br.com.sga.dto;
 
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-/**
- * @author sga
- *
- */
 
-public class CategoriaRisco {
+public class Fabricante {
 
 	private Long codigo;
 
 	private String nome;
-
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "Data de inclusão requerido")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInclusao;
-
-	@DateTimeFormat(pattern = "yyyy-MM-dd")	
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInativacao;
 
@@ -73,7 +80,7 @@ public class CategoriaRisco {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CategoriaRisco other = (CategoriaRisco) obj;
+		Fabricante other = (Fabricante) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -82,4 +89,7 @@ public class CategoriaRisco {
 		return true;
 	}
 
+
+
+	
 }

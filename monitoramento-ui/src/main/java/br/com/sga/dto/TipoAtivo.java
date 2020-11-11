@@ -1,66 +1,27 @@
-package br.com.sga.model;
+package br.com.sga.dto;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-/**
- * @author sga
- *
- */
-@Entity
-@Table(name = "TIPO_SENSOR")
-public class TipoSensor {
+public class TipoAtivo {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "CODIGO_TIPO_SENSOR")
 	private Long codigo;
-
+	
 	private String nome;
 	
-	@NotNull(message = "Leitura requerido")
-	private Double maxLeitura;
-	
-	@NotNull(message = "Leitura requerido")
-	private Double minLeitura;
-
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message = "Data de inclusão requerido")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInclusao;
-
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")	
 	private Date dataInativacao;
-	
-	
-
-	public Double getMaxLeitura() {
-		return maxLeitura;
-	}
-
-	public void setMaxLeitura(Double maxLeitura) {
-		this.maxLeitura = maxLeitura;
-	}
-
-	public Double getMinLeitura() {
-		return minLeitura;
-	}
-
-	public void setMinLeitura(Double minLeitura) {
-		this.minLeitura = minLeitura;
-	}
 
 	public Long getCodigo() {
 		return codigo;
@@ -110,7 +71,7 @@ public class TipoSensor {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TipoSensor other = (TipoSensor) obj;
+		TipoAtivo other = (TipoAtivo) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -119,4 +80,7 @@ public class TipoSensor {
 		return true;
 	}
 
+
+
+	
 }

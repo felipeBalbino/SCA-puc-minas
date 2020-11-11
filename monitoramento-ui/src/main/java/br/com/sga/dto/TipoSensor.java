@@ -1,4 +1,4 @@
-package br.com.sga.model;
+package br.com.sga.dto;
 
 import java.util.Date;
 
@@ -8,19 +8,29 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class TipoAtivo {
+/**
+ * @author sga
+ *
+ */
+
+public class TipoSensor {
 
 	private Long codigo;
-	
+
 	private String nome;
-	
+
+	@NotNull(message = "Leitura maxLeitura requerido")
+	private Double maxLeitura;
+
+	@NotNull(message = "Leitura  minLeitura requerido")
+	private Double minLeitura;
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@NotNull(message = "Data de inclusão requerido")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInclusao;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInativacao;
 
 	public Long getCodigo() {
@@ -55,6 +65,22 @@ public class TipoAtivo {
 		this.dataInativacao = dataInativacao;
 	}
 
+	public Double getMaxLeitura() {
+		return maxLeitura;
+	}
+
+	public void setMaxLeitura(Double maxLeitura) {
+		this.maxLeitura = maxLeitura;
+	}
+
+	public Double getMinLeitura() {
+		return minLeitura;
+	}
+
+	public void setMinLeitura(Double minLeitura) {
+		this.minLeitura = minLeitura;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -71,7 +97,7 @@ public class TipoAtivo {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TipoAtivo other = (TipoAtivo) obj;
+		TipoSensor other = (TipoSensor) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -80,7 +106,4 @@ public class TipoAtivo {
 		return true;
 	}
 
-
-
-	
 }

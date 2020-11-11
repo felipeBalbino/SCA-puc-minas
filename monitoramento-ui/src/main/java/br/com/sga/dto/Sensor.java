@@ -1,14 +1,7 @@
-package br.com.sga.model;
+package br.com.sga.dto;
 
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,49 +11,26 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * @author sga
  *
  */
-@Entity
-@Table(name = "TIPO_SENSOR")
-public class TipoSensor {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "CODIGO_TIPO_SENSOR")
+public class Sensor {
+
 	private Long codigo;
 
-	private String nome;
-	
-	@NotNull(message = "Leitura requerido")
-	private Double maxLeitura;
-	
-	@NotNull(message = "Leitura requerido")
-	private Double minLeitura;
+	private Long codigoAtivo;
+
+	private TipoSensor tipoSensor;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@NotNull(message = "Data de inclusão requerido")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInclusao;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInativacao;
+
+	private Barragem barragem;
 	
-	
-
-	public Double getMaxLeitura() {
-		return maxLeitura;
-	}
-
-	public void setMaxLeitura(Double maxLeitura) {
-		this.maxLeitura = maxLeitura;
-	}
-
-	public Double getMinLeitura() {
-		return minLeitura;
-	}
-
-	public void setMinLeitura(Double minLeitura) {
-		this.minLeitura = minLeitura;
-	}
+	private List<LeituraSensor> leituras;
 
 	public Long getCodigo() {
 		return codigo;
@@ -70,12 +40,20 @@ public class TipoSensor {
 		this.codigo = codigo;
 	}
 
-	public String getNome() {
-		return nome;
+	public Long getCodigoAtivo() {
+		return codigoAtivo;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setCodigoAtivo(Long codigoAtivo) {
+		this.codigoAtivo = codigoAtivo;
+	}
+
+	public TipoSensor getTipoSensor() {
+		return tipoSensor;
+	}
+
+	public void setTipoSensor(TipoSensor tipoSensor) {
+		this.tipoSensor = tipoSensor;
 	}
 
 	public Date getDataInclusao() {
@@ -94,6 +72,14 @@ public class TipoSensor {
 		this.dataInativacao = dataInativacao;
 	}
 
+	public Barragem getBarragem() {
+		return barragem;
+	}
+
+	public void setBarragem(Barragem barragem) {
+		this.barragem = barragem;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -110,13 +96,21 @@ public class TipoSensor {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TipoSensor other = (TipoSensor) obj;
+		Sensor other = (Sensor) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
+	}
+
+	public List<LeituraSensor> getLeituras() {
+		return leituras;
+	}
+
+	public void setLeituras(List<LeituraSensor> leituras) {
+		this.leituras = leituras;
 	}
 
 }

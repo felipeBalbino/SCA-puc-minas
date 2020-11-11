@@ -1,38 +1,31 @@
-package br.com.sga.model;
+package br.com.sga.dto;
 
 import java.util.Date;
-import java.util.List;
+
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-/**
- * @author sga
- *
- */
-public class Barragem {
+public class PlanoAcao {
 
 	private Long codigo;
 
-	private Long codigoAtivo;
+	@Enumerated(EnumType.ORDINAL)
+	private TipoPlanoAcaoEnum TipoPlanoAcao;
 
-	private String nome;
+	private String descricao;
 
-	private Double latitude;
+	private Integer classificacao;
 
-	private Double longitude;
+	private String mensagemAlterta;
 
-	private TipoMetodo tipoMetodo;
-
-	private List<Inspecao> inspecoes;
-
-	private List<Sensor> sensores;
-	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInclusao;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInativacao;
@@ -45,60 +38,36 @@ public class Barragem {
 		this.codigo = codigo;
 	}
 
-	public Long getCodigoAtivo() {
-		return codigoAtivo;
+	public TipoPlanoAcaoEnum getTipoPlanoAcao() {
+		return TipoPlanoAcao;
 	}
 
-	public void setCodigoAtivo(Long codigoAtivo) {
-		this.codigoAtivo = codigoAtivo;
+	public void setTipoPlanoAcao(TipoPlanoAcaoEnum tipoPlanoAcao) {
+		TipoPlanoAcao = tipoPlanoAcao;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
-	public Double getLatitude() {
-		return latitude;
+	public Integer getClassificacao() {
+		return classificacao;
 	}
 
-	public void setLatitude(Double latitude) {
-		this.latitude = latitude;
+	public void setClassificacao(Integer classificacao) {
+		this.classificacao = classificacao;
 	}
 
-	public Double getLongitude() {
-		return longitude;
+	public String getMensagemAlterta() {
+		return mensagemAlterta;
 	}
 
-	public void setLongitude(Double longitude) {
-		this.longitude = longitude;
-	}
-
-	public TipoMetodo getTipoMetodo() {
-		return tipoMetodo;
-	}
-
-	public void setTipoMetodo(TipoMetodo tipoMetodo) {
-		this.tipoMetodo = tipoMetodo;
-	}
-
-	public List<Inspecao> getInspecoes() {
-		return inspecoes;
-	}
-
-	public void setInspecoes(List<Inspecao> inspecoes) {
-		this.inspecoes = inspecoes;
-	}
-
-	public List<Sensor> getSensores() {
-		return sensores;
-	}
-
-	public void setSensores(List<Sensor> sensores) {
-		this.sensores = sensores;
+	public void setMensagemAlterta(String mensagemAlterta) {
+		this.mensagemAlterta = mensagemAlterta;
 	}
 
 	public Date getDataInclusao() {
@@ -133,7 +102,7 @@ public class Barragem {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Barragem other = (Barragem) obj;
+		PlanoAcao other = (PlanoAcao) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

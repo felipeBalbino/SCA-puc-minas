@@ -1,15 +1,16 @@
-package br.com.sga.model;
+package br.com.sga.dto;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum StatusManutencaoEnum {
+public enum TipoManutencaoEnum {
 
-	ABERTA("A"),
-	FECHADA("F");
+	CORRETIVA("CO"),
+	PROGRAMADA("PG"),
+	PREVENTIVA("PV");
 	
 	private String descricao;
 	
-	StatusManutencaoEnum(String descricao){
+	TipoManutencaoEnum(String descricao){
 		this.descricao =descricao;
 	}
 	

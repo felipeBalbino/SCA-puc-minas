@@ -23,10 +23,10 @@ import br.com.sga.client.DanoPotencialClient;
 import br.com.sga.client.InspecaoClient;
 import br.com.sga.client.LeituraSensorClient;
 import br.com.sga.client.TipoMetodoClient;
-import br.com.sga.model.Barragem;
-import br.com.sga.model.DanoPotencial;
-import br.com.sga.model.Inspecao;
-import br.com.sga.model.TipoMetodo;
+import br.com.sga.dto.Barragem;
+import br.com.sga.dto.DanoPotencial;
+import br.com.sga.dto.Inspecao;
+import br.com.sga.dto.TipoMetodo;
 
 /**
  * @author sga

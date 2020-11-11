@@ -19,11 +19,11 @@ import br.com.sga.client.InspecaoClient;
 import br.com.sga.client.SensorClient;
 import br.com.sga.client.TipoMetodoClient;
 import br.com.sga.client.TipoSensorClient;
-import br.com.sga.model.Ativo;
-import br.com.sga.model.DanoPotencial;
-import br.com.sga.model.Sensor;
-import br.com.sga.model.TipoMetodo;
-import br.com.sga.model.TipoSensor;
+import br.com.sga.dto.Ativo;
+import br.com.sga.dto.DanoPotencial;
+import br.com.sga.dto.Sensor;
+import br.com.sga.dto.TipoMetodo;
+import br.com.sga.dto.TipoSensor;
 
 /**
  * @author sga

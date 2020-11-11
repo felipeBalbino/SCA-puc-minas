@@ -10,19 +10,19 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.sga.dto.CategoriaRisco;
+import br.com.sga.dto.PlanoAcao;
 
 /**
  * @author sga
  *
  */
-public class CategoriaRiscoClient {
+public class PlanoAcaoClient {
 
 	private RestTemplate restTemplate;
 
 	private String URI_BASE;
 
-	private String URN_BASE = "/monitoramento/categoriarisco";
+	private String URN_BASE = "/seguranca/planoacao";
 
 	private String credencial;
 
@@ -31,7 +31,7 @@ public class CategoriaRiscoClient {
 	 * @param user
 	 * @param senha
 	 */
-	public CategoriaRiscoClient(String url, String user, String senha) {
+	public PlanoAcaoClient(String url, String user, String senha) {
 		restTemplate = new RestTemplate();
 
 		URI_BASE = url.concat(URN_BASE);
@@ -42,41 +42,42 @@ public class CategoriaRiscoClient {
 	}
 
 	/**
+	 * @param search
 	 * @return
 	 */
-	public List<CategoriaRisco> list() {
+	public List<PlanoAcao> list() {
 
 		String path = URI_BASE;
 
 		RequestEntity<Void> request = RequestEntity.get(URI.create(path)).header("Authorization", credencial).build();
 
-		ResponseEntity<CategoriaRisco[]> response = restTemplate.exchange(request, CategoriaRisco[].class);
+		ResponseEntity<PlanoAcao[]> response = restTemplate.exchange(request, PlanoAcao[].class);
 
 		return Arrays.asList(response.getBody());
 	}
 
 	/**
-	 * @param CategoriaRisco
+	 * @param PlanoAcao
 	 * @return
 	 */
-	public String save(CategoriaRisco categoriaRisco) {
-		RequestEntity<CategoriaRisco> request = RequestEntity.post(URI.create(URI_BASE)).header("Authorization", credencial)
-				.body(categoriaRisco);
+	public String save(PlanoAcao planoAcao) {
+		RequestEntity<PlanoAcao> request = RequestEntity.post(URI.create(URI_BASE)).header("Authorization", credencial)
+				.body(planoAcao);
 
 		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
 
 		return response.getHeaders().getLocation().toString();
 	}
-	
+
 	/**
 	 * @param id
 	 * @return
 	 */
-	public CategoriaRisco findById(Long id) {
+	public PlanoAcao findById(Long id) {
 		RequestEntity<Void> request = RequestEntity.get(URI.create(URI_BASE + "/" + id))
 				.header("Authorization", credencial).build();
 
-		ResponseEntity<CategoriaRisco> response = restTemplate.exchange(request, CategoriaRisco.class);
+		ResponseEntity<PlanoAcao> response = restTemplate.exchange(request, PlanoAcao.class);
 
 		return response.getBody();
 	}
@@ -89,19 +90,18 @@ public class CategoriaRiscoClient {
 		RequestEntity<Void> request = RequestEntity.delete(URI.create(URI_BASE + "/" + id))
 				.header("Authorization", credencial).build();
 
-		ResponseEntity<CategoriaRisco> response = restTemplate.exchange(request, CategoriaRisco.class);
+		ResponseEntity<PlanoAcao> response = restTemplate.exchange(request, PlanoAcao.class);
 
 		return response.getStatusCode();
 	}
-	
-	
+
 	/**
-	 * @param Ativo
+	 * @param PlanoAcao
 	 * @return
 	 */
-	public String update(CategoriaRisco categoriaRisco, Long id) {
-		RequestEntity<CategoriaRisco> request = RequestEntity.put(URI.create(URI_BASE + "/" + id)).header("Authorization", credencial)
-				.body(categoriaRisco);
+	public String update(PlanoAcao planoAcao, Long id) {
+		RequestEntity<PlanoAcao> request = RequestEntity.put(URI.create(URI_BASE + "/" + id))
+				.header("Authorization", credencial).body(planoAcao);
 
 		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
 

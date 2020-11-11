@@ -12,8 +12,8 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.sga.model.Ativo;
-import br.com.sga.model.Fabricante;
+import br.com.sga.dto.Ativo;
+import br.com.sga.dto.Fabricante;
 
 /**
  * @author sga

@@ -26,11 +26,11 @@ import com.fasterxml.jackson.databind.util.JSONPObject;
 import br.com.sga.client.AtivosClient;
 import br.com.sga.client.ManutencaoClient;
 import br.com.sga.client.TipoMetodoClient;
-import br.com.sga.model.Ativo;
-import br.com.sga.model.Manutencao;
-import br.com.sga.model.StatusManutencaoEnum;
-import br.com.sga.model.TipoManutencaoEnum;
-import br.com.sga.model.TipoMetodo;
+import br.com.sga.dto.Ativo;
+import br.com.sga.dto.Manutencao;
+import br.com.sga.dto.StatusManutencaoEnum;
+import br.com.sga.dto.TipoManutencaoEnum;
+import br.com.sga.dto.TipoMetodo;
 
 /**
  * @author sga

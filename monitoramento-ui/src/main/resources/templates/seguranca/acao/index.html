@@ -4,14 +4,14 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
-<title>Registro de Sensores</title>
+<title>Registro de Ação</title>
 </head>
 
 <section layout:fragment="conteudo">
 
 
-	<form class="form-horizontal" method="post"
-		th:action="@{/sensor/leitura}" th:object="${leituraSensor}">
+	<form class="form-horizontal" method="post" th:action="@{/acao}"
+		th:object="${acao}">
 
 		<div class="alert alert-success alert-dismissible"
 			th:if="${!#strings.isEmpty(mensagem)}" role="alert">
@@ -30,10 +30,8 @@
 
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a th:href="@{/sensor/leitura/}">Lista
-						de Leitura de Sensores</a></li>
-				<li class="breadcrumb-item active" aria-current="page">Registro
-					de Leitura de Sensores</li>
+				<li class="breadcrumb-item"><a th:href="@{/barragem}">Lista de Ações</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Registro de Ação</li>
 			</ol>
 		</nav>
 
@@ -41,26 +39,39 @@
 
 			<div class="panel-body">
 
-				<input type="hidden" th:field="*{codigo}" />
+				<input type="hidden"  th:field="*{codigo}" />
 				<div class="form-group"
 					th:classappend="${#fields.hasErrors('codigo')} ? 'has-error'">
 					<label for="codigo" class="col-sm-2 control-label">Código</label>
 					<div class="col-sm-4">
-						<div th:field="*{codigo}"></div>
+						<div  th:field="*{codigo}"  ></div>
 						<div th:text="${codigo}"></div>
 					</div>
 				</div>
-
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('leitura')} ? 'has-error'">
-					<label for="leitura" class="col-sm-2 control-label">Leitura</label>
-					<div class="col-sm-4">
-						<input id="leitura" th:field="*{leitura}" type="text"
-							class="form-control" placeholder="Leitura" />
-					</div>
+				
+				
+				<label for="metodo" class="col-sm-2 control-label">Plano de Ação</label>
+				<div class="col-sm-4">
+					<select name="planoAcao.codigo" class="form-control" th:field="*{planoAcao.codigo}">
+						<option value="">Selecione...</option>
+						<option th:each="item : ${listaPlanoAcao}" th:value="${item.codigo}"
+							th:text="${item.nome}"></option>
+					</select>
+				</div>
+				
+				
+				<label for="metodo" class="col-sm-2 control-label">Pessoas</label>
+				<div class="col-sm-4">
+					<select class="form-control" th:field="*{parts}" multiple="multiple">
+						<option value="">Selecione...</option>
+					    <option th:each="item : ${listaPessoas}"
+					            th:field="*{pessoas}"
+					            th:value="${item.codigo}"
+					            th:text="${item.nomeCompleto}">Nome </option>
+					</select>
 				</div>
 
+				
 				<div class="form-group"
 					th:classappend="${#fields.hasErrors('dataInativacao')} ? 'has-error'">
 					<label for="dataInativacao" class="col-sm-2 control-label">Data de Inativaçao</label>
@@ -78,7 +89,7 @@
 							class="form-control" placeholder="Data de Inclusão" />
 					</div>
 				</div>
-
+				  
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-primary">Salvar</button>

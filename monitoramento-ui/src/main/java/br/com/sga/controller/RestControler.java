@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.sga.client.ManutencaoClient;
-import br.com.sga.model.Manutencao;
+import br.com.sga.dto.Manutencao;
 
 /**
  * @author sga

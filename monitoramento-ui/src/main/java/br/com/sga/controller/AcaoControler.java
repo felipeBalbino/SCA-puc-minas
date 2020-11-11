@@ -13,11 +13,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.sga.client.AtivosClient;
+import br.com.sga.client.AcaoClient;
+import br.com.sga.client.AcaoClient;
 import br.com.sga.client.FabricanteClient;
+import br.com.sga.client.PessoaClient;
+import br.com.sga.client.PlanoAcaoClient;
 import br.com.sga.client.TipoAtivoClient;
+import br.com.sga.dto.Acao;
 import br.com.sga.dto.Ativo;
 import br.com.sga.dto.Fabricante;
+import br.com.sga.dto.Pessoa;
+import br.com.sga.dto.PlanoAcao;
 import br.com.sga.dto.TipoAtivo;
 
 /**
@@ -25,8 +31,8 @@ import br.com.sga.dto.TipoAtivo;
  *
  */
 @Controller
-@RequestMapping("/ativos")
-public class AtivosControler {
+@RequestMapping("/acao")
+public class AcaoControler {
 
 	@Value("${zuul.ws.gateway}")
 	private String gateway;
@@ -41,9 +47,9 @@ public class AtivosControler {
 	 * @return
 	 */
 	@RequestMapping("/new")
-	public ModelAndView ativos() {
-		ModelAndView mv = new ModelAndView("/ativos/ativos");
-		mv.addObject(new Ativo());
+	public ModelAndView acao() {
+		ModelAndView mv = new ModelAndView("/seguranca/acao/index");
+		mv.addObject(new Acao());
 		return mv;
 	}
 
@@ -54,26 +60,26 @@ public class AtivosControler {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String insert(@Validated Ativo ativo, Errors erros, RedirectAttributes attr) {
+	public String insert(@Validated Acao acao, Errors erros, RedirectAttributes attr) {
 
 		if (erros.hasErrors()) {
-			return "/ativos/ativos";
+			return "/seguranca/acao/index";
 		}
 
 		try {
-			AtivosClient cliente = new AtivosClient(gateway, user, password);
-			
-			if(ativo.getCodigo() == null) {
-				cliente.save(ativo);
-				attr.addFlashAttribute("mensagem", "Ativo inserido com sucesso!");
-			}else {
-				cliente.update(ativo, ativo.getCodigo());
-				attr.addFlashAttribute("mensagem", "Ativo update com sucesso!");
+			AcaoClient cliente = new AcaoClient(gateway, user, password);
+
+			if (acao.getCodigo() == null) {
+				cliente.save(acao);
+				attr.addFlashAttribute("mensagem", "Ação inserida com sucesso!");
+			} else {
+				cliente.update(acao, acao.getCodigo());
+				attr.addFlashAttribute("mensagem", "Ação alterada com sucesso!");
 			}
-			return "redirect:/ativos";
+			return "redirect:/acao";
 		} catch (IllegalArgumentException e) {
 			erros.rejectValue("data", null, e.getMessage());
-			return "/ativos/ativos";
+			return "/seguranca/acao/index";
 		}
 	}
 
@@ -82,10 +88,10 @@ public class AtivosControler {
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView list() {
-		AtivosClient cliente = new AtivosClient(gateway, user, password);
-		List<Ativo> list = cliente.list();
-		ModelAndView mv = new ModelAndView("/ativos/list");
-		mv.addObject("ativos", list);
+		AcaoClient cliente = new AcaoClient(gateway, user, password);
+		List<Acao> list = cliente.list();
+		ModelAndView mv = new ModelAndView("/seguranca/acao/list");
+		mv.addObject("list", list);
 		return mv;
 	}
 
@@ -95,10 +101,10 @@ public class AtivosControler {
 	 */
 	@RequestMapping("{codigo}")
 	public ModelAndView update(@PathVariable("codigo") Long codigo) {
-		AtivosClient cliente = new AtivosClient(gateway, user, password);
-		Ativo ativo = cliente.findById(codigo);
-		ModelAndView mv = new ModelAndView("/ativos/ativos");
-		mv.addObject(ativo);
+		AcaoClient cliente = new AcaoClient(gateway, user, password);
+		Acao acao = cliente.findById(codigo);
+		ModelAndView mv = new ModelAndView("/seguranca/acao/aindex");
+		mv.addObject(acao);
 		return mv;
 	}
 
@@ -110,37 +116,35 @@ public class AtivosControler {
 	@RequestMapping(value = "{codigo}", method = RequestMethod.DELETE)
 	public String delete(@PathVariable Long codigo, RedirectAttributes attr) {
 
-		AtivosClient cliente = new AtivosClient(gateway, user, password);
+		AcaoClient cliente = new AcaoClient(gateway, user, password);
 		cliente.delete(codigo);
-		attr.addFlashAttribute("mensagem", "ativos successfully deleted");
-		return "redirect:/ativos/";
+		attr.addFlashAttribute("mensagem", "Ação deletada com sucesso!");
+		return "redirect:/seguranca/acao/list";
 	}
 
-	
-	/**	
+	/**
 	 * @return
 	 */
-	@ModelAttribute("listaFabricantes")
-	public List<Fabricante> listaFabricantes() {
-		FabricanteClient cliente = new FabricanteClient(gateway, user, password);
+	@ModelAttribute("listaPlanoAcao")
+	public List<PlanoAcao> listaPlanoAcao() {
+		PlanoAcaoClient cliente = new PlanoAcaoClient(gateway, user, password);
 		return cliente.list();
 	}
-	
-	/**	
+
+	/**
 	 * @return
 	 */
-	@ModelAttribute("listaTipoAtivo")
-	public List<TipoAtivo> listaTipoAtivo() {
-		TipoAtivoClient cliente = new TipoAtivoClient(gateway, user, password);
+	@ModelAttribute("listaPessoas")
+	public List<Pessoa> listaPessoas() {
+		PessoaClient cliente = new PessoaClient(gateway, user, password);
 		return cliente.list();
 	}
-	
-	
-	/**	
+
+	/**
 	 * @return
 	 */
 	@ModelAttribute("currentPage")
 	public String currentPage() {
-		return "ativos";
+		return "acao";
 	}
 }

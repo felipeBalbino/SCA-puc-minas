@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sga.client.FabricanteClient;
-import br.com.sga.model.Fabricante;
+import br.com.sga.dto.Fabricante;
 
 /**
  * @author sga

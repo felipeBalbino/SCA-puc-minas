@@ -1,36 +1,44 @@
-package br.com.sga.model;
+package br.com.sga.dto;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-
-public class Fabricante {
+public class Comunicacao {
 
 	private Long codigo;
 
-	private String nome;
-	
+	private Acao acao;
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@NotNull(message = "Data de inclusão requerido")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInclusao;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInativacao;
+
+	public Comunicacao() {
+		super();
+	}
+
+	public Comunicacao(Long codigo) {
+		super();
+		this.codigo = codigo;
+	}
 
 	public Long getCodigo() {
 		return codigo;
@@ -40,20 +48,20 @@ public class Fabricante {
 		this.codigo = codigo;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	public Date getDataInclusao() {
 		return dataInclusao;
 	}
 
 	public void setDataInclusao(Date dataInclusao) {
 		this.dataInclusao = dataInclusao;
+	}
+
+	public Acao getAcao() {
+		return acao;
+	}
+
+	public void setAcao(Acao acao) {
+		this.acao = acao;
 	}
 
 	public Date getDataInativacao() {
@@ -80,7 +88,7 @@ public class Fabricante {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Fabricante other = (Fabricante) obj;
+		Comunicacao other = (Comunicacao) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -89,7 +97,4 @@ public class Fabricante {
 		return true;
 	}
 
-
-
-	
 }

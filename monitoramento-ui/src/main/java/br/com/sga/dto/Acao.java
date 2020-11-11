@@ -1,4 +1,4 @@
-package br.com.sga.model;
+package br.com.sga.dto;
 
 import java.util.Date;
 import java.util.List;
@@ -20,18 +20,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-/**
- * @author sga
- *
- */
-
-public class Sensor {
+public class Acao {
 
 	private Long codigo;
 
-	private Long codigoAtivo;
+	private List<Pessoa> pessoas;
 
-	private TipoSensor tipoSensor;
+	private Long codigoBarragem;
+
+	private PlanoAcao planoAcao;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -41,9 +38,30 @@ public class Sensor {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInativacao;
 
-	private Barragem barragem;
-	
-	private List<LeituraSensor> leituras;
+	public Acao() {
+		super();
+	}
+
+	public Acao(Long codigo) {
+		super();
+		this.codigo = codigo;
+	}
+
+	public List<Pessoa> getPessoas() {
+		return pessoas;
+	}
+
+	public void setPessoas(List<Pessoa> pessoas) {
+		this.pessoas = pessoas;
+	}
+
+	public PlanoAcao getPlanoAcao() {
+		return planoAcao;
+	}
+
+	public void setPlanoAcao(PlanoAcao planoAcao) {
+		this.planoAcao = planoAcao;
+	}
 
 	public Long getCodigo() {
 		return codigo;
@@ -51,22 +69,6 @@ public class Sensor {
 
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
-	}
-
-	public Long getCodigoAtivo() {
-		return codigoAtivo;
-	}
-
-	public void setCodigoAtivo(Long codigoAtivo) {
-		this.codigoAtivo = codigoAtivo;
-	}
-
-	public TipoSensor getTipoSensor() {
-		return tipoSensor;
-	}
-
-	public void setTipoSensor(TipoSensor tipoSensor) {
-		this.tipoSensor = tipoSensor;
 	}
 
 	public Date getDataInclusao() {
@@ -77,20 +79,20 @@ public class Sensor {
 		this.dataInclusao = dataInclusao;
 	}
 
+	public Long getCodigoBarragem() {
+		return codigoBarragem;
+	}
+
+	public void setCodigoBarragem(Long codigoBarragem) {
+		this.codigoBarragem = codigoBarragem;
+	}
+
 	public Date getDataInativacao() {
 		return dataInativacao;
 	}
 
 	public void setDataInativacao(Date dataInativacao) {
 		this.dataInativacao = dataInativacao;
-	}
-
-	public Barragem getBarragem() {
-		return barragem;
-	}
-
-	public void setBarragem(Barragem barragem) {
-		this.barragem = barragem;
 	}
 
 	@Override
@@ -109,21 +111,13 @@ public class Sensor {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Sensor other = (Sensor) obj;
+		Acao other = (Acao) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
-	}
-
-	public List<LeituraSensor> getLeituras() {
-		return leituras;
-	}
-
-	public void setLeituras(List<LeituraSensor> leituras) {
-		this.leituras = leituras;
 	}
 
 }

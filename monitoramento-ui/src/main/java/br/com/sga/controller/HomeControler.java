@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.sga.client.BarragemClient;
-import br.com.sga.model.Barragem;
+import br.com.sga.dto.Barragem;
 import br.com.sga.repository.filter.InspecaoFilter;
 
 @Controller

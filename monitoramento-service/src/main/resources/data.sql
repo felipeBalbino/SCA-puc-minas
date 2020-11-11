@@ -12,12 +12,12 @@ insert into categoria_risco (codigo_categoria_risco, nome,data_inclusao) values(
 insert into categoria_risco (codigo_categoria_risco, nome,data_inclusao) values(2,'Médio','2020-11-01' );
 insert into categoria_risco (codigo_categoria_risco, nome,data_inclusao) values(3,'Alto','2020-11-01' );
 
-insert into tipo_sensor (codigo_tipo_sensor, nome,data_inclusao) values(1,'Medição de Nível','2020-11-01' );
-insert into tipo_sensor (codigo_tipo_sensor, nome,data_inclusao) values(2,'Medição de Vazão','2020-11-01' );
-insert into tipo_sensor (codigo_tipo_sensor, nome,data_inclusao) values(3,'Medição Analítica','2020-11-01' );
-insert into tipo_sensor (codigo_tipo_sensor, nome,data_inclusao) values(4,'Medição de Pressão','2020-11-01');
-insert into tipo_sensor (codigo_tipo_sensor, nome,data_inclusao) values(5,'Medição de Temperatura','2020-11-01' );
-insert into tipo_sensor (codigo_tipo_sensor, nome,data_inclusao) values(6,'Detecção de Pó','2020-11-01' );
+insert into tipo_sensor (codigo_tipo_sensor, nome,data_inclusao,min_leitura,max_leitura) values(1,'Medição de Nível','2020-11-01',10,90 );
+insert into tipo_sensor (codigo_tipo_sensor, nome,data_inclusao,min_leitura,max_leitura) values(2,'Medição de Vazão','2020-11-01',10,90 );
+insert into tipo_sensor (codigo_tipo_sensor, nome,data_inclusao,min_leitura,max_leitura) values(3,'Medição Analítica','2020-11-01',10,90 );
+insert into tipo_sensor (codigo_tipo_sensor, nome,data_inclusao,min_leitura,max_leitura) values(4,'Medição de Pressão','2020-11-01',10,90);
+insert into tipo_sensor (codigo_tipo_sensor, nome,data_inclusao,min_leitura,max_leitura) values(5,'Medição de Temperatura','2020-11-01',10,90 );
+insert into tipo_sensor (codigo_tipo_sensor, nome,data_inclusao,min_leitura,max_leitura) values(6,'Detecção de Pó','2020-11-01',10,90 );
 
 insert into sensor (codigo_sensor, codigo_ativo, codigo_tipo_sensor, data_inclusao) values(1, 1, 1,'2020-11-01' );
 insert into sensor (codigo_sensor, codigo_ativo, codigo_tipo_sensor, data_inclusao) values(2, 2, 2,'2020-11-01' );
