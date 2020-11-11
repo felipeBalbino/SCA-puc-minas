@@ -3,6 +3,9 @@ package br.com.sga.dto;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -28,17 +31,28 @@ public class Barragem {
 	private List<Inspecao> inspecoes;
 
 	private List<Sensor> sensores;
-	
+
+	@Enumerated(EnumType.ORDINAL)
+	private ClassificacaoEnum classificacao;
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInclusao;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInativacao;
 
 	public Long getCodigo() {
 		return codigo;
+	}
+
+	public ClassificacaoEnum getClassificacao() {
+		return classificacao;
+	}
+
+	public void setClassificacao(ClassificacaoEnum classificacao) {
+		this.classificacao = classificacao;
 	}
 
 	public void setCodigo(Long codigo) {

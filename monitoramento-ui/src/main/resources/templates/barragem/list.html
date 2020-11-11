@@ -38,7 +38,6 @@
 							<th class="text-center col-md-2">Método</th>
 							<th class="col-md-1"></th>
 							<th class="col-md-1"></th>
-							<th class="col-md-1"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -65,14 +64,7 @@
 								title="Excluir" rel="tooltip" data-placement="top"
 								data-target="#modalDelete"> <i data-feather="trash" width="20"></i>  
 							</a></td>
-							<td class="text-center">
-								<a class="btn btn-danger btn-xs"
-								data-toggle="modal"
-								th:attr="data-id=${item.codigo}, data-loc=@{/evacuar/}, data-description=${item.nome}"
-								title="Evacuação" rel="tooltip" data-placement="top"
-								data-target="#modalPanico"> Evacuar
-								</a>
-							</td>
+
 
 						</tr>
 						<tr th:if="${#lists.isEmpty(barragens)}">

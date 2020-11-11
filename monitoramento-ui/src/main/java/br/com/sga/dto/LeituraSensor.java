@@ -13,12 +13,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class LeituraSensor {
 
-
 	private Long codigo;
 
 	private Sensor sensor;
-	
-	
+
 	private Double leitura;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -94,5 +92,4 @@ public class LeituraSensor {
 		return true;
 	}
 
-	
 }

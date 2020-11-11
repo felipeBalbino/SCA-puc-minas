@@ -2,18 +2,21 @@ package br.com.sga.model;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TipoPlanoAcaoEnum {
-	EMAIL("E-mail"), SMS("SMS"), TELEFONE("Telefone");
+public enum ClassificacaoEnum {
 
+	A("A"),
+	B("B"),
+	C("C");
+	
 	private String descricao;
-
-	TipoPlanoAcaoEnum(String descricao) {
-		this.descricao = descricao;
+	
+	ClassificacaoEnum(String descricao){
+		this.descricao =descricao;
 	}
-
+	
 	@JsonValue
 	public String getDescricao() {
 		return descricao;
 	}
-
+	
 }

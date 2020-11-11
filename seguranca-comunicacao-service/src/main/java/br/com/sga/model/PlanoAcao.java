@@ -26,9 +26,6 @@ public class PlanoAcao {
 	@Column(name = "CODIGO_PLANO_ACAO")
 	private Long codigo;
 
-	@Enumerated(EnumType.ORDINAL)
-	private TipoPlanoAcaoEnum TipoPlanoAcao;
-
 	@NotNull
 	@Size(min = 3, max = 60)
 	@Column(name = "DESCRICAO", length = 60, nullable = false)
@@ -59,14 +56,6 @@ public class PlanoAcao {
 
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
-	}
-
-	public TipoPlanoAcaoEnum getTipoPlanoAcao() {
-		return TipoPlanoAcao;
-	}
-
-	public void setTipoPlanoAcao(TipoPlanoAcaoEnum tipoPlanoAcao) {
-		TipoPlanoAcao = tipoPlanoAcao;
 	}
 
 	public String getDescricao() {
