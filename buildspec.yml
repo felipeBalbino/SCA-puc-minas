@@ -1,13 +1,15 @@
 version: 0.2
 
 phases:
+  install:
+    runtime-versions:
+      docker: 18       
   pre_build:
     commands:
       - echo Pulling Docker Images for cache 
-
   build:
     commands:
-      - docker-compose build
+      - docker-compose up --no-start --build
   post_build:
     commands:
-      - docker-compose up -d
+      - docker-compose push
