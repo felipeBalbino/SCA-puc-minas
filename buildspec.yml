@@ -3,14 +3,11 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - echo Pulling Docker Images for cache ... | tee -a log.txt
-      - docker-compose pull --ignore-pull-failures --parallel
+      - echo Pulling Docker Images for cache 
+
   build:
     commands:
-      - echo Building the Docker image ... | tee -a log.txt
-      - docker-compose build 
-      - docker-compose up -d
+      - docker-compose build
   post_build:
     commands:
-      - echo Pushing the Docker image ... | tee -a log.txt
-      - docker-compose push 
+      - docker-compose up -d
