@@ -17,5 +17,5 @@ phases:
       - docker-compose push
 artifacts:
     files:
-      - target/*
+      - '**/*'
     
