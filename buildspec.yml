@@ -9,7 +9,7 @@ phases:
       - echo Pulling Docker Images for cache 
   build:
     commands:
-      - docker-compose up --no-start --build
+      - docker-compose build
   post_build:
     commands:
       - docker-compose push
