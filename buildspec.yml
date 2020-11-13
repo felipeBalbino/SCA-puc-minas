@@ -6,6 +6,8 @@ phases:
       docker: 18       
   pre_build:
     commands:
+      - mvn -f ./eureka-service/pom.xml clean package -Dmaven.test.skip=true
+      - mvn -f ./zuul-gateway/pom.xml clean package -Dmaven.test.skip=true
       - echo Pulling Docker Images for cache 
   build:
     commands:
@@ -13,3 +15,5 @@ phases:
   post_build:
     commands:
       - docker-compose push
+artifacts:
+    files: imagedefinitions.json 
