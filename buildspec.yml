@@ -16,4 +16,6 @@ phases:
     commands:
       - docker-compose push
 artifacts:
-    files: imagedefinitions.json 
+    files:
+      - target/*
+    
