@@ -4,7 +4,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
-<title>User</title>
+<title>Lista de Usuários<</title>
 </head>
 
 <section layout:fragment="conteudo">
@@ -19,7 +19,7 @@
 	</div>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="#">User List</a></li>
+			<li class="breadcrumb-item active"><a href="#">Lista de usuários</a></li>
 		</ol>
 	</nav>
 	<div class="panel panel-default">
@@ -29,38 +29,41 @@
 					<thead>
 						<tr>
 							<th class="text-center col-md-1">#</th>
-							<th>User</th>
-							<th>Roles</th>
+							<th>Nome do Usário</th>
+							<th>Funções</th>
+							<th>Data de Inclusão</th>
+							<th>Data de Inativação</th>
 							<th class="col-md-1"></th>
 							<th class="col-md-1"></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="item : ${users}">
-							<td class="text-center" th:text="${item.id}">1</td>
-							<td class="text-center" th:text="${{item.username}}">1</td>
+						<tr th:each="item : ${usuarios}">
+							<td class="text-center" th:text="${item.codigo}">1</td>
+							<td class="text-center" th:text="${{item.nome}}">1</td>
 							<td class="text-center">
-								<div th:each="role : ${item.roles}">
-									<span th:text="${{role.name}}"></span>
+								<div th:each="role : ${item.funcoes}">
+									<span th:text="${{role.nome}}"></span>
 								</div>
-								
 							</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy')}">1</td>
 							<td class="text-center">
 								<a class="btn btn-link"
-									th:href="@{/user/{id}(id=${item.id})}" title="Alter"
+									th:href="@{/usuario/{id}(id=${item.codigo})}" title="Alter"
 									rel="tooltip" data-toggle="tooltip" data-placement="top">
-										Alter </a> 
+										Alterar </a> 
 							</td>		
 							<td class="text-center">		
 								<a class="btn btn-link" data-toggle="modal"
-									th:attr="data-id=${item.id}, data-loc=@{/user/}, data-description=${item.username}"
+									th:attr="data-id=${item.codigo}, data-loc=@{/usuario/}, data-description=${item.nome}"
 									title="Delete" rel="tooltip" data-placement="top"
-									data-target="#modalDelete"> Delete </a>
+									data-target="#modalDelete"> Deletar </a>
 							</td>
 
 						</tr>
-						<tr th:if="${#lists.isEmpty(users)}">
-							<td colspan="6">No Users Found</td>
+						<tr th:if="${#lists.isEmpty(usuarios)}">
+							<td colspan="6">Usuários não encontrados</td>
 						</tr>
 					</tbody>
 				</table>
@@ -69,7 +72,7 @@
 		<div class="panel-heading">
 
 			<div class="clearfix">
-				<a class="btn btn-link titulo-link" th:href="@{/user/new}">New</a>
+				<a class="btn btn-link titulo-link" th:href="@{/usuario/new}">New</a>
 			</div>
 		</div>
 		<div layout:insert="modal"></div>

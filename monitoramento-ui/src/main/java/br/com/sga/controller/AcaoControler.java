@@ -14,17 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sga.client.AcaoClient;
-import br.com.sga.client.AcaoClient;
-import br.com.sga.client.FabricanteClient;
 import br.com.sga.client.PessoaClient;
 import br.com.sga.client.PlanoAcaoClient;
-import br.com.sga.client.TipoAtivoClient;
 import br.com.sga.dto.Acao;
-import br.com.sga.dto.Ativo;
-import br.com.sga.dto.Fabricante;
 import br.com.sga.dto.Pessoa;
 import br.com.sga.dto.PlanoAcao;
-import br.com.sga.dto.TipoAtivo;
 
 /**
  * @author sga
