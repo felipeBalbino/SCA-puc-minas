@@ -20,10 +20,10 @@ public class AuthController {
 	@GetMapping("/login")
 	public String login(Model model, String error, String logout) {
 		if (error != null)
-			model.addAttribute("error", "Username or password is invalid");
+			model.addAttribute("error", "Nome de usuário ou senha é inválido");
 
 		if (logout != null)
-			model.addAttribute("message", "Successfully logged in");
+			model.addAttribute("message", "Conectado com sucesso");
 
 		return "/auth/login";
 	}

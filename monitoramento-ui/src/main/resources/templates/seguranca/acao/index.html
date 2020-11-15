@@ -54,7 +54,7 @@
 				<div class="col-sm-4">
 					<select name="planoAcao.codigo" class="form-control" th:field="*{planoAcao.codigo}">
 						<option value="">Selecione...</option>
-						<option th:each="item : ${listaPlanoAcao}" th:value="${item.codigo}"
+						<option th:each="item : ${listaPlanoAcao}" th:value="${item.codigo}"  th:disabled="${item.dataInativacao != null}"
 							th:text="${item.nome}"></option>
 					</select>
 				</div>
@@ -67,6 +67,7 @@
 					    <option th:each="item : ${listaPessoas}"
 					            th:field="*{pessoas}"
 					            th:value="${item.codigo}"
+					             th:disabled="${item.dataInativacao != null}"
 					            th:text="${item.nomeCompleto}">Nome </option>
 					</select>
 				</div>

@@ -20,92 +20,101 @@
 		<span th:text="${mensagem}"></span>
 	</div>
 
-	<ul class="nav nav-tabs">
-		<li class="nav-item">
-			<a href="#calendario" class="nav-link active" data-toggle="tab">Calendário</a>
-		</li>
-		<li class="nav-item">
-			<a href="#listaCalendario" class="nav-link" data-toggle="tab">Lista de Manutenções</a>
-		</li>
-	</ul>
 
-	<div class="tab-content">
-		<div class="tab-pane fade show active" id="calendario">
-			<div id='calendar'></div>
-		</div>
-		<div class="tab-pane fade" id="listaCalendario">
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<div class="table-responsive">
-						<table class="table table-bordered table-striped"
-							id="datatabledefault">
-							<thead>
-								<tr>
-									<th class="text-center col-md-1">#</th>
-									<th>Descrição</th>
+	<div class="container-fluid">
+		<div class="row">
 
-									<th>Tipo</th>
-									<th>Status</th>
+			<div class="col-sm-8">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-striped"
+								id="datatabledefault">
+								<thead>
+									<tr>
+										<th class="text-center col-md-1">#</th>
+										<th>Descrição</th>
 
-									<th class="text-center col-md-2">Data Manutenção</th>
-									<th class="text-center col-md-2">Data Próxima Manutencao</th>
-									<th class="text-center col-md-2">Data Inclusão</th>
-									<th class="text-center col-md-2">Data Inativação</th>
-									<th class="text-center col-md-2">Opções</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="item:${manutencoes}">
-									<td class="text-center" th:text="${item.codigo}">1</td>
-									<td th:text="${item.descricao}">1</td>
-									<td th:text="${item.tipoManutencao}">1</td>
-									<td th:text="${item.statusManutencao}">1</td>
-									<td class="text-center"
-										th:text="${#dates.format(item.dataManutencao, 'dd/MM/yyyy')}">1</td>
-									<td class="text-center"
-										th:text="${#dates.format(item.dataProxManutencao, 'dd/MM/yyyy')}">1</td>
-									<td class="text-center"
-										th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
-									<td class="text-center"
-										th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy')}">1</td>
+										<th>Tipo</th>
+										<th>Status</th>
 
-									<td class="text-center">
-									
-										<a 
+										<th class="text-center col-md-2">Data Manutenção</th>
+										<th class="text-center col-md-2">Data Próxima Manutencao</th>
+										<th class="text-center col-md-2">Data Inclusão</th>
+										<th class="text-center col-md-2">Data Inativação</th>
+										<th class="text-center col-md-2">Ativo</th>
+										<th class="text-center col-md-2">Editar</th>
+										<th class="text-center col-md-2">Excluir</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="item:${manutencoes}">
+										<td class="text-center" th:text="${item.codigo}">1</td>
+										<td th:text="${item.descricao}">1</td>
+										<td th:text="${item.tipoManutencao}">1</td>
+										<td th:text="${item.statusManutencao}">1</td>
+										<td class="text-center"
+											th:text="${#dates.format(item.dataManutencao, 'dd/MM/yyyy')}">1</td>
+										<td class="text-center"
+											th:text="${#dates.format(item.dataProxManutencao, 'dd/MM/yyyy')}">1</td>
+										<td class="text-center"
+											th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
+										<td class="text-center"
+											th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy')}">1</td>
+
+										<td class="text-center">
+											<a
 											th:href="@{/ativos/{id}(id=${item.ativo.codigo})}"
-											 title="Barragen" rel="tooltip"
-											data-toggle="tooltip" data-placement="top"> Ativo </a>
-	
-										<a 
-											th:href="@{/manutencao/{id}(id=${item.codigo})}"
-											title="Alterar" rel="tooltip" data-toggle="tooltip"
-											data-placement="top"> <i data-feather="edit" width="20"></i> </a>
-	
-										<a 
-											data-toggle="modal"
-											th:attr="data-id=${item.codigo}, data-loc=@{/manutencao/}, data-description=${item.descricao}"
-											title="Deletar" rel="tooltip" data-placement="top"
-											data-target="#modalDelete"> <i data-feather="trash" width="20"></i> </a>
-										
+											th:text="${item.ativo.nome}"
+											title="Barragen" rel="tooltip" data-toggle="tooltip"
+											data-placement="top">1</a>
+										</td>
 
-									</td>
+										<td class="text-center">
+											<a
+												th:href="@{/manutencao/{id}(id=${item.codigo})}"
+												title="Alterar" rel="tooltip" data-toggle="tooltip"
+												data-placement="top"> <i data-feather="edit" width="20"></i>
+											</a> 
+										</td>
+										<td class="text-center">
+											<a data-toggle="modal"
+												th:attr="data-id=${item.codigo}, data-loc=@{/manutencao/}, data-description=${item.descricao}"
+												title="Deletar" rel="tooltip" data-placement="top"
+												data-target="#modalDelete"> <i data-feather="trash"
+													width="20"></i>
+											</a>
+										</td>
 
-								</tr>
-								<tr th:if="${#lists.isEmpty(manutencoes)}">
-									<td colspan="10">Manutenções não encontrados</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="panel-heading">
-						<div class="clearfix">
-							<a class="btn btn-link titulo-link" th:href="@{/manutencao/new}">Nova
-								Manutenção</a>
+
+
+
+									</tr>
+									<tr th:if="${#lists.isEmpty(manutencoes)}">
+										<td colspan="10">Manutenções não encontrados</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="panel-heading">
+							<div class="clearfix">
+								<a class="btn btn-link titulo-link" th:href="@{/manutencao/new}">Nova
+									Manutenção</a>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div layout:insert="modal"></div>
+					<div layout:insert="modal"></div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+
+
+
+				<div id='calendar'></div>
+
+
+
 			</div>
 		</div>
 	</div>

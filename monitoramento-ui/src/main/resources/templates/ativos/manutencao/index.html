@@ -91,7 +91,7 @@
 				<div class="col-sm-4">
 					<select name="ativo.codigo" class="form-control" th:field="*{ativo.codigo}">
 						<option value="">Selecione...</option>
-						<option th:each="item : ${listaAtivos}" th:value="${item.codigo}" th:text="${item.nome}"></option>
+						<option th:each="item : ${listaAtivos}" th:value="${item.codigo}" th:text="${item.nome}" th:disabled="${item.dataInativacao != null}"></option>
 					</select>
 				</div>
 				

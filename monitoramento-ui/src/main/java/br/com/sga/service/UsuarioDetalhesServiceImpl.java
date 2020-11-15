@@ -24,7 +24,7 @@ public class UsuarioDetalhesServiceImpl implements UserDetailsService{
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String nome) {
-        Usuario usuario = usuarioRepository.findByNome(nome);
+        Usuario usuario = usuarioRepository.find(nome);
         if (usuario == null) throw new UsernameNotFoundException(nome);
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();

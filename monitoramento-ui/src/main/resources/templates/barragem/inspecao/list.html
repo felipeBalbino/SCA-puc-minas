@@ -37,9 +37,13 @@
 							<th class="text-center col-md-2">Categoria de Risco</th>
 							<th class="text-center col-md-2">Dano Potencial</th>
 							<th class="text-center col-md-2">Considerações</th>
+												<th>Data Inclusão </th>
+							<th>Data Inativação </th>
+							
+							
 							<th class="text-center col-md-2">Barragem</th>
 							<th class="col-md-1"></th>
-							<th class="col-md-1"></th>
+
 						</tr>
 					</thead>
 					<tbody>
@@ -51,6 +55,9 @@
 							<td class="text-center" th:text="${item.danoPotencial != null?item.danoPotencial.nome:''}">1</td>
 							<td class="text-center" th:text="${item.descricao}">1</td>
 								
+							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy')}">1</td>	
+								
 							<td class="text-center"><a
 								th:href="@{/barragem/{id}(id=${item.barragem.codigo})}" title="Barragem"
 								th:text="${item.barragem.nome}" rel="tooltip" data-toggle="tooltip" data-placement="top">
@@ -61,14 +68,6 @@
 								th:href="@{/inspecao/{id}(id=${item.codigo})}" title="Alterar"
 								rel="tooltip" data-toggle="tooltip" data-placement="top">
 									<i data-feather="edit" width="20"></i> </a>
-							</td>
-							<td class="text-center">
-								<a class="btn btn-danger btn-xs"
-								data-toggle="modal"
-								th:attr="data-id=${item.codigo}, data-loc=@{/evacuar/}, data-description=${item.barragem.nome}"
-								title="Evacuação" rel="tooltip" data-placement="top"
-								data-target="#modalPanico"> Evacuar
-								</a>
 							</td>
 
 						</tr>

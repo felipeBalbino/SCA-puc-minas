@@ -25,7 +25,7 @@
 
 						<li
 							th:class="${currentPage == 'usuario'} ? 'sidebar-item active' : 'sidebar-item'"><a
-							sec:authorize="hasAuthority('ADMINISTRATOR')" href="/usuario"
+							sec:authorize="hasAuthority('ADMINISTRADOR')" href="/usuario"
 							class='sidebar-link'> <i data-feather="user" width="20"></i>
 								<span>Usuários</span>
 						</a></li>
@@ -44,22 +44,22 @@
 								th:class="${currentPage == 'ativos' || currentPage == 'fabricante' || currentPage == 'tipoativo' || currentPage == 'manutencao'} ? 'submenu active' : 'submenu'">
 
 								<li th:class="${currentPage == 'ativos'} ? 'active' : ''">
-									<a href="/ativos" sec:authorize="hasAuthority('ADMINISTRATOR')">
+									<a href="/ativos" sec:authorize="hasAuthority('ADMINISTRADOR')">
 										Ativos </a>
 								</li>
 								<li th:class="${currentPage == 'fabricante'} ? 'active' : ''">
 									<a href="/fabricante"
-									sec:authorize="hasAuthority('ADMINISTRATOR')"> Fabricantes
+									sec:authorize="hasAuthority('ADMINISTRADOR')"> Fabricantes
 								</a>
 								</li>
 								<li th:class="${currentPage == 'tipoativo'} ? 'active' : ''">
 									<a href="/tipoAtivo"
-									sec:authorize="hasAuthority('ADMINISTRATOR')"> Tipo de
+									sec:authorize="hasAuthority('ADMINISTRADOR')"> Tipo de
 										Ativos </a>
 								</li>
 								<li th:class="${currentPage == 'manutencao'} ? 'active' : ''">
 									<a href="/manutencao"
-									sec:authorize="hasAuthority('ADMINISTRATOR')"><i data-feather="calendar" width="20"></i> Manutenções
+									sec:authorize="hasAuthority('ADMINISTRADOR')"><i data-feather="calendar" width="20"></i> Manutenções
 								</a>
 								</li>
 							</ul>
@@ -76,25 +76,25 @@
 
 								<li
 									th:class="${currentPage == 'barragem'} ? ' active' : ''"><a
-									sec:authorize="hasAuthority('ENGINEER')" href="/barragem"
+									sec:authorize="hasAuthority('ENGENHEIRO')" href="/barragem"
 									> <img alt="" src="/images/dam.png" width="24px"> Barragens
 								</a></li>
 								
 								<li
 									th:class="${currentPage == 'sensor'} ? 'active' : ''"><a
-									sec:authorize="hasAuthority('ENGINEER')" href="/sensor"
+									sec:authorize="hasAuthority('ENGENHEIRO')" href="/sensor"
 									> <i data-feather="thermometer" width="20"></i> Sensores 
 								</a></li>
 								
 								<li
 									th:class="${currentPage == 'tiposensor'} ? 'active' : ''"><a
-									sec:authorize="hasAuthority('ENGINEER')" href="/sensor/tiposensor"
+									sec:authorize="hasAuthority('ENGENHEIRO')" href="/sensor/tiposensor"
 									> <i data-feather="thermometer" width="20"></i> Tipo Sensor
 								</a></li>
 
 								<li
 									th:class="${currentPage == 'inspecao'} ? 'active' : ''"><a
-									sec:authorize="hasAuthority('CONSULTANT')" href="/inspecao"
+									sec:authorize="hasAuthority('CONSULTOR')" href="/inspecao"
 									> <i data-feather="search" width="20"></i> Inspeção
 								</a></li>
 							</ul>
@@ -116,25 +116,25 @@
 
 								<li
 									th:class="${currentPage == 'acao'} ? ' active' : ''"><a
-									sec:authorize="hasAuthority('ENGINEER')" href="/acao"
+									sec:authorize="hasAuthority('ENGENHEIRO')" href="/acao"
 									> <img alt="" src="/images/dam.png" width="24px"> Ação
 								</a></li>
 								
 								<li
 									th:class="${currentPage == 'comunicacao'} ? 'active' : ''"><a
-									sec:authorize="hasAuthority('ENGINEER')" href="/comunicacao"
+									sec:authorize="hasAuthority('ENGENHEIRO')" href="/comunicacao"
 									> <i data-feather="thermometer" width="20"></i> Comunicação 
 								</a></li>
 
 								<li
 									th:class="${currentPage == 'pessoa'} ? 'active' : ''"><a
-									sec:authorize="hasAuthority('CONSULTANT')" href="/pessoa"
+									sec:authorize="hasAuthority('CONSULTOR')" href="/pessoa"
 									> <i data-feather="search" width="20"></i> Pessoa
 								</a></li>
 								
 								<li
 									th:class="${currentPage == 'planoacao'} ? 'active' : ''"><a
-									sec:authorize="hasAuthority('CONSULTANT')" href="/planoacao"
+									sec:authorize="hasAuthority('CONSULTOR')" href="/planoacao"
 									> <i data-feather="search" width="20"></i> Plano Ação
 								</a></li>
 							</ul>

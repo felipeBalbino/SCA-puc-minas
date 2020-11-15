@@ -35,6 +35,8 @@
 							<th>Nome</th>
 							<th>Leitura Máxima</th>
 							<th>Leitura Mínima</th>
+							<th>Data Inclusão </th>
+							<th>Data Inativação </th>
 							<th class="col-md-1"></th>
 							<th class="col-md-1"></th>
 						</tr>
@@ -46,6 +48,9 @@
 							
 							<td th:text="${item.maxLeitura}">1</td>
 							<td th:text="${item.minLeitura}">1</td>
+							
+							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy')}">1</td>
 
 							<td class="text-center"><a 
 								th:href="@{/sensor/tiposensor/{id}(id=${item.codigo})}" title="Alterar"

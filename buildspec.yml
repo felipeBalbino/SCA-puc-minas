@@ -8,6 +8,12 @@ phases:
     commands:
       - mvn -f ./eureka-service/pom.xml clean package -Dmaven.test.skip=true
       - mvn -f ./zuul-gateway/pom.xml clean package -Dmaven.test.skip=true
+      - mvn -f ./cadastro-ativo-service/pom.xml clean package -Dmaven.test.skip=true
+      - mvn -f ./eureka-client/pom.xml clean package -Dmaven.test.skip=true
+      - mvn -f ./monitoramento-service/pom.xml clean package -Dmaven.test.skip=true
+      - mvn -f ./notificacao-service/pom.xml clean package -Dmaven.test.skip=true
+      - mvn -f ./seguranca-comunicacao-service/pom.xml clean package -Dmaven.test.skip=true
+      - mvn -f ./monitoramento-ui/pom.xml clean package -Dmaven.test.skip=true
       - echo Pulling Docker Images for cache 
   build:
     commands:

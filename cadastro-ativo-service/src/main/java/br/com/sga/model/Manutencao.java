@@ -32,7 +32,7 @@ public class Manutencao {
 	@Column(name = "codigo_manutencao")
 	private Long codigo;
 	
-	@Size(min=3, max=250)
+	@Size(max=250)
 	private String descricao;
 
 	@Enumerated(EnumType.ORDINAL)

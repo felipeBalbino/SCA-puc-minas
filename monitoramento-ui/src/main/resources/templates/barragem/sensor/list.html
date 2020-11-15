@@ -19,7 +19,8 @@
 	</div>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="#">Lista de Sensores</a></li>
+			<li class="breadcrumb-item active"><a href="#">Lista de
+					Sensores</a></li>
 		</ol>
 	</nav>
 	<div class="panel panel-default">
@@ -35,7 +36,10 @@
 							<th>Nome do Sensor(Ativo)</th>
 							<th>Tipo de Sensor</th>
 							<th>Nome da Barragem</th>
+							<th>Data Inclusão</th>
+							<th>Data Inativação</th>
 							<th>Leituras</th>
+
 							<th class="col-md-1"></th>
 							<th class="col-md-1"></th>
 						</tr>
@@ -44,26 +48,31 @@
 						<tr th:each="item:${sensores}">
 							<td class="text-center" th:text="${item.codigo}">1</td>
 							<td th:text="${item.codigoAtivo}">1</td>
-							<td class="text-center" th:text="${item.tipoSensor!=null?item.tipoSensor.nome:''}">1</td>
-							<td class="text-center" th:text="${item.barragem!=null?item.barragem.nome:''}">1</td>
-							
-							<td class="text-center">
-								<a 
-								th:href="@{/sensor/leitura/{id}/leiturasensor(id=${item.codigo})}" title="Leituras"
-								rel="tooltip" data-toggle="tooltip" data-placement="top"> Leituras
-								</a>
-							</td>
-							
-							<td class="text-center"><a 
+							<td class="text-center"
+								th:text="${item.tipoSensor!=null?item.tipoSensor.nome:''}">1</td>
+							<td class="text-center"
+								th:text="${item.barragem!=null?item.barragem.nome:''}">1</td>
+
+							<td class="text-center"
+								th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
+							<td class="text-center"
+								th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy')}">1</td>
+
+							<td class="text-center"><a
+								th:href="@{/sensor/leitura/{id}/leiturasensor(id=${item.codigo})}"
+								title="Leituras" rel="tooltip" data-toggle="tooltip"
+								data-placement="top"> Leituras </a></td>
+
+							<td class="text-center"><a
 								th:href="@{/sensor/{id}(id=${item.codigo})}" title="Alterar"
-								rel="tooltip" data-toggle="tooltip" data-placement="top"> <i data-feather="edit" width="20"></i>
-							</a>
-							</td>
-							<td class="text-center"><a 
-								data-toggle="modal"
+								rel="tooltip" data-toggle="tooltip" data-placement="top"> <i
+									data-feather="edit" width="20"></i>
+							</a></td>
+							<td class="text-center"><a data-toggle="modal"
 								th:attr="data-id=${item.codigo}, data-loc=@{/sensor/}, data-description=${item.codigoAtivo}"
 								title="Excluir" rel="tooltip" data-placement="top"
-								data-target="#modalDelete"> <i data-feather="trash" width="20"></i> 
+								data-target="#modalDelete"> <i data-feather="trash"
+									width="20"></i>
 							</a></td>
 
 
@@ -74,11 +83,12 @@
 					</tbody>
 				</table>
 			</div>
- 			<div class="panel-heading">
+			<div class="panel-heading">
 				<div class="clearfix">
-					<a class="btn btn-link titulo-link" th:href="@{/barragem/new}">Novo Sensor</a>
+					<a class="btn btn-link titulo-link" th:href="@{/barragem/new}">Novo
+						Sensor</a>
 				</div>
-			</div> 
+			</div>
 		</div>
 
 		<div layout:insert="modal"></div>

@@ -96,6 +96,7 @@ public class UsuarioService {
 	 */
 	public void update(Usuario usuario) {
 		findById(usuario.getCodigo());
+		usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getSenha()));
 		usuarioRepository.save(usuario);
 	}
 }

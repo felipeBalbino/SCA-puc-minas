@@ -21,22 +21,31 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">
 
-			<!-- <div class="clearfix">
+			<div class="clearfix">
 				<h3 class="panel-title titulo-panel">Home</h3>
 				<div class="form-group">
-					<div class="col-sm-4">
-						<form method="GET" class="form-horizontal" th:object="${filter}">
-							<select disabled name="id" class="form-control" th:field="*{id}">
-								<option th:each="item : ${listBarragens}" th:value="${item.id}"
-									th:text="${item.name}"></option>
-							</select>
-						</form>
+					<div class="row">
+						<div class="col-sm-4">
+							<form method="GET" class="form-horizontal" th:object="${filter}">
+								<select name="id" class="form-control" th:field="*{id}">
+									<option th:each="item : ${listBarragens}"
+										th:value="${item.codigo}"
+										th:disabled="${item.dataInativacao != null}"
+										th:text="${item.dataInativacao == null?item.nome:item.nome+'(Inativo)'}"></option>
+								</select>
+							</form>
+						</div>
+						<div class="col-sm-1">
+							<a class="btn btn-danger titulo-right" data-toggle="modal"
+								th:attr="data-id=1, data-loc=@{/evacuation/}, data-description=Barragem_01"
+								data-target="#modalPanico">Evacuação</a>
+						</div>
+						<div class="col-sm-1">
+							<a class="btn btn-danger titulo-link" th:href="@{/inspecao/new}">Inspecionar</a>
+						</div>
 					</div>
 				</div>
-				<a class="btn btn-danger titulo-right" data-toggle="modal"
-					th:attr="data-id=1, data-loc=@{/evacuation/}, data-description=Barragem_01"
-					data-target="#modalPanico">Evacuação</a>
-			</div> -->
+			</div>
 		</div>
 		<div class="panel-body">
 			<div class="row">
