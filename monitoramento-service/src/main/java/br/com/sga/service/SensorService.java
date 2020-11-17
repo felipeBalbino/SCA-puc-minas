@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import br.com.sga.model.Barragem;
 import br.com.sga.model.Sensor;
 import br.com.sga.repository.SensorRepository;
 import br.com.sga.service.exception.ServiceException;
@@ -47,6 +48,16 @@ public class SensorService {
 			return sensor.get();
 		}
 		throw new ServiceException("The Sensor could not be found.");
+	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	public List<Sensor> findByBarragem(Long codigo) {
+		Barragem barragem = new Barragem();
+		barragem.setCodigo(codigo);
+		return sensorRepository.findByBarragem(barragem);
 	}
 
 	/**

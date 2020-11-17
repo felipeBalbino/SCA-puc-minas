@@ -2,17 +2,6 @@ package br.com.sga.dto;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -21,7 +10,7 @@ public class Comunicacao {
 
 	private Long codigo;
 
-	private Acao acao;
+	private PlanoAcao planoAcao;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -56,12 +45,12 @@ public class Comunicacao {
 		this.dataInclusao = dataInclusao;
 	}
 
-	public Acao getAcao() {
-		return acao;
+	public PlanoAcao getPlanoAcao() {
+		return planoAcao;
 	}
 
-	public void setAcao(Acao acao) {
-		this.acao = acao;
+	public void setPlanoAcao(PlanoAcao planoAcao) {
+		this.planoAcao = planoAcao;
 	}
 
 	public Date getDataInativacao() {

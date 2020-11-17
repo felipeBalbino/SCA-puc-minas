@@ -108,4 +108,18 @@ public class SensorClient {
 
 		return response.getHeaders().getLocation().toString();
 	}
+	
+	
+	/**
+	 * @param Ativo
+	 * @return
+	 */
+	public List<Sensor> findByBarragem(Long id) {
+		RequestEntity<Void> request = RequestEntity.get(URI.create(URI_BASE + "/" + id + "/listbybarragem")).header("Authorization", credencial)
+				.build();
+
+		ResponseEntity<Sensor[]> response = restTemplate.exchange(request, Sensor[].class);
+
+		return Arrays.asList(response.getBody());
+	}
 }

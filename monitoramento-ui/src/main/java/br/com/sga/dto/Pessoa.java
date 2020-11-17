@@ -2,9 +2,18 @@ package br.com.sga.dto;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 public class Pessoa {
 
@@ -25,8 +34,6 @@ public class Pessoa {
 	private String numero;
 
 	private String complemento;
-
-	private Comunicacao comunicacao;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -107,14 +114,6 @@ public class Pessoa {
 
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
-	}
-
-	public Comunicacao getComunicacao() {
-		return comunicacao;
-	}
-
-	public void setComunicacao(Comunicacao comunicacao) {
-		this.comunicacao = comunicacao;
 	}
 
 	public Date getDataInclusao() {

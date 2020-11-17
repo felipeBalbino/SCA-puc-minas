@@ -13,11 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.sga.client.AcaoClient;
-import br.com.sga.client.PessoaClient;
 import br.com.sga.client.PlanoAcaoClient;
-import br.com.sga.dto.Acao;
-import br.com.sga.dto.Pessoa;
 import br.com.sga.dto.PlanoAcao;
 
 /**
@@ -25,7 +21,7 @@ import br.com.sga.dto.PlanoAcao;
  *
  */
 @Controller
-@RequestMapping("/acao")
+@RequestMapping("/planoacao")
 public class AcaoControler {
 
 	@Value("${zuul.ws.gateway}")
@@ -41,9 +37,9 @@ public class AcaoControler {
 	 * @return
 	 */
 	@RequestMapping("/new")
-	public ModelAndView acao() {
-		ModelAndView mv = new ModelAndView("/seguranca/acao/index");
-		mv.addObject(new Acao());
+	public ModelAndView PlanoAcao() {
+		ModelAndView mv = new ModelAndView("/seguranca/planoacao/index");
+		mv.addObject(new PlanoAcao());
 		return mv;
 	}
 
@@ -54,26 +50,26 @@ public class AcaoControler {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String insert(@Validated Acao acao, Errors erros, RedirectAttributes attr) {
+	public String insert(@Validated PlanoAcao planoacao, Errors erros, RedirectAttributes attr) {
 
 		if (erros.hasErrors()) {
-			return "/seguranca/acao/index";
+			return "/seguranca/planoacao/index";
 		}
 
 		try {
-			AcaoClient cliente = new AcaoClient(gateway, user, password);
+			PlanoAcaoClient cliente = new PlanoAcaoClient(gateway, user, password);
 
-			if (acao.getCodigo() == null) {
-				cliente.save(acao);
+			if (planoacao.getCodigo() == null) {
+				cliente.save(planoacao);
 				attr.addFlashAttribute("mensagem", "Ação inserida com sucesso!");
 			} else {
-				cliente.update(acao, acao.getCodigo());
+				cliente.update(planoacao, planoacao.getCodigo());
 				attr.addFlashAttribute("mensagem", "Ação alterada com sucesso!");
 			}
-			return "redirect:/acao";
+			return "redirect:/planoacao";
 		} catch (IllegalArgumentException e) {
 			erros.rejectValue("data", null, e.getMessage());
-			return "/seguranca/acao/index";
+			return "/seguranca/planoacao/index";
 		}
 	}
 
@@ -82,9 +78,9 @@ public class AcaoControler {
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView list() {
-		AcaoClient cliente = new AcaoClient(gateway, user, password);
-		List<Acao> list = cliente.list();
-		ModelAndView mv = new ModelAndView("/seguranca/acao/list");
+		PlanoAcaoClient cliente = new PlanoAcaoClient(gateway, user, password);
+		List<PlanoAcao> list = cliente.list();
+		ModelAndView mv = new ModelAndView("/seguranca/planoacao/list");
 		mv.addObject("list", list);
 		return mv;
 	}
@@ -95,10 +91,10 @@ public class AcaoControler {
 	 */
 	@RequestMapping("{codigo}")
 	public ModelAndView update(@PathVariable("codigo") Long codigo) {
-		AcaoClient cliente = new AcaoClient(gateway, user, password);
-		Acao acao = cliente.findById(codigo);
-		ModelAndView mv = new ModelAndView("/seguranca/acao/aindex");
-		mv.addObject(acao);
+		PlanoAcaoClient cliente = new PlanoAcaoClient(gateway, user, password);
+		PlanoAcao planoacao = cliente.findById(codigo);
+		ModelAndView mv = new ModelAndView("/seguranca/planoacao/aindex");
+		mv.addObject(planoacao);
 		return mv;
 	}
 
@@ -110,28 +106,10 @@ public class AcaoControler {
 	@RequestMapping(value = "{codigo}", method = RequestMethod.DELETE)
 	public String delete(@PathVariable Long codigo, RedirectAttributes attr) {
 
-		AcaoClient cliente = new AcaoClient(gateway, user, password);
+		PlanoAcaoClient cliente = new PlanoAcaoClient(gateway, user, password);
 		cliente.delete(codigo);
 		attr.addFlashAttribute("mensagem", "Ação deletada com sucesso!");
-		return "redirect:/seguranca/acao/list";
-	}
-
-	/**
-	 * @return
-	 */
-	@ModelAttribute("listaPlanoAcao")
-	public List<PlanoAcao> listaPlanoAcao() {
-		PlanoAcaoClient cliente = new PlanoAcaoClient(gateway, user, password);
-		return cliente.list();
-	}
-
-	/**
-	 * @return
-	 */
-	@ModelAttribute("listaPessoas")
-	public List<Pessoa> listaPessoas() {
-		PessoaClient cliente = new PessoaClient(gateway, user, password);
-		return cliente.list();
+		return "redirect:/seguranca/planoacao/list";
 	}
 
 	/**
@@ -139,6 +117,6 @@ public class AcaoControler {
 	 */
 	@ModelAttribute("currentPage")
 	public String currentPage() {
-		return "acao";
+		return "planoacao";
 	}
 }

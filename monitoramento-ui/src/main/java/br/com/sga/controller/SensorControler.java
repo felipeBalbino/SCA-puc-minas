@@ -95,6 +95,10 @@ public class SensorControler {
 	public ModelAndView list() {
 		SensorClient cliente = new SensorClient(gateway, user, password);
 		List<Sensor> list = cliente.list();
+		for(Sensor sensor:list) {
+			AtivosClient ativosClient = new AtivosClient(gateway, user, password);
+			sensor.setAtivo(ativosClient.findById(sensor.getCodigoAtivo()));
+		}
 		ModelAndView mv = new ModelAndView(URL_LIST);
 		mv.addObject("sensores", list);
 		return mv;

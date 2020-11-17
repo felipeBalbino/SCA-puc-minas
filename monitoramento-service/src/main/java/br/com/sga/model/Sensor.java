@@ -51,7 +51,7 @@ public class Sensor {
 	private Date dataInativacao;
 
 	@ManyToOne
-	@JoinColumn(name = "barragem")
+	@JoinColumn(name = "CODIGO_BARRAGEM")
 	private Barragem barragem;
 	
 	@OneToMany(mappedBy = "sensor")

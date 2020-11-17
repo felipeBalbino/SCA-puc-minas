@@ -7,15 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import br.com.sga.model.Acao;
 import br.com.sga.model.PlanoAcao;
-import br.com.sga.repository.AcaoRepository;
 import br.com.sga.repository.PlanoAcaoRepository;
 import br.com.sga.service.exception.ServiceException;
 
-/**
+/**	
  * @author sga
- * 
+ *	
  */
 @Service
 public class PlanoAcaoService {
@@ -31,7 +29,7 @@ public class PlanoAcaoService {
 	}
 
 	/**
-	 * @param acao
+	 * @param planoAcao
 	 * @return
 	 */
 	public PlanoAcao save(PlanoAcao planoAcao) {
@@ -55,7 +53,7 @@ public class PlanoAcaoService {
 		if (planoAcao.isPresent()) {
 			return planoAcao.get();
 		}
-		throw new ServiceException("planoAcao can not be found.");
+		throw new ServiceException("can not be found.");
 	}
 
 	/**
@@ -70,7 +68,7 @@ public class PlanoAcaoService {
 	}
 
 	/**
-	 * @param acao
+	 * @param planoAcao
 	 */
 	public void update(PlanoAcao planoAcao) {
 		findById(planoAcao.getCodigo());

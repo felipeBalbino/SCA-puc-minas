@@ -60,7 +60,7 @@
 				
 				<label for="metodo" class="col-sm-2 control-label">Tipo de Sensor</label>
 				<div class="col-sm-4">
-					<select name="tipoSensor" class="form-control" th:field="*{tipoSensor}">
+					<select name="tipoSensor.codigo" class="form-control" th:field="*{tipoSensor.codigo}">
 						<option value="">Selecione...</option>
 						<option th:each="item : ${listaTipoSensor}" th:value="${item.codigo}"  th:disabled="${item.dataInativacao != null}"
 							th:text="${item.nome}"></option>

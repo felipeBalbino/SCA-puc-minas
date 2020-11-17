@@ -18,16 +18,23 @@
 		<span th:text="${mensagem}"></span>
 	</div>
 
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item active" aria-current="page">Home</li>
+		</ol>
+	</nav>
+
 	<div class="panel panel-default">
 		<div class="panel-heading">
 
 			<div class="clearfix">
-				<h3 class="panel-title titulo-panel">Home</h3>
 				<div class="form-group">
+
 					<div class="row">
 						<div class="col-sm-4">
 							<form method="GET" class="form-horizontal" th:object="${filter}">
-								<select name="id" class="form-control" th:field="*{id}">
+								<select name="id" class="form-control" th:field="*{id}"
+									onchange="this.form.submit()">
 									<option th:each="item : ${listBarragens}"
 										th:value="${item.codigo}"
 										th:disabled="${item.dataInativacao != null}"
@@ -40,10 +47,48 @@
 								th:attr="data-id=1, data-loc=@{/evacuation/}, data-description=Barragem_01"
 								data-target="#modalPanico">Evacuação</a>
 						</div>
-						<div class="col-sm-1">
-							<a class="btn btn-danger titulo-link" th:href="@{/inspecao/new}">Inspecionar</a>
-						</div>
+
 					</div>
+
+					<div class="panel-body">
+						<div class="row">
+							<div class="row row-cols-1 row-cols-md-3">
+								<div class="col mb-4">
+									<div class="card">
+
+										<div class="card-body">
+											<h5 class="card-title">Última Inspeção</h5>
+											<p class="card-text">This is a longer card with
+												supporting text below as a natural lead-in to additional
+												content. This content is a little bit longer.</p>
+											<a class="btn btn-danger titulo-link" th:href="@{/inspecao/new}">Inspecionar</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="panel-body">
+
+						<div class="row row-cols-1 row-cols-md-3">
+						
+							<div th:each="item :${sensores}" class="col mb-4">
+								<div class="card">
+									<div class="card-body">
+										<h5 class="card-title" th:text="${item.codigo}"></h5>
+										<p class="card-text">This is a longer card with supporting
+											text below as a natural lead-in to additional content. This
+											content is a little bit longer.</p>
+									</div>
+								</div>
+							</div>						
+						</div>
+
+
+					</div>
+
 				</div>
 			</div>
 		</div>

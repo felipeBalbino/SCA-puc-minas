@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sga.client.ComunicacaoClient;
-import br.com.sga.dto.Acao;
 import br.com.sga.dto.Comunicacao;
+import br.com.sga.dto.PlanoAcao;
 
 
 @Controller
 @RequestMapping({"/evacuacao"})
-public class EvacuationControler {
+public class EvacuacaoControler {
 	
 	@RequestMapping
 	public String search() {
@@ -37,7 +37,7 @@ public class EvacuationControler {
 				new ComunicacaoClient(gateway, user, password);
 		
 		Comunicacao comunicacao = new Comunicacao();
-		comunicacao.setAcao(new Acao(codigo));
+		comunicacao.setPlanoAcao(new PlanoAcao(codigo));
 		cliente.save(comunicacao);
 		
 		attr.addFlashAttribute("mensagem","Evacuation process started successfully");

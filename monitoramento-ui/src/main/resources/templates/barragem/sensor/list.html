@@ -47,7 +47,7 @@
 					<tbody>
 						<tr th:each="item:${sensores}">
 							<td class="text-center" th:text="${item.codigo}">1</td>
-							<td th:text="${item.codigoAtivo}">1</td>
+							<td th:text="${item.ativo.nome}">1</td>
 							<td class="text-center"
 								th:text="${item.tipoSensor!=null?item.tipoSensor.nome:''}">1</td>
 							<td class="text-center"

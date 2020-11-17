@@ -28,8 +28,8 @@ public class Comunicacao {
 
 	@NotNull(message = "Acao requerido")
 	@ManyToOne(cascade = CascadeType.REFRESH, optional = false)
-	@JoinColumn(name = "CODIGO_ACAO")
-	private Acao acao;
+	@JoinColumn(name = "CODIGO_PLANO_ACAO")
+	private PlanoAcao planoAcao;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message = "Data de inclusão requerida")
@@ -51,8 +51,6 @@ public class Comunicacao {
 		this.codigo = codigo;
 	}
 
-	
-
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -69,13 +67,12 @@ public class Comunicacao {
 		this.dataInclusao = dataInclusao;
 	}
 
-	
-	public Acao getAcao() {
-		return acao;
+	public PlanoAcao getPlanoAcao() {
+		return planoAcao;
 	}
 
-	public void setAcao(Acao acao) {
-		this.acao = acao;
+	public void setPlanoAcao(PlanoAcao planoAcao) {
+		this.planoAcao = planoAcao;
 	}
 
 	public Date getDataInativacao() {

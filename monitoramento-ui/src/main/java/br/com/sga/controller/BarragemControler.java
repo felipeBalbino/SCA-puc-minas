@@ -21,6 +21,7 @@ import br.com.sga.client.TipoMetodoClient;
 import br.com.sga.dto.Ativo;
 import br.com.sga.dto.Barragem;
 import br.com.sga.dto.DanoPotencial;
+import br.com.sga.dto.Sensor;
 import br.com.sga.dto.TipoMetodo;
 
 /**
@@ -94,6 +95,13 @@ public class BarragemControler {
 	public ModelAndView list() {
 		BarragemClient cliente = new BarragemClient(gateway, user, password);
 		List<Barragem> list = cliente.list();
+		
+		for(Barragem barragem:list) {
+			AtivosClient ativosClient = new AtivosClient(gateway, user, password);
+			barragem.setAtivo(ativosClient.findById(barragem.getCodigoAtivo()));
+		}
+		
+		
 		ModelAndView mv = new ModelAndView(URL_LIST);
 		mv.addObject("barragens", list);
 		return mv;

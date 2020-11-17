@@ -22,7 +22,7 @@ public class PlanoAcaoClient {
 
 	private String URI_BASE;
 
-	private String URN_BASE = "/seguranca/planoacao";
+	private String URN_BASE = "/seguranca/planoaco";
 
 	private String credencial;
 
@@ -60,9 +60,9 @@ public class PlanoAcaoClient {
 	 * @param PlanoAcao
 	 * @return
 	 */
-	public String save(PlanoAcao planoAcao) {
+	public String save(PlanoAcao acao) {
 		RequestEntity<PlanoAcao> request = RequestEntity.post(URI.create(URI_BASE)).header("Authorization", credencial)
-				.body(planoAcao);
+				.body(acao);
 
 		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
 
@@ -99,9 +99,9 @@ public class PlanoAcaoClient {
 	 * @param PlanoAcao
 	 * @return
 	 */
-	public String update(PlanoAcao planoAcao, Long id) {
+	public String update(PlanoAcao acao, Long id) {
 		RequestEntity<PlanoAcao> request = RequestEntity.put(URI.create(URI_BASE + "/" + id))
-				.header("Authorization", credencial).body(planoAcao);
+				.header("Authorization", credencial).body(acao);
 
 		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
 

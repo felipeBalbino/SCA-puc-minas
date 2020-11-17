@@ -33,7 +33,7 @@
 						<tr>
 							<th class="text-center col-md-1">#</th>
 							<th>Descrição</th>
-	
+							<th>Ativo</th>
 							<th class="text-center col-md-2">Localização</th>
 							<th class="text-center col-md-2">Método</th>
 							<th>Data Inclusão </th>
@@ -44,7 +44,10 @@
 					</thead>
 					<tbody>
 						<tr th:each="item:${barragens}">
+						
+							
 							<td class="text-center" th:text="${item.codigo}">1</td>
+							<td class="text-center" th:text="${item.ativo.nome}">1</td>
 							<td th:text="${item.nome}">1</td>
 
 							<td class="text-center"><a  target="_blank"
@@ -73,7 +76,7 @@
 
 						</tr>
 						<tr th:if="${#lists.isEmpty(barragens)}">
-							<td colspan="6">Barragens não encontradas</td>
+							<td colspan="9">Barragens não encontradas</td>
 						</tr>
 					</tbody>
 				</table>

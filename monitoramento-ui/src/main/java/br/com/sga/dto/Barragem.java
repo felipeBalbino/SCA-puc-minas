@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author sga
@@ -42,6 +43,9 @@ public class Barragem {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataInativacao;
+	
+	@JsonIgnore
+	private Ativo ativo;
 
 	public Long getCodigo() {
 		return codigo;
@@ -129,6 +133,14 @@ public class Barragem {
 
 	public void setDataInativacao(Date dataInativacao) {
 		this.dataInativacao = dataInativacao;
+	}
+
+	public Ativo getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Ativo ativo) {
+		this.ativo = ativo;
 	}
 
 	@Override

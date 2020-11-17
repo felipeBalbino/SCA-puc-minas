@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author sga
@@ -31,6 +32,9 @@ public class Sensor {
 	private Barragem barragem;
 	
 	private List<LeituraSensor> leituras;
+	
+	@JsonIgnore
+	private Ativo ativo;
 
 	public Long getCodigo() {
 		return codigo;
@@ -112,5 +116,15 @@ public class Sensor {
 	public void setLeituras(List<LeituraSensor> leituras) {
 		this.leituras = leituras;
 	}
+
+	public Ativo getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Ativo ativo) {
+		this.ativo = ativo;
+	}
+	
+	
 
 }

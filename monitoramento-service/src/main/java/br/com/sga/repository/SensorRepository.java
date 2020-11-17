@@ -22,4 +22,10 @@ public interface SensorRepository extends JpaRepository<Sensor, Long> {
 	 * @return
 	 */
 	public List<Sensor> findByCodigoAtivoContaining(Long codigoAtivo);
+	
+	/**
+	 * @param barragem
+	 * @return
+	 */
+	public List<Sensor> findByBarragem(Barragem barragem);
 }

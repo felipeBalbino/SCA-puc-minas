@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.sga.model.Acao;
 import br.com.sga.model.Comunicacao;
+import br.com.sga.model.PlanoAcao;
 import br.com.sga.service.ComunicacaoService;
 
 @RestController
@@ -31,8 +31,8 @@ public class ComunicacaoResource {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)	
-	public ResponseEntity<Void> save(@Valid @RequestBody Acao acao) {
-		Comunicacao comunicacao = service.save(acao);
+	public ResponseEntity<Void> save(@Valid @RequestBody PlanoAcao planoAcao) {
+		Comunicacao comunicacao = service.save(planoAcao);
 
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(comunicacao.getCodigo())
 				.toUri();

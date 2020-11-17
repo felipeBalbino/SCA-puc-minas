@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.com.sga.model.Barragem;
 import br.com.sga.model.Sensor;
 import br.com.sga.service.SensorService;
 
@@ -31,8 +32,8 @@ public class SensorResource {
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<List<Sensor>> findAll() {
-		List<Sensor> tipoAtivos = sensorService.findAll();
-		return ResponseEntity.status(HttpStatus.OK).body(tipoAtivos);
+		List<Sensor> lista = sensorService.findAll();
+		return ResponseEntity.status(HttpStatus.OK).body(lista);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
@@ -67,6 +68,16 @@ public class SensorResource {
 				.path("/{id}").buildAndExpand(sensor.getCodigo()).toUri();
 		
 		return ResponseEntity.created(uri).build();
+	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/{id}/listbybarragem", method = RequestMethod.GET)
+	public ResponseEntity<List<Sensor>> listbybarragem(@PathVariable("id") Long id) {
+		List<Sensor> lista = sensorService.findByBarragem(id);
+		return ResponseEntity.status(HttpStatus.OK).body(lista);
 	}
 	
 	

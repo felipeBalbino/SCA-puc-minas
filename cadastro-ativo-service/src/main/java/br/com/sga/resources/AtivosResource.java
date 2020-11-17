@@ -17,12 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.sga.client.BarragemClient;
-import br.com.sga.client.model.Barragem;
 import br.com.sga.model.Ativo;
-import br.com.sga.model.Manutencao;
 import br.com.sga.service.AtivosService;
-import br.com.sga.service.ManutencaoService;
 
 @RestController
 @RequestMapping("/ativos")
@@ -53,11 +49,6 @@ public class AtivosResource {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> save(@Valid @RequestBody Ativo ativo) {
 		ativo = ativosService.save(ativo);
-		if(ativo!= null && ativo.getCodigo() != null) {
-			Barragem barragem = new Barragem(ativo.getCodigo());
-			BarragemClient cliente = new BarragemClient(gateway, user, password);
-			cliente.save(barragem);
-		}
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(ativo.getCodigo()).toUri();

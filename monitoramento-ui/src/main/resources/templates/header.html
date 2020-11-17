@@ -103,7 +103,7 @@
 						
 						
 						<li
-							th:class="${currentPage == 'acao' || currentPage == 'comunicacao' || currentPage == 'pessoa' || currentPage ==  'planoacao'} ? 'sidebar-item has-sub active' : 'sidebar-item has-sub'">
+							th:class="${currentPage == 'comunicacao' || currentPage == 'pessoa' || currentPage ==  'planoacao'} ? 'sidebar-item has-sub active' : 'sidebar-item has-sub'">
 							<a href="#" class='sidebar-link'> 
 							
 							
@@ -112,24 +112,13 @@
 							</a>
 
 							<ul class="submenu "
-								th:class="${currentPage == 'acao' || currentPage == 'comunicacao' || currentPage == 'pessoa'  || currentPage ==  'planoacao'} ? 'submenu active' : 'submenu'">
+								th:class="${currentPage == 'comunicacao' || currentPage == 'pessoa'  || currentPage ==  'planoacao'} ? 'submenu active' : 'submenu'">
 
-								<li
-									th:class="${currentPage == 'acao'} ? ' active' : ''"><a
-									sec:authorize="hasAuthority('ENGENHEIRO')" href="/acao"
-									> <img alt="" src="/images/dam.png" width="24px"> Ação
-								</a></li>
-								
+
 								<li
 									th:class="${currentPage == 'comunicacao'} ? 'active' : ''"><a
 									sec:authorize="hasAuthority('ENGENHEIRO')" href="/comunicacao"
 									> <i data-feather="thermometer" width="20"></i> Comunicação 
-								</a></li>
-
-								<li
-									th:class="${currentPage == 'pessoa'} ? 'active' : ''"><a
-									sec:authorize="hasAuthority('CONSULTOR')" href="/pessoa"
-									> <i data-feather="search" width="20"></i> Pessoa
 								</a></li>
 								
 								<li
@@ -137,6 +126,15 @@
 									sec:authorize="hasAuthority('CONSULTOR')" href="/planoacao"
 									> <i data-feather="search" width="20"></i> Plano Ação
 								</a></li>
+
+
+								<li
+									th:class="${currentPage == 'pessoa'} ? 'active' : ''"><a
+									sec:authorize="hasAuthority('CONSULTOR')" href="/pessoa"
+									> <i data-feather="search" width="20"></i> Pessoa
+								</a></li>
+								
+								
 							</ul>
 
 						</li>

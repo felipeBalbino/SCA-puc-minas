@@ -43,7 +43,7 @@ public class Inspecao {
 	private Double volume;
 
 	@ManyToOne
-	@JoinColumn(name = "barragem")
+	@JoinColumn(name = "CODIGO_BARRAGEM")
 	private Barragem barragem;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
