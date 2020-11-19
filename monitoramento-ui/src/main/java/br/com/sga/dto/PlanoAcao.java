@@ -2,6 +2,7 @@ package br.com.sga.dto;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,7 +25,7 @@ public class PlanoAcao {
 
 	private Long codigo;
 
-	private List<Pessoa> pessoas;
+	private Set<Pessoa> pessoas;
 
 	private Long codigoBarragem;
 
@@ -33,7 +34,7 @@ public class PlanoAcao {
 	@Enumerated(EnumType.ORDINAL)
 	private GrauRiscoEnum grauRisco;
 
-	private String mensagemAlterta;
+	private String mensagemAlerta;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -52,11 +53,11 @@ public class PlanoAcao {
 		this.codigo = codigo;
 	}
 
-	public List<Pessoa> getPessoas() {
+	public Set<Pessoa> getPessoas() {
 		return pessoas;
 	}
 
-	public void setPessoas(List<Pessoa> pessoas) {
+	public void setPessoas(Set<Pessoa> pessoas) {
 		this.pessoas = pessoas;
 	}
 
@@ -108,12 +109,12 @@ public class PlanoAcao {
 		this.grauRisco = grauRisco;
 	}
 
-	public String getMensagemAlterta() {
-		return mensagemAlterta;
+	public String getMensagemAlerta() {
+		return mensagemAlerta;
 	}
 
-	public void setMensagemAlterta(String mensagemAlterta) {
-		this.mensagemAlterta = mensagemAlterta;
+	public void setMensagemAlerta(String mensagemAlerta) {
+		this.mensagemAlerta = mensagemAlerta;
 	}
 
 	@Override

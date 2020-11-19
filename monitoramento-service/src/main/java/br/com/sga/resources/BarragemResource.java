@@ -123,6 +123,9 @@ public class BarragemResource {
 		inspecao.setCodigo(idManutencao);
 		InspecaoService.update(inspecao);
 
-		return ResponseEntity.noContent().build();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(inspecao.getCodigo()).toUri();
+		
+		return ResponseEntity.created(uri).build();
 	}
 }

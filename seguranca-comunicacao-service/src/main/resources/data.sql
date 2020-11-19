@@ -4,14 +4,20 @@ insert into pessoa (CODIGO_PESSOA,NOME_COMPLETO,DATA_NASCIMENTO,EMAIL, TELEFONE,
 insert into pessoa (CODIGO_PESSOA,NOME_COMPLETO,DATA_NASCIMENTO,EMAIL, TELEFONE,CEP,NUMERO,COMPLEMENTO, DATA_INCLUSAO) values(4,'Luiza Sebastiana da Costa'		,'1988-11-01','llaiscarolinapinto@salvagninigroup.com'	,'(61) 2744-6935','73753-074',30,'Quadra 5 MC','2020-11-01');
 insert into pessoa (CODIGO_PESSOA,NOME_COMPLETO,DATA_NASCIMENTO,EMAIL, TELEFONE,CEP,NUMERO,COMPLEMENTO, DATA_INCLUSAO) values(5,'Carlos Caleb Monteiro'			,'1988-11-01','claudiopaulomoreira@alphacandies.com.br'	,'(61) 2744-6935','73753-074',30,'Quadra 5 MC','2020-11-01');
 
-insert into plano_acao (CODIGO_PLANO_ACAO, DESCRICAO, GRAU_RISCO, MENSAGEM_ALERTA, DATA_INCLUSAO) values(1,'DESCRICAO 1',0,'MENSAGEM_ALERTA 1','2020-11-01');
-insert into plano_acao (CODIGO_PLANO_ACAO, DESCRICAO, GRAU_RISCO, MENSAGEM_ALERTA, DATA_INCLUSAO) values(2,'DESCRICAO 2',1,'MENSAGEM_ALERTA 1','2020-11-01');
-insert into plano_acao (CODIGO_PLANO_ACAO, DESCRICAO, GRAU_RISCO, MENSAGEM_ALERTA, DATA_INCLUSAO) values(3,'DESCRICAO 3',2,'MENSAGEM_ALERTA 1','2020-11-01');
-insert into plano_acao (CODIGO_PLANO_ACAO, DESCRICAO, GRAU_RISCO, MENSAGEM_ALERTA, DATA_INCLUSAO) values(4,'DESCRICAO 4',0,'MENSAGEM_ALERTA 1','2020-11-01');
-insert into plano_acao (CODIGO_PLANO_ACAO, DESCRICAO, GRAU_RISCO, MENSAGEM_ALERTA, DATA_INCLUSAO) values(5,'DESCRICAO 5',1,'MENSAGEM_ALERTA 1','2020-11-01');
+insert into plano_acao(CODIGO_PLANO_ACAO, DESCRICAO, GRAU_RISCO, MENSAGEM_ALERTA, DATA_INCLUSAO,CODIGO_BARRAGEM) values(1,'DESCRICAO 1',0,'MENSAGEM_ALERTA 1','2020-11-01',1);
+insert into plano_acao(CODIGO_PLANO_ACAO, DESCRICAO, GRAU_RISCO, MENSAGEM_ALERTA, DATA_INCLUSAO,CODIGO_BARRAGEM) values(2,'DESCRICAO 2',1,'MENSAGEM_ALERTA 1','2020-11-01',2);
+insert into plano_acao(CODIGO_PLANO_ACAO, DESCRICAO, GRAU_RISCO, MENSAGEM_ALERTA, DATA_INCLUSAO,CODIGO_BARRAGEM) values(3,'DESCRICAO 3',2,'MENSAGEM_ALERTA 1','2020-11-01',3);
+insert into plano_acao(CODIGO_PLANO_ACAO, DESCRICAO, GRAU_RISCO, MENSAGEM_ALERTA, DATA_INCLUSAO,CODIGO_BARRAGEM) values(4,'DESCRICAO 4',0,'MENSAGEM_ALERTA 1','2020-11-01',4);
+insert into plano_acao(CODIGO_PLANO_ACAO, DESCRICAO, GRAU_RISCO, MENSAGEM_ALERTA, DATA_INCLUSAO,CODIGO_BARRAGEM) values(5,'DESCRICAO 5',1,'MENSAGEM_ALERTA 1','2020-11-01',5);
 
-insert into acao (CODIGO_ACAO,CODIGO_BARRAGEM,CODIGO_PLANO_ACAO,DATA_INCLUSAO) values(1,1,1,'2020-11-01');
-insert into acao (CODIGO_ACAO,CODIGO_BARRAGEM,CODIGO_PLANO_ACAO,DATA_INCLUSAO) values(2,2,2,'2020-11-01');
-insert into acao (CODIGO_ACAO,CODIGO_BARRAGEM,CODIGO_PLANO_ACAO,DATA_INCLUSAO) values(3,3,3,'2020-11-01');
-insert into acao (CODIGO_ACAO,CODIGO_BARRAGEM,CODIGO_PLANO_ACAO,DATA_INCLUSAO) values(4,4,4,'2020-11-01');
-insert into acao (CODIGO_ACAO,CODIGO_BARRAGEM,CODIGO_PLANO_ACAO,DATA_INCLUSAO) values(5,5,5,'2020-11-01');
+insert into plano_acao_pessoas(plano_acao_codigo_plano_acao, pessoas_codigo_pessoa) values(1,1);
+insert into plano_acao_pessoas(plano_acao_codigo_plano_acao, pessoas_codigo_pessoa) values(1,2);
+insert into plano_acao_pessoas(plano_acao_codigo_plano_acao, pessoas_codigo_pessoa) values(1,3);
+insert into plano_acao_pessoas(plano_acao_codigo_plano_acao, pessoas_codigo_pessoa) values(1,4);
+insert into plano_acao_pessoas(plano_acao_codigo_plano_acao, pessoas_codigo_pessoa) values(1,5);
+
+insert into comunicacao(CODIGO_COMUNICACAO,CODIGO_PLANO_ACAO,DATA_INCLUSAO) values(1,1,'2020-11-01');
+insert into comunicacao(CODIGO_COMUNICACAO,CODIGO_PLANO_ACAO,DATA_INCLUSAO) values(2,2,'2020-11-01');
+insert into comunicacao(CODIGO_COMUNICACAO,CODIGO_PLANO_ACAO,DATA_INCLUSAO) values(3,3,'2020-11-01');
+insert into comunicacao(CODIGO_COMUNICACAO,CODIGO_PLANO_ACAO,DATA_INCLUSAO) values(4,4,'2020-11-01');
+insert into comunicacao(CODIGO_COMUNICACAO,CODIGO_PLANO_ACAO,DATA_INCLUSAO) values(5,5,'2020-11-01');

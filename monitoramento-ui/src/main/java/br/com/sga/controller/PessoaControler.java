@@ -13,16 +13,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.sga.client.PlanoAcaoClient;
-import br.com.sga.dto.PlanoAcao;
+import br.com.sga.client.PessoaClient;
+import br.com.sga.dto.Pessoa;
 
 /**
  * @author sga
  *
  */
 @Controller
-@RequestMapping("/planoacao")
-public class AcaoControler {
+@RequestMapping("/pessoa")
+public class PessoaControler {
 
 	@Value("${zuul.ws.gateway}")
 	private String gateway;
@@ -33,13 +33,16 @@ public class AcaoControler {
 	@Value("${zuul.ws.password}")
 	private String password;
 
+	static final String URL_INDEX = "/seguranca/pessoa/index";
+	static final String URL_LIST = "/seguranca/pessoa/list";
+
 	/**
 	 * @return
 	 */
 	@RequestMapping("/new")
-	public ModelAndView PlanoAcao() {
-		ModelAndView mv = new ModelAndView("/seguranca/planoacao/index");
-		mv.addObject(new PlanoAcao());
+	public ModelAndView comunicacoes() {
+		ModelAndView mv = new ModelAndView(URL_INDEX);
+		mv.addObject(new Pessoa());
 		return mv;
 	}
 
@@ -50,26 +53,27 @@ public class AcaoControler {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String insert(@Validated PlanoAcao planoacao, Errors erros, RedirectAttributes attr) {
+	public String insert(@Validated Pessoa pessoa, Errors erros, RedirectAttributes attr) {
 
 		if (erros.hasErrors()) {
-			return "/seguranca/planoacao/index";
+			return URL_INDEX;
 		}
 
 		try {
-			PlanoAcaoClient cliente = new PlanoAcaoClient(gateway, user, password);
+			PessoaClient cliente = new PessoaClient(gateway, user, password);
 
-			if (planoacao.getCodigo() == null) {
-				cliente.save(planoacao);
-				attr.addFlashAttribute("mensagem", "Ação inserida com sucesso!");
+			if (pessoa.getCodigo() == null) {
+				cliente.save(pessoa);
+				attr.addFlashAttribute("mensagem", "Pessoa adicionado com sucesso!");
 			} else {
-				cliente.update(planoacao, planoacao.getCodigo());
-				attr.addFlashAttribute("mensagem", "Ação alterada com sucesso!");
+				cliente.update(pessoa, pessoa.getCodigo());
+				attr.addFlashAttribute("mensagem", "Pessoa alterado com sucesso!");
 			}
-			return "redirect:/planoacao";
+
+			return "redirect:/pessoa";
 		} catch (IllegalArgumentException e) {
 			erros.rejectValue("data", null, e.getMessage());
-			return "/seguranca/planoacao/index";
+			return URL_INDEX;
 		}
 	}
 
@@ -78,10 +82,10 @@ public class AcaoControler {
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView list() {
-		PlanoAcaoClient cliente = new PlanoAcaoClient(gateway, user, password);
-		List<PlanoAcao> list = cliente.list();
-		ModelAndView mv = new ModelAndView("/seguranca/planoacao/list");
-		mv.addObject("list", list);
+		PessoaClient cliente = new PessoaClient(gateway, user, password);
+		List<Pessoa> list = cliente.list();
+		ModelAndView mv = new ModelAndView(URL_LIST);
+		mv.addObject("pessoas", list);
 		return mv;
 	}
 
@@ -91,10 +95,10 @@ public class AcaoControler {
 	 */
 	@RequestMapping("{codigo}")
 	public ModelAndView update(@PathVariable("codigo") Long codigo) {
-		PlanoAcaoClient cliente = new PlanoAcaoClient(gateway, user, password);
-		PlanoAcao planoacao = cliente.findById(codigo);
-		ModelAndView mv = new ModelAndView("/seguranca/planoacao/aindex");
-		mv.addObject(planoacao);
+		PessoaClient cliente = new PessoaClient(gateway, user, password);
+		Pessoa pessoa = cliente.findById(codigo);
+		ModelAndView mv = new ModelAndView(URL_INDEX);
+		mv.addObject(pessoa);
 		return mv;
 	}
 
@@ -106,10 +110,19 @@ public class AcaoControler {
 	@RequestMapping(value = "{codigo}", method = RequestMethod.DELETE)
 	public String delete(@PathVariable Long codigo, RedirectAttributes attr) {
 
-		PlanoAcaoClient cliente = new PlanoAcaoClient(gateway, user, password);
+		PessoaClient cliente = new PessoaClient(gateway, user, password);
 		cliente.delete(codigo);
-		attr.addFlashAttribute("mensagem", "Ação deletada com sucesso!");
-		return "redirect:/seguranca/planoacao/list";
+		attr.addFlashAttribute("mensagem", "Pessoa deletado com sucesso!");
+		return "redirect:/pessoa";
+	}
+
+	/**
+	 * @return
+	 */
+	@ModelAttribute("listaComunicacoes")
+	public List<Pessoa> listaComunicacoes() {
+		PessoaClient cliente = new PessoaClient(gateway, user, password);
+		return cliente.list();
 	}
 
 	/**
@@ -117,6 +130,6 @@ public class AcaoControler {
 	 */
 	@ModelAttribute("currentPage")
 	public String currentPage() {
-		return "planoacao";
+		return "pessoa";
 	}
 }

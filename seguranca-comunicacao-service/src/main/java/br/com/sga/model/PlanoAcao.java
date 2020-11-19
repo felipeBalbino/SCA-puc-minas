@@ -1,7 +1,7 @@
 package br.com.sga.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +18,6 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "PLANO_ACAO")
@@ -26,12 +25,11 @@ public class PlanoAcao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "CODIGO_ACAO")
+	@Column(name = "CODIGO_PLANO_ACAO")
 	private Long codigo;
 
 	@ManyToMany
-	@JsonIgnore
-	private List<Pessoa> pessoas;
+	private Set<Pessoa> pessoas;
 
 	private Long codigoBarragem;
 
@@ -46,7 +44,7 @@ public class PlanoAcao {
 	@NotNull
 	@Size(max = 130)
 	@Column(name = "MENSAGEM_ALERTA", length = 130, nullable = false)
-	private String mensagemAlterta;
+	private String mensagemAlerta;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message = "Data de inclusão requerida")
@@ -68,11 +66,11 @@ public class PlanoAcao {
 		this.codigo = codigo;
 	}
 
-	public List<Pessoa> getPessoas() {
+	public Set<Pessoa> getPessoas() {
 		return pessoas;
 	}
 
-	public void setPessoas(List<Pessoa> pessoas) {
+	public void setPessoas(Set<Pessoa> pessoas) {
 		this.pessoas = pessoas;
 	}
 
@@ -124,12 +122,12 @@ public class PlanoAcao {
 		this.grauRisco = grauRisco;
 	}
 
-	public String getMensagemAlterta() {
-		return mensagemAlterta;
+	public String getMensagemAlerta() {
+		return mensagemAlerta;
 	}
 
-	public void setMensagemAlterta(String mensagemAlterta) {
-		this.mensagemAlterta = mensagemAlterta;
+	public void setMensagemAlerta(String mensagemAlerta) {
+		this.mensagemAlerta = mensagemAlerta;
 	}
 
 	@Override

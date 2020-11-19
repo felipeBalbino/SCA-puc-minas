@@ -32,7 +32,7 @@ public class LeituraSensorComponent {
 	private SensorService sensorService;
 	
 
-	@Scheduled(fixedRate = 2000)
+	@Scheduled(fixedRate = 9000)
 	public void mockLeituraSensor() {
 		logger.info("Criação de leitura de sensor para todos os sensores cadastrados.");
 		

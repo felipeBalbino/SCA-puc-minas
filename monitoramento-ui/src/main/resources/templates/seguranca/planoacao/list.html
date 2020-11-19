@@ -4,7 +4,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
-<title>Lista de Comunicações</title>
+<title>Lista de Plano de Ação</title>
 </head>
 
 <section layout:fragment="conteudo">
@@ -19,7 +19,7 @@
 	</div>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="#">Lista de Comunicações</a></li>
+			<li class="breadcrumb-item active"><a href="#">Lista de Plano de Ação</a></li>
 		</ol>
 	</nav>
 	<div class="panel panel-default">
@@ -32,7 +32,11 @@
 					<thead>
 						<tr>
 							<th class="text-center col-md-1">#</th>
-							<th class="text-center col-md-2">Plano de Ação</th>
+							<th class="text-center col-md-2">Barragem</th>
+							<th class="text-center col-md-2">Pessoas</th>
+							<th class="text-center col-md-2">Descrição</th>
+							<th class="text-center col-md-2">Mensagem de Alerta</th>
+							<th class="text-center col-md-2">Grau de Risco</th>
 							<th>Data Inclusão </th>
 							<th>Data Inativação </th>
 							<th class="col-md-1"></th>
@@ -40,37 +44,48 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="item:${comunicacoes}">
+						<tr th:each="item:${acoes}">
 							<td class="text-center" th:text="${item.codigo}">1</td>
 
-							<td class="text-center" th:text="${item.planoAcao!=null?item.planoAcao.descricao:''}">1</td>
+							<td class="text-center" th:text="${item.codigoBarragem}">1</td>
 							
+							<td class="text-center">
+								<div th:each="pessoa : ${item.pessoas}">
+									<span th:text="${{pessoa.nomeCompleto}}"></span>
+								</div>
+							</td>
+							
+							<td class="text-center" th:text="${item.descricao}">1</td>
+							
+							<td class="text-center" th:text="${item.mensagemAlerta}">1</td>
+							<td class="text-center" th:text="${item.grauRisco}">1</td>
+	
 							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
 							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy')}">1</td>
 							
 							<td class="text-center"><a 
-								th:href="@{/comunicacao/{id}(id=${item.codigo})}" title="Alterar"
+								th:href="@{/planoacao/{id}(id=${item.codigo})}" title="Alterar"
 								rel="tooltip" data-toggle="tooltip" data-placement="top"> <i data-feather="edit" width="20"></i>
 							</a></td>
 							
 							<td class="text-center"><a 
 								data-toggle="modal"
-								th:attr="data-id=${item.codigo}, data-loc=@{/comunicacao/}, data-description=${item.codigo}"
+								th:attr="data-id=${item.codigo}, data-loc=@{/planoacao/}, data-description=${item.codigo}"
 								title="Excluir" rel="tooltip" data-placement="top"
 								data-target="#modalDelete"> <i data-feather="trash" width="20"></i>  
 							</a></td>
 
 
 						</tr>
-						<tr th:if="${#lists.isEmpty(comunicacoes)}">
-							<td colspan="6">Comunicações não encontradas</td>
+						<tr th:if="${#lists.isEmpty(acoes)}">
+							<td colspan="6">Plano Ação não encontradas</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 			<div class="panel-heading">
 				<div class="clearfix">
-					<a class="btn btn-link titulo-link" th:href="@{/comunicacao/new}">Nova Comunicação</a>
+					<a class="btn btn-link titulo-link" th:href="@{/planoacao/new}">Novo Plano Ação</a>
 				</div>
 			</div> 
 		</div>

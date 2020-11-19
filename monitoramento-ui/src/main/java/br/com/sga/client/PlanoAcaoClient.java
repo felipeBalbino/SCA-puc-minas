@@ -22,7 +22,7 @@ public class PlanoAcaoClient {
 
 	private String URI_BASE;
 
-	private String URN_BASE = "/seguranca/planoaco";
+	private String URN_BASE = "/seguranca/planoacao";
 
 	private String credencial;
 

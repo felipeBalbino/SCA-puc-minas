@@ -4,14 +4,14 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
-<title>Registro de Barragem</title>
+<title>Registro de Comunicações</title>
 </head>
 
 <section layout:fragment="conteudo">
 
 
-	<form class="form-horizontal" method="post" th:action="@{/barragem}"
-		th:object="${barragem}">
+	<form class="form-horizontal" method="post" th:action="@{/comunicacao}"
+		th:object="${comunicacao}">
 
 		<div class="alert alert-success alert-dismissible"
 			th:if="${!#strings.isEmpty(mensagem)}" role="alert">
@@ -30,8 +30,8 @@
 
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a th:href="@{/barragem}">Lista de Barragens</a></li>
-				<li class="breadcrumb-item active" aria-current="page">Registro de Barragem</li>
+				<li class="breadcrumb-item"><a th:href="@{/comunicacao}">Lista de Comunicações</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Registro de Comunicações</li>
 			</ol>
 		</nav>
 
@@ -49,52 +49,16 @@
 					</div>
 				</div>
 				
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('nome')} ? 'has-error'">
-					<label for="nome" class="col-sm-2 control-label">Nome</label>
-					<div class="col-sm-4">
-						<input id="nome" th:field="*{nome}" type="text"
-							class="form-control" placeholder="Name" />
-					</div>
-				</div>
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('latitude')} ? 'has-error'">
-					<label for="latitude" class="col-sm-2 control-label">Latitude</label>
-					<div class="col-sm-4">
-						<input id="latitude" th:field="*{latitude}" type="text"
-							class="form-control" placeholder="Latitude" />
-					</div>
-				</div>
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('longitude')} ? 'has-error'">
-					<label for="longitude" class="col-sm-2 control-label">Longitude</label>
-					<div class="col-sm-4">
-						<input id="longitude" th:field="*{longitude}" type="text"
-							class="form-control" placeholder="Longitude" />
-					</div>
-				</div>
-				
-				<label for="metodo" class="col-sm-2 control-label">Ativo</label>
+				<label for="metodo" class="col-sm-2 control-label">Plano de Ação</label>
 				<div class="col-sm-4">
-					<select name="codigoAtivo" class="form-control" th:field="*{codigoAtivo}">
+					<select name="planoAcao.codigo" class="form-control" th:field="*{planoAcao.codigo}">
 						<option value="">Selecione...</option>
-						<option th:each="item : ${listaAtivos}" th:value="${item.codigo}"  th:disabled="${item.dataInativacao != null}"
-							th:text="${item.nome}"></option>
+						<option th:each="item : ${listaPlanoAcao}" th:value="${item.codigo}"  th:disabled="${item.dataInativacao != null}"
+							th:text="${item.descricao}"></option>
 					</select>
 				</div>
 
 
-				<label for="metodo" class="col-sm-2 control-label">Método</label>
-				<div class="col-sm-4">
-					<select name="tipoMetodo.codigo" class="form-control" th:field="*{tipoMetodo.codigo}">
-						<option value="">Selecione...</option>
-						<option th:each="item : ${listaTipoMetodos}" th:value="${item.codigo}"  th:disabled="${item.dataInativacao != null}"
-							th:text="${item.nome}"></option>
-					</select>
-				</div>
-				
 				<div class="form-group"
 					th:classappend="${#fields.hasErrors('dataInativacao')} ? 'has-error'">
 					<label for="dataInativacao" class="col-sm-2 control-label">Data de Inativaçao</label>

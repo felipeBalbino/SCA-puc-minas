@@ -4,7 +4,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
-<title>Lista de Barragem</title>
+<title>Lista de Pessoas</title>
 </head>
 
 <section layout:fragment="conteudo">
@@ -19,7 +19,7 @@
 	</div>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="#">Lista de Barragem</a></li>
+			<li class="breadcrumb-item active"><a href="#">Lista de Pessoas</a></li>
 		</ol>
 	</nav>
 	<div class="panel panel-default">
@@ -32,58 +32,59 @@
 					<thead>
 						<tr>
 							<th class="text-center col-md-1">#</th>
-							<th>Descrição</th>
-	
-							<th class="text-center col-md-2">Localização</th>
-							<th class="text-center col-md-2">Método</th>
-							<th class="col-md-1"></th>
+							<th class="text-center col-md-2">nomeCompleto</th>
+							<th class="text-center col-md-2">dataNascimento</th>
+							<th class="text-center col-md-2">email</th>
+							<th class="text-center col-md-2">telefone</th>
+							<th class="text-center col-md-2">cep</th>
+							<th class="text-center col-md-2">numero</th>
+							<th class="text-center col-md-2">complemento</th>
+							
+							<th>Data Inclusão </th>
+							<th>Data Inativação </th>
 							<th class="col-md-1"></th>
 							<th class="col-md-1"></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="item:${barragens}">
+						<tr th:each="item:${pessoas}">
 							<td class="text-center" th:text="${item.codigo}">1</td>
-							<td th:text="${item.nome}">1</td>
 
-							<td class="text-center"><a  target="_blank"
-								th:href="@{https://www.google.com/maps/search/?api=1&query={lat},{long}(lat=${item.latitude},long=${item.longitude})}" title="Mapa"
-								rel="tooltip" data-toggle="tooltip" data-placement="top"> <i data-feather="map" width="20"></i>
-							</a></td>
+							<td class="text-center" th:text="${item.nomeCompleto}">1</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataNascimento, 'dd/MM/yyyy')}">1</td>
+							<td class="text-center" th:text="${item.email}">1</td>
+							<td class="text-center" th:text="${item.telefone}">1</td>
+							<td class="text-center" th:text="${item.cep}">1</td>
+							<td class="text-center" th:text="${item.numero}">1</td>
+							<td class="text-center" th:text="${item.complemento}">1</td>
 							
-								
-							<td class="text-center" th:text="${item.tipoMetodo!=null?item.tipoMetodo.nome:''}">1</td>
+	
+							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy')}">1</td>
 							
 							<td class="text-center"><a 
-								th:href="@{/barragem/{id}(id=${item.codigo})}" title="Alterar"
+								th:href="@{/pessoa/{id}(id=${item.codigo})}" title="Alterar"
 								rel="tooltip" data-toggle="tooltip" data-placement="top"> <i data-feather="edit" width="20"></i>
 							</a></td>
 							
 							<td class="text-center"><a 
 								data-toggle="modal"
-								th:attr="data-id=${item.codigo}, data-loc=@{/barragem/}, data-description=${item.nome}"
+								th:attr="data-id=${item.codigo}, data-loc=@{/pessoa/}, data-description=${item.nomeCompleto}"
 								title="Excluir" rel="tooltip" data-placement="top"
 								data-target="#modalDelete"> <i data-feather="trash" width="20"></i>  
 							</a></td>
-							<td class="text-center">
-								<a class="btn btn-danger btn-xs"
-								data-toggle="modal"
-								th:attr="data-id=${item.codigo}, data-loc=@{/evacuar/}, data-description=${item.nome}"
-								title="Evacuação" rel="tooltip" data-placement="top"
-								data-target="#modalPanico"> Evacuar
-								</a>
-							</td>
+
 
 						</tr>
-						<tr th:if="${#lists.isEmpty(barragens)}">
-							<td colspan="6">Barragens não encontradas</td>
+						<tr th:if="${#lists.isEmpty(pessoas)}">
+							<td colspan="6">Pessoas não encontradas</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 			<div class="panel-heading">
 				<div class="clearfix">
-					<a class="btn btn-link titulo-link" th:href="@{/barragem/new}">Nova Barragem</a>
+					<a class="btn btn-link titulo-link" th:href="@{/pessoa/new}">Nova Pessoa</a>
 				</div>
 			</div> 
 		</div>

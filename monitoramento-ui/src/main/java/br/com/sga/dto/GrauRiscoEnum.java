@@ -3,7 +3,7 @@ package br.com.sga.dto;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum GrauRiscoEnum {
-	BAIXO("Baixo"), MEDIO("Media"), TELEFONE("Alto");
+	BAIXO("Baixo"), MEDIO("Media"), ALTO("Alto");
 
 	private String descricao;
 

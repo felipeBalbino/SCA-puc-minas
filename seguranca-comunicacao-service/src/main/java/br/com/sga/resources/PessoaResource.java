@@ -79,7 +79,10 @@ public class PessoaResource {
 		pessoa.setCodigo(id);
 		service.update(pessoa);
 
-		return ResponseEntity.noContent().build();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(pessoa.getCodigo()).toUri();
+		
+		return ResponseEntity.created(uri).build();
 	}
 
 }
