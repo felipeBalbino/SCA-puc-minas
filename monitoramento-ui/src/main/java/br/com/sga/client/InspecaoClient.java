@@ -27,7 +27,7 @@ public class InspecaoClient {
 
 	private String URN_BASE = "/monitoramento/inspecao";
 
-	private String URN_BASE_DAM = "/monitoramento/barragem/";
+
 
 	private String credencial;
 
@@ -62,20 +62,35 @@ public class InspecaoClient {
 
 		return Arrays.asList(response.getBody());
 	}
-
+	
 	/**
-	 * @param inspecao
+
 	 * @return
 	 */
-	public String save(Inspecao Inspecao) {
-		RequestEntity<Inspecao> request = RequestEntity
-				.post(URI.create(URL + URN_BASE_DAM + Inspecao.getBarragem().getCodigo() + "/inspecao"))
-				.header("Authorization", credencial).body(Inspecao);
+	public Inspecao ultimaInspecaoByIdBarragem(Long idBarragem) {
+
+		RequestEntity<Void> request = RequestEntity.get(URI.create(URI_BASE + "/" + idBarragem + "/ultima"))
+				.header("Authorization", credencial).build();
+
+		ResponseEntity<Inspecao> response = restTemplate.exchange(request, Inspecao.class);
+
+		return response.getBody();
+	}
+
+	
+	/**
+	 * @param leituraSensor
+	 * @return
+	 */
+	public String save(Inspecao inspecao) {
+		RequestEntity<Inspecao> request = RequestEntity.post(URI.create(URI_BASE)).header("Authorization", credencial)
+				.body(inspecao);
 
 		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
 
 		return response.getHeaders().getLocation().toString();
 	}
+
 
 	/**
 	 * @param id

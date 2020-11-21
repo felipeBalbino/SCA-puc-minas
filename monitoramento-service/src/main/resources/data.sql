@@ -25,6 +25,12 @@ insert into sensor (codigo_sensor, codigo_ativo, codigo_tipo_sensor,CODIGO_BARRA
 insert into sensor (codigo_sensor, codigo_ativo, codigo_tipo_sensor,CODIGO_BARRAGEM, data_inclusao) values(4, 9, 4	, 4,'2020-11-01' );
 insert into sensor (codigo_sensor, codigo_ativo, codigo_tipo_sensor,CODIGO_BARRAGEM, data_inclusao) values(5, 10, 5	, 5,'2020-11-01' );
 
+insert into sensor (codigo_sensor, codigo_ativo, codigo_tipo_sensor,CODIGO_BARRAGEM, data_inclusao) values(6, 6, 1	, 1,'2020-11-01' );
+insert into sensor (codigo_sensor, codigo_ativo, codigo_tipo_sensor,CODIGO_BARRAGEM, data_inclusao) values(7, 7, 2	, 1,'2020-11-01' );
+insert into sensor (codigo_sensor, codigo_ativo, codigo_tipo_sensor,CODIGO_BARRAGEM, data_inclusao) values(8, 8, 3	, 1,'2020-11-01' );
+insert into sensor (codigo_sensor, codigo_ativo, codigo_tipo_sensor,CODIGO_BARRAGEM, data_inclusao) values(9, 9, 4	, 1,'2020-11-01' );
+insert into sensor (codigo_sensor, codigo_ativo, codigo_tipo_sensor,CODIGO_BARRAGEM, data_inclusao) values(10, 10, 5	, 1,'2020-11-01' );
+
 insert into barragem (nome, codigo_barragem, codigo_ativo, latitude, longitude, codigo_tipo_metodo,data_inclusao) values('Barragem 1', 1, 1,'15.456123','-15.123456',1,'2020-11-01' );
 insert into barragem (nome, codigo_barragem, codigo_ativo, latitude, longitude, codigo_tipo_metodo,data_inclusao) values('Barragem 2', 2, 2,'15.456123','-15.123456',2,'2020-11-01' );
 insert into barragem (nome, codigo_barragem, codigo_ativo, latitude, longitude, codigo_tipo_metodo,data_inclusao) values('Barragem 3', 3, 3,'15.456123','-15.123456',3,'2020-11-01' );

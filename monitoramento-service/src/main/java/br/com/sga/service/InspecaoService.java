@@ -60,13 +60,22 @@ public class InspecaoService {
 		}
 	}
 
-
-
 	/**
 	 * @param Inspecao
 	 */
 	public void update(Inspecao inspecao) {
 		findById(inspecao.getCodigo());
 		InspecaoRepository.save(inspecao);
+	}
+
+	/**
+	 * @param id
+	 * @return
+	 */
+	public Inspecao findByUltimaInspecao(Long id) {
+		Inspecao inspecao = InspecaoRepository.findByBarragem_CodigoOrderByDataInclusaoDesc(id);
+
+		return inspecao;
+
 	}
 }

@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author sga
@@ -32,6 +33,7 @@ public class LeituraSensor {
 
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "codigo_sensor", nullable = false)
+	@JsonIgnore
 	private Sensor sensor;
 	
 	@NotNull(message = "Leitura requerido")

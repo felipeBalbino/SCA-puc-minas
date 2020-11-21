@@ -8,7 +8,7 @@ services:
       MYSQL_ROOT_PASSWORD: "monitoramento"
       MYSQL_DATABASE: "monitoramento"
     ports:
-      - "3309:3306"
+      - "3307:3306"
     restart: always
     networks:
       - backend
@@ -43,6 +43,7 @@ services:
 
   seguranca-comunicacao-service:
     depends_on:
+      - mysql
       - eureka-service
       - rabbitmq
     image: sga/seguranca-comunicacao-service:latest
@@ -57,10 +58,24 @@ services:
 
   monitoramento-service:
     depends_on:
+      - mysql
       - eureka-service
     image: sga/monitoramento-service:latest
     ports:
       - "8061:8061"
+    restart: always
+    environment:
+     EUREKA_URI: http://eureka-service:8761/eureka
+    networks:
+      - backend
+      
+  cadastro-ativos-service:
+    depends_on:
+      - mysql
+      - eureka-service
+    image: sga/cadastro-ativos-service:latest
+    ports:
+      - "8069:8069"
     restart: always
     environment:
      EUREKA_URI: http://eureka-service:8761/eureka
@@ -95,10 +110,12 @@ services:
 
   monitoramento-ui:
     depends_on:
+      - mysql
       - eureka-service
       - zuul-gateway
       - seguranca-comunicacao-service
       - monitoramento-service
+      - cadastro-ativos-service
     image: sga/monitoramento-ui:latest
     ports:
       - "8080:8080"

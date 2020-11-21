@@ -16,6 +16,7 @@
         <module>seguranca-comunicacao-service</module>
 		<module>notificacao-service</module>
         <module>monitoramento-ui</module>
+		<module>eureka-client</module>
     </modules>
 
 </project>

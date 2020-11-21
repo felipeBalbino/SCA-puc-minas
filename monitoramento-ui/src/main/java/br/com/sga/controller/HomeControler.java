@@ -2,6 +2,8 @@ package br.com.sga.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sga.client.BarragemClient;
+import br.com.sga.client.InspecaoClient;
 import br.com.sga.client.SensorClient;
 import br.com.sga.dto.Barragem;
 import br.com.sga.repository.filter.InspecaoFilter;
@@ -29,7 +32,7 @@ public class HomeControler {
 	private String password;
 
 	@RequestMapping
-	public String home(@ModelAttribute("filter") InspecaoFilter filter, Authentication authentication, RedirectAttributes attr) {
+	public String home(@ModelAttribute("filter") InspecaoFilter filter, Authentication authentication, RedirectAttributes attr, HttpServletRequest request) {
 		authentication.getAuthorities();
 		Barragem barragem = null;
 		if(filter != null && filter.getId() != null) {
@@ -38,15 +41,16 @@ public class HomeControler {
 		}else {
 			List<Barragem> list = listBarragens();
 			barragem = (list.isEmpty()?null:listBarragens().get(0));
-			if(barragem != null) {
-				filter.setId(barragem.getCodigo().toString());
-				SensorClient sensorClient = new SensorClient(gateway, user, password);
-				attr.addFlashAttribute("sensores",sensorClient.findByBarragem(barragem.getCodigo()));
-			}
-
 		}
 		if(barragem != null) {
-			attr.addFlashAttribute("barragem",barragem);
+			request.setAttribute("barragem", barragem);
+			filter.setId(barragem.getCodigo().toString());
+			
+			SensorClient sensorClient = new SensorClient(gateway, user, password);
+			request.setAttribute("sensores", sensorClient.findByBarragem(barragem.getCodigo()));
+
+			InspecaoClient inspecaoClient = new InspecaoClient(gateway, user, password);
+			request.setAttribute("ultimainspecao", inspecaoClient.ultimaInspecaoByIdBarragem(barragem.getCodigo()));
 		}
 		return "home";
 	}
