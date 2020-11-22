@@ -82,9 +82,10 @@ public class InspecaoResource {
 		return ResponseEntity.created(uri).build();
 	}
 
-	@RequestMapping(value = "/{id}/ultima", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(value = "/{id}/ultima", method = RequestMethod.GET)
 	public ResponseEntity<Inspecao> findByUltimaInspecao(@PathVariable("id") Long id) {
 		Inspecao entidade = inspecaoService.findByUltimaInspecao(id);
+		
 		return ResponseEntity.status(HttpStatus.OK).body(entidade);
 	}
 

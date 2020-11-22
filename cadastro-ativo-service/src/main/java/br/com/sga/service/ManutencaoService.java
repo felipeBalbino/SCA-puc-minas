@@ -43,7 +43,7 @@ public class ManutencaoService {
 	 * @return
 	 */
 	public Manutencao save(Manutencao s) {
-		s.setDataManutencao(new Date());
+		s.setDataManutencao(new Date(System.currentTimeMillis()));
 		s.setStatusManutencao(StatusManutencaoEnum.ABERTA);
 		return manutencaoRepository.save(s);
 	}
@@ -77,6 +77,7 @@ public class ManutencaoService {
 	 */
 	public void update(Manutencao manutencao) {
 		findById(manutencao.getCodigo());
+		manutencao.setDataInclusao(new Date(System.currentTimeMillis()));
 		manutencaoRepository.save(manutencao);
 	}
 }

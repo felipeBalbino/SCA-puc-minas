@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import br.com.sga.dto.Comunicacao;
+import br.com.sga.dto.Inspecao;
 
 /**
  * @author sga
@@ -61,8 +62,8 @@ public class ComunicacaoClient {
 	 * @return
 	 */
 	public String save(Comunicacao comunicacao) {
-		RequestEntity<Comunicacao> request = RequestEntity.post(URI.create(URI_BASE)).header("Authorization", credencial)
-				.body(comunicacao);
+		RequestEntity<Comunicacao> request = RequestEntity.post(URI.create(URI_BASE))
+				.header("Authorization", credencial).body(comunicacao);
 
 		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
 
@@ -106,5 +107,19 @@ public class ComunicacaoClient {
 		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
 
 		return response.getHeaders().getLocation().toString();
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public Comunicacao ultimaComunicacaoByIdBarragem(Long idBarragem) {
+
+		RequestEntity<Void> request = RequestEntity.get(URI.create(URI_BASE + "/" + idBarragem + "/ultima"))
+				.header("Authorization", credencial).build();
+
+		ResponseEntity<Comunicacao> response = restTemplate.exchange(request, Comunicacao.class);
+
+		return response.getBody();
 	}
 }

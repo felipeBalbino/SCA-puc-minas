@@ -15,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sga.client.AtivosClient;
 import br.com.sga.client.DanoPotencialClient;
-import br.com.sga.client.InspecaoClient;
 import br.com.sga.client.SensorClient;
 import br.com.sga.client.TipoMetodoClient;
 import br.com.sga.client.TipoSensorClient;

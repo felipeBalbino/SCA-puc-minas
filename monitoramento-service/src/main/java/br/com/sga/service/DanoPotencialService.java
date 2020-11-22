@@ -1,5 +1,6 @@
 package br.com.sga.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,8 +33,9 @@ public class DanoPotencialService {
 	 * @param s
 	 * @return
 	 */
-	public DanoPotencial save(DanoPotencial s) {
-		return danoPotencialRepository.save(s);
+	public DanoPotencial save(DanoPotencial danoPotencial) {
+		danoPotencial.setDataInclusao(new Date(System.currentTimeMillis()));
+		return danoPotencialRepository.save(danoPotencial);
 	}
 
 	/**

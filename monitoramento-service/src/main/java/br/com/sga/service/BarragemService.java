@@ -1,5 +1,6 @@
 package br.com.sga.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +34,7 @@ public class BarragemService {
 	 * @return
 	 */
 	public Barragem save(Barragem barragem) {
+		barragem.setDataInclusao(new Date(System.currentTimeMillis()));
 		return barragemRepository.save(barragem);
 	}
 

@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import br.com.sga.dto.Inspecao;
-import br.com.sga.dto.LeituraSensor;
 
 /**
  * @author SGA

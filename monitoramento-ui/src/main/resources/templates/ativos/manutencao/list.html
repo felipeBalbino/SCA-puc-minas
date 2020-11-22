@@ -54,13 +54,13 @@
 										<td th:text="${item.tipoManutencao}">1</td>
 										<td th:text="${item.statusManutencao}">1</td>
 										<td class="text-center"
-											th:text="${#dates.format(item.dataManutencao, 'dd/MM/yyyy')}">1</td>
+											th:text="${#dates.format(item.dataManutencao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
 										<td class="text-center"
-											th:text="${#dates.format(item.dataProxManutencao, 'dd/MM/yyyy')}">1</td>
+											th:text="${#dates.format(item.dataProxManutencao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
 										<td class="text-center"
-											th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
+											th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
 										<td class="text-center"
-											th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy')}">1</td>
+											th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
 
 										<td class="text-center">
 											<a

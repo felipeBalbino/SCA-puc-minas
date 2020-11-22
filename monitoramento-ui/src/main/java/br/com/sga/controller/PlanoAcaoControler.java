@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.sga.binder.BarragemPropertyEditor;
 import br.com.sga.binder.PessoaPropertyEditor;
 import br.com.sga.binder.PlanoAcaoPropertyEditor;
 import br.com.sga.client.BarragemClient;
@@ -28,7 +27,6 @@ import br.com.sga.dto.Barragem;
 import br.com.sga.dto.GrauRiscoEnum;
 import br.com.sga.dto.Pessoa;
 import br.com.sga.dto.PlanoAcao;
-import br.com.sga.dto.TipoManutencaoEnum;
 
 /**
  * @author sga

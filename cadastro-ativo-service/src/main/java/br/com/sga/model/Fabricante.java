@@ -32,13 +32,13 @@ public class Fabricante {
 	@Temporal(TemporalType.DATE)
 	@NotNull(message="Data de inclusão obrigatória")
 	@JsonFormat
-	  (shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	  (shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date dataInclusao;
 	
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	@JsonFormat
-	  (shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	  (shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date dataInativacao;
 
 	public Long getCodigo() {

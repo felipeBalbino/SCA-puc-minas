@@ -14,16 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sga.client.AtivosClient;
-import br.com.sga.client.BarragemClient;
 import br.com.sga.client.DanoPotencialClient;
 import br.com.sga.client.LeituraSensorClient;
-import br.com.sga.client.SensorClient;
 import br.com.sga.client.TipoMetodoClient;
 import br.com.sga.client.TipoSensorClient;
 import br.com.sga.dto.Ativo;
 import br.com.sga.dto.DanoPotencial;
 import br.com.sga.dto.LeituraSensor;
-import br.com.sga.dto.Sensor;
 import br.com.sga.dto.TipoMetodo;
 import br.com.sga.dto.TipoSensor;
 

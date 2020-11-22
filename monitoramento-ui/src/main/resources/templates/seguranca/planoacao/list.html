@@ -60,8 +60,8 @@
 							<td class="text-center" th:text="${item.mensagemAlerta}">1</td>
 							<td class="text-center" th:text="${item.grauRisco}">1</td>
 	
-							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
-							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy')}">1</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
 							
 							<td class="text-center"><a 
 								th:href="@{/planoacao/{id}(id=${item.codigo})}" title="Alterar"

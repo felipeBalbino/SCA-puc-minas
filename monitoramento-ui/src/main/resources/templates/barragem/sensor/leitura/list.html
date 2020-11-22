@@ -33,12 +33,9 @@
 						<tr>
 							<th class="text-center col-md-1">#</th>
 							<th>Leitura</th>
-							<th>Data da Leitura</th>
-							<th>Data da Inativação</th>
-							
-							<th>Data Inclusão </th>
-							<th>Data Inativação </th>
-							
+							<th>Data de Leitura</th>
+							<th>Data de Inativação</th>
+														
 							<th class="col-md-1"></th>
 							<th class="col-md-1"></th>
 						</tr>
@@ -47,8 +44,8 @@
 						<tr th:each="item:${sensores}">
 							<td class="text-center" th:text="${item.codigo}">1</td>
 							<td th:text="${item.leitura}">1</td>
-							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
-							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy')}">1</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
 							<td class="text-center"><a 
 								th:href="@{/sensor/leitura/{id}(id=${item.codigo})}" title="Alterar"
 								rel="tooltip" data-toggle="tooltip" data-placement="top"> <i data-feather="edit" width="20"></i>

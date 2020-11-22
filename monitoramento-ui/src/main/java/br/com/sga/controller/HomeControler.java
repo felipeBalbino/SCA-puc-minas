@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.sga.client.AtivosClient;
 import br.com.sga.client.BarragemClient;
+import br.com.sga.client.ComunicacaoClient;
 import br.com.sga.client.InspecaoClient;
 import br.com.sga.client.SensorClient;
 import br.com.sga.dto.Barragem;
+import br.com.sga.dto.Sensor;
 import br.com.sga.repository.filter.InspecaoFilter;
 
 @Controller
@@ -43,14 +46,25 @@ public class HomeControler {
 			barragem = (list.isEmpty()?null:listBarragens().get(0));
 		}
 		if(barragem != null) {
+
+			AtivosClient ativosClient = new AtivosClient(gateway, user, password);
+			barragem.setAtivo(ativosClient.findById(barragem.getCodigoAtivo()));
+				
 			request.setAttribute("barragem", barragem);
 			filter.setId(barragem.getCodigo().toString());
 			
 			SensorClient sensorClient = new SensorClient(gateway, user, password);
-			request.setAttribute("sensores", sensorClient.findByBarragem(barragem.getCodigo()));
+			List<Sensor> list = sensorClient.findByBarragem(barragem.getCodigo());
+			for(Sensor sensor:list) {
+				sensor.setAtivo(ativosClient.findById(sensor.getCodigoAtivo()));
+			}
+			request.setAttribute("sensores", list);
 
 			InspecaoClient inspecaoClient = new InspecaoClient(gateway, user, password);
 			request.setAttribute("ultimainspecao", inspecaoClient.ultimaInspecaoByIdBarragem(barragem.getCodigo()));
+			
+			ComunicacaoClient comunicacaoClient = new ComunicacaoClient(gateway, user, password);
+			request.setAttribute("ultimaEvacuacao", comunicacaoClient.ultimaComunicacaoByIdBarragem(barragem.getCodigo()));
 		}
 		return "home";
 	}

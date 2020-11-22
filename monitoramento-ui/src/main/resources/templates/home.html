@@ -5,48 +5,67 @@
 	layout:decorator="layout">
 <head>
 <title>Home</title>
+
+	<script th:src="@{/js/jquery-1.9.1.min.js}"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_doTLeS7IUoepmgeRdg72sMdvj1UzUn0&callback=initMap&libraries=&v=weekly" defer></script>
+	<script type="text/javascript">
+		google.load('visualization', '1.0', {'packages':['corechart']});
+	
+		google.setOnLoadCallback(drawChart);
+		
+		function drawChart() {
+			$('.chart_draw').each(function(){
+				var index = $(this).attr('data-index');
+				var id = $(this).attr('data-id');
+				var nome = $(this).attr('data-nome');
+				var rangeMin = $(this).attr('data-min');
+				var rangeMax = $(this).attr('data-max');
+				var element = document.getElementsByClassName('chart_draw')[index];
+
+   	            $.ajax({
+   	                 type: "GET",
+   	                 dataType: "json",
+   	                 url: '/rest/api/'+id+'/leiturasensor',
+   	                 success: function(jsondata) {
+   	                	 
+   	                	var data = new google.visualization.DataTable();
+   	                	jsondata.forEach(function (row, index) {
+   	                	   if (index === 0) {
+   	                	     data.addColumn('date', toDate(row.dataInclusao));
+   	                	     data.addColumn('number', row.leitura);
+   	                	   } else {
+   	                	     data.addRow([ toDate(row.dataInclusao), row.leitura]);
+   	                	   }
+   	                	});
+
+   	                    var options = {
+   	                            title: nome,
+   	                            vAxis: {title: 'Leitura',titleTextStyle: {italic: false}},
+   	                            hAxis: {title: 'Data', titleTextStyle: {italic: false}},
+   	                    };
+
+   	                    var chart = new google.visualization.LineChart(element);
+   	                    chart.draw(data, options);
+   	                 }
+   	            });
+			});
+		}
+		
+	    var map;
+		
+	    function initMap() {
+	      map = new google.maps.Map(document.getElementById("map"), {
+	        center: { lat: -34.397, lng: 150.644 },
+	        zoom: 8,
+	      });
+	    }
+	    
+	</script>
 </head>
 
 <section layout:fragment="conteudo">
-
-<script th:inline="javascript">
-window.onload = function() {
-/*<![CDATA[*/
-
-    var pontos = /*[[${sensores}]]*/ 'default';
-    
-    pontos.forEach(myFunction);
-    function myFunction(value, index, array) {
-    	console.log(value); 
-    }    
-    
-    var chart = new CanvasJS.Chart("chartContainer", {
-    	animationEnabled: true,
-    	theme: "light2",
-    	title:{
-    		text: "Line Sample"
-    	},
-    	axisY:{
-    		includeZero: false
-    	},
-    	data: [{        
-    		type: "line",       
-    		dataPoints: []
-    	}]
-    });
-    chart.render();			
-
-    /*<![CDATA[*/
-    	/* Update dataPoints from AJAX and render the chart*/	
-    		chart.options.data[0].dataPoints = pontos;	
-    		chart.render();		
-    /*]]>*/
-    	
-}	
-</script> 
-
-	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-	
 
 	<div class="alert alert-success alert-dismissible"
 		th:if="${!#strings.isEmpty(mensagem)}" role="alert">
@@ -86,52 +105,54 @@ window.onload = function() {
 					<div class="panel-body">
 						<div class="row">
 							<div class="row row-cols-1 row-cols-md-3">
+								
+								<div class="col mb-4">
+									<div id="map"></div>
+								</div>
+								
+							
 								<div class="col mb-4">
 									<div class="card">
-
+										
 										<div class="card-body">
-											<h5 class="card-title">Última Inspeção</h5>
-											<p th:text="${ultimainspecao?.descricao}" class="card-text"></p>
-											<p th:text="${ultimainspecao?.categoriaRisco.nome}"
-												class="card-text"></p>
-											<p th:text="${ultimainspecao?.danoPotencial.nome}"
-												class="card-text"></p>
-											<p th:text="${ultimainspecao?.descricao}" class="card-text"></p>
-											<p th:text="${ultimainspecao?.altura}" class="card-text"></p>
-											<p th:text="${ultimainspecao?.volume}" class="card-text"></p>
-											<p th:text="${ultimainspecao?.dataInclusao}"
-												class="card-text"></p>
-											<a class="btn btn-success titulo-link"
-												th:href="@{/inspecao/new}">Inspecionar</a>
+										    <h5 class="card-title">Última Inspeção</h5>
+										    <p class="card-text"><span th:text="${ultimainspecao?.descricao}" class="card-text"></span></p>
+										</div>
+										<ul class="list-group list-group-flush">
+											
+											<li class="list-group-item">Categoria de Risco:<span th:text="${ultimainspecao?.categoriaRisco.nome}" class="card-text"></span></li>
+											
+											<li class="list-group-item">Dano Potencial:<span th:text="${ultimainspecao?.danoPotencial.nome}" class="card-text"></span></li>
+											<li class="list-group-item">Altura:<span th:text="${ultimainspecao?.altura}" class="card-text"></span></li>
+											<li class="list-group-item">Volume total: <span th:text="${ultimainspecao?.volume}" class="card-text"></span></li>
+											<li class="list-group-item">Data da última Inspeção: <span th:text="${#dates.format(ultimainspecao?.dataInclusao, 'dd/MM/yyyy HH:mm:ss')}" class="card-text"></span></li>
+										
+
+										</ul>
+										<div class="card-body">
+											<a class="btn btn-success titulo-link" href="/inspecao/new/">Inspecionar</a>
+											<a class="btn btn-danger titulo-right" data-toggle="modal" th:attr="data-id=${barragem.codigo}, data-loc=@{/evacuacao/}, data-description=${barragem.ativo?.nome}"	data-target="#modalPanico">Evacuação</a>
 										</div>
 									</div>
 								</div>
 
 								<div class="col mb-4">
 									<div class="card">
-
 										<div class="card-body">
-											<h5 class="card-title">Última Evacuação</h5>
-											<p th:text="${ultimainspecao?.descricao}" class="card-text"></p>
-											<p th:text="${ultimainspecao?.categoriaRisco.nome}"
-												class="card-text"></p>
-											<p th:text="${ultimainspecao?.danoPotencial.nome}"
-												class="card-text"></p>
-											<p th:text="${ultimainspecao?.descricao}" class="card-text"></p>
-											<p th:text="${ultimainspecao?.altura}" class="card-text"></p>
-											<p th:text="${ultimainspecao?.volume}" class="card-text"></p>
-											<p th:text="${ultimainspecao?.dataInclusao}"
-												class="card-text"></p>
-	
-											<a class="btn btn-danger titulo-right" data-toggle="modal"
-												th:attr="data-id=1, data-loc=@{/evacuation/}, data-description=Barragem_01"
-												data-target="#modalPanico">Evacuação</a>
+										    <h5 class="card-title">Última Evacuação</h5>
+										    <p class="card-text"><span th:text="${ultimaEvacuacao?.planoAcao.descricao}" class="card-text"></span></p>
 										</div>
+										<ul class="list-group list-group-flush">
+											<li class="list-group-item">Grau: <span th:text="${ultimaEvacuacao?.planoAcao.grauRisco}" class="card-text"></span></li>
+											<li class="list-group-item">Mensagem de Alerta: <span th:text="${ultimaEvacuacao?.planoAcao.mensagemAlerta}" class="card-text"></span></li>
+											<li class="list-group-item">Data de Evacuação: <span th:text="${#dates.format(ultimaEvacuacao?.dataInclusao, 'dd/MM/yyyy HH:mm:ss')}" class="card-text"></span></li>
+										</ul>
 
 									</div>
 								</div>
 
 							</div>
+	
 						</div>
 
 					</div>
@@ -142,28 +163,20 @@ window.onload = function() {
 
 							<div th:each="item :${sensores}" class="col mb-4">
 								<div class="card">
-									<div class="card-body">
-										<h5 class="card-title"></h5>
-										<p th:text="${item.ativo?.nome}" class="card-text"></p>
-										<p th:text="${item.tipoSensor.nome}" class="card-text"></p>
-										<p th:text="${item.tipoSensor.maxLeitura}" class="card-text"></p>
-										<p th:text="${item.tipoSensor.minLeitura}" class="card-text"></p>
-										<div th:each="leitura :${item.leituras}" class="col mb-4">
-											<p th:text="${leitura.leitura}" class="card-text"></p>
-										</div>
 
+									<div class="card-body">
+										<h5 class="card-title"><span th:text="${item.ativo?.nome}" class="card-text"></span> - <span th:text="${item.tipoSensor.nome}" class="card-text"></span></h5>
+										<div class="chart_draw" th:attr="data-id=${item.codigo}, data-nome=${item.ativo?.nome}, data-min=${item.tipoSensor.minLeitura}, data-max=${item.tipoSensor.maxLeitura}, data-index=${itemStat.index}"></div>
 									</div>
 								</div>
 							</div>
 						</div>
 
 					</div>
-					
+
 					<div class="panel-body">
 
-						<div class="row row-cols-1 row-cols-md-3">
-							<div id="chartContainer" style="height: 370px; width: 100%;"></div>
-						</div>
+						<div class="row row-cols-1 row-cols-md-3"></div>
 
 					</div>
 
@@ -174,4 +187,5 @@ window.onload = function() {
 
 	<div layout:insert="modal"></div>
 </section>
+
 </html>

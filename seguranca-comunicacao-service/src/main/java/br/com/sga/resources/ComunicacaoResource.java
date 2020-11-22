@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.sga.model.Comunicacao;
-import br.com.sga.model.Pessoa;
-import br.com.sga.model.PlanoAcao;
 import br.com.sga.service.ComunicacaoService;
 
 @RestController
@@ -71,7 +69,7 @@ public class ComunicacaoResource {
 	/**
 	 * @param id
 	 * @return
-	 */
+	 */	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Comunicacao> findById(@PathVariable("id") Long id) {
 		Comunicacao comunicacao = service.findById(id);
@@ -102,6 +100,12 @@ public class ComunicacaoResource {
 				.path("/{id}").buildAndExpand(comunicacao.getCodigo()).toUri();
 		
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value = "/{id}/ultima", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<Comunicacao> findByUltimaComunicacaoByBarragem(@PathVariable("id") Long id) {
+		Comunicacao comunicacao = service.findByUltimaComunicacaoByBarragem(id);
+		return ResponseEntity.status(HttpStatus.OK).body(comunicacao);
 	}
 
 }

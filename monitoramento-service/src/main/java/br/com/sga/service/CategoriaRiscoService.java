@@ -1,5 +1,6 @@
 package br.com.sga.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,8 +33,9 @@ public class CategoriaRiscoService {
 	 * @param s
 	 * @return
 	 */
-	public CategoriaRisco save(CategoriaRisco s) {
-		return categoriaRiscoRepository.save(s);
+	public CategoriaRisco save(CategoriaRisco categoriaRisco) {
+		categoriaRisco.setDataInclusao(new Date(System.currentTimeMillis()));
+		return categoriaRiscoRepository.save(categoriaRisco);
 	}
 
 	/**

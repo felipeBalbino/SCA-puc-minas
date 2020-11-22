@@ -1,5 +1,6 @@
 package br.com.sga.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,8 +33,9 @@ public class InspecaoService {
 	 * @param s
 	 * @return
 	 */
-	public Inspecao save(Inspecao s) {
-		return InspecaoRepository.save(s);
+	public Inspecao save(Inspecao inspecao) {
+		inspecao.setDataInclusao(new Date(System.currentTimeMillis()));
+		return InspecaoRepository.save(inspecao);
 	}
 
 	/**

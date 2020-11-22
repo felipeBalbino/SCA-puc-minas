@@ -49,8 +49,8 @@
 							<td th:text="${item.nome}">1</td>
 
 
-							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
-							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy')}">1</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
 
 							<td class="text-center"><a class="btn btn-link btn-xs"
 								th:href="@{/tipoAtivo/{id}(id=${item.codigo})}" title="Alterar"
@@ -60,7 +60,8 @@
 								data-toggle="modal"
 								th:attr="data-id=${item.codigo}, data-loc=@{/tipoAtivo/}, data-description=${item.nome}"
 								title="Deletar" rel="tooltip" data-placement="top"
-								data-target="#modalDelete"> Deletar 
+								data-target="#modalDelete"> <i data-feather="trash"
+													width="20"></i> 
 							</a></td>
 
 							</td>

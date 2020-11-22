@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/r-2.2.6/rr-1.2.7/sc-2.0.3/sb-1.0.0/sp-1.2.0/datatables.min.css"/>
 	<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
 
-	<link rel="stylesheet" th:href="@{/vendors/chartjs/Chart.min.css}">
+
 	<link rel="stylesheet"
 		th:href="@{/vendors/perfect-scrollbar/perfect-scrollbar.css}">
 	<link rel="stylesheet" th:href="@{/css/app.css}">
@@ -70,17 +70,13 @@
 		</div>
 
 	</div>
-	
 
 	<script th:src="@{/js/bootstrap.js}"></script>
 	<script th:src="@{/js/jquery-1.9.1.min.js}"></script>
 	<script th:src="@{/js/feather-icons/feather.min.js}"></script>
-	<script th:src="@{/vendors/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+
 	<script th:src="@{/js/app.js}"></script>
 
-	<script th:src="@{/vendors/chartjs/Chart.min.js}"></script>
-	<script th:src="@{/vendors/apexcharts/apexcharts.min.js}"></script>
-	<script th:src="@{/js/pages/dashboard.js}"></script>
 	<script th:src="@{/js/pages/modal.js}"></script>
 	<script th:src="@{/js/pages/jquery.maskMoney.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
@@ -94,50 +90,52 @@
 		        }
 		    } );
 		} );
-		
-		  var options = {
-		          series: [{
-		          name: "STOCK ABC",
-		          data: series.monthDataSeries1.prices
-		        }],
-		          chart: {
-		          type: 'area',
-		          height: 350,
-		          zoom: {
-		            enabled: false
-		          }
-		        },
-		        dataLabels: {
-		          enabled: false
-		        },
-		        stroke: {
-		          curve: 'straight'
-		        },
-		        
-		        title: {
-		          text: 'Fundamental Analysis of Stocks',
-		          align: 'left'
-		        },
-		        subtitle: {
-		          text: 'Price Movements',
-		          align: 'left'
-		        },
-		        labels: series.monthDataSeries1.dates,
-		        xaxis: {
-		          type: 'datetime',
-		        },
-		        yaxis: {
-		          opposite: true
-		        },
-		        legend: {
-		          horizontalAlign: 'left'
-		        }
-		        };
+	    function toDate(x) {
+	    	var partes = x.split(" ");
 
-		        var chart = new ApexCharts(document.querySelector("#chart"), options);
-		        chart.render();
-		      
-		        
+	    	var horario = partes[1];
+
+	    	var partesData = partes[0].split("/");
+
+	    	var x = partesData[1]+"/"+partesData[0]+"/"+partesData[2];
+
+	    	hoje = new Date(x)
+	    	dia = hoje.getDate()
+	    	dias = hoje.getDay()
+	    	mes = hoje.getMonth()
+	    	ano = hoje.getYear()
+	    	if (dia < 10)
+	    	dia = "0" + dia
+	    	if (ano < 1000)
+	    	ano+=1900
+	    	function CriaArray (n) {
+	    	this.length = n }
+
+	    	NomeDia = new CriaArray(7)
+	    	NomeDia[0] = "Sun"
+	    	NomeDia[1] = "Mon"
+	    	NomeDia[2] = "Tues"
+	    	NomeDia[3] = "Wed"
+	    	NomeDia[4] = "Thurs"
+	    	NomeDia[5] = "Fri"
+	    	NomeDia[6] = "Sat"
+
+	    	NomeMes = new CriaArray(12)
+	    	NomeMes[0] = "Jan"
+	    	NomeMes[1] = "Feb"
+	    	NomeMes[2] = "Mar"
+	    	NomeMes[3] = "Apr"
+	    	NomeMes[4] = "May"
+	    	NomeMes[5] = "Jun"
+	    	NomeMes[6] = "Jul"
+	    	NomeMes[7] = "Aug"
+	    	NomeMes[8] = "Sep"
+	    	NomeMes[9] = "Oct"
+	    	NomeMes[10] = "Nov"
+	    	NomeMes[11] = "Dec"
+
+	    	return new Date(NomeDia[dias] +" " + NomeMes[mes] + " " + dia + " " + ano + " " + horario);
+	    }
 	</script>
 	
 	<footer layout:fragment="custom-footer">

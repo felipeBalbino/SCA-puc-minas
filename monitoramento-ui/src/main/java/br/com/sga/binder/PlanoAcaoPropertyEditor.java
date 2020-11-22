@@ -2,9 +2,7 @@ package br.com.sga.binder;
 
 import java.beans.PropertyEditorSupport;
 
-import br.com.sga.client.BarragemClient;
 import br.com.sga.client.PlanoAcaoClient;
-import br.com.sga.dto.Barragem;
 import br.com.sga.dto.PlanoAcao;
 
 /**

@@ -50,7 +50,7 @@ public class LeituraSensorComponent {
 		leituraSensor.setDataInclusao(new Date(System.currentTimeMillis()));
 		
 		Random r = new Random();
-		double randomValue = 2 + (5 - 2) * r.nextDouble();
+		double randomValue = r.nextInt((100 - 1) + 1) + 1;
 		
 		leituraSensor.setLeitura(randomValue);
 		

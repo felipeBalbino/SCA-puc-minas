@@ -1,5 +1,6 @@
 package br.com.sga.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +41,7 @@ public class TipoAtivoService {
 				throw new ServiceException("TipoAtivo já existe na base.");
 			}
 		}
+		tipoAtivo.setDataInclusao(new Date(System.currentTimeMillis()));
 		return tipoAtivoRepository.save(tipoAtivo);
 	}
 	

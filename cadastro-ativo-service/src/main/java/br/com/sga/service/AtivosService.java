@@ -1,5 +1,6 @@
 package br.com.sga.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,6 +43,7 @@ public class AtivosService {
 				throw new ServiceException("Ativo já existe na base.");
 			}
 		}
+		ativo.setDataInclusao(new Date(System.currentTimeMillis()));
 		ativo = ativoRepository.save(ativo);
 
 		return ativo;

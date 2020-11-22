@@ -1,5 +1,6 @@
 package br.com.sga.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +35,7 @@ public class SensorService {
 	 * @return
 	 */
 	public Sensor save(Sensor sensor) {
+		sensor.setDataInclusao(new Date(System.currentTimeMillis()));
 		return sensorRepository.save(sensor);
 	}
 

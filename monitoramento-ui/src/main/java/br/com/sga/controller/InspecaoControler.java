@@ -18,12 +18,16 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sga.binder.BarragemPropertyEditor;
+import br.com.sga.binder.CategoriaRiscoPropertyEditor;
+import br.com.sga.binder.DanoPotencialPropertyEditor;
 import br.com.sga.client.BarragemClient;
+import br.com.sga.client.CategoriaRiscoClient;
 import br.com.sga.client.DanoPotencialClient;
 import br.com.sga.client.InspecaoClient;
 import br.com.sga.client.LeituraSensorClient;
 import br.com.sga.client.TipoMetodoClient;
 import br.com.sga.dto.Barragem;
+import br.com.sga.dto.CategoriaRisco;
 import br.com.sga.dto.DanoPotencial;
 import br.com.sga.dto.Inspecao;
 import br.com.sga.dto.TipoMetodo;
@@ -53,6 +57,12 @@ public class InspecaoControler {
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
 		BarragemClient cliente = new BarragemClient(gateway, user, password);
 		binder.registerCustomEditor(Barragem.class, new BarragemPropertyEditor(cliente));
+		
+		CategoriaRiscoClient categoriaRiscoClient = new CategoriaRiscoClient(gateway, user, password);
+		binder.registerCustomEditor(CategoriaRisco.class, new CategoriaRiscoPropertyEditor(categoriaRiscoClient));
+		
+		DanoPotencialClient danoPotencialClient = new DanoPotencialClient(gateway, user, password);
+		binder.registerCustomEditor(DanoPotencial.class, new DanoPotencialPropertyEditor(danoPotencialClient));
 	}
 
 	/**

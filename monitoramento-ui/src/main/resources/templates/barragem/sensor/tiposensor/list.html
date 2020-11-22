@@ -49,8 +49,8 @@
 							<td th:text="${item.maxLeitura}">1</td>
 							<td th:text="${item.minLeitura}">1</td>
 							
-							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
-							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy')}">1</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
 
 							<td class="text-center"><a 
 								th:href="@{/sensor/tiposensor/{id}(id=${item.codigo})}" title="Alterar"

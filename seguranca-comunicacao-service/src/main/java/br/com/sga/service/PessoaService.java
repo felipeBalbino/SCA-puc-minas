@@ -1,5 +1,6 @@
 package br.com.sga.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +41,7 @@ public class PessoaService {
 				throw new ServiceException("already exist.");
 			}
 		}
+		pessoa.setDataInclusao(new Date(System.currentTimeMillis()));
 		return repository.save(pessoa);
 	}
 

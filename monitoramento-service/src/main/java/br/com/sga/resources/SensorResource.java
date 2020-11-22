@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.sga.model.Barragem;
 import br.com.sga.model.Sensor;
 import br.com.sga.service.SensorService;
 

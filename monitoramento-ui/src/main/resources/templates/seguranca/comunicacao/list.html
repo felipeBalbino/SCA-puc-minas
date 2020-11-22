@@ -45,8 +45,8 @@
 
 							<td class="text-center" th:text="${item.planoAcao!=null?item.planoAcao.descricao:''}">1</td>
 							
-							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
-							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy')}">1</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
 							
 							<td class="text-center"><a 
 								th:href="@{/comunicacao/{id}(id=${item.codigo})}" title="Alterar"

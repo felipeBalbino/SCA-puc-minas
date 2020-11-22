@@ -9,8 +9,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import br.com.sga.model.Comunicacao;
-import br.com.sga.model.Pessoa;
-import br.com.sga.model.PlanoAcao;
 import br.com.sga.queue.EmailSender;
 import br.com.sga.repository.ComunicacaoRepository;
 import br.com.sga.service.exception.ServiceException;
@@ -18,8 +16,7 @@ import br.com.sga.service.exception.ServiceException;
 @Service
 public class ComunicacaoService {
 
-	@Autowired
-	private EmailSender senderQueue;
+
 
 	@Autowired
 	private ComunicacaoRepository repository;
@@ -43,6 +40,7 @@ public class ComunicacaoService {
 				throw new ServiceException("already exist.");
 			}
 		}
+		comunicacao.setDataInclusao(new Date(System.currentTimeMillis()));
 		return repository.save(comunicacao);
 	}
 
@@ -56,11 +54,11 @@ public class ComunicacaoService {
 //		for (Pessoa p : planoAcao.getPessoas()) {
 //			senderQueue.send(p.getNomeCompleto() + " <" + p.getEmail() + ">");
 //		}
-//		comunicacao.setDataInclusao(new Date());
+//		comunicacao.setDataInclusao(new Date(System.currentTimeMillis()));
 //		return repository.save(comunicacao);
 //	}
 	
-	/**
+	/**	
 	 * @param id
 	 * @return
 	 */
@@ -90,5 +88,17 @@ public class ComunicacaoService {
 	public void update(Comunicacao comunicacao) {
 		findById(comunicacao.getCodigo());
 		repository.save(comunicacao);
+	}
+	
+
+	/**
+	 * @param id
+	 * @return
+	 */
+	public Comunicacao findByUltimaComunicacaoByBarragem(Long id) {
+		Comunicacao comunicacao = repository.findByPlanoAcao_CodigoBarragemOrderByDataInclusaoDesc(id);
+
+		return comunicacao;
+
 	}
 }

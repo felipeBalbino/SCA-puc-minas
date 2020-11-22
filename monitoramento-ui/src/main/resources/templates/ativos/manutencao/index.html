@@ -54,7 +54,7 @@
 					th:classappend="${#fields.hasErrors('dataManutencao')} ? 'has-error'">
 					<label for="dataManutencao" class="col-sm-2 control-label">Data de Manutenção</label>
 					<div class="col-sm-4">
-						<input id="dataManutencao" th:field="*{dataManutencao}" pattern="dd/MM/yyyy" type="date"
+						<input id="dataManutencao" th:field="*{dataManutencao}" pattern="dd/MM/yyyy HH:mm:ss" type="datetime-local"
 							class="form-control" placeholder="Data de Manutenção" />
 					</div>
 				</div>
@@ -63,7 +63,7 @@
 					th:classappend="${#fields.hasErrors('dataProxManutencao')} ? 'has-error'">
 					<label for="dataProxManutencao" class="col-sm-2 control-label">Data da Próxima Manutenção</label>
 					<div class="col-sm-4">
-						<input id="dataProxManutencao" th:field="*{dataProxManutencao}" pattern="dd/MM/yyyy" type="date"
+						<input id="dataProxManutencao" th:field="*{dataProxManutencao}" pattern="dd/MM/yyyy HH:mm:ss" type="datetime-local"
 							class="form-control" placeholder="Data da Próxima Manutenção" />
 					</div>
 				</div>
@@ -73,17 +73,8 @@
 					th:classappend="${#fields.hasErrors('dataInativacao')} ? 'has-error'">
 					<label for="dataInativacao" class="col-sm-2 control-label">Data de Inativaçao</label>
 					<div class="col-sm-4">
-						<input id="dataInativacao" th:field="*{dataInativacao}" pattern="dd/MM/yyyy" type="date"
+						<input id="dataInativacao" th:field="*{dataInativacao}" pattern="dd/MM/yyyy HH:mm:ss" type="datetime-local"
 							class="form-control" placeholder="Data de Inativaçao" />
-					</div>
-				</div>
-				
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('dataInclusao')} ? 'has-error'">
-					<label for="dataInclusao" class="col-sm-2 control-label">Data de Inclusão</label>
-					<div class="col-sm-4">
-						<input id="dataInclusao" th:field="*{dataInclusao}" pattern="dd/MM/yyyy" type="date"
-							class="form-control" placeholder="Data de Inclusão" />
 					</div>
 				</div>
 				

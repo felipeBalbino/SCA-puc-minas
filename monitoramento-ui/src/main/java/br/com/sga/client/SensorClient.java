@@ -10,7 +10,6 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.sga.dto.LeituraSensor;
 import br.com.sga.dto.Sensor;
 
 /**

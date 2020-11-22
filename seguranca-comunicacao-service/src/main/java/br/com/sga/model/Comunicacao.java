@@ -31,14 +31,14 @@ public class Comunicacao {
 	@JoinColumn(name = "CODIGO_PLANO_ACAO")
 	private PlanoAcao planoAcao;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")  
 	@NotNull(message = "Data de inclusão requerida")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
 	@Column(name = "DATA_INCLUSAO")
 	private Date dataInclusao;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")  
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
 	@Column(name = "DATA_INATIVACAO")
 	private Date dataInativacao;
 

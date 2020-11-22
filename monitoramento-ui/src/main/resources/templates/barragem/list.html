@@ -58,8 +58,8 @@
 								
 							<td class="text-center" th:text="${item.tipoMetodo!=null?item.tipoMetodo.nome:''}">1</td>
 							
-							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
-							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy')}">1</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
 							
 							<td class="text-center"><a 
 								th:href="@{/barragem/{id}(id=${item.codigo})}" title="Alterar"

@@ -16,12 +16,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.sga.client.AtivosClient;
 import br.com.sga.client.BarragemClient;
 import br.com.sga.client.DanoPotencialClient;
-import br.com.sga.client.FabricanteClient;
 import br.com.sga.client.TipoMetodoClient;
 import br.com.sga.dto.Ativo;
 import br.com.sga.dto.Barragem;
 import br.com.sga.dto.DanoPotencial;
-import br.com.sga.dto.Sensor;
 import br.com.sga.dto.TipoMetodo;
 
 /**

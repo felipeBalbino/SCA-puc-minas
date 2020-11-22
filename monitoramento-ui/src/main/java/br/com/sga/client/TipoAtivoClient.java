@@ -1,8 +1,6 @@
 package br.com.sga.client;
 
 import java.net.URI;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
@@ -12,7 +10,6 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.sga.dto.Fabricante;
 import br.com.sga.dto.TipoAtivo;
 
 /**

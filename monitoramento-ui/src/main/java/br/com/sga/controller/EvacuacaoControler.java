@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.sga.client.ComunicacaoClient;
-import br.com.sga.dto.Comunicacao;
+import br.com.sga.client.EvacuacaoClient;
+import br.com.sga.client.InspecaoClient;
+import br.com.sga.dto.GrauRiscoEnum;
+import br.com.sga.dto.Inspecao;
 import br.com.sga.dto.PlanoAcao;
 
 
@@ -33,14 +35,23 @@ public class EvacuacaoControler {
 	@RequestMapping(value ="{codigo}", method =RequestMethod.POST)
     public String evacuation(@PathVariable Long codigo, String user, RedirectAttributes attr) {
         
-		ComunicacaoClient cliente = 
-				new ComunicacaoClient(gateway, user, password);
+		InspecaoClient inspecaoClient = new InspecaoClient(gateway, user, password);
+		Inspecao ultimainspecao = inspecaoClient.ultimaInspecaoByIdBarragem(codigo);
 		
-		Comunicacao comunicacao = new Comunicacao();
-		comunicacao.setPlanoAcao(new PlanoAcao(codigo));
-		cliente.save(comunicacao);
+		PlanoAcao planoAcao = new PlanoAcao(codigo);
+		planoAcao.setCodigoBarragem(codigo);
+		if(ultimainspecao.getCategoriaRisco().getCodigo().equals(1L)) {
+			planoAcao.setGrauRisco(GrauRiscoEnum.BAIXO);
+		}else if(ultimainspecao.getCategoriaRisco().getCodigo().equals(2L)) {
+			planoAcao.setGrauRisco(GrauRiscoEnum.MEDIO);
+		}else if(ultimainspecao.getCategoriaRisco().getCodigo().equals(3L)) {
+			planoAcao.setGrauRisco(GrauRiscoEnum.ALTO);
+		}
 		
-		attr.addFlashAttribute("mensagem","Evacuation process started successfully");
+		EvacuacaoClient cliente =  new EvacuacaoClient(gateway, user, password);
+		cliente.evacuarBarragem(planoAcao);
+		
+		attr.addFlashAttribute("mensagem","Processo de evacuação iniciado com sucesso");
 		return "/evacuacao/emsgEvacuacao";
     }
 

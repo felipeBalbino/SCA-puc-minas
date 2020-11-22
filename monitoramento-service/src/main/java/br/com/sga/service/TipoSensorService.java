@@ -1,5 +1,6 @@
 package br.com.sga.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,8 +33,9 @@ public class TipoSensorService {
 	 * @param s
 	 * @return
 	 */
-	public TipoSensor save(TipoSensor s) {
-		return tipoSensorRepository.save(s);
+	public TipoSensor save(TipoSensor tipoSensor) {
+		tipoSensor.setDataInclusao(new Date(System.currentTimeMillis()));
+		return tipoSensorRepository.save(tipoSensor);
 	}
 
 	/**

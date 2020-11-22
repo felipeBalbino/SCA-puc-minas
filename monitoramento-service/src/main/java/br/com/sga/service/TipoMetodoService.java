@@ -1,5 +1,6 @@
 package br.com.sga.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,8 +33,9 @@ public class TipoMetodoService {
 	 * @param s
 	 * @return
 	 */
-	public TipoMetodo save(TipoMetodo s) {
-		return tipoMetodoRepository.save(s);
+	public TipoMetodo save(TipoMetodo tipoMetodo) {
+		tipoMetodo.setDataInclusao(new Date(System.currentTimeMillis()));
+		return tipoMetodoRepository.save(tipoMetodo);
 	}
 
 	/**

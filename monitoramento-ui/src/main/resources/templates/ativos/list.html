@@ -51,8 +51,8 @@
 							<td class="text-center" th:text="${item.descricao}">1</td>
 							<td class="text-center" th:text="${item.fabricante?.dataInativacao == null ?item.fabricante?.nome:item.fabricante?.nome+' (Inativado)'}">1</td>
 							<td class="text-center" th:text="${item.tipoAtivo?.dataInativacao == null ?item.tipoAtivo?.nome:item.tipoAtivo?.nome+' (Inativado)'}">1</td>
-							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
-							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy')}">1</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
 
 							<td class="text-center">
 								<a 

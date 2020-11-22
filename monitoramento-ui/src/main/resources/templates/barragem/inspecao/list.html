@@ -50,13 +50,13 @@
 						<tr th:each="item : ${inpecoes}">
 							<td class="text-center" th:text="${item.codigo}">1</td>
 							<td class="text-center"
-										th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
+										th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
 							<td class="text-center" th:text="${item.categoriaRisco != null?item.categoriaRisco.nome:''}">1</td>
 							<td class="text-center" th:text="${item.danoPotencial != null?item.danoPotencial.nome:''}">1</td>
 							<td class="text-center" th:text="${item.descricao}">1</td>
 								
-							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy')}">1</td>
-							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy')}">1</td>	
+							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
+							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy HH:mm:ss')}">1</td>	
 								
 							<td class="text-center"><a
 								th:href="@{/barragem/{id}(id=${item.barragem.codigo})}" title="Barragem"
