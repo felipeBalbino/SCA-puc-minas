@@ -68,6 +68,7 @@ public class BarragemService {
 	 */
 	public void update(Barragem barragem) {
 		findById(barragem.getCodigo());
+		barragem.setDataInclusao(new Date(System.currentTimeMillis()));
 		barragemRepository.save(barragem);
 	}
 }

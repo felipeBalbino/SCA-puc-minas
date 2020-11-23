@@ -70,6 +70,7 @@ public class LeituraSensorService {
 	 */
 	public void update(LeituraSensor leituraSensor) {
 		findById(leituraSensor.getCodigo());
+		leituraSensor.setDataInclusao(new Date(System.currentTimeMillis()));
 		leituraSensorRepository.save(leituraSensor);
 	}
 	

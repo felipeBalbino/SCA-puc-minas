@@ -74,6 +74,7 @@ public class PessoaService {
 	 */
 	public void update(Pessoa pessoa) {
 		findById(pessoa.getCodigo());
+		pessoa.setDataInclusao(new Date(System.currentTimeMillis()));
 		repository.save(pessoa);
 	}
 }

@@ -79,6 +79,7 @@ public class SensorService {
 	 */
 	public void update(Sensor sensor) {
 		findById(sensor.getCodigo());
+		sensor.setDataInclusao(new Date(System.currentTimeMillis()));
 		sensorRepository.save(sensor);
 	}
 }

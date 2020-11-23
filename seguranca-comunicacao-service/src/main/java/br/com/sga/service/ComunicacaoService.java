@@ -87,6 +87,7 @@ public class ComunicacaoService {
 	 */
 	public void update(Comunicacao comunicacao) {
 		findById(comunicacao.getCodigo());
+		comunicacao.setDataInclusao(new Date(System.currentTimeMillis()));
 		repository.save(comunicacao);
 	}
 	

@@ -1,10 +1,15 @@
 package br.com.sga.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -20,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.sga.binder.BarragemPropertyEditor;
 import br.com.sga.binder.CategoriaRiscoPropertyEditor;
 import br.com.sga.binder.DanoPotencialPropertyEditor;
+import br.com.sga.binder.LenientDateParser;
 import br.com.sga.client.BarragemClient;
 import br.com.sga.client.CategoriaRiscoClient;
 import br.com.sga.client.DanoPotencialClient;
@@ -51,7 +57,7 @@ public class InspecaoControler {
 
 	public static final String URL_INDEX = "/barragem/inspecao/index";
 	public static final String URL_LIST = "/barragem/inspecao/list";
-
+	
 
 	@InitBinder
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
@@ -63,6 +69,13 @@ public class InspecaoControler {
 		
 		DanoPotencialClient danoPotencialClient = new DanoPotencialClient(gateway, user, password);
 		binder.registerCustomEditor(DanoPotencial.class, new DanoPotencialPropertyEditor(danoPotencialClient));
+		
+
+	    SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");//2020-11-22T15:51
+	    dateTimeFormat.setLenient(false);
+	     
+		binder.registerCustomEditor(Date.class,new LenientDateParser(dateTimeFormat, 
+			     true));
 	}
 
 	/**
@@ -100,7 +113,7 @@ public class InspecaoControler {
 				attr.addFlashAttribute("mensagem", "Inspeção alterado com sucesso!");
 			}
 			
-			return "redirect:/inspecao/new";
+			return "redirect:/inspecao/";
 		} catch (IllegalArgumentException e) {
 			erros.rejectValue("data", null, e.getMessage());
 			return URL_INDEX;

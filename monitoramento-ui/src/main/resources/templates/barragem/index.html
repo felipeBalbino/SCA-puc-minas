@@ -80,7 +80,7 @@
 				<div class="col-sm-4">
 					<select name="codigoAtivo" class="form-control" th:field="*{codigoAtivo}">
 						<option value="">Selecione...</option>
-						<option th:each="item : ${listaAtivos}" th:value="${item.codigo}"  th:disabled="${item.dataInativacao != null}"
+						<option th:each="item : ${listaAtivos}" th:value="${item.codigo}"  th:disabled="${item.dataInativacao != null && item.dataInativacao != ''}"
 							th:text="${item.nome}"></option>
 					</select>
 				</div>
@@ -90,7 +90,7 @@
 				<div class="col-sm-4">
 					<select name="tipoMetodo.codigo" class="form-control" th:field="*{tipoMetodo.codigo}">
 						<option value="">Selecione...</option>
-						<option th:each="item : ${listaTipoMetodos}" th:value="${item.codigo}"  th:disabled="${item.dataInativacao != null}"
+						<option th:each="item : ${listaTipoMetodos}" th:value="${item.codigo}"  th:disabled="${item.dataInativacao != null && item.dataInativacao != ''}"
 							th:text="${item.nome}"></option>
 					</select>
 				</div>

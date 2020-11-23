@@ -1,111 +1,142 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorator="layout">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
 <head>
-	<title>Registro de Inspeção</title>
+<title>Registro de Inspeção</title>
 </head>
-	
-	<section layout:fragment="conteudo">
-	
-	
-	<form class="form-horizontal" method="post" th:action="@{/inspecao}" th:object="${inspecao}">
-	
-		<div class="alert alert-success alert-dismissible" th:if="${!#strings.isEmpty(mensagem)}" role="alert">
-		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		  <span th:text="${mensagem}"></span>
+
+<section layout:fragment="conteudo">
+
+
+	<form class="form-horizontal" method="post" th:action="@{/inspecao}"
+		th:object="${inspecao}">
+
+		<div class="alert alert-success alert-dismissible"
+			th:if="${!#strings.isEmpty(mensagem)}" role="alert">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<span th:text="${mensagem}"></span>
 		</div>
-		
+
 		<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
 			<div th:each="item :${#fields.detailedErrors()}">
 				<span th:text="${item.message}"></span>
 			</div>
 		</div>
-		
+
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a th:href="@{/inspecao}">Lista de Inspeções</a></li>
-				<li class="breadcrumb-item active" aria-current="page">Registro de Inspeção</li>
+				<li class="breadcrumb-item"><a th:href="@{/inspecao}">Lista
+						de Inspeções</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Registro
+					de Inspeção</li>
 			</ol>
 		</nav>
-		
+
 		<div class="panel panel-default">
 
-		  <div class="panel-body">
-		  
-		  		<input type="hidden" th:field="*{codigo}" />
-		   
-		   		<div class="form-group" th:classappend="${#fields.hasErrors('barragem')} ? 'has-error'">
-		   			<label for="barragem" class="col-sm-2 control-label">Barragens</label>
-				 	<div class="col-sm-4">
-					    <select name="barragem" class="form-control" th:field="*{barragem}">
-					    	<option th:each="item : ${listBarragens}" th:value="${item.codigo}"  th:text="${item.nome}" th:disabled="${item.dataInativacao != null}" ></option>
-					    </select>
-				 	</div>
-				 </div>
-				 	
-				 <div class="form-group" th:classappend="${#fields.hasErrors('altura')} ? 'has-error'">
-				 	<label for="altura" class="col-sm-2 control-label">Altura atual</label>
-				 	<div class="col-sm-4">
-					    <input  id="altura" th:field="*{altura}" type="text" class="form-control" placeholder="Altura atual"/>
-				 	</div>
-				  </div>
-				  
-				  <div class="form-group" th:classappend="${#fields.hasErrors('volume')} ? 'has-error'">
-				 	<label for="volume" class="col-sm-2 control-label">Volume Atual</label>
-				 	<div class="col-sm-4">
-					    <input  id="volume" th:field="*{volume}" type="text" class="form-control" placeholder="Current Volume"/>
-				 	</div>
-				  </div>
-		   		
+			<div class="panel-body">
+
+				<input type="hidden" th:field="*{codigo}" />
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('barragem')} ? 'has-error'">
+					<label for="barragem" class="col-sm-2 control-label">Barragens</label>
+					<div class="col-sm-4">
+						<select name="barragem" class="form-control"
+							th:field="*{barragem}">
+							<option th:each="item : ${listBarragens}"
+								th:value="${item.codigo}" th:text="${item.nome}"
+								th:disabled="${item.dataInativacao != null && item.dataInativacao != ''}"></option>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('altura')} ? 'has-error'">
+					<label for="altura" class="col-sm-2 control-label">Altura
+						atual</label>
+					<div class="col-sm-4">
+						<input id="altura" th:field="*{altura}" type="text"
+							class="form-control" placeholder="Altura atual" />
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('volume')} ? 'has-error'">
+					<label for="volume" class="col-sm-2 control-label">Volume
+						Atual</label>
+					<div class="col-sm-4">
+						<input id="volume" th:field="*{volume}" type="text"
+							class="form-control" placeholder="Current Volume" />
+					</div>
+				</div>
+
+
+
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('descricao')} ? 'has-error'">
+					<label for="descricao" class="col-sm-2 control-label">Descrição</label>
+					<div class="col-sm-4">
+						<input id="descricao" th:field="*{descricao}" type="text"
+							class="form-control" placeholder="descricao" />
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('categoriaRisco')} ? 'has-error'">
+					<label for="categoriaRisco" class="col-sm-2 control-label">Categoria
+						de Risco</label>
+					<div class="col-sm-4">
+						<select name="categoriaRisco" class="form-control"
+							th:field="*{categoriaRisco}">
+							<option value="">Selecione...</option>
+							<option th:each="item : ${listaDanoPotencial}"
+								th:value="${item.codigo}" th:text="${item.nome}"
+								th:disabled="${item.dataInativacao != null && item.dataInativacao != ''}"></option>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('danoPotencial')} ? 'has-error'">
+					<label for="danoPotencial" class="col-sm-2 control-label">Dano
+						Potencial</label>
+					<div class="col-sm-4">
+						<select name="danoPotencial" class="form-control"
+							th:field="*{danoPotencial}">
+							<option value="">Selecione...</option>
+							<option th:each="item : ${listaDanoPotencial}"
+								th:value="${item.codigo}" th:text="${item.nome}"
+								th:disabled="${item.dataInativacao != null && item.dataInativacao != ''}"></option>
+						</select>
+					</div>
+				</div>
+
 				<div class="form-group"
 					th:classappend="${#fields.hasErrors('dataInativacao')} ? 'has-error'">
-					<label for="dataInativacao" class="col-sm-2 control-label">Data de Inativaçao</label>
+					<label for="dataInativacao" class="col-sm-2 control-label">Data
+						de Inativaçao</label>
 					<div class="col-sm-4">
-						<input id="dataInativacao" th:field="*{dataInativacao}" pattern="dd/MM/yyyy HH:mm:ss" type="datetime-local"
+						<input id="dataInativacao" th:field="*{dataInativacao}"
+							pattern="dd/MM/yyyy HH:mm:ss" type="datetime-local"
 							class="form-control" placeholder="Data de Inativaçao" />
 					</div>
 				</div>
 
-				  
-				  <div class="form-group" th:classappend="${#fields.hasErrors('categoriaRisco')} ? 'has-error'">
-				 	<label for="categoriaRisco" class="col-sm-2 control-label">Categoria de Risco</label>
-				 	<div class="col-sm-4">
-					    <select name="categoriaRisco" class="form-control" th:field="*{categoriaRisco}">
-					    	<option value="">Selecione...</option>
-					    	<option th:each="item : ${listaDanoPotencial}" th:value="${item.codigo}"  th:text="${item.nome}"  th:disabled="${item.dataInativacao != null}"></option>
-					    </select>
-				 	</div>
-				  </div>
-				  
-				  <div class="form-group" th:classappend="${#fields.hasErrors('danoPotencial')} ? 'has-error'">
-				 	<label for="danoPotencial" class="col-sm-2 control-label">Dano Potencial</label>
-				 	<div class="col-sm-4">
-				 		<select name="danoPotencial" class="form-control" th:field="*{danoPotencial}">
-				 			<option value="">Selecione...</option>
-					    	<option th:each="item : ${listaDanoPotencial}" th:value="${item.codigo}"  th:text="${item.nome}"  th:disabled="${item.dataInativacao != null}"></option>
-					    </select>
-				 	</div>
-				  </div>
-				  
-				   <div class="form-group" th:classappend="${#fields.hasErrors('descricao')} ? 'has-error'">
-				 	<label for="descricao" class="col-sm-2 control-label">Descrição</label>
-				 	<div class="col-sm-4">
-					    <input  id="descricao" th:field="*{descricao}" type="text" class="form-control" placeholder="descricao"/>
-				 	</div>
-				  </div>
-				  
-				  
-				 	
-				  </div>
-				  
-				  <div class="form-group">
-				 	<div class="col-sm-offset-2 col-sm-10">
-					    <button type="submit" class="btn btn-primary">Save</button>
-				 	</div>
-				  </div>
-		  </div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary">Save</button>
+				</div>
+			</div>
+		</div>
 	</form>
 
 </section>

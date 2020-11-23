@@ -50,11 +50,11 @@
 							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
 							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
 
-							<td class="text-center"><a class="btn btn-link btn-xs"
+							<td class="text-center"><a 
 								th:href="@{/fabricante/{id}(id=${item.codigo})}" title="Alterar"
-								rel="tooltip" data-toggle="tooltip" data-placement="top"> Alterar
+								rel="tooltip" data-toggle="tooltip" data-placement="top">  <i data-feather="edit" width="20"></i>
 							</a></td>
-							<td class="text-center"><a class="btn btn-link btn-xs"
+							<td class="text-center"><a 
 								data-toggle="modal"
 								th:attr="data-id=${item.codigo}, data-loc=@{/fabricante/}, data-description=${item.nome}"
 								title="Deletar" rel="tooltip" data-placement="top"

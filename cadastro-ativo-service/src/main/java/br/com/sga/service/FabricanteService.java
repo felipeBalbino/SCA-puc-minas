@@ -74,6 +74,7 @@ public class FabricanteService {
 	 */
 	public void update(Fabricante fabricante) {
 		findById(fabricante.getCodigo());
+		fabricante.setDataInclusao(new Date(System.currentTimeMillis()));
 		fabricanteRepository.save(fabricante);
 	}
 }

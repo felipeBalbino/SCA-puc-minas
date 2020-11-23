@@ -74,6 +74,7 @@ public class PlanoAcaoService {
 	 */
 	public void update(PlanoAcao planoAcao) {
 		findById(planoAcao.getCodigo());
+		planoAcao.setDataInclusao(new Date(System.currentTimeMillis()));
 		repository.save(planoAcao);
 	}
 }

@@ -69,6 +69,7 @@ public class CategoriaRiscoService {
 	 */
 	public void update(CategoriaRisco categoriaRisco) {
 		findById(categoriaRisco.getCodigo());
+		categoriaRisco.setDataInclusao(new Date(System.currentTimeMillis()));
 		categoriaRiscoRepository.save(categoriaRisco);
 	}
 }

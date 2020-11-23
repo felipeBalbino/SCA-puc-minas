@@ -1,5 +1,6 @@
 package br.com.sga.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +41,7 @@ public class UsuarioService {
 			}
 		}
 		usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getSenha()));
+		usuario.setDataInclusao(new Date(System.currentTimeMillis()));
 		usuario = usuarioRepository.save(usuario);
 
 		return usuario;
@@ -97,6 +99,7 @@ public class UsuarioService {
 	public void update(Usuario usuario) {
 		findById(usuario.getCodigo());
 		usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getSenha()));
+		usuario.setDataInclusao(new Date(System.currentTimeMillis()));
 		usuarioRepository.save(usuario);
 	}
 }

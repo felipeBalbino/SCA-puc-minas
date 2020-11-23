@@ -31,11 +31,11 @@ insert into sensor (codigo_sensor, codigo_ativo, codigo_tipo_sensor,CODIGO_BARRA
 insert into sensor (codigo_sensor, codigo_ativo, codigo_tipo_sensor,CODIGO_BARRAGEM, data_inclusao) values(9, 9, 4	, 1,'2020-11-01' );
 insert into sensor (codigo_sensor, codigo_ativo, codigo_tipo_sensor,CODIGO_BARRAGEM, data_inclusao) values(10, 10, 5	, 1,'2020-11-01' );
 
-insert into barragem (nome, codigo_barragem, codigo_ativo, latitude, longitude, codigo_tipo_metodo,data_inclusao) values('Barragem 1', 1, 1,'15.456123','-15.123456',1,'2020-11-01' );
-insert into barragem (nome, codigo_barragem, codigo_ativo, latitude, longitude, codigo_tipo_metodo,data_inclusao) values('Barragem 2', 2, 2,'15.456123','-15.123456',2,'2020-11-01' );
-insert into barragem (nome, codigo_barragem, codigo_ativo, latitude, longitude, codigo_tipo_metodo,data_inclusao) values('Barragem 3', 3, 3,'15.456123','-15.123456',3,'2020-11-01' );
-insert into barragem (nome, codigo_barragem, codigo_ativo, latitude, longitude, codigo_tipo_metodo,data_inclusao) values('Barragem 4', 4, 4,'15.456123','-15.123456',4,'2020-11-01' );
-insert into barragem (nome, codigo_barragem, codigo_ativo, latitude, longitude, codigo_tipo_metodo,data_inclusao) values('Barragem 5', 5, 5,'15.456123','-15.123456',5,'2020-11-01' );
+insert into barragem (nome, codigo_barragem, codigo_ativo, latitude, longitude, codigo_tipo_metodo,data_inclusao) values('Brumadinho - Córrego do Feijão', 1, 1,'-20.1247746','-44.1243703',1,'2020-11-01' );
+insert into barragem (nome, codigo_barragem, codigo_ativo, latitude, longitude, codigo_tipo_metodo,data_inclusao) values('Mariana - Fundão', 2, 2,'-20.2054932','-43.4621964',2,'2020-11-01' );
+insert into barragem (nome, codigo_barragem, codigo_ativo, latitude, longitude, codigo_tipo_metodo,data_inclusao) values('Mariana - Germano', 3, 3,'-20.2054932','-43.4621964',3,'2020-11-01' );
+insert into barragem (nome, codigo_barragem, codigo_ativo, latitude, longitude, codigo_tipo_metodo,data_inclusao) values('Mariana - Santarém', 4, 4,'-20.2251652','-43.460372',4,'2020-11-01' );
+insert into barragem (nome, codigo_barragem, codigo_ativo, latitude, longitude, codigo_tipo_metodo,data_inclusao) values('Brumadinho - Capim Branco', 5, 5,'-20.1206066','-44.1076755',5,'2020-11-01' );
 
 insert into inspecao (codigo_inspecao, altura, codigo_categoria_risco, descricao, codigo_dano_potencial, data_inclusao, volume, CODIGO_BARRAGEM) values(1,'22.5',1,'apto',1,'2020-07-12','3000',1);
 insert into inspecao (codigo_inspecao, altura, codigo_categoria_risco, descricao, codigo_dano_potencial, data_inclusao, volume, CODIGO_BARRAGEM) values(2,'10.5',2,'apto',2,'2020-02-22','3000',2);

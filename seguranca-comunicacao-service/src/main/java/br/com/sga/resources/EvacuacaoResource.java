@@ -51,9 +51,9 @@ public class EvacuacaoResource {
 			senderQueue.send(pessoa.getEmail());
 		}
 
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(planoAcao.getCodigo())
-				.toUri();
-
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(comunicacao.getCodigo())
+		.toUri();
+		
 		return ResponseEntity.created(uri).build();
 	}
 }

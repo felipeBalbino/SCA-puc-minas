@@ -67,6 +67,7 @@ public class DanoPotencialService {
 	 */
 	public void update(DanoPotencial danoPotencial) {
 		findById(danoPotencial.getCodigo());
+		danoPotencial.setDataInclusao(new Date(System.currentTimeMillis()));
 		danoPotencialRepository.save(danoPotencial);
 	}
 }

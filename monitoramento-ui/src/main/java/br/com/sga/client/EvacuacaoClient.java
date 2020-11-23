@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import br.com.sga.dto.Comunicacao;
+import br.com.sga.dto.Fabricante;
 import br.com.sga.dto.Inspecao;
 import br.com.sga.dto.PlanoAcao;
 

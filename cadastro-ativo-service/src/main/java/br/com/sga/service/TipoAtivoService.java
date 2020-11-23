@@ -74,6 +74,7 @@ public class TipoAtivoService {
 	 */
 	public void update(TipoAtivo tipoAtivo) {
 		findById(tipoAtivo.getCodigo());
+		tipoAtivo.setDataInclusao(new Date(System.currentTimeMillis()));
 		tipoAtivoRepository.save(tipoAtivo);
 	}
 }

@@ -67,6 +67,7 @@ public class InspecaoService {
 	 */
 	public void update(Inspecao inspecao) {
 		findById(inspecao.getCodigo());
+		inspecao.setDataInclusao(new Date(System.currentTimeMillis()));
 		InspecaoRepository.save(inspecao);
 	}
 

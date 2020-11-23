@@ -78,6 +78,7 @@ public class AtivosService {
 	 */
 	public void update(Ativo ativo) {
 		findById(ativo.getCodigo());
+		ativo.setDataInclusao(new Date(System.currentTimeMillis()));
 		ativoRepository.save(ativo);
 	}
 }

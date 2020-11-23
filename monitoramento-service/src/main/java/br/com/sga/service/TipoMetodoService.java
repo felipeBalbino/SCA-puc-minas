@@ -67,6 +67,7 @@ public class TipoMetodoService {
 	 */
 	public void update(TipoMetodo tipoMetodo) {
 		findById(tipoMetodo.getCodigo());
+		tipoMetodo.setDataInclusao(new Date(System.currentTimeMillis()));
 		tipoMetodoRepository.save(tipoMetodo);
 	}
 }

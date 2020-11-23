@@ -1,6 +1,8 @@
 package br.com.sga.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.sga.binder.LenientDateParser;
 import br.com.sga.binder.PessoaPropertyEditor;
 import br.com.sga.binder.PlanoAcaoPropertyEditor;
 import br.com.sga.client.BarragemClient;
@@ -48,6 +51,7 @@ public class PlanoAcaoControler {
 	static final String URL_INDEX = "/seguranca/planoacao/index";
 	static final String URL_LIST = "/seguranca/planoacao/list";
 
+	
 	@InitBinder
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
 		PlanoAcaoClient cliente = new PlanoAcaoClient(gateway, user, password);
@@ -55,6 +59,12 @@ public class PlanoAcaoControler {
 		
 		PessoaClient pessoaClient = new PessoaClient(gateway, user, password);
 		binder.registerCustomEditor(Pessoa.class, new PessoaPropertyEditor(pessoaClient));
+		
+	    SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");//2020-11-22T15:51
+	    dateTimeFormat.setLenient(false);
+	     
+		binder.registerCustomEditor(Date.class,new LenientDateParser(dateTimeFormat, 
+			     true));
 	}
 	
 	/**

@@ -1,11 +1,17 @@
 package br.com.sga.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,10 +19,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.sga.binder.BarragemPropertyEditor;
+import br.com.sga.binder.CategoriaRiscoPropertyEditor;
+import br.com.sga.binder.DanoPotencialPropertyEditor;
+import br.com.sga.binder.LenientDateParser;
 import br.com.sga.client.AtivosClient;
+import br.com.sga.client.BarragemClient;
+import br.com.sga.client.CategoriaRiscoClient;
+import br.com.sga.client.DanoPotencialClient;
 import br.com.sga.client.FabricanteClient;
 import br.com.sga.client.TipoAtivoClient;
 import br.com.sga.dto.Ativo;
+import br.com.sga.dto.Barragem;
+import br.com.sga.dto.CategoriaRisco;
+import br.com.sga.dto.DanoPotencial;
 import br.com.sga.dto.Fabricante;
 import br.com.sga.dto.TipoAtivo;
 
@@ -37,6 +53,16 @@ public class AtivosControler {
 	@Value("${zuul.ws.password}")
 	private String password;
 
+	@InitBinder
+	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
+
+	    SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");//2020-11-22T15:51
+	    dateTimeFormat.setLenient(false);
+	     
+		binder.registerCustomEditor(Date.class,new LenientDateParser(dateTimeFormat, 
+			     true));
+	}
+	
 	/**
 	 * @return
 	 */

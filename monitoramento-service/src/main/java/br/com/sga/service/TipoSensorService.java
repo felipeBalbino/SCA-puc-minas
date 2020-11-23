@@ -67,6 +67,7 @@ public class TipoSensorService {
 	 */
 	public void update(TipoSensor tipoSensor) {
 		findById(tipoSensor.getCodigo());
+		tipoSensor.setDataInclusao(new Date(System.currentTimeMillis()));
 		tipoSensorRepository.save(tipoSensor);
 	}
 }

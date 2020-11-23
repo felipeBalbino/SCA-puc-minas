@@ -75,7 +75,7 @@
 					<div class="col-sm-4">
 						<select name="funcoes" class="form-control" th:field="*{funcoes}"
 							multiple="multiple">
-							<option th:each="item : ${listFuncoes}" th:value="${item.codigo}"  th:disabled="${item.dataInativacao != null}"
+							<option th:each="item : ${listFuncoes}" th:value="${item.codigo}"  th:disabled="${item.dataInativacao != null && item.dataInativacao != ''}"
 								th:text="${item.nome}"></option>
 						</select>
 					</div>

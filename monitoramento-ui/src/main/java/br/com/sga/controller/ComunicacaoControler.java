@@ -1,11 +1,17 @@
 package br.com.sga.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.sga.binder.LenientDateParser;
 import br.com.sga.client.ComunicacaoClient;
 import br.com.sga.client.PlanoAcaoClient;
 import br.com.sga.dto.Comunicacao;
@@ -38,6 +45,16 @@ public class ComunicacaoControler {
 	static final String URL_INDEX= "/seguranca/comunicacao/index";
 	static final String URL_LIST= "/seguranca/comunicacao/list";
 
+	@InitBinder
+	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
+
+	    SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");//2020-11-22T15:51
+	    dateTimeFormat.setLenient(false);
+	     
+		binder.registerCustomEditor(Date.class,new LenientDateParser(dateTimeFormat, 
+			     true));
+	}
+	
 	/**
 	 * @return
 	 */

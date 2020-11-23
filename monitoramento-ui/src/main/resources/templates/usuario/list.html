@@ -52,13 +52,13 @@
 								<a class="btn btn-link"
 									th:href="@{/usuario/{id}(id=${item.codigo})}" title="Alter"
 									rel="tooltip" data-toggle="tooltip" data-placement="top">
-										Alterar </a> 
+										 <i data-feather="edit" width="20"></i> </a> 
 							</td>		
 							<td class="text-center">		
 								<a class="btn btn-link" data-toggle="modal"
 									th:attr="data-id=${item.codigo}, data-loc=@{/usuario/}, data-description=${item.nome}"
 									title="Delete" rel="tooltip" data-placement="top"
-									data-target="#modalDelete"> Deletar </a>
+									data-target="#modalDelete"> <i data-feather="trash" width="20"></i>   </a>
 							</td>
 
 						</tr>

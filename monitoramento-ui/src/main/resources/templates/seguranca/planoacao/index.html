@@ -53,7 +53,7 @@
 		   			<label for="barragem" class="col-sm-2 control-label">Barragem</label>
 				 	<div class="col-sm-4">
 					    <select name="codigoBarragemm" class="form-control" th:field="*{codigoBarragem}">
-					    	<option th:each="item : ${listBarragens}" th:value="${item.codigo}"  th:text="${item.nome}" th:disabled="${item.dataInativacao != null}" ></option>
+					    	<option th:each="item : ${listBarragens}" th:value="${item.codigo}"  th:text="${item.nome}" th:disabled="${item.dataInativacao != null && item.dataInativacao != ''}" ></option>
 					    </select>
 				 	</div>
 				 </div>
@@ -63,7 +63,7 @@
 					<label for="pessoas" class="col-sm-2 control-label">Pessoas</label>
 					<div class="col-sm-4">
 						<select name="pessoas" class="form-control" th:field="*{pessoas}" multiple="multiple">
-							<option th:each="item : ${listPessoas}" th:value="${item.codigo}"  th:text="${item.nomeCompleto}" th:disabled="${item.dataInativacao != null}" ></option>
+							<option th:each="item : ${listPessoas}" th:value="${item.codigo}"  th:text="${item.nomeCompleto}" th:disabled="${item.dataInativacao != null && item.dataInativacao != ''}" ></option>
 						</select>
 					</div>
 				</div>

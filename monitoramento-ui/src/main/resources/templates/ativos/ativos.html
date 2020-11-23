@@ -73,7 +73,7 @@
 				<div class="col-sm-4">
 					<select name="fabricante.codigo" class="form-control" th:field="*{fabricante.codigo}">
 						<option value="">Selecione o Fabricante</option>
-						<option th:each="item : ${listaFabricantes}" th:value="${item.codigo}" th:text="${item.nome}" th:disabled="${item.dataInativacao != null}"></option>
+						<option th:each="item : ${listaFabricantes}" th:value="${item.codigo}" th:text="${item.nome}" th:disabled="${item.dataInativacao != null && item.dataInativacao != ''}"></option>
 					</select>
 				</div>
 				
@@ -82,7 +82,7 @@
 				<div class="col-sm-4">
 					<select name="tipoAtivo.codigo" class="form-control" th:field="*{tipoAtivo.codigo}">
 						<option value="">Selecione o Tipo</option>
-						<option th:each="item : ${listaTipoAtivo}" th:value="${item.codigo}" th:text="${item.nome}" th:disabled="${item.dataInativacao != null}"></option>
+						<option th:each="item : ${listaTipoAtivo}" th:value="${item.codigo}" th:text="${item.nome}" th:disabled="${item.dataInativacao != null && item.dataInativacao != ''}"></option>
 					</select>
 				</div>
 				
