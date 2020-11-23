@@ -10,19 +10,12 @@ import org.springframework.context.annotation.Configuration;
 @EnableRabbit
 public class RabbitConfig {
 
-	@Value("${queue.order.name}")
-    private String orderQueue;
 	
 	@Value("${queue.evacuacao.name}")
-    private String orderBarragemQueue;
+    private String evacuacaoQueue;
 	
 	@Bean
     public Queue queue() {
-        return new Queue(orderQueue, true);
-    }
-	
-	@Bean
-    public Queue queue2() {
-        return new Queue(orderBarragemQueue, true);
+        return new Queue(evacuacaoQueue, true);
     }
 }

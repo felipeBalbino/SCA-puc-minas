@@ -5,6 +5,8 @@ import java.util.Properties;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
+import br.com.sga.dto.EmailDTO;
+
 /**
  * @author sga
  *
@@ -16,15 +18,15 @@ public class Send {
 	 * @param subject
 	 * @param message
 	 */
-	public static void send(String to, String subject, String message) {
+	public static void send( EmailDTO emailDTO) {
 
 		try {
 			JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 
 			mailSender.setHost("smtp.gmail.com");
 			mailSender.setPort(587);
-			mailSender.setUsername("fjbalbino@gmail.com");
-			mailSender.setPassword("sistemagestao123");
+			mailSender.setUsername("sgapuc2020@gmail.com");
+			mailSender.setPassword("Moebious@01");
 
 			Properties props = new Properties();
 			props.put("mail.transport.protocol", "smtp");
@@ -36,10 +38,10 @@ public class Send {
 
 			SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
-			simpleMailMessage.setFrom("sga <fjbalbino@gmail.com>");
-			simpleMailMessage.setTo(to);
-			simpleMailMessage.setSubject(subject);
-			simpleMailMessage.setText(message);
+			simpleMailMessage.setFrom("sgapuc2020@gmail.com");
+			simpleMailMessage.setTo("sgapuc2020@gmail.com");//(emailDTO.getEmail());
+			simpleMailMessage.setSubject(emailDTO.getSubject());
+			simpleMailMessage.setText(emailDTO.getText());
 
 			mailSender.send(simpleMailMessage);
 		} catch (Exception ex) {

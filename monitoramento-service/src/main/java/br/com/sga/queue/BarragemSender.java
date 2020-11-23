@@ -5,14 +5,14 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.sga.dto.EmailDTO;
+import br.com.sga.dto.PlanoAcaoDTO;
 
 /**
  * @author sga
  *
  */
 @Component
-public class EmailSender {
+public class BarragemSender {
 
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
@@ -23,7 +23,7 @@ public class EmailSender {
 	/**
 	 * @param order
 	 */
-	public void send(EmailDTO emailDTO) {
-		rabbitTemplate.convertAndSend(this.queue.getName(), emailDTO);
+	public void send(PlanoAcaoDTO planoAcaoDTO) {
+		rabbitTemplate.convertAndSend(this.queue.getName(), planoAcaoDTO);
 	}
 }

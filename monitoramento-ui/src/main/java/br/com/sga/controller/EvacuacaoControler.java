@@ -10,7 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,8 +20,7 @@ import br.com.sga.client.EvacuacaoClient;
 import br.com.sga.client.InspecaoClient;
 import br.com.sga.dto.GrauRiscoEnum;
 import br.com.sga.dto.Inspecao;
-import br.com.sga.dto.PlanoAcao;
-import br.com.sga.repository.filter.InspecaoFilter;
+import br.com.sga.dto.PlanoAcaoDTO;
 
 
 @Controller
@@ -60,21 +58,22 @@ public class EvacuacaoControler {
 		InspecaoClient inspecaoClient = new InspecaoClient(gateway, user, password);
 		Inspecao ultimainspecao = inspecaoClient.ultimaInspecaoByIdBarragem(codigo);
 		
-		PlanoAcao planoAcao = new PlanoAcao(codigo);
-		planoAcao.setCodigoBarragem(codigo);
+		PlanoAcaoDTO planoAcaoDTO = new PlanoAcaoDTO();
+		planoAcaoDTO.setCodigo(codigo);
+		planoAcaoDTO.setCodigoBarragem(codigo);
 		if(ultimainspecao.getCategoriaRisco().getCodigo().equals(1L)) {
-			planoAcao.setGrauRisco(GrauRiscoEnum.BAIXO);
+			planoAcaoDTO.setGrauRisco(GrauRiscoEnum.BAIXO.getDescricao());
 		}else if(ultimainspecao.getCategoriaRisco().getCodigo().equals(2L)) {
-			planoAcao.setGrauRisco(GrauRiscoEnum.MEDIO);
+			planoAcaoDTO.setGrauRisco(GrauRiscoEnum.MEDIO.getDescricao());
 		}else if(ultimainspecao.getCategoriaRisco().getCodigo().equals(3L)) {
-			planoAcao.setGrauRisco(GrauRiscoEnum.ALTO);
+			planoAcaoDTO.setGrauRisco(GrauRiscoEnum.ALTO.getDescricao());
 		}
 		
 		EvacuacaoClient cliente =  new EvacuacaoClient(gateway, user, password);
-		cliente.evacuarBarragem(planoAcao);
-		
-		attr.addFlashAttribute("mensagem","Processo de evacuação iniciado com sucesso");
-		return "/evacuacao/emsgEvacuacao";
+		cliente.evacuarBarragem(planoAcaoDTO);
+
+		request.setAttribute("mensagem","Processo de evacuação iniciado com sucesso");
+		return "/evacuacao/msgEvacuacao";
     }
 
 }

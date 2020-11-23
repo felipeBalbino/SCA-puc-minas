@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,12 +29,12 @@ public class PlanoAcao {
 	@Column(name = "CODIGO_PLANO_ACAO")
 	private Long codigo;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER )
 	private Set<Pessoa> pessoas;
 
 	private Long codigoBarragem;
 
-	@NotNull
+
 	@Size(min = 3, max = 60)
 	@Column(name = "DESCRICAO", length = 60, nullable = false)
 	private String descricao;
@@ -41,13 +42,12 @@ public class PlanoAcao {
 	@Enumerated(EnumType.ORDINAL)
 	private GrauRiscoEnum grauRisco;
 
-	@NotNull
+
 	@Size(max = 130)
 	@Column(name = "MENSAGEM_ALERTA", length = 130, nullable = false)
 	private String mensagemAlerta;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")  
-	@NotNull(message = "Data de inclusão requerida")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
 	@Column(name = "DATA_INCLUSAO")
 	private Date dataInclusao;

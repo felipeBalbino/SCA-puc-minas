@@ -114,7 +114,14 @@
 							<div class="row row-cols-1 row-cols-md-3">
 								
 								<div class="col mb-4">
-									<img alt="" th:src="@{https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=600x440&maptype=roadmap&markers=color:red%7Clabel:C%7C{latitude},{longitude}&key=AIzaSyD_doTLeS7IUoepmgeRdg72sMdvj1UzUn0(latitude=${barragem.latitude},longitude=${barragem.longitude})}"  width="100%">
+									<div class="card">
+										<div class="card-body">
+											<h5 class="card-title">Localização</h5>
+											<p class="card-text">
+												<img alt="" th:src="@{https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=600x440&maptype=roadmap&markers=color:red%7Clabel:C%7C{latitude},{longitude}&key=AIzaSyD_doTLeS7IUoepmgeRdg72sMdvj1UzUn0(latitude=${barragem.latitude},longitude=${barragem.longitude})}"  width="100%">
+											</p>
+										</div>
+									</div>
 								</div>
 								
 							
@@ -167,9 +174,9 @@
 
 					<div class="panel-body">
 
-						<div class="row row-cols-1 row-cols-md-3">
+						<div class="row">
 
-							<div th:each="item :${sensores}" class="col mb-4">
+							<div th:each="item :${sensores}" class="col-sm-6">
 								<div class="card">
 
 									<div class="card-body">

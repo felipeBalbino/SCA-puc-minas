@@ -1,19 +1,13 @@
 package br.com.sga.client;
 
 import java.net.URI;
-import java.util.Arrays;
 import java.util.Base64;
-import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.sga.dto.Comunicacao;
-import br.com.sga.dto.Fabricante;
-import br.com.sga.dto.Inspecao;
-import br.com.sga.dto.PlanoAcao;
+import br.com.sga.dto.PlanoAcaoDTO;
 
 /**
  * @author sga
@@ -25,7 +19,7 @@ public class EvacuacaoClient {
 
 	private String URI_BASE;
 
-	private String URN_BASE = "/seguranca/evacuacao";
+	private String URN_BASE = "/monitoramento/evacuacao";
 
 	private String credencial;
 
@@ -50,8 +44,8 @@ public class EvacuacaoClient {
 	 * @param Comunicacao
 	 * @return
 	 */
-	public String evacuarBarragem(PlanoAcao planoAcao) {
-		RequestEntity<PlanoAcao> request = RequestEntity.post(URI.create(URI_BASE))
+	public String evacuarBarragem(PlanoAcaoDTO planoAcao) {
+		RequestEntity<PlanoAcaoDTO> request = RequestEntity.post(URI.create(URI_BASE))
 				.header("Authorization", credencial).body(planoAcao);
 
 		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
