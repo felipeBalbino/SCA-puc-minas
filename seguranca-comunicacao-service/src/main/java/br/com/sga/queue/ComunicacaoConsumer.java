@@ -7,23 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
-import br.com.sga.dto.PlanoAcaoDTO;
+import br.com.sga.dto.ComunicacaoDTO;
 import br.com.sga.model.PlanoAcao;
 import br.com.sga.service.EvacuacaoService;
 
 @Component
-public class BarragemConsumer {
+public class ComunicacaoConsumer {
 
 	@Autowired
 	private EvacuacaoService evacuacaoService;
 	
-	Logger logger = LoggerFactory.getLogger(BarragemConsumer.class);
+	Logger logger = LoggerFactory.getLogger(ComunicacaoConsumer.class);
 
-	@RabbitListener(queues = { "${queue.evacuacao.name}" })
-	public void receive(@Payload PlanoAcaoDTO planoAcaoDTO) {
-		System.out.println("Order: " + planoAcaoDTO.toString());
+	@RabbitListener(queues = { "${queue.comunicacao.name}" })
+	public void receive(@Payload ComunicacaoDTO comunicacaoDTO) {
+		System.out.println("Order: " + comunicacaoDTO.toString());
 		try {
-			evacuacaoService.evacuarBarragem(planoAcaoDTO);
+			evacuacaoService.evacuarBarragem(comunicacaoDTO);
 		} catch (Exception e) {
 			logger.error("erro enviando evacuacao de barragem", e);
 		}

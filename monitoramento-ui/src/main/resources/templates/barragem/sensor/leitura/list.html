@@ -34,10 +34,8 @@
 							<th class="text-center col-md-1">#</th>
 							<th>Leitura</th>
 							<th>Data de Leitura</th>
-							<th>Data de Inativação</th>
-														
-							<th class="col-md-1"></th>
-							<th class="col-md-1"></th>
+	
+			
 						</tr>
 					</thead>
 					<tbody>
@@ -45,8 +43,8 @@
 							<td class="text-center" th:text="${item.codigo}">1</td>
 							<td th:text="${item.leitura}">1</td>
 							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
-							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
-							<td class="text-center"><a 
+<!-- 							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy HH:mm:ss')}">1</td> -->
+<!-- 							<td class="text-center"><a 
 								th:href="@{/sensor/leitura/{id}(id=${item.codigo})}" title="Alterar"
 								rel="tooltip" data-toggle="tooltip" data-placement="top"> <i data-feather="edit" width="20"></i>
 							</a>
@@ -56,7 +54,7 @@
 								th:attr="data-id=${item.codigo}, data-loc=@{/sensor/leitura/}, data-description=${item.codigo}"
 								title="Excluir" rel="tooltip" data-placement="top"
 								data-target="#modalDelete"> <i data-feather="trash" width="20"></i> 
-							</a></td>
+							</a></td> -->
 
 
 						</tr>
@@ -66,11 +64,7 @@
 					</tbody>
 				</table>
 			</div>
- 			<div class="panel-heading">
-				<div class="clearfix">
-					<a class="btn btn-link titulo-link" th:href="@{/sensor/leitura/new}">Nova Leitura do Sensor</a>
-				</div>
-			</div> 
+
 		</div>
 
 		<div layout:insert="modal"></div>

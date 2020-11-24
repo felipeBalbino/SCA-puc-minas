@@ -13,7 +13,7 @@ public interface ComunicacaoRepository extends JpaRepository<Comunicacao, Long> 
 	 * @param barragem
 	 * @return
 	 */
-	public List<Comunicacao> findByPlanoAcao_CodigoBarragemOrderByDataInclusaoDesc(Long id);
+	public List<Comunicacao> findByPlanoAcao_CodigoAtivoOrderByDataInclusaoDesc(Long id);
 
 }
 			

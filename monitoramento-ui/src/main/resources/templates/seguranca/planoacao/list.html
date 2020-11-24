@@ -32,7 +32,7 @@
 					<thead>
 						<tr>
 							<th class="text-center col-md-1">#</th>
-							<th class="text-center col-md-2">Barragem</th>
+							<th class="text-center col-md-2">Ativo</th>
 							<th class="text-center col-md-2">Pessoas</th>
 							<th class="text-center col-md-2">Descrição</th>
 							<th class="text-center col-md-2">Mensagem de Alerta</th>
@@ -47,7 +47,7 @@
 						<tr th:each="item:${acoes}">
 							<td class="text-center" th:text="${item.codigo}">1</td>
 
-							<td class="text-center" th:text="${item.codigoBarragem}">1</td>
+							<td class="text-center" th:text="${item.ativo.nome}">1</td>
 							
 							<td class="text-center">
 								<div th:each="pessoa : ${item.pessoas}">

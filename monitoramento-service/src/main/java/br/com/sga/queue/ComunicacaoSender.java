@@ -5,14 +5,14 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.sga.dto.PlanoAcaoDTO;
+import br.com.sga.dto.ComunicacaoDTO;
 
 /**
  * @author sga
  *
  */
 @Component
-public class BarragemSender {
+public class ComunicacaoSender {
 
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
@@ -23,7 +23,7 @@ public class BarragemSender {
 	/**
 	 * @param order
 	 */
-	public void send(PlanoAcaoDTO planoAcaoDTO) {
-		rabbitTemplate.convertAndSend(this.queue.getName(), planoAcaoDTO);
+	public void send(ComunicacaoDTO comunicacaoDTO) {
+		rabbitTemplate.convertAndSend(this.queue.getName(), comunicacaoDTO);
 	}
 }

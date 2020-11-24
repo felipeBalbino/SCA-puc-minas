@@ -32,34 +32,16 @@
 					<thead>
 						<tr>
 							<th class="text-center col-md-1">#</th>
+							<th>Data da Comunicação</th>
 							<th class="text-center col-md-2">Plano de Ação</th>
-							<th>Data Inclusão </th>
-							<th>Data Inativação </th>
-							<th class="col-md-1"></th>
-							<th class="col-md-1"></th>
+							
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="item:${comunicacoes}">
 							<td class="text-center" th:text="${item.codigo}">1</td>
-
-							<td class="text-center" th:text="${item.planoAcao!=null?item.planoAcao.descricao:''}">1</td>
-							
 							<td class="text-center"  th:text="${#dates.format(item.dataInclusao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
-							<td class="text-center"  th:text="${#dates.format(item.dataInativacao, 'dd/MM/yyyy HH:mm:ss')}">1</td>
-							
-							<td class="text-center"><a 
-								th:href="@{/comunicacao/{id}(id=${item.codigo})}" title="Alterar"
-								rel="tooltip" data-toggle="tooltip" data-placement="top"> <i data-feather="edit" width="20"></i>
-							</a></td>
-							
-							<td class="text-center"><a 
-								data-toggle="modal"
-								th:attr="data-id=${item.codigo}, data-loc=@{/comunicacao/}, data-description=${item.codigo}"
-								title="Excluir" rel="tooltip" data-placement="top"
-								data-target="#modalDelete"> <i data-feather="trash" width="20"></i>  
-							</a></td>
-
+							<td class="text-center" th:text="${item.planoAcao!=null?item.planoAcao.descricao:''}">1</td>
 
 						</tr>
 						<tr th:if="${#lists.isEmpty(comunicacoes)}">
@@ -68,11 +50,7 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="panel-heading">
-				<div class="clearfix">
-					<a class="btn btn-link titulo-link" th:href="@{/comunicacao/new}">Nova Comunicação</a>
-				</div>
-			</div> 
+
 		</div>
 
 		<div layout:insert="modal"></div>

@@ -11,11 +11,11 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitConfig {
 
 	
-	@Value("${queue.evacuacao.name}")
-    private String evacuacaoQueue;
+	@Value("${queue.comunicacao.name}")
+    private String comunicacaoQueue;
 	
 	@Bean
     public Queue queue() {
-        return new Queue(evacuacaoQueue, true);
+        return new Queue(comunicacaoQueue, true);
     }
 }

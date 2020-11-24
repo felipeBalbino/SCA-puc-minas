@@ -2,12 +2,12 @@ package br.com.sga.dto;
 
 import java.io.Serializable;
 
-public class PlanoAcaoDTO  implements Serializable{
+public class ComunicacaoDTO  implements Serializable{
 
 
 	private Long codigo;
 
-	private Long codigoBarragem;
+	private Long codigoAtivo;
 
 	private String grauRisco;
 
@@ -19,12 +19,12 @@ public class PlanoAcaoDTO  implements Serializable{
 		this.codigo = codigo;
 	}
 
-	public Long getCodigoBarragem() {
-		return codigoBarragem;
+	public Long getCodigoAtivo() {
+		return codigoAtivo;
 	}
 
-	public void setCodigoBarragem(Long codigoBarragem) {
-		this.codigoBarragem = codigoBarragem;
+	public void setCodigoAtivo(Long codigoAtivo) {
+		this.codigoAtivo = codigoAtivo;
 	}
 
 	public String getGrauRisco() {

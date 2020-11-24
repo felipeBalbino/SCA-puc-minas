@@ -5,8 +5,11 @@ services:
   mysql:
     image: mysql:5.7
     environment:
+      MYSQL_ROOT_USER: "root"
       MYSQL_ROOT_PASSWORD: "monitoramento"
       MYSQL_DATABASE: "monitoramento"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "monitoramento"
     ports:
       - "3307:3306"
     restart: always

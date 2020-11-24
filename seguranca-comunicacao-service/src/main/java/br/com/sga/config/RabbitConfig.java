@@ -13,7 +13,7 @@ public class RabbitConfig {
 	@Value("${queue.order.name}")
     private String orderQueue;
 	
-	@Value("${queue.evacuacao.name}")
+	@Value("${queue.comunicacao.name}")
     private String orderBarragemQueue;
 	
 	@Bean

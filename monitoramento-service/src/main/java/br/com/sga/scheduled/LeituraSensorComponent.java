@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import br.com.sga.dto.ComunicacaoDTO;
 import br.com.sga.model.LeituraSensor;
 import br.com.sga.model.Sensor;
+import br.com.sga.queue.ComunicacaoSender;
 import br.com.sga.service.LeituraSensorService;
 import br.com.sga.service.SensorService;
 
@@ -31,6 +33,9 @@ public class LeituraSensorComponent {
 	@Autowired
 	private SensorService sensorService;
 	
+	@Autowired
+	private ComunicacaoSender senderQueue;
+	
 
 	@Scheduled(fixedRate = 9000)
 	public void mockLeituraSensor() {
@@ -38,7 +43,17 @@ public class LeituraSensorComponent {
 		
 		List<Sensor> lista = sensorService.findAll();
 		for(Sensor sensor:lista) {
-			leituraSensorService.save(criarLeiturasSensores(sensor));
+			LeituraSensor leituraSensor = criarLeiturasSensores(sensor);
+			leituraSensorService.save(leituraSensor);
+			if(leituraSensor.getLeitura() >= sensor.getTipoSensor().getMaxLeitura() || leituraSensor.getLeitura() <= sensor.getTipoSensor().getMinLeitura()) {
+				PlanoAcao
+				
+				ComunicacaoDTO comunicacaoDTO = new ComunicacaoDTO();
+				comunicacaoDTO.setCodigo(codigo);
+				comunicacaoDTO.setCodigoAtivo(sensor.getCodigoAtivo());
+				comunicacaoDTO.setGrauRisco(grauRisco);
+				senderQueue.send(comunicacaoDTO);
+			}
 		}
 		
 	}

@@ -8,7 +8,7 @@ public class ComunicacaoFilter {
 
 	private String codigoPessoa;
 
-	private Long codigoBarragem;
+	private Long codigoAtivo;
 
 	public String getCodigoPessoa() {
 		return codigoPessoa;
@@ -18,12 +18,12 @@ public class ComunicacaoFilter {
 		this.codigoPessoa = codigoPessoa;
 	}
 
-	public Long getCodigoBarragem() {
-		return codigoBarragem;
+	public Long getCodigoAtivo() {
+		return codigoAtivo;
 	}
 
-	public void setCodigoBarragem(Long codigoBarragem) {
-		this.codigoBarragem = codigoBarragem;
+	public void setCodigoAtivo(Long codigoAtivo) {
+		this.codigoAtivo = codigoAtivo;
 	}
 
 }

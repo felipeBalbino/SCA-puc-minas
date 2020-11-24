@@ -20,7 +20,7 @@ import br.com.sga.client.EvacuacaoClient;
 import br.com.sga.client.InspecaoClient;
 import br.com.sga.dto.GrauRiscoEnum;
 import br.com.sga.dto.Inspecao;
-import br.com.sga.dto.PlanoAcaoDTO;
+import br.com.sga.dto.ComunicacaoDTO;
 
 
 @Controller
@@ -58,19 +58,19 @@ public class EvacuacaoControler {
 		InspecaoClient inspecaoClient = new InspecaoClient(gateway, user, password);
 		Inspecao ultimainspecao = inspecaoClient.ultimaInspecaoByIdBarragem(codigo);
 		
-		PlanoAcaoDTO planoAcaoDTO = new PlanoAcaoDTO();
-		planoAcaoDTO.setCodigo(codigo);
-		planoAcaoDTO.setCodigoBarragem(codigo);
+		ComunicacaoDTO comunicacaoDTO = new ComunicacaoDTO();
+		comunicacaoDTO.setCodigo(codigo);
+		comunicacaoDTO.setCodigoAtivo(codigo);
 		if(ultimainspecao.getCategoriaRisco().getCodigo().equals(1L)) {
-			planoAcaoDTO.setGrauRisco(GrauRiscoEnum.BAIXO.getDescricao());
+			comunicacaoDTO.setGrauRisco(GrauRiscoEnum.BAIXO.getDescricao());
 		}else if(ultimainspecao.getCategoriaRisco().getCodigo().equals(2L)) {
-			planoAcaoDTO.setGrauRisco(GrauRiscoEnum.MEDIO.getDescricao());
+			comunicacaoDTO.setGrauRisco(GrauRiscoEnum.MEDIO.getDescricao());
 		}else if(ultimainspecao.getCategoriaRisco().getCodigo().equals(3L)) {
-			planoAcaoDTO.setGrauRisco(GrauRiscoEnum.ALTO.getDescricao());
+			comunicacaoDTO.setGrauRisco(GrauRiscoEnum.ALTO.getDescricao());
 		}
 		
 		EvacuacaoClient cliente =  new EvacuacaoClient(gateway, user, password);
-		cliente.evacuarBarragem(planoAcaoDTO);
+		cliente.evacuarBarragem(comunicacaoDTO);
 
 		request.setAttribute("mensagem","Processo de evacuação iniciado com sucesso");
 		return "/evacuacao/msgEvacuacao";

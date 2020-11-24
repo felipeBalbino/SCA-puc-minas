@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class PlanoAcao {
 
@@ -16,7 +17,7 @@ public class PlanoAcao {
 
 	private Set<Pessoa> pessoas;
 
-	private Long codigoBarragem;
+	private Long codigoAtivo;
 
 	private String descricao;
 
@@ -32,6 +33,9 @@ public class PlanoAcao {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")  
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date dataInativacao;
+	
+	@JsonIgnore
+	private Ativo ativo;
 
 	public PlanoAcao() {
 		super();
@@ -66,12 +70,12 @@ public class PlanoAcao {
 		this.dataInclusao = dataInclusao;
 	}
 
-	public Long getCodigoBarragem() {
-		return codigoBarragem;
+	public Long getCodigoAtivo() {
+		return codigoAtivo;
 	}
 
-	public void setCodigoBarragem(Long codigoBarragem) {
-		this.codigoBarragem = codigoBarragem;
+	public void setCodigoAtivo(Long codigoAtivo) {
+		this.codigoAtivo = codigoAtivo;
 	}
 
 	public Date getDataInativacao() {
@@ -104,6 +108,17 @@ public class PlanoAcao {
 
 	public void setMensagemAlerta(String mensagemAlerta) {
 		this.mensagemAlerta = mensagemAlerta;
+	}
+
+	
+	
+	
+	public Ativo getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Ativo ativo) {
+		this.ativo = ativo;
 	}
 
 	@Override

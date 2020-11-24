@@ -23,9 +23,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.sga.binder.LenientDateParser;
 import br.com.sga.binder.PessoaPropertyEditor;
 import br.com.sga.binder.PlanoAcaoPropertyEditor;
+import br.com.sga.client.AtivosClient;
 import br.com.sga.client.BarragemClient;
 import br.com.sga.client.PessoaClient;
 import br.com.sga.client.PlanoAcaoClient;
+import br.com.sga.dto.Ativo;
 import br.com.sga.dto.Barragem;
 import br.com.sga.dto.GrauRiscoEnum;
 import br.com.sga.dto.Pessoa;
@@ -115,6 +117,10 @@ public class PlanoAcaoControler {
 	public ModelAndView list() {
 		PlanoAcaoClient cliente = new PlanoAcaoClient(gateway, user, password);
 		List<PlanoAcao> list = cliente.list();
+		for(PlanoAcao planoAcao:list) {
+			AtivosClient ativosClient = new AtivosClient(gateway, user, password);
+			planoAcao.setAtivo(ativosClient.findById(planoAcao.getCodigoAtivo()));
+		}
 		ModelAndView mv = new ModelAndView(URL_LIST);
 		mv.addObject("acoes", list);
 		return mv;
@@ -150,10 +156,10 @@ public class PlanoAcaoControler {
 	/**
 	 * @return
 	 */
-	@ModelAttribute("listBarragens")
-	public List<Barragem> listBarragens() {
-		BarragemClient cliente = new BarragemClient(gateway, user, password);
-		List<Barragem> list = cliente.list();
+	@ModelAttribute("listAtivos")
+	public List<Ativo> listAtivos() {
+		AtivosClient ativosClient = new AtivosClient(gateway, user, password);
+		List<Ativo> list = ativosClient.list();
 		return list;
 	}	
 	

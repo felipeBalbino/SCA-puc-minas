@@ -7,7 +7,7 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.sga.dto.PlanoAcaoDTO;
+import br.com.sga.dto.ComunicacaoDTO;
 
 /**
  * @author sga
@@ -44,8 +44,8 @@ public class EvacuacaoClient {
 	 * @param Comunicacao
 	 * @return
 	 */
-	public String evacuarBarragem(PlanoAcaoDTO planoAcao) {
-		RequestEntity<PlanoAcaoDTO> request = RequestEntity.post(URI.create(URI_BASE))
+	public String evacuarBarragem(ComunicacaoDTO planoAcao) {
+		RequestEntity<ComunicacaoDTO> request = RequestEntity.post(URI.create(URI_BASE))
 				.header("Authorization", credencial).body(planoAcao);
 
 		ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);

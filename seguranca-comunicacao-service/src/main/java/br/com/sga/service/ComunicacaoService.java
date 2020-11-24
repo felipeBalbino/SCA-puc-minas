@@ -97,7 +97,7 @@ public class ComunicacaoService {
 	 * @return
 	 */
 	public Comunicacao findByUltimaComunicacaoByBarragem(Long id) {
-		List<Comunicacao> list = repository.findByPlanoAcao_CodigoBarragemOrderByDataInclusaoDesc(id);
+		List<Comunicacao> list = repository.findByPlanoAcao_CodigoAtivoOrderByDataInclusaoDesc(id);
 
 		return ((list != null && !list.isEmpty())?list.get(0):null);
 

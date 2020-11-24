@@ -9,7 +9,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import br.com.sga.dto.EmailDTO;
-import br.com.sga.dto.PlanoAcaoDTO;
+import br.com.sga.dto.ComunicacaoDTO;
 import br.com.sga.model.Comunicacao;
 import br.com.sga.model.Pessoa;
 import br.com.sga.model.PlanoAcao;
@@ -34,8 +34,8 @@ public class EvacuacaoService {
 	/**
 	 * @param comunicacao
 	 */
-	public Comunicacao evacuarBarragem(PlanoAcaoDTO planoAcaoDTO) {
-		PlanoAcao planoAcaoTemp = planoAcaoRepository.findById(planoAcaoDTO.getCodigo()).get();
+	public Comunicacao evacuarBarragem(ComunicacaoDTO comunicacaoDTO) {
+		PlanoAcao planoAcaoTemp = planoAcaoRepository.findById(comunicacaoDTO.getCodigo()).get();
 
 		Comunicacao comunicacao = new Comunicacao();
 		comunicacao.setDataInclusao(new Date(System.currentTimeMillis()));

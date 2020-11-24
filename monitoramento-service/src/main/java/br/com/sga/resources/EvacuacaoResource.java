@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.sga.dto.PlanoAcaoDTO;
-import br.com.sga.queue.BarragemSender;
+import br.com.sga.dto.ComunicacaoDTO;
+import br.com.sga.queue.ComunicacaoSender;
 
 /**
  * @author sga
@@ -25,14 +25,14 @@ public class EvacuacaoResource {
 
 
 	@Autowired
-	private BarragemSender senderQueue;
+	private ComunicacaoSender senderQueue;
 
 	/**
 	 * @param pessoa
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> evacuarBarragem(@Valid @RequestBody PlanoAcaoDTO planoAcao) {
+	public ResponseEntity<Void> evacuarBarragem(@Valid @RequestBody ComunicacaoDTO planoAcao) {
 		
 		senderQueue.send(planoAcao);
 

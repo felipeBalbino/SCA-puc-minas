@@ -32,7 +32,7 @@ public class PlanoAcao {
 	@ManyToMany(fetch = FetchType.EAGER )
 	private Set<Pessoa> pessoas;
 
-	private Long codigoBarragem;
+	private Long codigoAtivo;
 
 
 	@Size(min = 3, max = 60)
@@ -90,12 +90,12 @@ public class PlanoAcao {
 		this.dataInclusao = dataInclusao;
 	}
 
-	public Long getCodigoBarragem() {
-		return codigoBarragem;
+	public Long getCodigoAtivo() {
+		return codigoAtivo;
 	}
 
-	public void setCodigoBarragem(Long codigoBarragem) {
-		this.codigoBarragem = codigoBarragem;
+	public void setCodigoAtivo(Long codigoAtivo) {
+		this.codigoAtivo = codigoAtivo;
 	}
 
 	public Date getDataInativacao() {

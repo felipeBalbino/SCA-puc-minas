@@ -49,11 +49,11 @@
 					</div>
 				</div>
 				
-				<div class="form-group" th:classappend="${#fields.hasErrors('codigoBarragem')} ? 'has-error'">
-		   			<label for="barragem" class="col-sm-2 control-label">Barragem</label>
+				<div class="form-group" th:classappend="${#fields.hasErrors('codigoAtivo')} ? 'has-error'">
+		   			<label for="barragem" class="col-sm-2 control-label">Ativo</label>
 				 	<div class="col-sm-4">
-					    <select name="codigoBarragemm" class="form-control" th:field="*{codigoBarragem}">
-					    	<option th:each="item : ${listBarragens}" th:value="${item.codigo}"  th:text="${item.nome}" th:disabled="${item.dataInativacao != null && item.dataInativacao != ''}" ></option>
+					    <select name="codigoAtivo" class="form-control" th:field="*{codigoAtivo}">
+					    	<option th:each="item : ${listAtivos}" th:value="${item.codigo}"  th:text="${item.nome}" th:disabled="${item.dataInativacao != null && item.dataInativacao != ''}" ></option>
 					    </select>
 				 	</div>
 				 </div>
