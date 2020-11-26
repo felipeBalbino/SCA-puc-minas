@@ -8,14 +8,13 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 import br.com.sga.dto.ComunicacaoDTO;
-import br.com.sga.model.PlanoAcao;
-import br.com.sga.service.EvacuacaoService;
+import br.com.sga.service.EnvioComunicacaoService;
 
 @Component
 public class ComunicacaoConsumer {
 
 	@Autowired
-	private EvacuacaoService evacuacaoService;
+	private EnvioComunicacaoService envioComunicacaoService;
 	
 	Logger logger = LoggerFactory.getLogger(ComunicacaoConsumer.class);
 
@@ -23,9 +22,15 @@ public class ComunicacaoConsumer {
 	public void receive(@Payload ComunicacaoDTO comunicacaoDTO) {
 		System.out.println("Order: " + comunicacaoDTO.toString());
 		try {
-			evacuacaoService.evacuarBarragem(comunicacaoDTO);
+			if(comunicacaoDTO.getTipoComunicacao().equalsIgnoreCase("EVACUAR")) {
+				envioComunicacaoService.evacuar(comunicacaoDTO);
+			}else if(comunicacaoDTO.getTipoComunicacao().equalsIgnoreCase("SENSOR")) {
+				envioComunicacaoService.sensor(comunicacaoDTO);
+			}else if(comunicacaoDTO.getTipoComunicacao().equalsIgnoreCase("MANUTENCAO")) {
+				envioComunicacaoService.manutencao(comunicacaoDTO);
+			}
 		} catch (Exception e) {
-			logger.error("erro enviando evacuacao de barragem", e);
+			logger.error("erro enviando comunicacao", e);
 		}
 	}
 }

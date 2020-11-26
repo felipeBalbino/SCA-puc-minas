@@ -34,6 +34,7 @@ public class EvacuacaoResource {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> evacuarBarragem(@Valid @RequestBody ComunicacaoDTO planoAcao) {
 		
+		planoAcao.setTipoComunicacao("EVACUAR");
 		senderQueue.send(planoAcao);
 
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(planoAcao.getCodigo())

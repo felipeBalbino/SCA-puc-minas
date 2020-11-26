@@ -11,6 +11,8 @@ public class ComunicacaoDTO implements Serializable{
 	private Long codigoAtivo;
 
 	private String grauRisco;
+	
+	private String tipoComunicacao;
 
 	public Long getCodigo() {
 		return codigo;
@@ -34,6 +36,14 @@ public class ComunicacaoDTO implements Serializable{
 
 	public void setGrauRisco(String grauRisco) {
 		this.grauRisco = grauRisco;
+	}
+
+	public String getTipoComunicacao() {
+		return tipoComunicacao;
+	}
+
+	public void setTipoComunicacao(String tipoComunicacao) {
+		this.tipoComunicacao = tipoComunicacao;
 	}
 
 	

@@ -36,13 +36,10 @@ public class LeituraSensorResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> save(@Valid @RequestBody LeituraSensor leituraSensor) {
+	public ResponseEntity<@Valid LeituraSensor> save(@Valid @RequestBody LeituraSensor leituraSensor) {
 		leituraSensor = leituraSensorService.save(leituraSensor);
 		
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand(leituraSensor.getCodigo()).toUri();
-		
-		return ResponseEntity.created(uri).build();
+		return ResponseEntity.status(HttpStatus.OK).body(leituraSensor);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)

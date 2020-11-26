@@ -14,17 +14,8 @@ public class RabbitConfig {
 	@Value("${queue.comunicacao.name}")
     private String comunicacaoQueue;
 	
-	
-	@Value("${queue.leiturasensor.name}")
-    private String leiturasensor;
-	
 	@Bean
     public Queue queue() {
         return new Queue(comunicacaoQueue, true);
-    }
-	
-	@Bean
-    public Queue queue2() {
-        return new Queue(leiturasensor, true);
     }
 }
