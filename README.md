@@ -32,7 +32,7 @@ Diagrama de Implantação
 
 1. Como pré-requisito, possuir Interface de Linha de Comando(CLI) - [docker][maven][git]
 2. Subir todos os o arquivos de projeto para sua instância criada previamente. 
-3. Instação de bibliotecas:
+3. Instação e execução de bibliotecas:
 ```
 	#Instalar o Docker: 
 		sudo yum install docker
@@ -54,8 +54,8 @@ Diagrama de Implantação
 	#Implantar imagens:
 		sudo docker-compose up
 ```
-3. A aplicação estará disponível na URL: http://localhost:8080/
-4. Para o primeiro acesso ao sistema, o usuário de Administrador do sistema já é criado:
+4. A aplicação estará disponível na URL:  http://[url_gerada_instancia_ec2]:8080/
+5. Para o primeiro acesso ao sistema, o usuário de Administrador do sistema já é criado:
   * Usuário: administrador
   * Senha: qwe123
  
