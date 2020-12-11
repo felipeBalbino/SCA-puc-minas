@@ -42,8 +42,8 @@ public class ComunicacaoControler {
 	@Value("${zuul.ws.password}")
 	private String password;
 	
-	static final String URL_INDEX= "/seguranca/comunicacao/index";
-	static final String URL_LIST= "/seguranca/comunicacao/list";
+	static final String URL_INDEX= "seguranca/comunicacao/index";
+	static final String URL_LIST= "seguranca/comunicacao/list";
 
 	@InitBinder
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {

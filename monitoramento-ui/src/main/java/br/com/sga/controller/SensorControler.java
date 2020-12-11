@@ -48,8 +48,8 @@ public class SensorControler {
 	@Value("${zuul.ws.password}")
 	private String password;
 
-	public static final String URL_INDEX = "/barragem/sensor/index";
-	public static final String URL_LIST = "/barragem/sensor/list";
+	public static final String URL_INDEX = "barragem/sensor/index";
+	public static final String URL_LIST = "barragem/sensor/list";
 
 
 	@InitBinder

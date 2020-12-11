@@ -40,8 +40,8 @@ public class FabricanteControler {
 	@Value("${zuul.ws.password}")
 	private String password;
 	
-	static final String URL_INDEX= "/ativos/fabricante/index";
-	static final String URL_LIST= "/ativos/fabricante/list";
+	static final String URL_INDEX= "ativos/fabricante/index";
+	static final String URL_LIST= "ativos/fabricante/list";
 
 	@InitBinder
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {

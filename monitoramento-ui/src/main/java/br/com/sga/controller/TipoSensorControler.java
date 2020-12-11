@@ -46,8 +46,8 @@ public class TipoSensorControler {
 	@Value("${zuul.ws.password}")
 	private String password;
 
-	public static final String URL_INDEX = "/barragem/sensor/tiposensor/index";
-	public static final String URL_LIST = "/barragem/sensor/tiposensor/list";
+	public static final String URL_INDEX = "barragem/sensor/tiposensor/index";
+	public static final String URL_LIST = "barragem/sensor/tiposensor/list";
 
 
 	@InitBinder
@@ -142,21 +142,7 @@ public class TipoSensorControler {
 		return "redirect:/tipoSensor/";
 	}
 
-	
-	
-//	/**
-//	 * @param filter
-//	 * @return
-//	 */	
-//	@RequestMapping(value = "{codigo}/leiturasensor", method = RequestMethod.GET)
-//	public ModelAndView listBySensor(@PathVariable Long codigo) {
-//		TipoSensorClient cliente = new TipoSensorClient(gateway, user, password);
-//		List<TipoSensor> list = cliente.listBySensor(codigo);
-//		ModelAndView mv = new ModelAndView(URL_LIST);
-//		mv.addObject("sensores", list);
-//		return mv;
-//	}
-	
+		
 	
 	@ModelAttribute("listaTipoMetodos")
 	public List<TipoMetodo> listaTipoMetodos() {

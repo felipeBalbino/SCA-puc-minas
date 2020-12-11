@@ -50,8 +50,8 @@ public class PlanoAcaoControler {
 	@Value("${zuul.ws.password}")
 	private String password;
 
-	static final String URL_INDEX = "/seguranca/planoacao/index";
-	static final String URL_LIST = "/seguranca/planoacao/list";
+	static final String URL_INDEX = "seguranca/planoacao/index";
+	static final String URL_LIST = "seguranca/planoacao/list";
 
 	
 	@InitBinder

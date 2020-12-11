@@ -48,8 +48,8 @@ public class LeituraSensorControler {
 	@Value("${zuul.ws.password}")
 	private String password;
 
-	public static final String URL_INDEX = "/barragem/sensor/leitura/index";
-	public static final String URL_LIST = "/barragem/sensor/leitura/list";
+	public static final String URL_INDEX = "barragem/sensor/leitura/index";
+	public static final String URL_LIST = "barragem/sensor/leitura/list";
 
 	@InitBinder
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {

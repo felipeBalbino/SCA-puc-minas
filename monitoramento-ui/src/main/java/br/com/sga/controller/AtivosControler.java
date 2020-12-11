@@ -68,7 +68,7 @@ public class AtivosControler {
 	 */
 	@RequestMapping("/new")
 	public ModelAndView ativos() {
-		ModelAndView mv = new ModelAndView("/ativos/ativos");
+		ModelAndView mv = new ModelAndView("ativos/ativos");
 		mv.addObject(new Ativo());
 		return mv;
 	}
@@ -83,7 +83,7 @@ public class AtivosControler {
 	public String insert(@Validated Ativo ativo, Errors erros, RedirectAttributes attr) {
 
 		if (erros.hasErrors()) {
-			return "/ativos/ativos";
+			return "ativos/ativos";
 		}
 
 		try {
@@ -99,7 +99,7 @@ public class AtivosControler {
 			return "redirect:/ativos";
 		} catch (IllegalArgumentException e) {
 			erros.rejectValue("data", null, e.getMessage());
-			return "/ativos/ativos";
+			return "ativos/ativos";
 		}
 	}
 
@@ -110,7 +110,7 @@ public class AtivosControler {
 	public ModelAndView list() {
 		AtivosClient cliente = new AtivosClient(gateway, user, password);
 		List<Ativo> list = cliente.list();
-		ModelAndView mv = new ModelAndView("/ativos/list");
+		ModelAndView mv = new ModelAndView("ativos/list");
 		mv.addObject("ativos", list);
 		return mv;
 	}
@@ -123,7 +123,7 @@ public class AtivosControler {
 	public ModelAndView update(@PathVariable("codigo") Long codigo) {
 		AtivosClient cliente = new AtivosClient(gateway, user, password);
 		Ativo ativo = cliente.findById(codigo);
-		ModelAndView mv = new ModelAndView("/ativos/ativos");
+		ModelAndView mv = new ModelAndView("ativos/ativos");
 		mv.addObject(ativo);
 		return mv;
 	}

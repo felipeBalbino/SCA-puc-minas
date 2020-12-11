@@ -9,7 +9,6 @@
     <packaging>pom</packaging>
 
     <modules>
-		<module>eureka-service</module>
         <module>zuul-gateway</module>
         <module>cadastro-ativo-service</module>
 		<module>monitoramento-service</module>

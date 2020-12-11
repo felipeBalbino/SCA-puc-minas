@@ -89,18 +89,6 @@ services:
      EUREKA_URI: http://eureka-service:8761/eureka
     networks:
       - backend
-      
-  eureka-client:
-    depends_on:
-      - eureka-service
-    image: sga/eureka-client:latest
-    ports:
-      - "8766:8766"
-    restart: always
-    environment:
-     EUREKA_URI: http://eureka-service:8761/eureka
-    networks:
-      - backend
 
   notificacao-service:
     depends_on:

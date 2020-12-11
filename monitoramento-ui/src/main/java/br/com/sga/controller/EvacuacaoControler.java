@@ -73,7 +73,7 @@ public class EvacuacaoControler {
 		cliente.evacuarBarragem(comunicacaoDTO);
 
 		request.setAttribute("mensagem","Processo de evacuação iniciado com sucesso");
-		return "/evacuacao/msgEvacuacao";
+		return "evacuacao/msgEvacuacao";
     }
 
 }

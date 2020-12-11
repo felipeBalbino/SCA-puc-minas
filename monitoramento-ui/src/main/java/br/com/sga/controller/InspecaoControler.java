@@ -55,8 +55,8 @@ public class InspecaoControler {
 	@Value("${zuul.ws.password}")
 	private String password;
 
-	public static final String URL_INDEX = "/barragem/inspecao/index";
-	public static final String URL_LIST = "/barragem/inspecao/list";
+	public static final String URL_INDEX = "barragem/inspecao/index";
+	public static final String URL_LIST = "barragem/inspecao/list";
 	
 
 	@InitBinder

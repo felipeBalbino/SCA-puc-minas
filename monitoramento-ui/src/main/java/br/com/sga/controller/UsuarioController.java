@@ -54,7 +54,7 @@ public class UsuarioController {
 	 */
 	@GetMapping("/new")
 	public ModelAndView usuario() {
-		ModelAndView mv = new ModelAndView("/usuario/usuario");
+		ModelAndView mv = new ModelAndView("usuario/usuario");
 		mv.addObject(new Usuario());
 		return mv;
 	}
@@ -65,7 +65,7 @@ public class UsuarioController {
 	 */
 	@RequestMapping("{codigo}")
 	public ModelAndView update(@PathVariable("codigo") Usuario usuario) {
-		ModelAndView mv = new ModelAndView("/usuario/usuario");
+		ModelAndView mv = new ModelAndView("usuario/usuario");
 		mv.addObject(usuario);
 		return mv;
 	}
@@ -81,7 +81,7 @@ public class UsuarioController {
 		usuarioValidator.validate(usuario, bindingResult);
 
 		if (bindingResult.hasErrors()) {
-			return "/usuario/usuario";
+			return "usuario/usuario";
 		}
 		if(usuario.getCodigo() != null) {
 			usuarioService.update(usuario);
@@ -101,7 +101,7 @@ public class UsuarioController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView findAll() {
 		List<Usuario> list = usuarioService.findAll();
-		ModelAndView mv = new ModelAndView("/usuario/list");
+		ModelAndView mv = new ModelAndView("usuario/list");
 		mv.addObject("usuarios", list);
 		return mv;
 	}

@@ -25,7 +25,7 @@ public class AuthController {
 		if (logout != null)
 			model.addAttribute("message", "Conectado com sucesso");
 
-		return "/auth/login";
+		return "login";
 	}
 
 }

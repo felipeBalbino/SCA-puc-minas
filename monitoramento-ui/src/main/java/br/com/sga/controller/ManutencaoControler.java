@@ -46,8 +46,8 @@ public class ManutencaoControler {
 	@Value("${zuul.ws.password}")
 	private String password;
 	
-	static final String URL_INDEX= "/ativos/manutencao/index";
-	static final String URL_LIST= "/ativos/manutencao/list";
+	static final String URL_INDEX= "ativos/manutencao/index";
+	static final String URL_LIST= "ativos/manutencao/list";
 
 	@InitBinder
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {

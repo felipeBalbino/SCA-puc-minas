@@ -40,8 +40,8 @@ public class PessoaControler {
 	@Value("${zuul.ws.password}")
 	private String password;
 
-	static final String URL_INDEX = "/seguranca/pessoa/index";
-	static final String URL_LIST = "/seguranca/pessoa/list";
+	static final String URL_INDEX = "seguranca/pessoa/index";
+	static final String URL_LIST = "seguranca/pessoa/list";
 
 	
 	@InitBinder

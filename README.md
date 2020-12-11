@@ -8,11 +8,6 @@ Orientador(a): XXX
 
 Alunos: Felipe Balbino/ Gabriel Ferreira
 
-[Apresentação da POC no Youtube.](https://youtu.be/XXX)
-
-## Protótipo Arquitetural
-
-XXXX
 
 ## Passos para subir o sistema localmente
 
@@ -20,8 +15,8 @@ XXXX
 2. Baixar o arquivo docker-compose.yml deste repositório e executar o comando: docker-compose up
 3. A aplicação estará disponível na URL: http://localhost:8080/
 4. Para o primeiro acesso ao sistema, o usuário de Administrador do sistema já é criado:
-  * Usuário: admin
-  * Senha: 12345678
+  * Usuário: administrador
+  * Senha: qwe123
  
 ## Técnologias Utilizadas na POC
 

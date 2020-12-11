@@ -40,8 +40,8 @@ public class TipoAtivoControler {
 	@Value("${zuul.ws.password}")
 	private String password;
 	
-	static final String URL_INDEX= "/ativos/tipoAtivo/index";
-	static final String URL_LIST= "/ativos/tipoAtivo/list";
+	static final String URL_INDEX= "ativos/tipoAtivo/index";
+	static final String URL_LIST= "ativos/tipoAtivo/list";
 
 
 	@InitBinder

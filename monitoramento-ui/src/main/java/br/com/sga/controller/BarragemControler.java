@@ -46,8 +46,8 @@ public class BarragemControler {
 	@Value("${zuul.ws.password}")
 	private String password;
 
-	public static final String URL_INDEX = "/barragem/index";
-	public static final String URL_LIST = "/barragem/list";
+	public static final String URL_INDEX = "barragem/index";
+	public static final String URL_LIST = "barragem/list";
 
 	@InitBinder
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
