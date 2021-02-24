@@ -25,8 +25,13 @@ Diagrama de Implantação
 2. Baixar o arquivo docker-compose.yml deste repositório e executar o comando: docker-compose up
 3. A aplicação estará disponível na URL: http://localhost:8080/
 4. Para o primeiro acesso ao sistema, o usuário de Administrador do sistema já é criado:
-  * Usuário: administrador
-  * Senha: qwe123
+
+* Usuário: administrador	Senha:qwe123
+
+Outros usuários:
+
+* Usuário: engenheiro	Senha:qwe123
+* Usuário: consultor	Senha:qwe123
   
 ## Passos para subir o sistema no ecossistema da AWS(EC2)
 
@@ -56,10 +61,13 @@ Diagrama de Implantação
 ```
 4. A aplicação estará disponível na URL:  http://[url_gerada_instancia_ec2]:8080/(Public IPv4 DNS)
 5. Para o primeiro acesso ao sistema, o usuário de Administrador do sistema já é criado:
-Usuário			Senha
-  * administrador	qwe123
-  * engenheiro		qwe123
-  * consultor		qwe123
+			
+* Usuário: administrador	Senha:qwe123
+
+Outros usuários:
+
+* Usuário: engenheiro	Senha:qwe123
+* Usuário: consultor	Senha:qwe123
  
 ## Técnologias Utilizadas na POC
 
