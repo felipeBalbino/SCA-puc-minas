@@ -49,7 +49,7 @@ Diagrama de Implantação
 		sudo service docker start
 		
 	#Gerar imagens do Docker:
-		sudo maven clean install
+		sudo mvn clean install
 		
 	#Implantar imagens:
 		sudo docker-compose up
