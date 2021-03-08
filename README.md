@@ -25,8 +25,13 @@ Diagrama de Implantação
 2. Baixar o arquivo docker-compose.yml deste repositório e executar o comando: docker-compose up
 3. A aplicação estará disponível na URL: http://localhost:8080/
 4. Para o primeiro acesso ao sistema, o usuário de Administrador do sistema já é criado:
-  * Usuário: administrador
-  * Senha: qwe123
+
+* Usuário: administrador	Senha:qwe123
+
+Outros usuários:
+
+* Usuário: engenheiro	Senha:qwe123
+* Usuário: consultor	Senha:qwe123
   
 ## Passos para subir o sistema no ecossistema da AWS(EC2)
 
@@ -41,23 +46,28 @@ Diagrama de Implantação
 		sudo yum install maven
 	
 	#Instalar o docker compose:
-		sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-`uname-s`-`uname -m` | sudo tee / usr / local / bin / docker-compose> / dev / null
-		sudo chmod + x / usr / local / bin / docker-compose
-		sudo ln -s / usr / local / bin / docker-compose / usr / bin / docker-compose
+		sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+		sudo chmod +x /usr/local/bin/docker-compose
+		sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 	
 	#Start docker:
 		sudo service docker start
 		
 	#Gerar imagens do Docker:
-		sudo maven clean install
+		sudo mvn clean install
 		
 	#Implantar imagens:
 		sudo docker-compose up
 ```
-4. A aplicação estará disponível na URL:  http://[url_gerada_instancia_ec2]:8080/
+4. A aplicação estará disponível na URL:  http://[url_gerada_instancia_ec2]:8080/(Public IPv4 DNS)
 5. Para o primeiro acesso ao sistema, o usuário de Administrador do sistema já é criado:
-  * Usuário: administrador
-  * Senha: qwe123
+			
+* Usuário: administrador	Senha:qwe123
+
+Outros usuários:
+
+* Usuário: engenheiro	Senha:qwe123
+* Usuário: consultor	Senha:qwe123
  
 ## Técnologias Utilizadas na POC
 
