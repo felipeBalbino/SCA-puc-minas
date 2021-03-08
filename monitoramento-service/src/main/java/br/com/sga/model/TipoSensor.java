@@ -29,14 +29,11 @@ public class TipoSensor {
 
 	private String nome;
 	
-	@NotNull(message = "Leitura requerido")
 	private Double maxLeitura;
 	
-	@NotNull(message = "Leitura requerido")
 	private Double minLeitura;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")  
-	@NotNull(message = "Data de inclusão requerido")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date dataInclusao;
 

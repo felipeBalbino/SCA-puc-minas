@@ -76,9 +76,9 @@ public class InspecaoService {
 	 * @return
 	 */
 	public Inspecao findByUltimaInspecao(Long id) {
-		Inspecao inspecao = InspecaoRepository.findByBarragem_CodigoOrderByDataInclusaoDesc(id);
+		 List<Inspecao> inspecao = InspecaoRepository.findByBarragem_CodigoOrderByDataInclusaoDesc(id);
 
-		return inspecao;
+		return( inspecao!=null && inspecao.size() > 0)?inspecao.get(0):null ;
 
 	}
 }

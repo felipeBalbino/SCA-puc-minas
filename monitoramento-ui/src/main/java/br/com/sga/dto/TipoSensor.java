@@ -19,10 +19,8 @@ public class TipoSensor {
 
 	private String nome;
 
-	@NotNull(message = "Leitura maxLeitura requerido")
 	private Double maxLeitura;
 
-	@NotNull(message = "Leitura  minLeitura requerido")
 	private Double minLeitura;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")  

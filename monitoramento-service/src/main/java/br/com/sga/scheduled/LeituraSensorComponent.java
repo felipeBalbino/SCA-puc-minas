@@ -22,7 +22,7 @@ public class LeituraSensorComponent {
 	private LeituraSensorService leituraSensorService;
 	
 
-	@Scheduled(fixedRate = 20000)
+	@Scheduled(fixedRate = 190000)
 	public void mockLeituraSensor() {
 		
 		leituraSensorService.gerarLeituraTodosSensores();

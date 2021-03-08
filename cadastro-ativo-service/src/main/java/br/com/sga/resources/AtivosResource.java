@@ -48,6 +48,7 @@ public class AtivosResource {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> save(@Valid @RequestBody Ativo ativo) {
+		
 		ativo = ativosService.save(ativo);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

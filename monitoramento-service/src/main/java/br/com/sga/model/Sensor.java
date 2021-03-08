@@ -33,7 +33,6 @@ public class Sensor {
 	@Column(name = "CODIGO_SENSOR")
 	private Long codigo;
 
-	@NotNull(message = "Código do ativo requerido")
 	@Column(name = "CODIGO_ATIVO", nullable = false, unique = false)
 	private Long codigoAtivo;
 
@@ -42,7 +41,6 @@ public class Sensor {
 	private TipoSensor tipoSensor;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")  
-	@NotNull(message = "Data de inclusão requerido")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date dataInclusao;
 

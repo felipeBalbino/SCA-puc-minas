@@ -35,7 +35,6 @@ public class LeituraSensor {
 	@JoinColumn(name = "codigo_sensor", nullable = false)
 	private Sensor sensor;
 	
-	@NotNull(message = "Leitura requerido")
 	private Double leitura;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

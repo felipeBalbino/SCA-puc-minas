@@ -35,7 +35,6 @@ public class Barragem {
 	@Column(name = "CODIGO_BARRAGEM")
 	private Long codigo;
 
-	@NotNull(message = "Código do ativo requerido")
 	@Column(name = "CODIGO_ATIVO", nullable = false, unique = false)
 	private Long codigoAtivo;
 
@@ -48,7 +47,6 @@ public class Barragem {
 	@Column(name = "LONGITUDE")
 	private Double longitude;
 
-	@NotNull(message = "Tipo de método da barragem requerido")
 	@ManyToOne(cascade = CascadeType.REFRESH, optional = false)
 	@JoinColumn(name = "CODIGO_TIPO_METODO")
 	private TipoMetodo tipoMetodo;

@@ -24,7 +24,7 @@ public class UsuarioValidator implements Validator {
     	Usuario usuario = (Usuario) o;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nome", "NotEmpty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "dataInclusao", "NotEmpty");
+        //ValidationUtils.rejectIfEmptyOrWhitespace(errors, "dataInclusao", "NotEmpty");
         if (usuario.getNome().length() < 3) {
             errors.rejectValue("nome", "Size.userForm.username");
         }

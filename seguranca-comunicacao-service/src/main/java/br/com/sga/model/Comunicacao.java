@@ -26,13 +26,12 @@ public class Comunicacao {
 	@Column(name = "CODIGO_COMUNICACAO")
 	private Long codigo;
 
-	@NotNull(message = "Acao requerido")
+
 	@ManyToOne(cascade = CascadeType.REFRESH, optional = false)
 	@JoinColumn(name = "CODIGO_PLANO_ACAO")
 	private PlanoAcao planoAcao;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")  
-	@NotNull(message = "Data de inclusão requerida")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
 	@Column(name = "DATA_INCLUSAO")
 	private Date dataInclusao;

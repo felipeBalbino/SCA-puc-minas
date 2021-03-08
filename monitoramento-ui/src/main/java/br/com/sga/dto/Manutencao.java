@@ -37,7 +37,6 @@ public class Manutencao {
 	private Date dataProxManutencao;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")  
-	@NotNull(message = "Data de inclusão requerido")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date dataInclusao;
 	

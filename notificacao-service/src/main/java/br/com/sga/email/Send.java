@@ -43,7 +43,7 @@ public class Send {
 			simpleMailMessage.setSubject(emailDTO.getSubject());
 			simpleMailMessage.setText(emailDTO.getText());
 
-			//mailSender.send(simpleMailMessage);
+			mailSender.send(simpleMailMessage);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

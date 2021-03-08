@@ -30,7 +30,6 @@ public class Fabricante {
 	
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
-	@NotNull(message="Data de inclusão obrigatória")
 	@JsonFormat
 	  (shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date dataInclusao;

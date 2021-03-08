@@ -29,6 +29,6 @@ public interface InspecaoRepository extends JpaRepository<Inspecao, Long> {
 	 * @param barragem
 	 * @return
 	 */
-	public Inspecao findByBarragem_CodigoOrderByDataInclusaoDesc(Long id);
+	public List<Inspecao> findByBarragem_CodigoOrderByDataInclusaoDesc(Long id);
 
 }

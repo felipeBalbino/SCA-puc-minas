@@ -33,7 +33,7 @@ public class LeituraManutencaoComponent {
 	private ComunicacaoSender senderQueue;
 	
 
-	@Scheduled(fixedRate = 90000)
+	@Scheduled(fixedRate = 190000)
 	public void mockLeituraSensor() {
 		logger.info("Criação de leitura de manutencao para todos os sensores cadastrados fora da data de manutencao.");
 		
